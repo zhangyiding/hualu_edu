@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+.f16{ font-size:16px;}
+.f18{ font-size:18px;}
+.f20{ font-size:20px;}
+.f24{ font-size:24px;}
+.bold{ font-weight:bold;}
+.dblue{ color:#2d3743;}
+.green{ color:#0acf03;}
+.white{ color:#fff;}
+.yellow{ color:#d8b202;}
+.red{ color:#d80202}
+.blue{ color:#3f96db}
+.blue2{ color:#597193;}
+.orange{ color:#f48005}
+
+input:focus, textarea:focus {outline:none;}
+.txt01{ width:240px; height:46px; background:url(images/txtbg01.png) no-repeat; border:0; display:block; line-height:46px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:35px; color:#a7a7a7;}
+.txt01_click{width:240px; height:46px; background:url(images/txtbg01_click.png) no-repeat; border:0; display:block; line-height:46px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:35px; color:#6a6a6a;}
+.txt02{ width:240px; height:46px; background:url(images/txtbg02.png) no-repeat; border:0; display:block; line-height:46px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:35px; color:#a7a7a7;}
+.txt02_click{width:240px; height:46px; background:url(images/txtbg02_click.png) no-repeat; border:0; display:block; line-height:46px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:35px; color:#6a6a6a;}
+.txt03{width:290px; height:38px; background:url(images/txtbg03.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt03_click{width:290px; height:38px; background:url(images/txtbg03_click.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt04{width:170px; height:32px; background:url(images/txtbg04.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt04_click{width:170px; height:32px; background:url(images/txtbg04_click.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt05{width:200px; height:38px; background:url(images/txtbg05.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt05_click{width:200px; height:38px; background:url(images/txtbg05_click.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt06{width:150px; height:38px; background:url(images/txtbg06.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt06_click{width:150px; height:38px; background:url(images/txtbg06_click.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt07{width:220px; height:38px; background:url(images/txtbg07.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt07_click{width:220px; height:38px; background:url(images/txtbg07_click.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt08{width:100px; height:32px; background:url(images/txtbg08.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt08_click{width:100px; height:32px; background:url(images/txtbg08_click.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt09{width:368px; height:32px; background:url(images/txtbg09.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt09_click{width:368px; height:32px; background:url(images/txtbg09_click.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+.txt10{width:325px; height:32px; background:url(images/txtbg10.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#a7a7a7;}
+.txt10_click{width:325px; height:32px; background:url(images/txtbg10_click.png) no-repeat; border:0; display:block; line-height:30px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding-left:10px; color:#505050;}
+
+.btn01{ width:110px; height:46px; background:url(images/btn01.png) no-repeat; border:0; display:block; line-height:46px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#6a6a6a; cursor:pointer;}
+.btn02{ width:98px; height:38px; background:url(images/btn02.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#fff; cursor:pointer;}
+.btn03{ width:198px; height:48px; background:url(images/btn03.png) no-repeat; border:0; display:block; line-height:48px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#fff; cursor:pointer;}
+.btn04{ width:88px; height:38px; background:url(images/btn04.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#fff; cursor:pointer;}
+.btn05{ width:130px; height:38px; background:url(images/btn05.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#fff; cursor:pointer;}
+.btn06{ width:148px; height:38px; background:url(images/btn06.png) no-repeat; border:0; display:block; line-height:38px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:16px; text-align:center; color:#fff; cursor:pointer;}
+
+.tea01{ width:354px; height:80px; background:url(images/teabg01.png) no-repeat; border:0; display:block; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding:10px; color:#a7a7a7; overflow-y:scroll;}
+.tea01_click{ width:354px; height:80px; background:url(images/teabg01_click.png) no-repeat; border:0; display:block; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; font-size:14px; padding:10px; color:#505050; overflow-y:scroll;}
+
+.mod_select ul{margin:0;padding:0;}
+.mod_select ul li{list-style-type:none;float:left;margin-left:10px;height:38px;}
+.select_box{float:left;position:relative;cursor:pointer;width:93px; background:url(images/select_bg01.png) no-repeat;font-size:12px; height:38px;}
+.selet_open{display:inline-block;position:absolute;right:0;top:0;width:30px;height:24px;background:url(images/select_up.jpg) no-repeat center center;}
+.select_txt{display:inline-block;padding-left:10px;width:93px;line-height:38px;height:38px;cursor:text;overflow:hidden;}
+.option{width:100px;;border:solid 1px #d0d0d0;position:absolute;top:39px;left:-1px;z-index:2;overflow:hidden;display:none;}
+.option a{display:block;height:26px;line-height:26px;text-align:left;padding:0 10px;width:100%;background:#fff; cursor:pointer;}
+.option a:hover{ display:block;height:26px;line-height:26px;text-align:left;padding:0 10px;width:100%;background:#e1f2e1; cursor:pointer; color:#252525; font-weight:bold;}
+
+.select_box_small{float:left;position:relative;cursor:pointer;width:60px; background:url(images/select_bg02.png) no-repeat;font-size:12px; height:28px;}
+.selet_open_small{display:inline-block;position:absolute;right:0;top:0;width:30px;height:24px;background:url(images/select_up.jpg) no-repeat center center;}
+.select_txt_small{display:inline-block;padding-left:10px;width:60px;line-height:28px;height:28px;cursor:text;overflow:hidden;}
+.option_small{width:60px;border:solid 1px #d0d0d0;position:absolute;top:29px;left:-1px;z-index:2;overflow:hidden;display:none;}
+
+.select_box_big{float:left;position:relative;cursor:pointer;width:134px; background:url(images/select_bg03.png) no-repeat;font-size:12px; height:38px;}
+.selet_open_big{display:inline-block;position:absolute;right:0;top:0;width:30px;height:24px;background:url(images/select_up.jpg) no-repeat center center;}
+.select_txt_big{display:inline-block;padding-left:10px;width:134px;line-height:38px;height:38px;cursor:text;overflow:hidden;}
+.option_big{width:135px;;border:solid 1px #d0d0d0;position:absolute;top:39px;left:-1px;z-index:2;overflow:hidden;display:none;}
+
+.tab01{ width:100%}
+.tab01,.tab01 tr{ border-top:1px solid #d0d0d0; border-right:1px solid #d0d0d0;}
+.tab01 th,.tab01 td{ border-bottom:1px solid #d0d0d0; border-left:1px solid #d0d0d0;}
+.tab01 th{ background:url(images/thbg.png) repeat-x; padding:15px 5px 15px 5px;}
+.tab01 td{padding:15px 0 15px 0;}
+.tab01 td{ text-align:center;}
+
+.pager_rg{ border:1px solid #dddddd; border-right:none;}
+.pager_rg a{ border-right:1px solid #dddddd; height:28px; display:block; float:left; line-height:28px; background-color:#fff}
+.pager_rg .pre{ padding:0 15px 0 15px;}
+.pager_rg .next{ padding:0 15px 0 15px;}
+.pager_rg .num{ padding:0 10px 0 10px;}
+.pager_rg .current{padding:0 10px 0 10px; background:none;}
+.pager_rg a:hover{color:#0d638f; background:#d2e6f0}
+
+#msgDiv {z-index:10001; width:500px; position:absolute; left:50%; top:30%; font-size:16px; margin-left:-225px; display:none}
+#msgShut{ width:500px; height:58px; background:url(images/msg_up.png) no-repeat;}
+#msgShut span{ float:left; display:inline; line-height:58px; margin:0 0 0 20px;}
+#msgShut img{ float:right; display:inline; margin:22px 20px 0 0;}
+#msgDetail{ width:500px; background:url(images/msg_md.png) repeat-y; padding:30px 30px 30px 30px;}
+#msgDown{ width:500px; height:12px; display:block;}
+#bgDiv{position:absolute; top:0px; left:0px; right:0px; background:url(images/msg_dbg.png); display:none;}
+

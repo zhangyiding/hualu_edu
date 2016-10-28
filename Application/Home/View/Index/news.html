@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>最新新闻</title>
+		<link href="__PUBLIC__/home/css/list.css" rel="stylesheet" type="text/css" />
+		<script>
+		document.oncontextmenu=function(e){ 
+		return false; 
+		};
+		</script>
+
+	</head>
+	<body>
+		<div class="wrap4">
+			<div class="main_news_box">
+				<img src="{$rmd_news.img}" alt="主推新闻图" />
+				<div class="bg"></div>
+				<div class="news_con">
+					<div class="news_title">{$rmd_news.tittle}</div>
+					<div class="news_info"><p>{$rmd_news.content}<a href="">详情 ></a></p></div>
+				</div>
+			</div>
+			<div class="clear"></div>
+			<div class="news_list">
+                <volist name="no_rmd_news" id="vo">
+				<ul>
+					<li><a href="">{$vo.tittle}(图)</a><span>{$vo.add_time|date="y-m-d H:i:s", ###}</span></li>
+				</ul>
+                </volist>
+			</div>
+		</div>	
+	</body>
+</html>

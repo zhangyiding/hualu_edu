@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+body{color:#4a4a4a; margin:0 auto; padding:0; font-size:14px; font-family:"微软雅黑",Arial, Helvetica, sans-serif, "宋体"; background:url(images/all_bg.jpg);}
+li{ list-style-type:none;}
+a{ text-decoration:none; cursor:pointer; color:#515151;}
+a:hover{ color:#b01f24; text-decoration:none;}
+html,div,form,img,ul,ol,li,dl,dt,dd,h1,h2,h3 {margin:0; padding:0; border:0;}
+html,body {margin: 0; padding: 0;}
+
+.by_login{background:url(images/login_bg.jpg);}
+#login{ width:712px; margin:0 auto; margin-top:310px;}
+.login_logo{ width:100%; height:35px;}
+.login_logo img{ float:left; display:inline;}
+.login_logo span{ float:left; display:inline; font-size:20px; color:#94999f; letter-spacing:2px; margin:10px 0 0 20px;}
+.login_form{ clear:both; margin-top:40px;}
+.login_form .txt01{ float:left; margin-right:15px;}
+.login_form .txt01_click{ float:left; margin-right:25px;}
+.login_form .txt02{ float:left; margin-right:15px;}
+.login_form .txt02_click{ float:left; margin-right:25px;}
+
+#container{ min-height:100%; height:auto !important; height:100%;}
+#header{ width:100%; height:75px; background:url(images/topbg.jpg);}
+.header_nr{ width:980px; margin:0 auto;}
+.header_nr img{ float:left; margin:25px 0 0 0;}
+.header_nr .header_list{ float:right;}
+.header_nr .header_list span{font-size:16px; line-height:75px; margin-left:25px; color:#fff;}
+.header_nr .header_list a{color:#fff; padding:5px 15px;}
+.header_nr .header_list a:hover{color:#fff; padding:5px 15px; background-color:#43576f;}
+#cont_nr{ width:980px; margin:0 auto; padding-bottom:70px;}
+.cont_nr_list{ padding-top:50px;}
+.cont_nr_list ul li{ width:113px; float:left; display:inline; margin:80px 122px 0 30px;}
+.cont_nr_list ul li p{ width:113px; text-align:center; font-size:24px; margin:0; padding-top:20px}
+.cont_nr_list ul .rg{margin-right:30px;}
+.cont_nr_list ul a:hover{ color:#000;}
+
+.order_form{ padding-left:20px; padding-right:20px;}
+.order_form .user_info{ margin-top:55px;}
+.order_form .user_info .title{ margin-bottom:20px;}
+.order_form .user_info span{ float:left; display:inline; padding:6px 10px 0 0;}
+.order_form .user_info .interval01{ margin-left:25px;}
+.order_form .user_info .txt03{float:left; display:inline}
+.order_form .user_info .txt04{float:left; display:inline}
+.order_form .user_info .txt08{float:left; display:inline}
+.order_form .user_info .txt09{float:left; display:inline}
+.order_form .user_info .txt10{float:left; display:inline}
+.order_form .user_info .txt03_click{float:left; display:inline}
+.order_form .user_info .txt04_click{float:left; display:inline}
+.order_form .user_info .txt08_click{float:left; display:inline}
+.order_form .user_info .txt09_click{float:left; display:inline}
+.order_form .user_info .txt10_click{float:left; display:inline}
+.order_form .user_info .btn02{ float:left; display:inline; margin-right:15px; margin-left:68px;}
+.order_form .order_map{ width:750px; height:328px; border:1px solid #d0d0d0; margin-top:35px;}
+.order_form .order_submit{ margin:50px 0 50px 0; height:48px;}
+.order_form .order_submit .btn03{ float:left; display:inline;}
+.order_form .order_submit span{ float:left; display:inline; line-height:48px; margin-left:25px;}
+
+.tab_select{ margin:50px 0 0 0; clear:both; height:38px; }
+.tab_select .tab_select_lf{ float:left; display:inline; font-size:16px; padding-top:8px;}
+.tab_select .tab_select_lf span{ float:left; display:inline; margin-right:25px;}
+.tab_select .tab_select_lf a:hover{ color:#2d3743}
+.tab_select .tab_select_rg{ float:right; display:inline; font-size:16px;}
+.tab_select .tab_select_rg .txt03{ float:left; display:inline}
+.tab_select .tab_select_rg .txt03_click{ float:left; display:inline}
+.tab_select .tab_select_rg .txt05{ float:left; display:inline}
+.tab_select .tab_select_rg .txt05_click{ float:left; display:inline}
+.tab_select .tab_select_rg .txt06{ float:left; display:inline}
+.tab_select .tab_select_rg .txt06_click{ float:left; display:inline}
+.tab_select .tab_select_rg .mod_select{ float:left; display:inline}
+.tab_select .tab_select_rg .mod_select a:hover{color:#252525; font-weight:bold;}
+.tab_select .tab_select_rg .btn04{ float:left; display:inline; margin-left:10px;}
+.tab_select .tab_select_rg .btn05{ float:left; display:inline; margin-left:10px;}
+.tab_select .tab_select_rg a:hover{ color:#fff;}
+.tab_nr{ margin-top:25px;}
+.tab_nr img{ float:left; display:inline; margin:4px 5px 0 15px}
+.tab_nr span{ float:left; display:inline;}
+.tab_nr a{ text-decoration:underline;}
+.tab_nr a:hover{color:#2d3743}
+.tab_pager{ margin-top:30px; height:30px; margin-bottom:30px;}
+.tab_pager .pager_lf{ float:left; display:inline;}
+.tab_pager .pager_lf span{ float:left; display:inline; margin-top:2px;}
+.tab_pager .pager_lf .ms{margin-right:15px;}
+.tab_pager .pager_lf .mod_select{ float:left; display:inline; margin-right:5px;}
+.tab_pager .pager_rg{ float:right; display:inline;}
+.no_select{ margin:60px 0 0 0;}
+
+.add_form{ padding-left:20px; padding-right:20px;}
+.add_form .add_step_title{ margin-top:45px;}
+.add_form .add_info{ margin-top:55px;}
+.add_form .add_info span{ float:left; display:inline; padding:6px 15px 0 0;}
+.add_form .add_info .xj01{ padding-top:18px;}
+.add_form .add_info img{ float:left; display:inline; margin-bottom:10px;}
+.add_form .add_info label{ float:left; display:inline; color:#9c9c9c; padding:20px 0 0 10px;}
+.add_form .add_info .interval01{ margin-left:70px;}
+.add_form .add_info .interval02{ margin-left:52px;}
+.add_form .add_info .interval03{ margin-left:72px;}
+.add_form .add_info .interval04{ margin-left:80px;}
+.add_form .add_info .interval05{ margin-left:18px;}
+.add_form .add_info .txt07{float:left; display:inline}
+.add_form .add_info .txt06{float:left; display:inline}
+.add_form .add_info .txt05{float:left; display:inline}
+.add_form .add_info .txt07_click{float:left; display:inline}
+.add_form .add_info .txt06_click{float:left; display:inline}
+.add_form .add_info .txt05_click{float:left; display:inline}
+.add_form .add_info .btn02{ float:left; display:inline; margin-right:15px; margin-left:68px;}
+.add_form .add_submit{ margin:50px 0 50px 0; height:48px;}
+.add_form .add_submit .btn03{ float:left; display:inline;}
+.add_form .add_filish{ width:746px; height:142px; background:url(images/filish_bg.png) no-repeat;}
+.add_form .add_filish img{ float:left; display:inline; margin:45px 0 0 100px;}
+.add_form .add_filish span{ float:left; display:inline; margin:52px 0 0 30px;}
+
+.status_select{ margin:50px 0 0 0; clear:both; height:38px; }
+.status_select .status_select_lf{ float:left; display:inline; font-size:16px; padding-top:8px;}
+.status_select .status_select_lf span{ float:left; display:inline; margin-right:25px;}
+.status_select .status_select_lf a:hover{ color:#2d3743}
+.status_select .status_select_rg{ float:right; display:inline; font-size:16px;}
+.status_select .status_select_rg a:hover{ color:#fff;}
+.status_map{width:980px; height:517px; border:1px solid #d0d0d0; margin-top:25px;}
+#msgDetail label{ float:left; display:inline; margin:8px 5px 0 0;}
+#msgDetail .mod_select{ float:left; display:inline}
+#msgDetail .mod_select a:hover{ color:#252525; font-weight:bold;}
+#msgDetail .tea01{ float:left; display:inline; margin-left:10px;}
+#msgDetail .tea01_click{ float:left; display:inline; margin-left:10px;}
+#msgDetail td{ padding:5px 0 5px 0;}
+#msgDetail .btn06{ margin-left:46px;}
+
+#footer{ width:100%;position: relative; height:70px; background-color:#dbdbdb; clear:both; margin-top:-70px;}
+.footer_nr{ width:980px; margin:0 auto;}
+.footer_nr p{ text-align:center; color:#929292; margin:0; padding:0; line-height:70px;}
+
+.tips{ margin:0; padding:0; color:#ff3924;}
+.tips_rg{ margin:0 0 0 15px; color:#ff3924;}
+
+.color1{ background-color:none}  
+.color2{ background-color:#FFF;}  
+.heightLight{ background-color:#d6e4f2;/*高亮显示*/}  
+#tr_click{ background-color:#d6e4f2;}
