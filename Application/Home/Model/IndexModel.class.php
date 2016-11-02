@@ -2,7 +2,6 @@
 namespace Home\Model;
 use Think\Model;
 class IndexModel extends Model{
-	protected $connection = 'DB_ETAGO';
 	
 	public function getNewsForType($news_type){
         $where['del_flag'] = '0';

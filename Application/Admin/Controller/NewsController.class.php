@@ -5,22 +5,37 @@ use Common\Lib\UpimgClass;
 use Think\Controller;
 use Common\Controller\BaseController;
 class NewsController extends BaseController {
+    protected $news_type = array(
+        '1'=>'头条配置',
+        '2'=>'国资委资讯',
+        '3'=>'公司培训',
+    );
+
     public function index(){
-
         $m_news = new \Admin\Model\NewsModel();
-        $news_type = array(
-            '1'=>'集团新闻',
-            '2'=>'行业新闻',
-            '3'=>'学院新闻',
+
+        $where = array(
+            'subsite_id'=>$this->subsite_id,
+            'status'=>0
         );
+        $data = array();
+        $page_arr = array();
+       if($count = $m_news->getNewsCount($where)){
+           //获取分页总数进一取整
+           $page_count = ceil($count/$this->limit);
+           for($i=1;$i<=$page_count;$i++){
+               $page_arr[] = $i;
+           }
 
-        $data = $m_news->getNewsList();
-        foreach($data as $k=>$v){
-            $data[$k]['img'] = empty($v['img'])? C('IMG_URL').'/'.'news/no_img.jpg': C('IMG_URL') . '/'.$v['img'];
-        }
+           $data = $m_news->getNewsList($where,$this->offset,$this->limit);
+           foreach($data as $k=>$v){
+               $data[$k]['cover'] = getImageBaseUrl($v['cover']);
+           }
+       }
+
         $this->assign('news_list',$data);
-        $this->assign('news_type',$news_type);
-
+        $this->assign('page_arr',$page_arr);
+        $this->assign('news_type',$this->news_type);
         $this->display();
     }
 
@@ -29,39 +44,49 @@ class NewsController extends BaseController {
      * 新增新闻
      */
     public function addNews(){
-        //当type为1时执行更新操作，为2时插入操作
+        //当operation_type为1时执行更新操作，默认为0执行插入
         $m_news = new \Admin\Model\NewsModel();
-        $type = $this->params['type'];
-        if($type == 1){
-            $id = $this->params['id'];
+        $op_type = $this->params['op_type'];
+        if($op_type == 1){
+            $id = $this->params['news_id'];
             $data = $m_news->getNewsInfo($id);
+            $data['cover'] = getImageBaseUrl($data['cover']);
             $this->assign('data',$data);
         }
-        $news_type = array(
-            '1'=>'集团新闻',
-            '2'=>'行业新闻',
-            '3'=>'学院新闻',
-        );
-
-        $this->assign('news_type',$news_type);
-
+        $this->assign('op_type',$op_type);
+        $this->assign('news_type',$this->news_type);
         $this->display();
     }
 
 
     /*
-     * 新增课程动作
+     * 新增新闻动作
      */
     public function doAddNews(){
-        $img_path = $this->uploadImg('news');
-        $where['tittle'] = $this->params['tittle'];
-        $where['content'] = $this->params['contents'];
-        $where['add_time'] = time();
-        $where['img'] = $img_path;
-        $where['is_recommend'] = $this->params['is_recommend'];
-        $where['type'] = $this->params['type'];
-        $m_coures = new \Admin\Model\NewsModel();
-        if($m_coures->doAddNews($where) !== false){
+        $op_type = $this->params['op_type'];
+        $data['title'] = $this->params['title'];
+        $data['content'] = $this->params['contents'];
+        $data['cover'] = $this->uploadImg('news');
+        $data['type'] = $this->params['type'];
+
+        $data['subsite_id'] = $this->subsite_id;
+        $data['creator'] = $this->creator;
+
+
+        $m_news = new \Admin\Model\NewsModel();
+
+        if($op_type == 1){
+            $news_id = $this->params['news_id'];
+            $where = array('news_id'=>$news_id,'status'=>0);
+            $data['mtime'] = date('Y-m-d H:i:s',time());
+            $result = $m_news->updataNews($data,$where);
+        }else{
+            $data['ctime'] = date('Y-m-d H:i:s',time());
+            $result = $m_news->doAddNews($data);
+
+        }
+
+        if($result!== false){
             $this->showMsg('添加成功','index',1);
         }else{
             $this->showMsg('添加失败，请重试');
@@ -72,9 +97,9 @@ class NewsController extends BaseController {
      * 删除课程动作
      */
     public function delNews(){
-        $where['id'] = $this->params['id'];
-        $m_coures = new \Admin\Model\NewsModel();
-        if($m_coures->delNews($where) !== false){
+        $where['news_id'] = $this->params['news_id'];
+        $m_news = new \Admin\Model\NewsModel();
+        if($m_news->delNews($where) !== false){
             $this->showMsg('删除成功','index',1);
         }else{
             $this->showMsg('删除失败，请重试');

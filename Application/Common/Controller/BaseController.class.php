@@ -10,47 +10,55 @@ import("Common.Lib.ApiResp", "", ".class.php");
 
 class BaseController extends Controller
 {
-    protected $is_login = 0;
+
     protected $params = array();
-    protected $userinfo = array();
-    protected $user_id = 0;
-    protected $access = '';
-    protected $access_list = array();
     protected $_res = '';
     protected $error = '';
     protected $start_time = '';
     protected $end_time = '';
+
+    protected $subsite_id = '';//分站id
+    protected $creator = '';//分站管理员id
+    protected $subsite_host = '';//分站域名
+    protected $user_name = '';//管理员名称
+
     protected $page = '1';
     protected $offset = '0';
-    protected $pagesize = '20';
+    protected $limit = '10';
 
     public function __construct()
     {
+
         $this->start_time = microtime(1);
         //处理参数
         $this->getParams();
+
         //判断是否登陆
-//        $this->checkLogin();
+        $this->checkLogin();
         parent::__construct();
     }
 
     public function getParams()
     {
+        //获取用户访问的二级域名地址
+        $host = $_SERVER['SERVER_NAME'];
+        preg_match("#(.*?)\.#",$host,$match);
+        $this->subsite_host = $match[1];
         $params = $_REQUEST;
-
-        if (IS_POST) {
-            $input = json_decode(file_get_contents('php://input'), true);
-            if (is_array($input)) {
-                $params = array_merge($params, $input);
-            }
-        }
 
         $page = intval($_GET['page']);
         $this->page = $page ? $page : $this->page;
 
         $pagesize = intval($_GET['pagesize']);
-        $this->pagesize = $pagesize ? $pagesize : (C('PAGE_SIZE') ? C('PAGE_SIZE') : $this->pagesize);
-        $this->offset = ($this->page - 1) * $this->pagesize;
+        $this->limit = $pagesize ? $pagesize : $this->limit;
+        $this->offset = ($this->page - 1) * $this->limit;
+
+        if(session('?subsite_id')){
+            $this->subsite_id = session('subsite_id');
+            $this->creator = session('su_id');
+            $this->user_name = session('username');
+        }
+
         $this->params = $params;
 
     }
@@ -68,87 +76,29 @@ class BaseController extends Controller
 
     }
 
-    /**
-     * 校验表单数据
-     * @param $rules
-     * @return bool
-     */
-    public function validate($rules)
-    {
-        $model = M();
-        if (!$model->validate($rules)->create($this->params)) {
-            // 如果创建失败 表示验证没有通过 输出错误提示信息
-            $this->error = $model->getError();
-            return false;
-        }
 
-        return true;
-    }
 
-    private function checkAccess()
-    {
-        //是否开放方法
-        if ($this->checkUnAuth()) {
-            return true;
-        }
-        //是否登录
-        $this->checkLogin();
 
-        //是否超级管理员
-        if ($this->userinfo['is_supper'] || $this->user_id == 1) {
-            return true;
-        }
-
-        //匹配权限
-        if (!in_array($this->access, $this->getAccessList())) {
-            $this->to_back(10002);
-        }
-
-        return true;
-    }
-
-    private function checkUnAuth()
-    {
-        $c = strtolower(MODULE_NAME . '/' . CONTROLLER_NAME);
-        $this->access = strtolower(MODULE_NAME . '/' . CONTROLLER_NAME . '/' . ACTION_NAME);
-
-        //CONTROLLER
-        if (in_array($c, array_map('strtolower', C('UN_AUTH_CONTROLLER')))) {
-            return true;
-        }
-
-        //ACTION
-        if (in_array($this->access, array_map('strtolower', C('UN_AUTH_ACTION')))) {
-            return true;
-        }
-        return false;
-    }
 
     private function checkLogin()
     {
-        if(session('?user_id')){
-            $username = session('username');
-            $this->assign('username',$username);
-            $this->display();
+        $url = $_SERVER['REQUEST_URI'];
+        //当访问后台时判断是否存在分站id
+        if(strpos($url,'admin')){
+            if (!session('?subsite_id')) {
+                showMsg('尚未登录','admin/login/index',1);
+                return false;
+            } else {
+                return true;
+            }
         }else{
-            $this->showMsg('尚未登录');
 
         }
 
 
-//        if(isset($this->params['token'])){
-//            session_id($this->params['token']);
-//        }
-//        session_start();
-//
-//        $this->user_id = session('user_id');
-//
-//        if (!$this->user_id) {
-//            $this->to_back(10001);
-//        }
-//
-//        return true;
     }
+
+
 
 
     /**
@@ -240,19 +190,8 @@ alert('%s');\r\n
         die(json_encode($this->_res));
     }
 
-    private function getAccessList()
-    {
-        return $this->access_list = session('permissions');
-    }
 
-    protected function getAccessToken(){
-        $token = session_id();
-        return $token;
-    }
 
-    protected function checkoutAccessToken(){
-
-    }
 
 
 

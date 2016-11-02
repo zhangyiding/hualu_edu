@@ -21,10 +21,10 @@ return array(
     'SESSION_AUTO_START' => true,    // 是否自动开启Session
     'SESSION_OPTIONS' => array(), // session 配置数组 支持type name id path expire domain 等参数
     'SESSION_TYPE' => '', // session hander类型 默认无需设置 除非扩展了session hander驱动
-    'SESSION_PREFIX' => 'hualu', // session 前缀
+    'SESSION_PREFIX' => '', // session 前缀
     'COOKIE_DOMAIN' => '',      // Cookie有效域名
     'COOKIE_PATH' => '/',     // Cookie路径
-    'COOKIE_PREFIX' => 'hualu',      // Cookie前缀 避免冲突
+    'COOKIE_PREFIX' => '',      // Cookie前缀 避免冲突
 
     //数据库配置
     'DB_FIELDS_CACHE' => true,
@@ -71,7 +71,6 @@ return array(
     'WX_APP_SECRET' => '33050dce8e4e6dd0662bf4c26abeff43',
     'FACEBOOK_APP_ID' => '307148626290551',
     'FACEBOOK_APP_SECRET' => '848b44274a4274b965cb99e94a0bdeb5',
-    'PAGE_SIZE' => 20,
     'DEFAULT_USER_FACE' => "head_default_200.png",
     "SCAN_CODE_SIZE" => 4,
     "ETAGO_LOG_PATH" => '/opt/web/log/etago/',

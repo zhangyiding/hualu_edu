@@ -12,7 +12,11 @@
     <link href="__PUBLIC__/admin/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/stylesheet.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/icon/font-awesome.css" rel="stylesheet">
-    
+
+      <!--分页加载的Js-->
+      <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <!-- Le fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="__PUBLIC__/admin/img/apple-touch-icon-144-precomposed.html">
@@ -21,9 +25,13 @@
                     <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/admin/img/apple-touch-icon-57-precomposed.html">
                                   
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements 加载百度编辑器Js -->
+      <!--[if lt IE 9]>
       <script src="__PUBLIC__/admin/js/html5shiv.js"></script>
+
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/lang/zh-cn/zh-cn.js"  charset="utf-8"></script>
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
     <![endif]-->
     <style type="text/css">
     .input{ width:40px;
@@ -59,7 +67,7 @@
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
                            <span>首页</span><span>></span>
-                           <span>新闻管理</span><span>></span>
+                           <span>资讯管理</span><span>></span>
                            <!--<span>课程管理</span>-->
                            <a  href="/admin/news/addNews" class="label label-warning"  style="float:right; margin:8px;">添加</a>
                          </div>
@@ -72,44 +80,41 @@
                                         <tr>
                                             <!--<th width="5%">排序</th>-->
                                             <th width="5%">ID</th>
-                                            <th width="8%">标题</th>
-                                            <th width="350">内容</th>
+                                            <th width="42%">标题</th>
                                             <th width="10%">添加时间</th>
                                             <th width="8%">新闻类型</th>
-                                            <th width="25%">图片</th>
+                                            <th width="25%">封面图片</th>
                                         </tr>
-
                                     </thead>
                                     <tbody>
                                     <foreach name="news_list" item="vo">
                                     <tr>
-                                            <td>{$vo.id}</td>
-                                            <td>{$vo.tittle}</td>
-                                            <td>{$vo.content}</td>
-                                            <td>{$vo.add_time|date="y-m-d H:i:s",###}</td>
+                                            <td>{$vo.news_id}</td>
+                                            <td>{$vo.title}</td>
+                                            <td>{$vo.ctime}</td>
                                             <td>{$news_type.$vo[type]}</td>
                                             <!--<td>{$vo.img}</td>-->
-                                            <td> <img src="<?php print_r($vo['img']);?>" /></td>
+                                            <td> <img src="<?php print_r($vo['cover']);?>" /></td>
                                             <!--<td>&nbsp;</td>-->
                                         <td>
-                                            <a class="btn" href="/admin/news/addNews?type=1&id=<?php echo $vo['id'];?>" title="修改"><i class="icon-inbox"></i></a>
-                                            <a class="btn" href="/admin/news/delNews?id=<?php echo $vo['id'];?>" title="删除"><i class="icon-trash"></i></a>
+                                            <a class="btn" href="/admin/news/addNews?op_type=1&news_id=<?php echo $vo['news_id'];?>" title="修改"><i class="icon-inbox"></i></a>
+                                            <a class="btn" href="/admin/news/delNews?news_id=<?php echo $vo['news_id'];?>" title="删除"><i class="icon-trash"></i></a>
                                             <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
                                         </td>
                                         </foreach>
 
                                     </tr></tbody>
-                                            <!--<td></td>-->
-                                            <!--<td>{$vo.name}</td>-->
-                                            <!--<td>北京罗特</td>-->
-                                            <!--<td>天津市南开区</td>-->
-                                            <!--<td>秋香姐</td>-->
-                                            <!--<td>女</td>-->
-                                            <!--<td>13155698896</td>-->
-                                            <!--<td>启用</td>-->
-
                                     </tbody>
-                                </table>
+                                    </table>
+                                <div>
+                                    <ul class="pagination" style="float:right">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <volist  name="page_arr" id="vo">
+                                            <li><a href="/admin/news/?page=<?php echo $vo;?>">{$vo}</a></li>
+                                        </volist>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

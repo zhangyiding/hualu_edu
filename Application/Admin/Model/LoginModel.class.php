@@ -22,10 +22,11 @@ class LoginModel extends Model
     public function login($username, $password, $option = [])
     {
         $where = array(
-            'user'=>$username,
-            'password'=>$password
+            'email'=>$username,
+            'password'=>$password,
+            'status'=>0
         );
-        $result = $this->table('hl_user')
+        $result = $this->table('sys_user')
             ->where($where)
             ->select();
 

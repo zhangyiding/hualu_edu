@@ -2,8 +2,9 @@
 namespace Admin\Controller;
 use Think\Controller;
 use Common\Controller\BaseController;
-class LoginController extends BaseController {
+class LoginController extends Controller {
     public function index(){
+
         $this->display();
     }
 
@@ -11,19 +12,23 @@ class LoginController extends BaseController {
      * 用户登录操作
      */
     public function doLogin(){
-        $user = $this->params['username'];
-        $pwd = md5($this->params['password']);
+
+        $user = $_REQUEST['username'];
+        $pwd = md5($_REQUEST['password']);
         $login_model = new \Admin\Model\LoginModel();
-        if (!$user_info = $login_model->login($user, $pwd, $this->params)) {
-            $this->showMsg('登录失败');
+        if (!$user_info = $login_model->login($user, $pwd)) {
+            showMsg('登录失败');
+            exit;
         }
+        
         session_start();
         session(array('name'=>'session_id','expire'=>3600));
-        session('user_id',$user_info['id']);
-        session('username',$user_info['user']);
+        session('subsite_id',$user_info['subsite_id']);
+        session('username',$user_info['name']);
+        session('su_id',$user_info['su_id']);
+
 
         Header("Location: /admin");
-
         $this->display('/index/index');
     }
 
@@ -32,8 +37,9 @@ class LoginController extends BaseController {
      * 用户退出操作
      */
     public function doLogout(){
-        session(null);
-        $this->showMsg('退出成功','index',1);
+        $login_model = new \Admin\Model\LoginModel();
+        $login_model->logout();
+        showMsg('退出成功','index',1);
     }
 
 }

@@ -2,7 +2,7 @@
 namespace Home\Model;
 use Think\Model;
 class CourseModel extends Model{
-	protected $connection = 'DB_ETAGO';
+
     protected $tableName = 'hl_course';
 	
 	public function getCourseList($area_id){
