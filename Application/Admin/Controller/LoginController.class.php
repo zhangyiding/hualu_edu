@@ -20,12 +20,13 @@ class LoginController extends Controller {
             showMsg('登录失败');
             exit;
         }
-        
+
         session_start();
         session(array('name'=>'session_id','expire'=>3600));
         session('subsite_id',$user_info['subsite_id']);
         session('username',$user_info['name']);
         session('su_id',$user_info['su_id']);
+        session('su_type',$user_info['type']);
 
 
         Header("Location: /admin");

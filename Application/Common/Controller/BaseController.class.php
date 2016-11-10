@@ -20,11 +20,12 @@ class BaseController extends Controller
     protected $subsite_id = '';//分站id
     protected $creator = '';//分站管理员id
     protected $subsite_host = '';//分站域名
-    protected $user_name = '';//管理员名称
+    protected $admin_name = '';//管理员名称
+    protected $su_type = '2';//管理员类型，1为主站管理员，2为分站管理员，3为培训管理员
 
-    protected $page = '1';
-    protected $offset = '0';
-    protected $limit = '10';
+    protected $page = '1';//页数
+    protected $offset = '0';//偏移量
+    protected $limit = '10';//每页数量
 
     public function __construct()
     {
@@ -56,7 +57,8 @@ class BaseController extends Controller
         if(session('?subsite_id')){
             $this->subsite_id = session('subsite_id');
             $this->creator = session('su_id');
-            $this->user_name = session('username');
+            $this->admin_name = session('username');
+            $this->su_type = session('su_type');
         }
 
         $this->params = $params;

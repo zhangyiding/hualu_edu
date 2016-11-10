@@ -1,6 +1,6 @@
 <?php
 use Common\Lib\Crypt3Des;
-
+use Common\Lib\Upimg;
 /**
  * get方式获取接口数据
  * $url 请求地址
@@ -1068,7 +1068,6 @@ function handleImageSize($image,$type=1,$need_size=''){
 function getImageBaseUrl($img){
 	if(empty($img)){
         $img_url = C('IMG_URL') . '/' . 'no_img.jpg';
-
     }else{
         $img_url = C('IMG_URL') . '/' . $img;
     }
@@ -1120,6 +1119,29 @@ function listPage($count, $page, $pagesize=10){
 	return $data;
 }
 
+/**
+ * @todo 图片上传
+ */
+ function uploadImg($upload_dir) {
+
+    //文件上传路径
+    if(!is_dir($upload_dir)){
+        mkdir($upload_dir);
+    }
+
+    if(!is_writeable($upload_dir)) {
+        $this->showMsg("上传目录不可写");
+    }
+
+
+    $upimgObj = new Upimg($_FILES['uploadFile']);
+    if ($upimgObj->Save($upload_dir,false)) {
+        $imgUrl = $upimgObj->GetSavePath();
+        return $imgUrl;
+    } else {
+        return false;
+    }
+}
 
 /**
  * 输出ajax格式结果
@@ -1157,7 +1179,7 @@ alert('%s');\r\n
 		</script>\r\n
 		</body>\r\n
 		</html>", $message, $redirect);
-
+     die();
 }
 
 /**

@@ -1,10 +1,9 @@
 <?php
-
 //引入composer 包管理文件
 //require_once './vendor/autoload.php';
 //处理环境变量文件
 //$dotenv = new Dotenv\Dotenv(__DIR__);
-//$dotenv->load();
+//$dotenv->load
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 define('ECAR_TP_PATH' , __DIR__);
 define('APP_PATH', ECAR_TP_PATH . '/Application/');

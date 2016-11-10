@@ -13,7 +13,6 @@ class NewsController extends BaseController {
 
     public function index(){
         $m_news = new \Admin\Model\NewsModel();
-
         $where = array(
             'subsite_id'=>$this->subsite_id,
             'status'=>0
@@ -94,7 +93,7 @@ class NewsController extends BaseController {
     }
 
     /*
-     * 删除课程动作
+     * 删除新闻动作
      */
     public function delNews(){
         $where['news_id'] = $this->params['news_id'];
