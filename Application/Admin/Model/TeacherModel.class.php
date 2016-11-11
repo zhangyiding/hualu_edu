@@ -125,11 +125,6 @@ class TeacherModel extends Model{
        }
     }
 
-    public function getSubsiteInfo($subsite_id){
-        $result = $this->table('subsite')
-            ->where(array('subsite_id'=>$subsite_id,'status'=>0))
-            ->select();
-        return $result[0];
-    }
+
 }
 ?>

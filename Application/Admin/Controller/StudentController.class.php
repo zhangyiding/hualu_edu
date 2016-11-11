@@ -4,10 +4,10 @@ use Common\Lib\Upimg;
 use Common\Lib\UpimgClass;
 use Think\Controller;
 use Common\Controller\BaseController;
-class TeacherController extends BaseController {
+class StudentController extends BaseController {
 
     public function index(){
-        $m_teacher = new \Admin\Model\TeacherModel();
+        $m_student = new \Admin\Model\StudentModel();
         $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的课程
         if($this->su_type = C('SUBSITE_USER')){
@@ -18,27 +18,19 @@ class TeacherController extends BaseController {
 
         $data = array();
         $page_arr = array();
-       if($count = $m_teacher->getTeacherCount($where)){
+       if($count = $m_student->getStudentCount($where)){
            //获取分页总数进一取整
            $page_count = ceil($count/$this->limit);
            for($i=1;$i<=$page_count;$i++){
                $page_arr[] = $i;
            }
 
-           $data = $m_teacher->getTeacherList($where,$this->offset,$this->limit);
+           $data = $m_student->getStudentList($where,$this->offset,$this->limit);
 
            foreach($data as $k=>$v){
-               //处理教师头像
-               $data[$k]['avatar'] = getImageBaseUrl($v['cover']);
+               //处理头像
+               $data[$k]['avatar'] = getImageBaseUrl($v['avatar']);
 
-               //获取所擅长课程分类名称
-               $ct_arr = $m_teacher->getCourseType($v['ct_id']);
-               $cu_ty_name = array();
-               foreach($ct_arr as $key=>$value){
-                   $cu_ty_name[] = $value['name'];
-               }
-
-               $data[$k]['course_type'] = implode('、',$cu_ty_name);
 
                //获取分站信息
                $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
@@ -46,78 +38,72 @@ class TeacherController extends BaseController {
            }
        }
 
-        $this->assign('tec_list',$data);
+        $this->assign('stu_list',$data);
         $this->assign('page_arr',$page_arr);
         $this->display();
     }
 
 
     /*
-     * 新增教师
+     * 新增/修改学员
      */
-    public function addTeacher(){
+    public function addStudent(){
         //当operation_type为1时执行更新操作，默认为0执行插入
-        $m_tea = new \Admin\Model\TeacherModel();
+        $m_student= new \Admin\Model\StudentModel();
         $op_type = $this->params['op_type'];
         if($op_type == 1){
-            $id = $this->params['teacher_id'];
-            $data = $m_tea->getTeacherInfo($id);
-            $teacher_work = $m_tea->getTeacherWork($id);
-            $data['unit'] = $teacher_work['unit'];
-            $data['duties'] = $teacher_work['duties'];
+            $id = $this->params['student_id'];
+            $data = $m_student->getStudentInfo($id);
 
             $data['avatar'] = getImageBaseUrl($data['avatar']);
 
             $this->assign('data',$data);
         }
 
-        $ct_list = $m_tea->getAllCT();
+
         $ethnic = C('ETHNIC_LIST');
 
         $this->assign('op_type',$op_type);
-        $this->assign('ct_list',$ct_list);
         $this->assign('ethnic_list',$ethnic);
         $this->display();
     }
 
 
     /*
-     * 新增教师动作
+     * 新增/修改学生动作
      */
-    public function doAddTeacher(){
+    public function doAddStudent(){
 
         $op_type = $this->params['op_type'];
 
-        if(!empty($this->params['ct_id'])){
-            $data['ct_id'] = implode(',',$this->params['ct_id']);
-        }
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadImg('teacher');
+        $data['avatar'] = uploadImg('student');
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];
         $data['mobile'] = $this->params['mobile'];
         $data['email'] = $this->params['email'];
         $data['address'] = $this->params['address'];
-        $data['intro'] = $this->params['intro'];
-
         $data['unit'] = $this->params['unit'];
-        $data['duties'] = $this->params['duties'];
+        $data['remark'] = $this->params['remark'];
+        $data['job_position'] = $this->params['job_position'];
 
         $data['subsite_id'] = $this->subsite_id;
         $data['creator'] = $this->creator;
 
-        $m_teacher = new \Admin\Model\TeacherModel();
+        $m_student = new \Admin\Model\StudentModel();
 
         if($op_type == 1){
-            $teacher_id = $this->params['teacher_id'];
-            $where = array('teacher_id'=>$teacher_id,'status'=>0);
+            $student_id = $this->params['student_id'];
+            $where = array('student_id'=>$student_id,'status'=>0);
             $data['mtime'] = date('Y-m-d H:i:s',time());
-            $result = $m_teacher->updateTeacher(array_filter($data),$where);
+            $result = $m_student->updateStudent(array_filter($data),$where);
         }else{
-
+            if($m_student->checkEmail($data)){
+                $this->showMsg('该用户已存在');
+            }
             $data['ctime'] = date('Y-m-d H:i:s',time());
-            $result = $m_teacher->doAddTeacher($data);
+            $result = $m_student->addStudent($data);
         }
 
         if($result!== false){
@@ -127,13 +113,15 @@ class TeacherController extends BaseController {
         }
     }
 
+
+
     /*
-     * 删除教师动作
+     * 删除学员动作
      */
-    public function delTeacher(){
-        $where['teacher_id'] = $this->params['teacher_id'];
-        $m_news = new \Admin\Model\TeacherModel();
-        if($m_news->delTeacher($where) !== false){
+    public function delStudent(){
+        $where['student_id'] = $this->params['student_id'];
+        $m_student = new \Admin\Model\StudentModel();
+        if($m_student->delStudent($where) !== false){
             $this->showMsg('删除成功','index',1);
         }else{
             $this->showMsg('删除失败，请重试');
