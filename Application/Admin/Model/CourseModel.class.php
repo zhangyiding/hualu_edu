@@ -51,5 +51,20 @@ class CourseModel extends Model{
         return ($result)? $result['0'] : false;
     }
 
+
+    public function addVideo($where){
+        $result = $this->table('resource')->add($where);
+        return $result;
+    }
+
+
+    public function getResourceName($where){
+        $result = $this->table('resource')
+            ->select($where);
+        return $result;
+    }
+
+
+
 }
 ?>

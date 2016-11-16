@@ -9,6 +9,8 @@ class NewsController extends BaseController {
         '1'=>'头条配置',
         '2'=>'国资委资讯',
         '3'=>'公司培训',
+        '4'=>'轮播资讯',
+
     );
 
     public function index(){
@@ -65,7 +67,7 @@ class NewsController extends BaseController {
         $op_type = $this->params['op_type'];
         $data['title'] = $this->params['title'];
         $data['content'] = $this->params['contents'];
-        $data['cover'] = $this->uploadImg('news');
+        $data['cover'] = uploadFile('news');
         $data['type'] = $this->params['type'];
 
         $data['subsite_id'] = $this->subsite_id;
@@ -106,29 +108,6 @@ class NewsController extends BaseController {
     }
 
 
-    /**
-     * @todo 图片上传
-     */
-    public function uploadImg($upload_dir) {
-
-        //文件上传路径
-        if(!is_dir($upload_dir)){
-            mkdir($upload_dir);
-        }
-
-        if(!is_writeable($upload_dir)) {
-            $this->showMsg("上传目录不可写");
-        }
-
-
-        $upimgObj = new Upimg($_FILES['uploadFile']);
-        if ($upimgObj->Save($upload_dir,false)) {
-            $imgUrl = $upimgObj->GetSavePath();
-           return $imgUrl;
-        } else {
-           return false;
-        }
-    }
 
 
 

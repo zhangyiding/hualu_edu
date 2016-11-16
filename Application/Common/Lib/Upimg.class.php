@@ -15,7 +15,8 @@ class Upimg {
     private $theight=120;   //默认普通缩略图高度；
     private $btwidth=500;   //默认大缩略图宽度；
     private $btheight=500;  //默认大缩略图高度；
-    private $maxfilesize=2097152; //默认上传文件最大值：2M；
+    private $maxfilesizeImg=2097152; //默认上传图片文件最大值：2M；
+    private $maxfilesize=509715200; //默认上传文件最大值：500M；
     private $fileformat="jpeg,gif,bmp,jpg,png"; 
     private $outpath="";    //默认原图保存路径；
     private $outthumbpath="";   //默认普通缩略图保存路径；
@@ -31,7 +32,8 @@ class Upimg {
 
     public function __construct($files)
     {
-        define("IMG_DIR" , 'public/admin/image');
+        define("IMG_DIR" , 'public/resource/image');
+        define("VIDEO_DIR" , 'public/resource/video');
         define("FILE_DIR" , ".");
         define("ORIG_IMG" , "img");
         define("COMM_THUMB_SIZE" , "120");
@@ -174,22 +176,24 @@ class Upimg {
                 }
             }
         }else{  //保存一般性文件
-            $savepath = FILE_DIR."/".$savepath;
+            $savepath = VIDEO_DIR."/".$savepath;
+
             $files = $this->files;
             if(!$this->CheckFiles($files)){
                 return false;
             }
             //生成路径；
             $savepath = $this->makeDirectory($savepath , $mksubdir);
+//
+//            $knamearray = explode("." , $files["name"]);
+//            $kname = strtolower($knamearray[count($knamearray)-1]);
+//            $fileName = $this->GenFileName($kname);
 
-            $knamearray = explode("." , $files["name"]);
-            $kname = strtolower($knamearray[count($knamearray)-1]);
-            $fileName = $this->GenFileName($kname);
-
-            //保存原图；
-            if(!$this->SaveFile($this->files , $savepath."/".$fileName)){
+            //保存原文件；
+            if(!$this->SaveFile($this->files , $savepath."/".$files['name'])){
                 return false;
             }
+
         }
 
         return true;
@@ -237,11 +241,12 @@ class Upimg {
 
     /**
      * 上传一般文件，比如flash、文本等；
-     * TODO 只保留原图；
+     * TODO 只保留原文件；
      * param $files 上传文件参数 , $savepath 存储文件夹 , $mksubdir 是否在$savepath中建立子文件夹；
      */
     private function SaveFile($files , $upFileName)
     {
+
         //储存原图片；
         if(!move_uploaded_file($files['tmp_name'],$upFileName)){
             $this->errmsg = "文件存储失败！";
@@ -274,7 +279,7 @@ class Upimg {
             $this->errmsg = "上传不成功!";
             return false;
         } 
-        if($size > $this->maxfilesize){
+        if($size > $this->maxfilesizeImg){
             $this->errmsg = "图片大小应小于".($this->maxfilesize/(1024*1024))."M";
             return false;
         }

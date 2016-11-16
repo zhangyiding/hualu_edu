@@ -1120,9 +1120,39 @@ function listPage($count, $page, $pagesize=10){
 }
 
 /**
+ * @todo 上传文件
+ */
+ function uploadFile($upload_dir,$type='img') {
+
+    //文件上传路径
+    if(!is_dir($upload_dir)){
+        mkdir($upload_dir);
+    }
+
+    if(!is_writeable($upload_dir)) {
+        $this->showMsg("上传目录不可写");
+    }
+
+     $upimgObj = new Upimg($_FILES['uploadFile']);
+
+
+     if($type == 'video'){
+         $upimgObj->SetSaveMod(0);
+     }
+
+
+    if ($upimgObj->Save($upload_dir,false)) {
+        $imgUrl = $upimgObj->GetSavePath();
+        return $imgUrl;
+    } else {
+        return false;
+    }
+}
+
+/**
  * @todo 图片上传
  */
- function uploadImg($upload_dir) {
+function uploadVideo($upload_dir) {
 
     //文件上传路径
     if(!is_dir($upload_dir)){

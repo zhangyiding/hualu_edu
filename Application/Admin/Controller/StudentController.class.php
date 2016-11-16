@@ -77,7 +77,7 @@ class StudentController extends BaseController {
         $op_type = $this->params['op_type'];
 
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadImg('student');
+        $data['avatar'] = uploadFile('student');
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];

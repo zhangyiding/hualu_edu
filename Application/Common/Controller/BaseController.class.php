@@ -45,7 +45,9 @@ class BaseController extends Controller
         $host = $_SERVER['SERVER_NAME'];
         preg_match("#(.*?)\.#",$host,$match);
         $this->subsite_host = $match[1];
-        $params = $_REQUEST;
+        $m_base = new \Common\Model\BaseModel();
+        $subsite_info = $m_base->getSubsiteId($this->subsite_host);
+        $this->subsite_id = $subsite_info['subsite_id'];
 
         $page = intval($_GET['page']);
         $this->page = $page ? $page : $this->page;
@@ -61,7 +63,7 @@ class BaseController extends Controller
             $this->su_type = session('su_type');
         }
 
-        $this->params = $params;
+        $this->params = $_REQUEST;
 
     }
 
@@ -88,7 +90,7 @@ class BaseController extends Controller
         //当访问后台时判断是否存在分站id
         if(strpos($url,'admin')){
             if (!session('?subsite_id')) {
-                showMsg('尚未登录','admin/login/index',1);
+                showMsg('尚未登录','/admin/login/index',1);
                 return false;
             } else {
                 return true;
@@ -183,10 +185,10 @@ alert('%s');\r\n
             $errorinfo = C('errorinfo');
             $this->_res->msg = L($errorinfo[$this->_res->code]);
         }
-
-        if($this->_res->code == 10000 && strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
-            MemberLogModel::addLog($this->user_id,$this->access,$this->params);
-        }
+//
+//        if($this->_res->code == 10000 && strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+//            MemberLogModel::addLog($this->user_id,$this->access,$this->params);
+//        }
 
         header('Content-type: application/json; charset=utf-8');
         die(json_encode($this->_res));

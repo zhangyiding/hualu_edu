@@ -92,7 +92,7 @@ class TeacherController extends BaseController {
             $data['ct_id'] = implode(',',$this->params['ct_id']);
         }
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadImg('teacher');
+        $data['avatar'] = uploadFile('teacher');
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];

@@ -1,7 +1,9 @@
 <?php
 namespace Admin\Controller;
-use Common\Lib\Upimg;
+
+use Admin\Model\CourseModel;
 use Think\Controller;
+use Common\Lib\UpVideo;
 use Common\Controller\BaseController;
 class CourseController extends BaseController {
 
@@ -64,8 +66,78 @@ class CourseController extends BaseController {
      * 上传学习资料
      */
     public function addStudyFile(){
+        $this->saveVideo();
+
         $this->display();
     }
+
+
+    /*
+ * 上传学习资料
+ */
+    public function test(){
+
+        $this->display();
+    }
+
+    /*
+     * @todu 保存上传视频文件
+     */
+    public function saveVideo(){
+        $map['subsite_id'] = $this->subsite_id;
+        $map['creator'] = $this->creator;
+
+        if(!$this->checkVideo()){
+            $this->to_back('10102');
+        }
+
+        $Upvideo = new UpVideo();
+        $m_course = new CourseModel();
+        if($path = uploadFile('course_video','video')){
+            $video_info = $Upvideo->getInfo($path);
+
+            $map['name'] = $video_info['name'];
+            $map['ext'] = $video_info['ext'];
+            $map['file_path'] = $path;
+            $map['file_size'] = $video_info['size'];
+            $map['duration'] = $video_info['duration'];
+            $map['name'] = $video_info['name'];
+            $map['ctime'] = date('Y-m-d H:i:s',time());
+            $map['type'] = 1;
+
+            if($m_course->addVideo($map)){
+                $data['path'] = $path;
+                $this->to_back($data);
+            }else{
+                $this->to_back('10100');
+            }
+        }else{
+           $this->to_back('10101');
+       }
+
+    }
+
+    /*
+    * 检测是否存在重复名称
+    */
+    public function checkVideo(){
+      list($name,$ext) =  explode('.',$_FILES['uploadFile']['name']);
+
+       $m_course = new CourseModel();
+
+        $where['name'] = $name;
+        $where['ext'] = $ext;
+
+        if($result = $m_course->getResourceName($where)){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+
+
+
 
     /*
      * 发布课程

@@ -1,5 +1,5 @@
 <?php
-$config_hualu = array(
+$hualu_admin = array(
 
     'ADMIN_USER'=>1,//主站管理员
     'SUBSITE_USER'=>2,//分站管理员
@@ -66,12 +66,24 @@ $config_hualu = array(
     )
 );
 
+$hualu_user = array(
+    'news_type'=> array(
+        'home_page'=>1,//头条资讯类型
+        'master'=>2,//主站国资委资讯类型
+        'subsite'=>3,//分站公司类型
+        'image'=>4//轮播图类型
+    ),
+    'RECOMMEND_CSE'=>'1',//推荐课程
+    'HOT_CSE'=>'2'//热门课程
 
 
+
+
+);
 $config_key    =   array(
     'PARAM_KEY' => 'z&-etago0n!',//解密接口数据key
     'SIGN_KEY'  => 'etago2016#*$%^*)##%(2026',//签名key
     'GOOGLE_API_KEY' => 'AIzaSyDNGO0STvZ3FwWYyMQiHfiJgfmbFXP5YJs',//地图key
 );
 
-return array_merge($config_hualu,$config_key);
+return array_merge($hualu_admin,$config_key,$hualu_user);

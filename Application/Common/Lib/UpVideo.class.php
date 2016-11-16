@@ -9,15 +9,48 @@ class UpVideo {
      * @param string $file 文件路径
      * @return array
      */
-	public function getTime($file){
-        $vtime = exec("ffmpeg -i ".$file." 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");//总长度
-        $ctime = date("Y-m-d H:i:s",filectime($file));//创建时间
-        $duration = explode(":",$vtime);
-        $duration_in_seconds = $duration[0]*3600 + $duration[1]*60+ round($duration[2]);//转化为秒
-        return array('vtime'=>$vtime,
-            'ctime'=>$ctime,
-            'duration'=>$duration_in_seconds
-        );
+	public function getInfo($file,$unit='m')
+    {
+
+        if( $arw_size = filesize($file)){
+            $vtime = exec("ffmpeg -i " . $file . " 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");//总长度
+            $ctime = date("Y-m-d H:i:s", filectime($file));//创建时间
+            $duration = explode(":", $vtime);
+            $duration_in_seconds = $duration[0] * 3600 + $duration[1] * 60 + round($duration[2]);//转化为秒
+
+            //获取视频文件大小
+            $unit = (empty($unit)) ? 'm' : $unit; //默认单位为m
+            $arw_size = filesize($file);
+            if ($arw_size) {
+                switch ($unit) {
+                    case 'b':
+                        $size = $arw_size;
+                        break;
+                    case 'kb':
+                        $size = round($arw_size / 1000);
+                        break;
+                    case 'm':
+                        $size = round($arw_size / 1000 / 1000);
+                        break;
+                    default:
+                        $size = round($arw_size / 1000);
+                }
+
+
+                //获取视频名称以及扩展
+                $v_info = pathinfo($file);
+
+                return array('vtime' => $vtime,
+                    'ctime' => $ctime,
+                    'duration' => $duration_in_seconds,
+                    'size' => $size,
+                    'name' => $v_info['filename'],
+                    'ext'=>$v_info['extension']
+                );
+        }
+        }else{
+            return false;
+        }
     }
 
 
@@ -37,39 +70,12 @@ class UpVideo {
     }
 
 
-    /**
-     * 获取视频文件大小 单位m
-     * @param string $file 文件路径
-     * @return array
-     */
-    public function getVideoSize($file,$unit) {
-        $unit = (empty($unit))? 'm':$unit; //默认单位为m
-        $arw_size = filesize($file);
-        if($arw_size){
-            switch($unit){
-                case 'b':
-                    $size = $arw_size;
-                    break;
-                case 'kb':
-                    $size = round($arw_size*1000);
-                    break;
-                case 'm':
-                    $size = round($arw_size*1000*1000);
-                    break;
-                default:
-                    $size = round($arw_size*1000);
-            }
-            return $size;
-        }else{
-            return false;
-        }
 
 
 
 
 
 
-    }
 
 }
 

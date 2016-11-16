@@ -12,5 +12,15 @@ class BaseModel extends Model{
     }
 
 
+    public function getSubsiteId($host_name){
+        $result = $this->table('subsite')
+            ->where(array('site_url'=>$host_name,'status'=>0))
+            ->select();
+        return $result[0];
+    }
+
+
+
+
 }
 ?>

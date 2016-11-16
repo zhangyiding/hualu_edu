@@ -4,37 +4,62 @@ use Common\Controller\BaseController;
 use Think\Controller;
 class IndexController extends BaseController {
     public function index(){
-       $m_course = new \Home\Model\CourseModel();
-        $area_list = $m_course->getCourseAreaArr();
+        $m_news = new \Home\Model\NewsModel();
+        $m_course = new \Home\Model\CourseModel();
 
-        $news_type = C('news_t_list');
+        if($result = $m_news->getNewsList($this->subsite_id)){
 
-        $this->assign('area_list',$area_list);
-        $this->assign('news_type',$news_type);
-        $this->display();
-    }
+            foreach($result as $key=>$val){
+                $result[$key]['cover'] = getImageBaseUrl($val['cover']);
+            }
 
-    //获取新闻信息
-    public function news(){
-        $news_type = $this->params['news_type'];
-        $m_index = new \Home\Model\IndexModel();
+            $news_type = C('news_type');
 
-        $news_list = $m_index->getNewsForType($news_type);
-        $rmd_news = array();
-        $no_rmd_news = array();
-        foreach($news_list as $k=>$v){
-            $news_list[$k]['img'] = getImageBaseUrl($v['img']);
-            if($v['is_recommend'] == 1){
-                $rmd_news = $news_list[$k];
-            }else{
-                $no_rmd_news[] = $news_list[$k];
+            foreach($result as $k=>$v){
+                switch( $v['type']){
+                    case $news_type['home_page']:
+                        $home_page[]=$result[$k];
+                        break;
+                    case $news_type['master']:
+                        $master[] = $result[$k];
+                        break;
+                    case $news_type['subsite']:
+                        $subsite[] = $result[$k];
+                        break;
+                    case $news_type['image']:
+                        $image[] = $result[$k];
+                        break;
+                    default:
+                        break;
+                }
             }
         }
-        $this->assign('rmd_news',$rmd_news);
-        $this->assign('no_rmd_news',$no_rmd_news);
+
+        if($course_data = $m_course->getCourseList($this->subsite_id)){
+
+            foreach($course_data as $k=>$v){
+                if($v['is_recommend'] == C('RECOMMEND_CSE')){
+                    $rcd_cse[] = $course_data[$k];
+                }elseif($v['is_recommend'] == C('HOT_CSE')){
+                    $hot_cse[] = $course_data[$k];
+                }
+            }
+
+            if(!empty($rcd_cse)){
+                foreach($rcd_cse as $k=>$v){
+
+                }
+            }
+
+        }
+
+
+
+
 
         $this->display();
     }
+
 
 
 }
