@@ -23,17 +23,11 @@ class Upimg {
     private $outbigthumbpath="";    //默认大缩略图保存路径；
     private $fileTypeArr = array('image/gif','image/x-png','image/png','image/jpg','image/pjpeg','image/jpeg'); //默认允许的图片种类；
 
-    /**
-    public function UpimgClass($files)
-    {
-        $this->__construct($files);
-    }
-    */
+
 
     public function __construct($files)
     {
-        define("IMG_DIR" , 'public/resource/image');
-        define("VIDEO_DIR" , 'public/resource/video');
+
         define("FILE_DIR" , ".");
         define("ORIG_IMG" , "img");
         define("COMM_THUMB_SIZE" , "120");
@@ -112,7 +106,7 @@ class Upimg {
     public function GetSavePath()
     {
         if($this->mode){
-            $outpath = str_replace(IMG_DIR."/" , "" , $this->outpath);
+            $outpath =  $this->outpath;
         }else{
             $outpath = str_replace(FILE_DIR."/" , "" , $this->outpath);
         }
@@ -144,7 +138,6 @@ class Upimg {
     {
         //保存图片；
         if($this->mode){
-            $savepath = IMG_DIR.'/'.$savepath;
 
             $files = $this->files;
             if(!$this->CheckImg($files)){
@@ -176,7 +169,7 @@ class Upimg {
                 }
             }
         }else{  //保存一般性文件
-            $savepath = VIDEO_DIR."/".$savepath;
+
 
             $files = $this->files;
             if(!$this->CheckFiles($files)){
@@ -248,9 +241,9 @@ class Upimg {
     {
 
         //储存原图片；
-        if(!move_uploaded_file($files['tmp_name'],$upFileName)){
+        if(!move_uploaded_file($files['tmp_name'],iconv("UTF-8","gb2312",$upFileName))){
             $this->errmsg = "文件存储失败！";
-            return false; 
+            return false;
         }
 
         $this->outpath = $upFileName;

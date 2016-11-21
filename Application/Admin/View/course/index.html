@@ -66,9 +66,9 @@
                     <div class="span12">
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
-                           <span>首页</span><span>></span>
-                           <span>课程管理</span><span>></span>
-                           <span>课程管理</span>
+                           <a href="/admin/">首页</a><span>></span>
+                           <a href="/admin/course">课程管理</a><span>></span>
+                           <a href="/admin/course">课程管理</a>
                            <a  href="/admin/course/addCourse" class="label label-warning"  style="float:right; margin:8px;">添加</a>
                          </div>
                         <div class="well brown">
@@ -89,6 +89,7 @@
                                             <th width="6%">授课老师</th>
                                             <th width="8%">课程类别</th>
                                             <th width="8%">课程价格</th>
+                                            <th width="10%">所属分站</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -114,6 +115,7 @@
                                             <else />内训
                                         </if></td>
                                         <td>{$vo.price}</td>
+                                        <td>{$vo.subsite_name}</td>
 
                                         <td>
                                             <a class="btn" href="/admin/course/addCourse?op_type=1&course_id=<?php echo $vo['course_id'];?>" title="修改"><i class="icon-inbox"></i></a>

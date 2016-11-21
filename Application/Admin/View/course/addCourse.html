@@ -6,12 +6,13 @@
   
     <meta name="description" content="">
     <meta name="author" content="">
-
+      <script src="__PUBLIC__/admin/js/jquery-1.7.1.min.js"></script>
     <!-- Le styles -->
     <link href="__PUBLIC__/admin/css/bootstrap.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/stylesheet.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/index.css" rel="stylesheet">
+      <link href="__PUBLIC__/admin/css/checkbox.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/icon/font-awesome.css" rel="stylesheet">
     
 
@@ -20,14 +21,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="__PUBLIC__/admin/img/apple-touch-icon-114-precomposed.html">
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="__PUBLIC__/admin/img/apple-touch-icon-72-precomposed.html">
                     <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/admin/img/apple-touch-icon-57-precomposed.html">
-                                  
+
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="__PUBLIC__/admin/js/html5shiv.js"></script>
-      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
-      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/lang/zh-cn/zh-cn.js"  charset="utf-8"></script>
-      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
+
+
     <![endif]-->
     
   </head>
@@ -42,15 +41,15 @@
                     <div class="span12">
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
-                           <span>首页</span><span>></span>
-                           <span>新闻管理</span><span>></span>
-                           <span>添加新闻</span>
+                           <a href="/admin">首页</a><span>></span>
+                           <a href="/admin/course">课程管理</a><span>></span>
+                           <a href="/admin/news/addNews">添加课程</a>
                            
                          </div>
                         <div class="well brown">
-                         <form action="/admin/news/doAddNews" method="post" enctype="multipart/form-data">
-                            <div class="form_list"><label class="lable_title">课程名称</label><input id="title" name="title" class="form_input" type="text" value={$data.name}></div>
-                             <div class="form_list"><label class="lable_title">课程简介</label><input id="简介" name="title" class="form_input" type="text" value={$data.intro}></div>
+                         <form action="/admin/course/doAddCourse" method="post" enctype="multipart/form-data">
+                            <div class="form_list"><label class="lable_title">课程名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
+                             <div class="form_list"><label class="lable_title">课程简介</label><input id="intro" name="intro" class="form_input" type="text" value={$data.intro}></div>
 
                               <div class="form_list"><label  class="lable_title">课程封面</label>
                                 <input type="file" name="uploadFile" class="file" id="file" />
@@ -61,26 +60,26 @@
                              <div class="form_list"><label class="lable_title">
                                  课程类别
                              </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 <input type="radio" name="sex" value="1">公开
-                                 <input type="radio" name="sex" value="2">内训
+                                 <input type="radio" name="is_pub" value="1">公开
+                                 <input type="radio" name="is_pub" value="2">内训
                              </div>
                              <div class="form_list"><label class="lable_title">课程价格</label>
-                                 <input id="课程价格" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input id="price" name="price" class="form_input" type="text" value={$data.title}>
                              </div>
                              <div class="form_list"><label class="lable_title">课程学分</label>
-                                 <input id="课程学分" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input id="score" name="score" class="form_input" type="text" value={$data.title}>
                              </div>
 
                              <div class="form_list"><label class="lable_title">课程分类</label>
-                                 <input id="分类" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input id="course_type" name="course_type" class="form_input" type="text" value={$data.title}>
                              </div>
 
 
                              <div class="form_list"><label class="lable_title">课程类型</label>
-                            <select id="type" name="type"  style="width:150px; margin-left:15px;">
+                            <select id="is_recommend" name="is_recommend"  style="width:150px; margin-left:15px;">
                               <option value="">请选择类型</option>
-                                <option value="1" >热门课程</option>
-                                <option value="2" >推荐课程</option>
+                                <option value="2" >热门课程</option>
+                                <option value="1" >推荐课程</option>
                             </select>
                                     </div>
 
@@ -89,16 +88,36 @@
                              </div>
 
                              <div class="form_list"><label class="lable_title">关联视频</label>
-                                 <input id="关联视频" name="title" class="form_input" type="text" value={$data.title}>
+                                <b class="acity" name="course_ve" >请选择视频</b>
+                             </div>
+                             <div class="city">
+                                 <div class="top01-city"  >
+                                     <em class="ok">确定</em><b >请选择相关视频课件</b>
+                                 </div>
+                                 <div class="mid01-city">
+                                     <div class="cityshow" id="show">
+                                         <i>已选课件:</i>
+                                         <ul></ul>
+                                     </div>
+                                     <div class="cityshow1" id="show1">
+                                         <tr><td colspan="2"><i>未选课件:</i></td></tr>
+                                         <tr><td>
+                                             <ul class="cityul">
+                                                 <li>
+                                                     <foreach name="res_list" item="vo">
+                                                     <a><b >{$vo.name}</b></a>
+                                                   </foreach>
+                                                 </li>
+                                             </ul></td>
+                                         </tr>
+
+                                         </table>
+                                     </div>
+                                 </div>
                              </div>
                              <div class="form_list"><label class="lable_title">关联资料</label>
-                                 <input id="关联资料" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input id="course_file" name="course_file" class="form_input" type="text" value={$data.title}>
                              </div>
-                             <div class="form_list"><label class="lable_title">内容介绍</label>
-                                 <textarea id="课程内容介绍" name="title" class="form_input" type="text" value={$data.title}>
-                                     </textarea>
-                             </div>
-
 
                             <!--<div class="form_list"><label class="lable_title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input class="form_input" type="text"/></div>-->
                             <!--<div class="form_list"><label class="lable_title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;女</div>-->
@@ -124,41 +143,60 @@
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-   <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
-    <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
-    <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
-    <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
-    <script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/lang/zh-cn/zh-cn.js"  charset="utf-8"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
+
+    <!--<script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>-->
+    <!--<script src="__PUBLIC__/admin/js/WdatePicker.js"></script>-->
+    <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
     <script type="text/javascript">
-        var editor = new UE.ui.Editor();
-        editor.render("myEditor");
-    </script>
-    <script type="text/javascript">
-        function uploadimg() {
-            $.ajaxFileUpload({
-                url: "/admin/news/uploadImg",
-                secureuri:false,
-                fileElementId:'uploadFile',
-                dataType: "text",
-                success : function(msg) {
-                    var src = 0;
-                    var imgUrl = "/";
-                    arr = msg.split("|");
-                    if (arr[0] == "error") {
-                        alert(arr[1]);
-                        return;
+        var cityId = 0;
+        $(function(){
+            $('.acity').click(function(){
+                $('.city').show();
+                $('.mask').show();
+            });
+            $('.cityul b').click(function(){
+                var test=$(this).html();
+
+                if($(this).attr("city") == undefined){ $(this).attr("city", window.cityId++);}
+                var city = $(this).attr("city");
+                if( $('input[city="'+ city +'"]').size()){
+                    $('input[city="'+ city +'"]').parent().remove();
+                } else {
+                    var ml=$('.cityshow li').length;
+                    if(ml>10){
+                        alert('最多只能添加10个');
+                    }else{
+                        var test=$(this).html();
+                        $('<li class="licity"><input  name="citychk" type="checkbox" checked="true" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('.cityshow ul');
                     }
-                    $("#news_img").attr("src", imgUrl + arr[1]);
-                    $("#profile").val(arr[1]);
-                },
-                error : function(msg) {
-                    alert("头像上传失败");
                 }
+
+                $('input[name=citychk]').click(function(){
+                    $(this).parent('.licity').remove();
+                });
+
+            });
+            $('.ok').click(function(){
+
+                var total="";
+                if($('.cityshow ul li').text()=='')
+                {
+                    $('.city').hide();
+                    $('.mask').hide();
+                }else{
+                    $('.cityshow ul li').each(function(){
+                        total += (total.length > 0 ? "," : "" ) + $(this).text();
+                    });
+
+                    $('.acity').text(total);
+                    $('.city').hide();
+                    $('.mask').hide();
+                }
+
+
             })
-        }
+
+        })
 
     </script>
 

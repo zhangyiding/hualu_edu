@@ -18,12 +18,41 @@ class CourseModel extends Model{
 	}
 
 
+    public function getResourceList($where,$offset,$limit){
+        $result = $this->table('resource')
+            ->field('resource_id,subsite_id,type,name,ext,file_path,file_size,
+                     duration,remark,ctime,status')
+            ->where($where)
+            ->limit($offset,$limit)
+            ->order('ctime desc')
+            ->select();
+        return $result;
+    }
+
+
+    public function getAllResource($where){
+        $result = $this->table('resource')
+            ->field('resource_id,subsite_id,type,name,ext,file_path,file_size,
+                     duration,remark,ctime,status')
+            ->where($where)
+            ->order('ctime desc')
+            ->select();
+        return $result;
+    }
+
     public function getCourseCount($where){
         $result = $this->where($where)
             ->count();
         return $result;
     }
 
+
+    public function getResourceCount($where){
+        $result = $this->table('resource')
+            ->where($where)
+            ->count();
+        return $result;
+    }
 
     public function getCourseType($course_id){
         $result = $this->table('course_type_map')
@@ -38,6 +67,14 @@ class CourseModel extends Model{
 
     public function delCourse($where){
         $result = $this
+            ->where($where)
+            ->save(array('status'=>-1));
+        return $result;
+
+    }
+
+    public function delResource($where){
+        $result = $this->table('resource')
             ->where($where)
             ->save(array('status'=>-1));
         return $result;
@@ -60,7 +97,8 @@ class CourseModel extends Model{
 
     public function getResourceName($where){
         $result = $this->table('resource')
-            ->select($where);
+            ->where($where)
+            ->select();
         return $result;
     }
 

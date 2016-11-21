@@ -12,7 +12,7 @@ class UpVideo {
 	public function getInfo($file,$unit='m')
     {
 
-        if( $arw_size = filesize($file)){
+        if( $arw_size = filesize(iconv('UTF-8','GB2312',$file))){
             $vtime = exec("ffmpeg -i " . $file . " 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//");//总长度
             $ctime = date("Y-m-d H:i:s", filectime($file));//创建时间
             $duration = explode(":", $vtime);
@@ -38,7 +38,7 @@ class UpVideo {
 
 
                 //获取视频名称以及扩展
-                $v_info = pathinfo($file);
+                $v_info = pathinfo(iconv('UTF-8','GB2312',$file));
 
                 return array('vtime' => $vtime,
                     'ctime' => $ctime,

@@ -4,7 +4,15 @@ $hualu_admin = array(
     'ADMIN_USER'=>1,//主站管理员
     'SUBSITE_USER'=>2,//分站管理员
 
-    'IMG_URL'=>'http://img.hualu.com',
+    'RESOURCE_URL'=>'http://edu.hl.com',
+
+    //图片资源路径
+    'IMG_DIR'=>'public/resource/image',
+    //视频资源路径
+    'VIDEO_DIR'=>'public/resource/video',
+    //其他文件资源路径
+    'FILE_DIR'=>'public/resource/file',
+
 
     'ETHNIC_LIST'=>array(
         '1'=>'汉族',
@@ -74,7 +82,11 @@ $hualu_user = array(
         'image'=>4//轮播图类型
     ),
     'RECOMMEND_CSE'=>'1',//推荐课程
-    'HOT_CSE'=>'2'//热门课程
+    'HOT_CSE'=>'2',//热门课程
+
+    'COURSE_VE'=>'1',//课程视频
+    'COURSE_FILE'=>'2',//课程学习资料
+    'COURSE_IMG'=>'3'//课程图片
 
 
 

@@ -28,7 +28,11 @@
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements 加载百度编辑器Js -->
       <!--[if lt IE 9]>
       <script src="__PUBLIC__/admin/js/html5shiv.js"></script>
-<![endif]-->
+
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/lang/zh-cn/zh-cn.js"  charset="utf-8"></script>
+      <script type="text/javascript" src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
+    <![endif]-->
     <style type="text/css">
     .input{ width:40px;
 	text-align:center;}
@@ -62,10 +66,10 @@
                     <div class="span12">
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
-                           <a href="/admin">首页</a><span>></span>
-                           <a href="/admin/register">报名管理</a><span>></span>
-                           <span>报名管理</span>
-                           <!--<a  href="/admin/student/addStudent" class="label label-warning"  style="float:right; margin:8px;">添加</a>-->
+                             <a href="/admin">首页</a><span>></span>
+                             <a href="/admin/course">课件管理</a><span>></span>
+                           <span>课件管理</span>
+                           <a  href="/admin/course/addVideo" class="label label-warning"  style="float:right; margin:12px;">添加课件</a>
                          </div>
                         <div class="well brown">
                             
@@ -75,28 +79,32 @@
                                     <thead>
                                         <tr>
                                             <!--<th width="5%">排序</th>-->
-                                            <th width="4%">序号</th>
-                                            <th width="20%">课程名称</th>
-                                            <th width="5%">学员名称</th>
-                                            <th width="18%">报名时间</th>
-                                            <th width="8%">审核状态</th>
-                                            <th width="7%">学费</th>
-                                            <th width="13%">所属分站</th>
+                                            <th width="4%">课件ID</th>
+                                            <th width="20%">课件名称</th>
+                                            <th width="6%">时长</th>
+                                            <th width="10%">课件备注</th>
+                                            <th width="10%">课件状态</th>
+                                            <th width="14%">添加时间</th>
+                                            <th width="15%">所属分站</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <foreach name="reg_list" item="vo">
+                                    <foreach name="ware_list" item="vo">
                                     <tr>
-                                        <td>{$vo.scm_id}</td>
-                                        <td>{$vo.course_name}</td>
-                                        <td>{$vo.student_name}</td>
+                                        <td>{$vo.resource_id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.duration}</td>
+                                        <td>{$vo.remark}</td>
+                                        <td>
+                                            <if condition="($vo['status'] eq 1)">已关联课程
+                                                <else />未关联课程
+                                            </if>
+                                        </td>
                                         <td>{$vo.ctime}</td>
-                                        <td>{$reg_status.$vo[status]}</td>
-                                        <td>{$vo.price}</td>
                                         <td>{$vo.subsite_name}</td>
                                         <td>
-                                            <a class="btn" href="/admin/register/changeStatus?status=3&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>
-                                            <a class="btn" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>
+                                            <a class="btn" href="<?php echo $vo['file_path'];?>" title="下载"><i >下载</i></a>
+                                            <a class="btn" href="/admin/course/delResource?resource_id=<?php echo $vo['resource_id'];?>" title="删除"><i class="icon-trash"></i></a>
                                             <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
                                         </td>
                                         </foreach>
@@ -108,7 +116,7 @@
                                     <ul class="pagination" style="float:right">
                                         <li><a href="#">&laquo;</a></li>
                                         <volist  name="page_arr" id="vo">
-                                            <li><a href="/admin/student/?page=<?php echo $vo;?>">{$vo}</a></li>
+                                            <li><a href="/admin/news/?page=<?php echo $vo;?>">{$vo}</a></li>
                                         </volist>
                                         <li><a href="#">&raquo;</a></li>
                                     </ul>

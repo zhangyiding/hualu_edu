@@ -40,10 +40,10 @@
                     <div class="span12">
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
-                           <span>首页</span><span>></span>
-                           <span>课程管理</span><span>></span>
-                           <span>添加视频</span>
-                           
+                             <a href="/admin">首页</a><span>></span>
+                           <a href="/admin/course">课程管理</a><span>></span>
+                           <a>上传视频</a>
+
                          </div>
                         <div class="well brown">
                          <form action="/admin/news/doAddVideo" method="post" enctype="multipart/form-data">
@@ -90,10 +90,12 @@
             $('#uploadify').uploadify({
                 'formData'     : {
                     'timestamp' : '<?php echo $timestamp;?>',
-                    'token'     : '<?php echo md5('unique_salt' . $timestamp);?>'
+                    'token'     : '<?php echo md5('unique_salt' . $timestamp);?>',
+                    'type'     : '1',
+                    'service_type'     : 'course_video'
                 },
                 'swf'      : '/Public/admin/js/uploadify.swf',//swf路径
-                'uploader' : '/admin/course/saveVideo',//处理文件的服务器地址
+                'uploader' : '/admin/course/saveFile',//处理文件的服务器地址
                 'filesSelected' : '1',//同时选择文件的个数
                 'uploadLimit' : '30',//选择文件的总数
                 'method' : 'post',
@@ -102,9 +104,19 @@
                 'width' :　 '120',
                 'height' : '40',
                 'cancelImg' : '/Public/admin/image/uploadify-cancel.png',
-                'buttonText': '上传视频',
+                'buttonText': '请选择上传视频',
                 'fileObjName' : 'uploadFile',
-                'fileSizeLimit' : '0'
+                'fileSizeLimit' : '0',
+                'onUploadSuccess': function (file, data, response) {
+                    var obj = eval('(' + data + ')');
+
+                    if (obj.code !== 10000)
+                        alert(obj.msg);
+                    else
+                        alert('上传成功')
+                }
+
+
 //
             });
 

@@ -609,29 +609,7 @@ function mile($dist)
     return $dist * 0.0006214;
 }
 
-/**
- * @param 起点维度 $lat1
- * @param 起点经度 $lng1
- * @param 终点维度 $lat2
- * @param 终点经度 $lng2
- * @param 1米 2英里 $type
- * @return number
- */
-function geo_distance($lat1, $lng1, $lat2, $lng2, $type = 1)
-{
-    $r = 6378137; // m 为单位
-    $radLat1 = rad($lat1);
-    $radLat2 = rad($lat2);
-    $a = $radLat1 - $radLat2;
-    $b = rad($lng1) - rad($lng2);
-    $s = 2 * asin(sqrt(pow(sin($a / 2), 2) + cos($radLat1) * cos($radLat2) * pow(sin($b / 2), 2)));
-    $s = $s * $r;
-    $distance = round($s * 10000) / 10000;
-    if ($type == 2) {
-        $distance = mile($distance);
-    }
-    return $distance;
-}
+
 
 function verify_mobile($mobile)
 {
@@ -664,13 +642,6 @@ function createUserLoginCaptcha()
     return $captcha;
 }
 
-function getClientId($clientname)
-{
-    $client_arr = C('CLIENT_NAME_ARR');
-    $source_client = strtolower($clientname);
-    return $client_arr[$source_client];
-}
-
 function check_email($email)
 {
     $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
@@ -682,226 +653,10 @@ function check_email($email)
 }
 
 
-/**
- * 本地化时间
- * @param $timestamp    时间戳
- * @param string $timezone 用户时区
- * @return bool|string
- */
-function localizationDate($timestamp, $timezone = '')
-{
-    if (isset($timezone)) {
-        date_default_timezone_set($timezone);
-    }
-    $timestamp = intval($timestamp);
-    $t = time() - $timestamp;
-
-    switch ($t) {
-        case $t > 0 && $t < 1800:
-            $date = floor($t / 60) . '分钟前';
-            break;
-        case $t > 1800 && $t < 3600:
-            $date = '1小时以前';
-            break;
-        case $t > 3600 && $t < 24 * 3600:
-            $date = floor($t / 3600) . '小时以前';
-            break;
-        case $t > 24 * 3600 && $t < 24 * 3600 * 7:
-            $date = floor($t / (3600 * 24)) . '天以前';
-            break;
-        case $t > 24 * 3600 * 7 && $t < 24 * 3600 * 7 * 4:
-            $date = floor($t / (3600 * 24 * 7)) . '周以前';
-            break;
-        case date('Y', $timestamp) < date('Y'):
-            $date = date('Y.m.d', $timestamp);
-            break;
-        case date('m', $timestamp) < date('m'):
-        case date('d', $timestamp) < date('d'):
-            $date = date('m/d H:i', $timestamp);
-            break;
-
-        default :
-            $date = date('m/d/Y H:i', $timestamp);
-    }
-    return $date;
-}
-
-
-/**
- * 格式化时间
- * @param $timestamp    时间戳
- * @param string $timezone 用户时区
- * @return bool|string
- */
-function formatTimestamp($timestamp,$city_id){
-    $m_base = new \Admin\Model\CityModel();
-    $city_info = $m_base->getCityInfoByCityId($city_id);
-    date_default_timezone_set($city_info['timezone']);
-    $date = date('m-d H:i',$timestamp);
-    return $date;
-}
 
 
 
-/**
- * 格式化时间(评论界面)
- * @param $timestamp    时间戳
- * @param string $timezone 用户时区
- * @return bool|string
- */
-function formatTimeForComment($timestamp, $timezone = '', $city_id)
-{
-    if (isset($timezone)) {
-        date_default_timezone_set($timezone);
-    }
-    $timestamp = intval($timestamp);
-    $t = time() - $timestamp;
-    $type = 'm/d H:i';
-    if (!empty($city_id)) {
-        $type = ($city_id == '214') ? 'm/d H:i' : 'd/m H:i';
-    }
-    switch ($t) {
-        case $t > 0 && $t < 60:
-            $date = '刚刚';
-            break;
-        case $t > 60 && $t < 3600:
-            $date = floor($t / 60) . '分钟';
-            break;
-        case $t > 3600 && $t < 24 * 3600:
-            $date = floor($t / 3600) . '小时';
-            break;
-        case $t > 24 * 3600 && $t < 24 * 3600 * 7:
-            $date = floor($t / (3600 * 24)) . '天';
-            break;
-        case $t > 24 * 3600 * 7 && $t < 24 * 3600 * 28:
-            $date = floor($t / 3600 * 24 * 7) . '周';
-            break;
-        case $t > 24 * 3600 * 28:
-            $date = date($type, $timestamp);
-            break;
-        default :
-            $date = date($type, $timestamp);
-    }
-    return $date;
-}
 
-/**
- * 本地化距离
- * @param $distance 距离
- * @param $city_id  目标用户城市id
- * @param $user_city_id 当前用户城市id
- * @param string $unit 本地化距离单位
- * @return float|string
- */
-function localizationDistance($distance, $target_local_info,$source_local_info)
-{
-    $distance = floor($distance);
-    $unit = $target_local_info['mileage_unit'];
-
-    $d = '';
-    switch ($distance) {
-        case $distance > 0 && $unit == 'km' && $distance < 1000 :
-            $d = '<1 km';
-            break;
-        case $distance > 0 && $unit == 'mi' && convert_distance($distance, 'mi') < 1 :
-            $d = '<1 mi';
-            break;
-        case $distance >= 1000 && $distance < 100 * 1000:
-            $d = '<100 km';
-            break;
-        case convert_distance($distance, 'mi') >= 1 && convert_distance($distance, 'mi') < 100:
-            $d = '<100 mi';
-            break;
-        case $distance > 1000 * 100 && $target_local_info['city_id'] == $source_local_info['city_id']:
-            $d = $source_local_info['city_name'];
-            break;
-        case $distance > 1000 * 100 && $target_local_info['country_id'] == $source_local_info['country_id']:
-            $d = $source_local_info['country_name'];
-            break;
-        default :
-            $d = round($distance / 1000, 1) .' km';
-    }
-    return $d;
-}
-
-/**
- *本地化价格
- * @param $price    当前金额
- * @param $taget    目标币种
- * @param string $source 源币种
- * @return float
- */
-function localizationPrice($price, $taget, $source = 'USD')
-{
-    $redis = new Common\Lib\EtacarRedis();
-    $redis->connect('db1', '1');
-    $cache_key = 'exchange_rate:' . md5($taget . $source);
-
-    if (!$rate = $redis->get($cache_key)) {
-        $url = C('ETA_SERVICE_URL') . "/basedata/tool/converterCurrency?amount=1&from_currency=$source&to_currency=$taget";
-        $curl = new Common\Lib\Curl();
-        $curl->get($url, $result);
-        $result = json_decode($result, true);
-        if (!$result || $result['code'] !== 10000) {
-            return false;
-        }
-
-        $rate = $result['result']['amount'];
-        $redis->set($cache_key, $rate, 600);
-    }
-
-    return round($price * $rate, 2);
-}
-
-/**
- * 距离单位换算
- * @param $distance 距离
- * @param string $target 目标单位
- * @param string $source 源单位
- * @return bool|float|string
- */
-function convert_distance($distance, $target = 'mi', $source = 'm')
-{
-    $source = strtolower($source);
-    $target = strtolower($target);
-    $unit = array(
-        'm' => '1',
-        'mi' => '1609.344',
-        'km' => '1000',
-    );
-
-    if (!array_key_exists($source, $unit) || !array_key_exists($target, $unit)) {
-        return false;
-    }
-
-    //转成基本m单位
-    $source_unit = $unit[$source];
-    $distance = $distance / $source_unit;
-
-    //转换成目标单位
-    $target_unit = $unit[$target];
-    $distance = (String)round($distance / $target_unit, 2);
-    return $distance;
-}
-
-function generateTradeno($goods_id)
-{
-    $trade_no = str_pad($goods_id, 6, "0") . uniqid('');
-//     $trade_no = str_pad($goods_id, 6, "0").(randomID(8)).(str_pad(time()%10000, 4, "0"));
-    return $trade_no;
-
-}
-
-function randomID($c = 16)
-{
-    $id = '';
-    $str = "0123456789abcdef";
-    for ($i = 0; $i < $c; $i++) {
-        $r = rand(0, 15);
-        $id .= substr($str, $r, 1);
-    }
-    return $id;
-}
 
 
 function objarray_to_array($obj)
@@ -917,31 +672,6 @@ function objarray_to_array($obj)
     return $ret;
 }
 
-/**
- * 获取数组指定索引集合
- * @param array $array
- * @param string $index
- * @param int $recursion
- * @return array
- */
-function array_values_by_key(array $array, $index = 'id', $recursion_level = 1)
-{
-    $_array = array();
-    $_recursion_level = 0;
-    foreach ($array as $key => $value) {
-        if (is_array($value) && $_recursion_level <= $_recursion_level) {
-            $_array = array_merge($_array, array_values_by_key($value, $index, $recursion_level));
-            continue;
-        }
-
-        if ($key == $index) {
-            $_array[] = $value;
-        }
-
-        $_recursion_level++;
-    }
-    return $_array;
-}
 /**
  * @desc 随机生成一定长度的字符串
  */
@@ -1034,31 +764,7 @@ function toString(&$value){
     return $value;
 }
 
-/**
- * @param string $image 图片地址
- * @param unknown $type 1商品 2
- */
-function handleImageSize($image,$type=1,$need_size=''){
-    if($type ==1){
-        $size = C('IMAGE_GOODS_SIZE');        
-    }else{
-        $size = C('IMAGE_USER_SIZE');        
-    }
-    $image_info = pathinfo($image);
-    $image_host = str_replace('source','small',$image_info['dirname']).'/';
-    $image_name = $image_info['filename'];
-    $all_image = array();
-    foreach ($size as $v){
-        $size_image = $image_host.$image_name.'_'.$v.'.png';
-        $all_image[$v]= array('size'=>$v,'path'=>$size_image);
-    }
 
-    if(isset($all_image[$need_size])){
-        return $all_image[$need_size];
-    }
-    $all_image[]=array('size'=>"",'image'=>$image);
-    return $all_image;
-}
 /**
  * 
  * @param string $type   goods/user
@@ -1066,41 +772,43 @@ function handleImageSize($image,$type=1,$need_size=''){
  * @return string
  */
 function getImageBaseUrl($img){
+
 	if(empty($img)){
-        $img_url = C('IMG_URL') . '/' . 'no_img.jpg';
+        $img_url = C('RESOURCE_URL') . '/' . 'no_img.jpg';
     }else{
-        $img_url = C('IMG_URL') . '/' . $img;
+        if(!strstr($img,'http:')){
+            $img_url = C('RESOURCE_URL') . '/' . $img;
+        }else{
+            $img_url = $img;
+        }
     }
     return $img_url;
+
 }
+
 
 /**
- * @todo 判断合法坐标
- * @param $coordinate
- * @return bool
+ *
+ * @param string $type   goods/user
+ * @param string $img_name  图片名称
+ * @return string
  */
-function checkCoordinate($coordinate){
-    $lng_min = -180;
-    $lng_max = 180;
-    $lat_min = -90;
-    $lat_max = 90;
-    if(strpos($coordinate,',') !== FALSE){
-        list($lat,$lng) = explode(',',$coordinate);
-        $lat = floatval($lat);
-        $lng = floatval($lng);
+function getFileBaseUrl($path){
 
-        if($lat == 0 && $lng==0){
-            return FALSE;
+    if(empty($path)){
+        return '';
+    }else{
+        if(!strstr($path,'http:')){
+            $file_url = C('RESOURCE_URL') . '/' . $path;
+        }else{
+            $file_url = $path;
         }
-
-        if($lat < $lat_min || $lat > $lat_max || $lng < $lng_min || $lng > $lng_max){
-            return FALSE;
-        }
-
-        return TRUE;
     }
-    return FALSE;
+    return $file_url;
+
 }
+
+
 
 /**
  * 后台列表分页
@@ -1110,36 +818,112 @@ function checkCoordinate($coordinate){
  * @param int $pagesize
  * @return array()
  */
-function listPage($count, $page, $pagesize=10){
-	$page = $page<=0 ? 1 : $page ;
-	$data['totalpage'] = $count == 0 ? 0 : (($count%$pagesize) ? intval($count/$pagesize) +1 : ($count/$pagesize));
-	$data['page'] = $page;
-	$data['pagesize'] = $pagesize;
-	$data['offset'] = ($offset = ($page-1)*$pagesize) > $count ? $count : $offset;
-	return $data;
+function listPage($count, $limit=10){
+    //获取分页总数进一取整
+    $page_arr = array();
+    $page_count = ceil($count/$limit);
+    for($i=1;$i<=$page_count;$i++){
+        $page_arr[] = $i;
+    }
+    return $page_arr;
+
 }
+
+/**
+ * @tudo 格式化秒数
+ *
+ * @param int $seconds
+ * @return str
+ */
+function changeTimeType($seconds){
+    if ($seconds>3600){
+        $hours = intval($seconds/3600);
+        $minutes = $seconds%3600;
+        $time = $hours.":".gmstrftime('%M:%S', $minutes);
+    }else{
+        $time = gmstrftime('%H:%M:%S', $seconds);
+    }
+    return $time;
+}
+
+function getFileInfo($file,$unit = 'm'){
+
+    if( $arw_size = filesize(iconv('UTF-8','GB2312',$file))){
+
+        //获取文件大小
+        $unit = (empty($unit)) ? 'm' : $unit; //默认单位为m
+            switch ($unit) {
+                case 'b':
+                    $size = $arw_size;
+                    break;
+                case 'kb':
+                    $size = round($arw_size / 1000);
+                    break;
+                case 'm':
+                    $size = round($arw_size / 1000 / 1000);
+                    break;
+                default:
+                    $size = round($arw_size / 1000);
+            }
+
+
+            //获取视频名称以及扩展
+            $v_info = path_info($file);
+
+            return array('vtime' => 0,
+                'duration' => 0,
+                'size' => $size,
+                'name' => $v_info['filename'],
+                'ext'=>$v_info['extension']
+            );
+        }
+}
+
+
+/**
+ * 获取路径文件信息
+ *
+ * @param str $filepath //文件路径
+ * @return array()
+ */
+
+function path_info($filepath)
+{
+    $path_parts = array();
+    $path_parts ['dirname'] = rtrim(substr($filepath, 0, strrpos($filepath, '/')),"/")."/";
+    $path_parts ['basename'] = ltrim(substr($filepath, strrpos($filepath, '/')),"/");
+    $path_parts ['extension'] = substr(strrchr($filepath, '.'), 1);
+    $path_parts ['filename'] = ltrim(substr($path_parts ['basename'], 0, strrpos($path_parts ['basename'], '.')),"/");
+    return $path_parts;
+}
+
+
+
 
 /**
  * @todo 上传文件
  */
- function uploadFile($upload_dir,$type='img') {
+ function uploadFile($upload_dir,$type='3') {
 
+     $upimgObj = new Upimg($_FILES['uploadFile']);
+
+     if($type == C('COURSE_IMG')){
+         $upload_dir = C('IMG_DIR') .'/'.$upload_dir;
+     }elseif($type == C('COURSE_VE')){
+         $upload_dir = C('VIDEO_DIR') .'/'.$upload_dir;
+         $upimgObj->SetSaveMod(0);
+     }elseif($type == C('COURSE_FILE')){
+         $upload_dir = C('FILE_DIR') .'/'.$upload_dir;
+         $upimgObj->SetSaveMod(0);
+     }
     //文件上传路径
     if(!is_dir($upload_dir)){
         mkdir($upload_dir);
     }
 
     if(!is_writeable($upload_dir)) {
-        $this->showMsg("上传目录不可写");
+        showMsg("上传目录不可写");
     }
-
-     $upimgObj = new Upimg($_FILES['uploadFile']);
-
-
-     if($type == 'video'){
-         $upimgObj->SetSaveMod(0);
-     }
-
 
     if ($upimgObj->Save($upload_dir,false)) {
         $imgUrl = $upimgObj->GetSavePath();
@@ -1150,7 +934,7 @@ function listPage($count, $page, $pagesize=10){
 }
 
 /**
- * @todo 图片上传
+ * @todo 视频上传
  */
 function uploadVideo($upload_dir) {
 
