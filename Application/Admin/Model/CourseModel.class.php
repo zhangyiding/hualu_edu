@@ -89,6 +89,7 @@ class CourseModel extends Model{
     }
 
 
+
     public function addVideo($where){
         $result = $this->table('resource')->add($where);
         return $result;

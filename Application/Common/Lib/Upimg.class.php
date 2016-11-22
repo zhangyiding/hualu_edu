@@ -154,14 +154,14 @@ class Upimg {
             if(!$this->SaveOrigImg($this->files , $savepath."/".ORIG_IMG."/".$fileName)){
                 return false;
             }
-            //保存普通缩略图；
-            if(!$this->SaveThumImg($this->files , $savepath."/".COMM_THUMB_SIZE."/".$fileName, $kname)){
-                return false;
-            }
-            //保存大缩略图；
-            if(!$this->SaveBigThumImg($this->files , $savepath."/".BIG_THUMB_SIZE."/".$fileName, $kname)){
-                return false;
-            }
+//            //保存普通缩略图；
+//            if(!$this->SaveThumImg($this->files , $savepath."/".COMM_THUMB_SIZE."/".$fileName, $kname)){
+//                return false;
+//            }
+//            //保存大缩略图；
+//            if(!$this->SaveBigThumImg($this->files , $savepath."/".BIG_THUMB_SIZE."/".$fileName, $kname)){
+//                return false;
+//            }
             if(file_exists($files["tmp_name"])){
                 if(!unlink($files["tmp_name"])){
                     $this->errmsg = "系统错误!";

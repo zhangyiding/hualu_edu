@@ -14,6 +14,13 @@ $hualu_admin = array(
     'FILE_DIR'=>'public/resource/file',
 
 
+    'news_type'=>array(
+        '1'=>'头条配置',
+        '2'=>'国资委资讯',
+        '3'=>'公司培训',
+        '4'=>'轮播资讯',
+    ),
+
     'ETHNIC_LIST'=>array(
         '1'=>'汉族',
         '2'=>'蒙古族',
@@ -79,14 +86,27 @@ $hualu_user = array(
         'home_page'=>1,//头条资讯类型
         'master'=>2,//主站国资委资讯类型
         'subsite'=>3,//分站公司类型
-        'image'=>4//轮播图类型
+        'image'=>4,//轮播图类型
+        'little_head'=>5//小标题类型
     ),
     'RECOMMEND_CSE'=>'1',//推荐课程
     'HOT_CSE'=>'2',//热门课程
 
     'COURSE_VE'=>'1',//课程视频
     'COURSE_FILE'=>'2',//课程学习资料
-    'COURSE_IMG'=>'3'//课程图片
+    'COURSE_IMG'=>'3',//课程图片
+
+    'MASTER_NEWS'=>'1',//课程学习资料
+    'SUBSITE_NEWS'=>'2',//课程图片
+
+    'region_type'=>array(
+    'system'=>0,//系统导入
+        'user'=>1,//用户自己注册
+        'admin'=>2,//后台管理员添加
+)
+
+
+
 
 
 

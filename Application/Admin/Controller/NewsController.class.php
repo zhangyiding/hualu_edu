@@ -5,13 +5,6 @@ use Common\Lib\UpimgClass;
 use Think\Controller;
 use Common\Controller\BaseController;
 class NewsController extends BaseController {
-    protected $news_type = array(
-        '1'=>'头条配置',
-        '2'=>'国资委资讯',
-        '3'=>'公司培训',
-        '4'=>'轮播资讯',
-
-    );
 
     public function index(){
         $m_news = new \Admin\Model\NewsModel();
@@ -36,7 +29,7 @@ class NewsController extends BaseController {
 
         $this->assign('news_list',$data);
         $this->assign('page_arr',$page_arr);
-        $this->assign('news_type',$this->news_type);
+        $this->assign('news_type',C('news_type'));
         $this->display();
     }
 
@@ -55,7 +48,7 @@ class NewsController extends BaseController {
             $this->assign('data',$data);
         }
         $this->assign('op_type',$op_type);
-        $this->assign('news_type',$this->news_type);
+        $this->assign('news_type',C('news_type'));
         $this->display();
     }
 

@@ -40,6 +40,17 @@ function create_sign($sign_time, $key = 'tuanche1234abcd1234')
 }
 
 /**
+ * 密码加密
+ * @param str $pass
+ */
+ function encryptpass($pass) {
+    if (!$pass)
+        return false;
+
+    return md5(C('PARAM_KEY') . $pass);
+}
+
+/**
  * 接口请求参数加密
  * @param str $data
  * @return Ambigous <boolean, mixed>
