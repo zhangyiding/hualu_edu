@@ -14,9 +14,14 @@ $hualu_admin = array(
     'FILE_DIR'=>'public/resource/file',
 
 
-    'news_type'=>array(
-        '1'=>'头条配置',
+    'news_type_admin'=>array(
+        '1'=>'头条新闻',
         '2'=>'国资委资讯',
+        '3'=>'公司培训',
+        '4'=>'轮播资讯',
+    ),
+
+    'news_type_admin_sub'=>array(
         '3'=>'公司培训',
         '4'=>'轮播资讯',
     ),

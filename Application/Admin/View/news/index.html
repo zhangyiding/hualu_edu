@@ -84,6 +84,7 @@
                                             <th width="10%">添加时间</th>
                                             <th width="8%">新闻类型</th>
                                             <th width="25%">封面图片</th>
+                                            <th width="20%">所属分站</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,6 +96,7 @@
                                             <td>{$news_type.$vo[type]}</td>
                                             <!--<td>{$vo.img}</td>-->
                                             <td> <img src="<?php print_r($vo['cover']);?>" /></td>
+                                        <td> {$vo.subsite_name}</td>
                                             <!--<td>&nbsp;</td>-->
                                         <td>
                                             <a class="btn" href="/admin/news/addNews?op_type=1&news_id=<?php echo $vo['news_id'];?>" title="修改"><i class="icon-inbox"></i></a>

@@ -785,7 +785,7 @@ function toString(&$value){
 function getImageBaseUrl($img){
 
 	if(empty($img)){
-        $img_url = C('RESOURCE_URL') . '/' . 'no_img.jpg';
+        $img_url = C('RESOURCE_URL') . '/' . 'public/no_img.jpg';
     }else{
         if(!strstr($img,'http:')){
             $img_url = C('RESOURCE_URL') . '/' . $img;

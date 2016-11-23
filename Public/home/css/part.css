@@ -1,12 +1,12 @@
 
-/*headerï¿½ï¿½ï¿½ï¿½*/
+/*header²¿·Ö*/
 header,footer ul.concat,nav,#article,div.banner,div#hot,div#advice,div#course {
     width: 1000px;
     margin: 0 auto;
 }
 
 
-/*ï¿½Æ¼ï¿½ï¿½Î³ï¿½div#courseï¿½ï¿½ï¿½ï¿½*/
+/*ÍÆ¼ö¿Î³Ìdiv#course²¿·Ö*/
 div#course ul.learn li{
     margin-bottom: 35px;
 }

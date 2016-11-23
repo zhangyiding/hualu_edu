@@ -48,7 +48,8 @@ class BaseController extends Controller
         $this->subsite_host = $match[1];
         $m_base = new \Common\Model\BaseModel();
         $subsite_info = $m_base->getSubsiteId($this->subsite_host);
-        $this->subsite_id = $subsite_info['subsite_id'];
+       // $this->subsite_id = $subsite_info['subsite_id'];
+        $this->subsite_id = '130301704';
 
         $this->ip = $_SERVER["REMOTE_ADDR"];
 

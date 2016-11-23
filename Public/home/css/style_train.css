@@ -1,29 +1,5 @@
-body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
-    margin: 0;
-    padding: 0;
-}
-input{
-    border: none;
-}
-body{
-    font-family: 'Microsoft Yahei',"Arial";
-    font-size: 12px;
-    text-align: center;
-}
-em,i{ font-style: normal !important; }
-img{
-    border:none;
-}
-ul,li{
-    list-style: none;
-}
-a{
-    text-decoration: none;
-    color: #000;
-}
-a:hover { text-decoration: none;color:#000; }
 
-/*header²¿·Ö*/
+/*headerï¿½ï¿½ï¿½ï¿½*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
     margin: 0 auto;
@@ -47,18 +23,18 @@ header li{
 }
 #head_1 p.date{
     padding-left: 25px;
-    background: url("../img/image_index/time.png") no-repeat 0 12px;
+    background: url("../image/time.png") no-repeat 0 12px;
     margin-left: 10px;
 }
 #head_1 p.addr{
     padding-left: 18px;
-    background: url("../img/image_index/location.png") no-repeat 0 12px;
+    background: url("../imagex/location.png") no-repeat 0 12px;
     margin-left: 10px;
     margin-right: 23px;
 }
 #head_1 p.weather{
     padding-left: 25px;
-    background: url("../img/image_index/weather.png") no-repeat 0 10px;
+    background: url("../image/weather.png") no-repeat 0 10px;
     margin-right: 10px;
 }
 #head_2{
@@ -85,7 +61,7 @@ header li{
     text-align: center;
     cursor: pointer;
 }
-/*±êÌâÍ¼Æ¬²¿·Ö*/
+/*ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½*/
 div#title{
     position: relative;
     height: 50px;
@@ -96,7 +72,7 @@ div#title img{
     left: 20px;
 
 }
-/*articleÖÐ¼äÇÐ»»²¿·Ö*/
+/*articleï¿½Ð¼ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #article ul.nav{
     border-bottom:2px solid #D5D5D5;
 }
@@ -134,7 +110,7 @@ ul.search li input{
     width: 170px;
     height: 30px;
     padding-left:35px;
-    background: url("../img/image_index/zoom.png") no-repeat 8px 4px;
+    background: url("../image/zoom.png") no-repeat 8px 4px;
 }
 ul.search li i{
     display: inline-block;
@@ -166,7 +142,7 @@ ul.search li.pagesum span{
     line-height: 35px;
 }
 
-/*div#content²¿·Ö*/
+/*div#contentï¿½ï¿½ï¿½ï¿½*/
 div#content{
     margin-top: 3px;
 }
@@ -199,5 +175,5 @@ div#content div.aside{
 }
 div#content div.aside ul li span{
     font-size: 16px;
-    border: 1px dashed #;
+    border: 1px dashed ;
 }
