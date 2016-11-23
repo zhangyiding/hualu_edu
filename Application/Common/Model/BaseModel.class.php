@@ -22,5 +22,46 @@ class BaseModel extends Model{
 
 
 
+    public function ipToCoord($ip){
+//        $reids_key = $this->ip_to_coord_cache_key.$ip;
+//        $this->redis->connect('db1',1);
+//        if($result = $this->redis->get($this->$reids_key)){
+//            return json_decode($result,true);
+//        }
+
+        $_url = C('IP_TO_COORD');
+        $url = $_url."?ip=".$ip;
+        $curl = new Curl();
+        $curl->get($url,$re);
+        $result = json_decode($re,true);
+        if(!empty($result) && $result['geoplugin_status'] == 200){
+
+            return $result;
+        }else{
+            return false;
+        }
+    }
+
+
+    public function getWeather($city_name){
+//        $reids_key = $this->ip_to_coord_cache_key.$ip;
+//        $this->redis->connect('db1',1);
+//        if($result = $this->redis->get($this->$reids_key)){
+//            return json_decode($result,true);
+//        }
+
+        $_url = C('GET_WEATHER');
+        $url = $_url."?key=".C('WEATHER_KEY').'&location='.$city_name.'&language=zh-Hans&unit=c';
+        $curl = new Curl();
+        $curl->get($url,$re);
+        $result = json_decode($re,true);
+
+        if(!empty($result['results'])){
+            return $result['results'][0];
+        }else{
+            return false;
+        }
+    }
+
 }
 ?>
