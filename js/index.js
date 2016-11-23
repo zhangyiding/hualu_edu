@@ -43,15 +43,16 @@ $(function() {
 
 //国资委培训切换
     $("span.train_1").click(function(){
-        //console.log("1");
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
-
+        $(this).css("background-image","url('img/rightbar2.png')");
+        $("span.train_1").css("backgroundImage","url('img/rightbar1.png')");
     })
     $("span.train_2").click(function(){
-        //console.log("2");
         $("ul.new_1").fadeOut();
         $("ul.new_2").fadeIn();
+        $(this).css("background-image","url('img/rightbar1.png')");
+        $("span.train_1").css("backgroundImage","url('img/rightbar2.png')");
     })
 
 //首页部分切换
@@ -60,11 +61,6 @@ $(function() {
         //console.log("1");
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
-
-
-    //iframe
-
-
 });
 
 
