@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <title>中国华录集团有限公司首页</title>
-    <link rel="stylesheet" href="css/style_index.css"/>
     <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/style_index.css"/>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/index.js"></script>
@@ -24,12 +24,17 @@
                 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
                 zoom: 1;
             }
+           .modal_1 .modal-content h4.log input,.modal_1 .modal-content h4.reg input{
+              position: relative;
+               top: -28px;
+               line-height: 74px;
+            }
     </style>
     <![endif]-->
 </head>
 <body>
 <!--用户登录弹出层部分-->
-<div class="modal_1">
+<div class="modal_1" style="display:none">
     <div class="modal-dialog">
         <div class="modal-content">
             <h1>用户登录</h1>
@@ -52,7 +57,7 @@
         </div>
     </div>
 </div>
-<div class="modal_2" style="display:block">
+<div class="modal_2" style="display:none">
     <div class="modal-dialog">
         <div class="modal-content">
             <h1>用户注册</h1>
@@ -133,9 +138,15 @@
                         验证码
                     </label>
                     <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
+                    <span>
+                        <img src="image/test_03.png" alt=""/>
+                    </span>
                 </div>
         </div>
-            <div class="monent"></div>
+            <div class="monent">
+                立即注册
+
+            </div>
     </div>
 </div>
 </div>
@@ -172,7 +183,7 @@
             <div class="login_denglu">登录</div>
         </li>
         <li class="regist">
-            <div>注册</div>
+            <div class="login_zhuce">注册</div>
         </li>
     </ul>
 </header>

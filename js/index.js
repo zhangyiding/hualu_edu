@@ -45,14 +45,14 @@ $(function() {
     $("span.train_1").click(function(){
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
-        $(this).css("background-image","url('img/rightbar1.png')");
-        $("span.train_2").css("backgroundImage","url('img/rightbar2.png')");
+        $(this).css("background-image","url('image/rightbar1.png')");
+        $("span.train_2").css("backgroundImage","url('image/rightbar2.png')");
     })
     $("span.train_2").click(function(){
         $("ul.new_1").fadeOut();
         $("ul.new_2").fadeIn();
-        $(this).css("background-image","url('img/rightbar1.png')");
-        $("span.train_1").css("backgroundImage","url('img/rightbar2.png')");
+        $(this).css("background-image","url('image/rightbar1.png')");
+        $("span.train_1").css("backgroundImage","url('image/rightbar2.png')");
     })
 
 //首页部分切换
@@ -65,6 +65,15 @@ $(function() {
     $(".login_denglu").click(function (e) {
         e.preventDefault();
         $(".modal_1").show();
+    })
+//  注册部分的切换
+    $(".login_zhuce").click(function (e) {
+        e.preventDefault();
+        $(".modal_2").show();
+
+    })
+    $("span.login_2").click(function(){
+        $(".modal_2").show();
     })
 });
 
