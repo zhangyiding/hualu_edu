@@ -82,6 +82,7 @@ class IndexController extends BaseController {
      * @return bool
      */
     public function ipToCoord(){
+        return true;
         $ip = $this->ip;
 
         if(empty($ip)){

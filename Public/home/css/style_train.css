@@ -1,0 +1,203 @@
+body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
+    margin: 0;
+    padding: 0;
+}
+input{
+    border: none;
+}
+body{
+    font-family: 'Microsoft Yahei',"Arial";
+    font-size: 12px;
+    text-align: center;
+}
+em,i{ font-style: normal !important; }
+img{
+    border:none;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+a:hover { text-decoration: none;color:#000; }
+
+/*header部分*/
+header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
+    width: 1000px;
+    margin: 0 auto;
+}
+header{
+    height: 40px;
+    background: #F7F7F7;
+    margin-bottom: 30px;
+}
+header li{
+    line-height: 40px;
+}
+#head_1{
+    float: left;
+}
+#head_2{
+    float: right;
+}
+#head_1 li,#head_1 li p,#head_2 li{
+    display: inline-block;
+}
+#head_1 p.date{
+    padding-left: 25px;
+    background: url("../img/image_index/time.png") no-repeat 0 12px;
+    margin-left: 10px;
+}
+#head_1 p.addr{
+    padding-left: 18px;
+    background: url("../img/image_index/location.png") no-repeat 0 12px;
+    margin-left: 10px;
+    margin-right: 23px;
+}
+#head_1 p.weather{
+    padding-left: 25px;
+    background: url("../img/image_index/weather.png") no-repeat 0 10px;
+    margin-right: 10px;
+}
+#head_2{
+    float: right;
+}
+#head_2 li{
+    margin-right: 5px;
+}
+#head_2 li.rig_1 span{
+    font-weight: bold;
+}
+#head_2 li.rig_2 span{
+    color: #55A5E4;
+}
+#head_2 li.rig_3{
+    margin-right: 20px;
+    margin-left: 10px;
+}
+#head_2 li.rig_3 span{
+    display: inline-block;
+    width: 50px;
+    height: 25px;line-height: 25px;
+    border: 1px solid #D5D5D5;
+    text-align: center;
+    cursor: pointer;
+}
+/*标题图片部分*/
+div#title{
+    position: relative;
+    height: 50px;
+    margin-bottom: 25px;
+}
+div#title img{
+    position: absolute;
+    left: 20px;
+
+}
+/*article中间切换部分*/
+#article ul.nav{
+    border-bottom:2px solid #D5D5D5;
+}
+#article ul.nav li{
+    display: inline-block;
+    width: 95px;
+    height: 35px;
+    border: 1px solid #D5D5D5;
+    background: #F7F7F7;
+    border-bottom: none;
+    font-size: 14px;
+    text-align: center;
+    line-height: 35px;
+}
+#article ul.nav li.active{
+    background: #58A5E4;
+
+}
+#article ul.nav li.active a{
+    color: #fff;
+}
+ul.search{
+    overflow: hidden;
+    margin-top: 10px;
+}
+ul.search li:first-child{
+    float: left;
+    margin-left: 220px;
+}
+ul.search li:nth-child(2){
+    float: right;
+}
+ul.search li input{
+    border: 2px solid #A3A3A3;
+    width: 170px;
+    height: 30px;
+    padding-left:35px;
+    background: url("../img/image_index/zoom.png") no-repeat 8px 4px;
+}
+ul.search li i{
+    display: inline-block;
+    width: 40px;
+    height: 33px;
+    background:#F8806D;
+    color: #FFF5F3;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 3px;
+    font-size: 14px;
+    position: relative;
+    top:0px;
+    left: -45px;
+    cursor: pointer;
+}
+ul.search li span.page_3{
+    color: #81B9E9;
+}
+ul.search li.pagesum{
+    height: 35px;
+    font-size: 14px;
+}
+ul.search li.pagesum span{
+    margin-right: 5px;
+    cursor: pointer;
+}
+ul.search li.pagesum span{
+    line-height: 35px;
+}
+
+/*div#content部分*/
+div#content{
+    margin-top: 3px;
+}
+div#content .banner{
+    float: left;
+}
+div#content .banner ul li{
+    width: 140px;
+    height: 35px;
+    border-radius: 5px;
+    line-height: 35px;
+    font-size: 18px;
+}
+div#content .banner ul li:first-child{
+    background: #55A5E4;
+    color: #DAE9F8;
+    margin-bottom: 10px;
+
+}
+div#content .banner ul li:nth-child(2){
+    background: #F7F7F7;
+    color: #3A3A3A;
+}
+div#content div.aside{
+    float: right;
+    width:820px;
+    min-height: 100px;
+    border: 1px solid #AEAEAE;
+    margin-top: 10px;
+}
+div#content div.aside ul li span{
+    font-size: 16px;
+    border: 1px dashed #;
+}

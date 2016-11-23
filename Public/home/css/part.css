@@ -1,0 +1,74 @@
+
+/*header部分*/
+header,footer ul.concat,nav,#article,div.banner,div#hot,div#advice,div#course {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+
+/*推荐课程div#course部分*/
+div#course ul.learn li{
+    margin-bottom: 35px;
+}
+div#course{
+    /*border: 1px solid #68AFE8;*/
+    height: 620px;
+}
+div#course ul.learn{
+    display: none;
+}
+ul.learn{
+    margin-top: 30px;
+    overflow:hidden;
+    margin-bottom: 45px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 1000px;
+    margin: 0 auto;
+
+}
+ul.learn li{
+    float: left;
+    position: relative;
+    margin-right: 15px;
+}
+ul.learn li img{
+    cursor: pointer;
+}
+ul.learn li div.hour{
+    position: absolute;
+    width: 214px;
+    top: 112px;
+    font-size: 14px;
+    height: 35px;
+    line-height: 35px;
+    text-align: left;
+    padding-left: 10px;
+    color: #fff;
+    background-color: rgba(0,0,0,.6);
+}
+ul.learn li>h4{
+    font-size: 16px;
+    position: relative;
+    top:8px;
+    color: #696969;
+    text-align: left;
+}
+ul.learn li div.btn{
+    margin-top: 35px;
+    overflow:hidden;
+}
+ul.learn li div.btn span{
+    cursor: pointer;
+}
+ul.learn li div.btn span.btn_1{
+    float: left;
+    margin-left: 8px;
+}
+ul.learn li div.btn span.btn_1 img{
+    margin-top: 2px;
+}
+ul.learn li div.btn span.btn_2{
+    float: right;
+    margin-right: 8px;
+}
