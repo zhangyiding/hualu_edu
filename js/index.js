@@ -64,7 +64,7 @@ $(function() {
 //    µÇÂ¼²¿·Ö
     $(".login_denglu").click(function (e) {
         e.preventDefault();
-        $(".modal").show();
+        $(".modal_1").show();
     })
 });
 
