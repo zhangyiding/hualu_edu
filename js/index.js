@@ -45,8 +45,8 @@ $(function() {
     $("span.train_1").click(function(){
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
-        $(this).css("background-image","url('img/rightbar2.png')");
-        $("span.train_1").css("backgroundImage","url('img/rightbar1.png')");
+        $(this).css("background-image","url('img/rightbar1.png')");
+        $("span.train_2").css("backgroundImage","url('img/rightbar2.png')");
     })
     $("span.train_2").click(function(){
         $("ul.new_1").fadeOut();
@@ -60,6 +60,11 @@ $(function() {
         e.preventDefault();
         //console.log("1");
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
+    })
+//    µÇÂ¼²¿·Ö
+    $(".login_denglu").click(function (e) {
+        e.preventDefault();
+        $(".modal").show();
     })
 });
 
