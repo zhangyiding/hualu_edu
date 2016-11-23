@@ -70,11 +70,9 @@ class CourseController extends BaseController {
                 $course_num = $m_course->getCourseNum($v['course_id']);
                 $course_list[$k]['os_cn'] = $open_status .' (共' .$course_num .'节课)';
 
-                $str_len = mb_strlen($v['name']);
+                $course_list[$k]['name'] = cutStr($v['name'],12);
 
-                if( $str_len >= 14){
-                    $course_list[$k]['name'] = mb_substr($v['name'] , 0 , 14,'utf-8');
-                }
+                $course_list[$k]['cover'] = getImageBaseUrl($v['cover']);
 
             }
             return $course_list;
@@ -93,7 +91,7 @@ class CourseController extends BaseController {
     public function courseList()
     {
         $course_type = $this->params['course_type'];//课程分类
-        $is_recommend = $this->params['is_recommend'];//课程类型，公开或者内训
+        $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
 
         $where['status'] = 0;
         $m_course = new CourseModel();
@@ -111,6 +109,7 @@ class CourseController extends BaseController {
 
 
         if ($count = $m_course->getCourseCount($where)) {
+
             $where['subsite_id'] = $this->subsite_id;
 
             if ($data = $m_course->getCourseList($where, 0, 8)) {
@@ -118,11 +117,12 @@ class CourseController extends BaseController {
             } else {
                 $where['subsite_id'] = 0;
                 if ($data1 = $m_course->getCourseList($where, 0, 8)) {
-                    $data = $this->formatCourse($data);
+                    $data = $this->formatCourse($data1);
                 } else {
                     $this->to_back('11006');
                 }
             }
+
 
             $this->assign('course_list', $data);
 

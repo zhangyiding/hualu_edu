@@ -97,18 +97,32 @@
             <span class="train_1">国资委培训</span>
             <span class="train_2">公司培训</span>
         </p>
-        <ul class="news">
+        <ul class="news new_1" style="display: block;">
             <foreach name="master_news" item="vo">
                 <li>
                     <i></i>
                     <p>
-                       <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><span>{$vo.title}</span></a>
+                       <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
                     </p>
                 </li>
             </foreach>
 
             <li class="down">
-                <span>更多&gt;&gt;</span>
+                <a href="/news?type=1"> <span>更多&gt;&gt;</span></a>
+            </li>
+        </ul>
+        <ul class="news new_2">
+            <foreach name="subsite_news" item="vo">
+                <li>
+                    <i></i>
+                    <p>
+                        <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
+                    </p>
+                </li>
+            </foreach>
+
+            <li class="down">
+               <a href="/news?type=2"> <span>更多&gt;&gt;</span></a>
             </li>
         </ul>
     </div>
@@ -139,545 +153,18 @@
 <div id="advice">
     <h1>推荐课程</h1>
     <ul class="toggle">
-        <li class="active" id="study_1"><a href="#">党建党史</a></li>
-        <li class="net" id="study_2"><a href="#">企业管理</a></li>
-        <li class="net" id="study_3"><a href="#">企业文化</a></li>
-        <li class="net" id="study_4"><a href="#">职场办公</a></li>
-        <li class="net" id="study_5"><a href="#">专业技能</a></li>
+        <foreach name="ct_data" item="vo">
+            <li ><a href="/course/courseList?course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
+        </foreach>
     </ul>
-    <span>更多&gt;&gt;</span>
+    <a href="/course"><span>更多&gt;&gt;</span></a>
+
+
+    <div id="content">
+        <iframe id="frmain" name="frmain" src="/course/courseList"  scrolling="no" frameborder="0"/></iframe>
+    </div>
 </div>
 <div id="course">
-    <ul class="learn learn_1" style="display: block">
-        <li>
-            <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/home/image/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="__PUBLIC__/home/image/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="__PUBLIC__/home/image/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-    </ul>
-    <ul class="learn learn_2">
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-    </ul>
-    <ul class="learn learn_3">
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-    </ul>
-    <ul class="learn learn_4">
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-    </ul>
-    <ul class="learn learn_5">
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_07.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_09.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-                <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-        <li>
-            <img src="img/image_index/learn_03.png" alt=""/>
-            <div class="hour">最新上线( 共23节课 )</div>
-            <h4>社交基本礼仪</h4>
-            <div class="btn">
-               <span class="btn_1">
-                    <img src="img/image_index/gongkai.png" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <img src="img/image_index/baoming.png" alt=""/>
-                </span>
-            </div>
-        </li>
-    </ul>
 </div>
 <footer>
     <ul class="concat">
@@ -712,5 +199,22 @@
 <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
 <script src="__PUBLIC__/home/js/index.js"></script>
 <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+
+<script>
+    document.oncontextmenu=function(e){
+        return false;
+    };
+    function Golink(obj) {
+        var li = document.getElementById("study").getElementsByTagName("a");
+        for (i = 0; i < li.length; i++) {
+            //            if (i == n)
+            //                li[i].className = "leftmenusel";
+            //            else
+            li[i].className = "";
+
+        }
+        obj.className = "sel";
+    }
+</script>
 </body>
 </html>

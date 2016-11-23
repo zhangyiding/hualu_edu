@@ -822,6 +822,28 @@ function getFileBaseUrl($path){
 
 
 /**
+ * 按照指定长度裁剪字符串
+ *
+ * @param str $str
+ * @return str
+ */
+function cutStr($str,$len){
+   if(empty($str)){
+       return false;
+   }
+    $str_len = mb_strlen($str);
+
+    if( $str_len >= $len){
+        $c_str = mb_substr($str , 0 , $len,'utf-8');
+        return $c_str . '..';
+    }else{
+        return $str;
+    }
+
+}
+
+
+/**
  * 后台列表分页
  *
  * @param int $count

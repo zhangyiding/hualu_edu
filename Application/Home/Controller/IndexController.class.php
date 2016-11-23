@@ -28,8 +28,8 @@ class IndexController extends BaseController {
                 $this->assign('master_news',$master_news);
             }
 
-            if($subsite_new = $this->getSubsite()){
-                $this->assign('subsite_new',$subsite_new);
+            if($subsite_news = $this->getSubsite()){
+                $this->assign('subsite_news',$subsite_news);
             }
 
             if($banner_news = $this->getBanner()){

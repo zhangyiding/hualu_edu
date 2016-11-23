@@ -96,8 +96,8 @@ $hualu_user = array(
     'COURSE_FILE'=>'2',//课程学习资料
     'COURSE_IMG'=>'3',//课程图片
 
-    'MASTER_NEWS'=>'1',//课程学习资料
-    'SUBSITE_NEWS'=>'2',//课程图片
+    'MASTER_NEWS'=>'1',//主站资讯
+    'SUBSITE_NEWS'=>'2',//分站资讯
 
     'region_type'=>array(
     'system'=>0,//系统导入

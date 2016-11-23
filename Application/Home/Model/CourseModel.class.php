@@ -37,7 +37,14 @@ class CourseModel extends Model{
     public function getCourseType(){
         $result = $this->table('course_type')
             ->where(array('status'=>'0'))
+            ->limit(0,8)
+            ->order('ctime desc')
             ->select();
+        if($result !== false){
+            foreach ($result as $k=>$v){
+                $result[$k]['name'] = cutStr($v['name'],6);
+            }
+        }
         return ($result)? $result : false;
     }
 

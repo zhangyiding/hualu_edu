@@ -18,7 +18,10 @@ class NewsModel extends Model{
         if($result !== false && is_array($result)){
             foreach($result as $k=>$v){
                 $result[$k]['cover'] = getImageBaseUrl($v['cover']);
+
+                $result[$k]['title'] = cutStr($v['title'],19);
             }
+
             return $result;
         }else{
             return false;
