@@ -1,0 +1,26 @@
+/*样式的重置*/
+body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
+    margin: 0;
+    padding: 0;
+}
+input{
+    border: none;
+}
+body{
+    font-family: 'Microsoft Yahei',"Arial";
+    font-size: 12px;
+    text-align: center;
+}
+em,i{ font-style: normal !important; }
+img{
+    border:none;
+}
+ul,li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #000;
+}
+a:focus{outline:none;}
+a:hover { text-decoration: none;color:#000; }

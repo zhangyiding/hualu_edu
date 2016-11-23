@@ -103,12 +103,29 @@ $hualu_user = array(
     'system'=>0,//系统导入
         'user'=>1,//用户自己注册
         'admin'=>2,//后台管理员添加
-)
+),
+    'week'=>array(
+        '1'=>'星期一',
+        '2'=>'星期二',
+        '3'=>'星期三',
+        '4'=>'星期四',
+        '5'=>'星期五',
+        '6'=>'星期六',
+        '7'=>'星期日',
+
+    ),
 
 
 
 
+    'WEATHER_IMG'=>'/Public/home/image/weather_img/',
 
+
+
+
+    'IP_TO_COORD'=>'http://www.geoplugin.net/json.gp',
+    'GET_WEATHER'=>'https://api.thinkpage.cn/v3/weather/now.json',
+    'WEATHER_KEY'=>'4wpm1e6mqnah34ut',//获取天气KEY
 
 
 );
@@ -117,5 +134,9 @@ $config_key    =   array(
     'SIGN_KEY'  => 'etago2016#*$%^*)##%(2026',//签名key
     'GOOGLE_API_KEY' => 'AIzaSyDNGO0STvZ3FwWYyMQiHfiJgfmbFXP5YJs',//地图key
 );
+
+
+
+
 
 return array_merge($hualu_admin,$config_key,$hualu_user);

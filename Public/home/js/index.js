@@ -37,36 +37,34 @@ $(function() {
         $('.imgList li').eq(i).fadeIn().siblings().fadeOut();
         num=i;
     });
+    $("#advice ul li").click(function(e){
+        $(this).addClass("active").siblings(".active").removeClass("active");
+    })
+
+//国资委培训切换
+    $("span.train_1").click(function(){
+        //console.log("1");
+        $("ul.new_1").fadeIn();
+        $("ul.new_2").fadeOut();
+
+    })
+    $("span.train_2").click(function(){
+        //console.log("2");
+        $("ul.new_1").fadeOut();
+        $("ul.new_2").fadeIn();
+    })
+
+//首页部分切换
+    $(".nav li a").click(function(e){
+        e.preventDefault();
+        //console.log("1");
+        $(this).parent().addClass("active").siblings(".active").removeClass("active");
+    })
+
+
+    //iframe
+
 
 });
-/课程的切换效果/
-$("#study_2").click(function(e){
-    e.preventDefault();
-    $(".learn_2").show().siblings().hide();
-    $(this).addClass("active").siblings(".active").removeClass("active");
-    //$(this).removeClass("net").siblings().addClass("net");
-})
-$("#study_3").click(function(e){
-    e.preventDefault();
-    $(".learn_3").show().siblings().hide();
-    $(this).addClass("active").siblings(".active").removeClass("active");
-    //$(this).removeClass("net").siblings().addClass("net");
-})
-$("#study_4").click(function(e){
-    e.preventDefault();
-    $(".learn_4").show().siblings().hide();
-    $(this).addClass("active").siblings(".active").removeClass("active");
-    //$(this).removeClass("net").siblings().addClass("net");
-})
-$("#study_5").click(function(e){
-    e.preventDefault();
-    $(".learn_5").show().siblings().hide();
-    $(this).addClass("active").siblings(".active").removeClass("active");
-    //$(this).removeClass("net").siblings().addClass("net");
-})
-$("#study_1").click(function(e){
-    e.preventDefault();
-    $(".learn_1").show().siblings().hide();
-    $(this).addClass("active").siblings(".active").removeClass("active");
-    //$(this).removeClass("net").siblings().addClass("net");
-})
+
+

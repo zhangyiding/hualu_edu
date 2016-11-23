@@ -16,6 +16,7 @@ class BaseController extends Controller
     protected $error = '';
     protected $start_time = '';
     protected $end_time = '';
+    protected $ip='';
 
     protected $subsite_id = '';//分站id
     protected $creator = '';//分站管理员id
@@ -48,6 +49,8 @@ class BaseController extends Controller
         $m_base = new \Common\Model\BaseModel();
         $subsite_info = $m_base->getSubsiteId($this->subsite_host);
         $this->subsite_id = $subsite_info['subsite_id'];
+
+        $this->ip = $_SERVER["REMOTE_ADDR"];
 
         $page = intval($_GET['page']);
         $this->page = $page ? $page : $this->page;
