@@ -190,6 +190,7 @@ div.aside ul li{
     overflow: hidden;
     height: 45px;
     line-height: 45px;
+    cursor: pointer;
 }
 div.aside ul li span.term{
     float: left;
