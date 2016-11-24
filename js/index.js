@@ -78,6 +78,12 @@ $(function() {
     })
     $(".close_2").click(function(){
         $(".modal_2").fadeOut();
+        $(".modal_1").fadeOut();
+    })
+    $(".info_4").click(function(){
+        console.log("1");
+        $(".modal_2").hide();
+        $(".modal_1").show();
     })
 });
 

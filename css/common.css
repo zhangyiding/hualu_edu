@@ -24,3 +24,112 @@ a{
 }
 a:focus{outline:none;}
 a:hover { text-decoration: none;color:#000; }
+
+
+
+/*共有的样式*/
+
+/*header部分*/
+header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
+    width: 1000px;
+    margin: 0 auto;
+}
+header{
+    height: 40px;
+    background: #F7F7F7;
+    margin-bottom: 30px;
+}
+header li{
+    line-height: 40px;
+}
+#head_1{
+    float: left;
+}
+#head_2{
+    float: right;
+}
+#head_1 li,#head_1 li p,#head_2 li{
+    display: inline-block;
+}
+#head_1 p.date{
+    padding-left: 25px;
+    background: url("../image/time.png") no-repeat 0 12px;
+    margin-left: 10px;
+}
+#head_1 p.addr{
+    padding-left: 18px;
+    background: url("../image/location.png") no-repeat 0 12px;
+    margin-left: 10px;
+    margin-right: 23px;
+}
+#head_1 p.weather img{
+    width: 18px;
+    height: 18px;
+    position: relative;
+    top: 4px;
+    left: -3px;
+}
+#head_2{
+    float: right;
+}
+#head_2 li{
+    margin-right: 5px;
+}
+#head_2 li.rig_1 span{
+    font-weight: bold;
+}
+#head_2 li.rig_2 span{
+    color: #55A5E4;
+}
+#head_2 li.rig_3{
+    margin-right: 20px;
+    margin-left: 10px;
+}
+#head_2 li.rig_3 span{
+    display: inline-block;
+    width: 50px;
+    height: 25px;line-height: 25px;
+    border: 1px solid #D5D5D5;
+    text-align: center;
+    cursor: pointer;
+}
+/*标题图片部分*/
+div#title{
+    position: relative;
+    height: 50px;
+    margin-bottom: 25px;
+}
+div#title img{
+    position: absolute;
+    left: 20px;
+
+}
+/*article中间切换部分*/
+#article ul.nav{
+    border-bottom:2px solid #D5D5D5;
+}
+#article ul.nav li{
+    display: inline-block;
+    width: 95px;
+    height: 35px;
+    border: 1px solid #D5D5D5;
+    background: #F7F7F7;
+    border-bottom: none;
+    font-size: 14px;
+    text-align: center;
+    line-height: 35px;
+}
+#article ul.nav li.active{
+    background: #58A5E4;
+}
+#article ul.nav li.active a{
+    color: #fff;
+}
+#article div.return{
+    text-align: left;
+    margin-top: 13px;
+    cursor: pointer;
+}
+#article div.return a{
+    color:#AEAEAE;
+}
