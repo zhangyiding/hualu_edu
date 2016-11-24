@@ -9,9 +9,11 @@ class IndexController extends BaseController {
 
 
     public function index(){
+
         $m_news = new \Home\Model\NewsModel();
         $m_course = new \Home\Model\CourseModel();
 
+        //处理资讯信息
         $where['status'] = 0;
         if($count = $m_news->getNewsCount($where)){
 
@@ -38,6 +40,7 @@ class IndexController extends BaseController {
         }
 
 
+        //处理课程信息
         $c_course = new CourseController();
 
         if($count = $m_course->getCourseCount($where)){
@@ -56,9 +59,12 @@ class IndexController extends BaseController {
 
         }
 
+
+        //处理天气日期信息
         $time = date('Y年m月d日 ',time());
         $wtime = date('N',time());
         $week_time = C('week')[$wtime];
+        $this->assign('time',$time .' ' .$week_time);
 
         if($location = $this->ipToCoord()){
             $location = 'beijing';
@@ -69,7 +75,7 @@ class IndexController extends BaseController {
 
         }
 
-        $this->assign('time',$time .' ' .$week_time);
+
         $this->display();
     }
 
@@ -109,12 +115,14 @@ class IndexController extends BaseController {
     }
 
 
+
+
     /**
      * @todo 根据城市名称获取天气数据
      * @param string $city_name
      * @return array
      */
-    public function getWeather($city_name){
+    private function getWeather($city_name){
 
         if(empty($city_name)){
             return false;

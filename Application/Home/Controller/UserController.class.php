@@ -2,6 +2,7 @@
 namespace Home\Controller;
 use Common\Controller\BaseController;
 use Home\Model\UserModel;
+use Common\Lib\Verify;
 use Think\Controller;
 class UserController extends BaseController {
 
@@ -86,6 +87,17 @@ class UserController extends BaseController {
     }
 
 
+    /**
+     * @todo 生成图片验证码
+     *
+     * @return image
+     */
+    public function createVerify(){
+        session_start();
+        $session_id = session_id();
+        $verify = new Verify();
+        $verify->entry($session_id);
+    }
 
 
     /*
@@ -95,6 +107,11 @@ class UserController extends BaseController {
     public function region(){
 
         $m_user = new UserModel();
+        $verify = new Verify();
+
+        if(!$verify->check($this->params['code'],session_id())){
+            $this->to_back('11007');
+        }
         if(!check_email($this->params['email'])){
             $this->to_back('11002');
         }

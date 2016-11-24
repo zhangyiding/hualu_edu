@@ -46,7 +46,7 @@ $(function() {
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
         $(this).css("background-image","url('public/home/image/rightbar1.png')");
-        $("span.train_2").css("backgroundImage","url('public/home/image/rightbar2.png')");
+        $("span.train_2").css("backgroundImage","url('image/rightbar2.png')");
     })
     $("span.train_2").click(function(){
         $("ul.new_1").fadeOut();
@@ -64,7 +64,16 @@ $(function() {
 //    ��¼����
     $(".login_denglu").click(function (e) {
         e.preventDefault();
-        $(".modal").show();
+        $(".modal_1").show();
+    })
+//  ע�Ჿ�ֵ��л�
+    $(".login_zhuce").click(function (e) {
+        e.preventDefault();
+        $(".modal_2").show();
+
+    })
+    $("span.login_2").click(function(){
+        $(".modal_2").show();
     })
 });
 
