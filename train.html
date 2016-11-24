@@ -2,9 +2,42 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
     <title>培训资讯页面</title>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/style_train.css"/>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/train.js"></script>
+    <!--[if lt IE 9]>
+    <style type="text/css">
+        /*div.banner ul.imgList li div {*/
+            /*background:transparent;*/
+            /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);*/
+            /*zoom: 1;*/
+        /*}*/
+        /*ul.learn li div.hour {*/
+            /*background:transparent;*/
+            /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);*/
+            /*zoom: 1;*/
+        /*}*/
+        /*.modal_1 .modal-content h4.log input,.modal_1 .modal-content h4.reg input{*/
+            /*position: relative;*/
+            /*top: -28px;*/
+            /*line-height: 74px;*/
+        /*}*/
+        ul.search li i{
+            top:-2px;
+        }
+        ul.search li.key{
+            float: right;
+        }
+        ul.search li.key input{
+            line-height:32px;
+        }
+    </style>
+    <![endif]-->
 </head>
 <body>
 <!--head部分-->
@@ -17,7 +50,10 @@
             <p class="addr">北京</p>
         </li>
         <li>
-            <p class="weather">晴 12℃～18℃</p>
+            <p class="weather">
+                <img src="image/weather.png" alt=""/>
+                晴 12℃～18℃
+            </p>
         </li>
     </ul>
     <ul id="head_2">
@@ -41,15 +77,15 @@
 </header>
 <!--标题部分-->
 <div id="title">
-    <img src="img/image_index/nav.png" alt=""/>
+    <img src="image/nav.png" alt=""/>
 </div>
 <div id="article">
     <ul class="nav">
         <li class="active">
-            <a href="#">首页</a>
+            <a href="index.html">首页</a>
         </li>
         <li>
-            <a href="#">培训资讯</a>
+            <a href="train.html ">培训资讯</a>
         </li>
         <li>
             <a href="#">选课</a>
@@ -65,7 +101,7 @@
             <span class="page_3">20</span>
             <span class="page_2 ">30</span>
         </li>
-        <li>
+        <li class="key">
             <input type="text" placeholder="请输入课程关键字"/>
             <i>
                 搜索
@@ -76,22 +112,388 @@
 <div id="content">
     <div class="banner">
         <ul>
-            <li>国资资讯</li>
-            <li>企业资讯</li>
+            <li class="country active">国资资讯</li>
+            <li class="busy">企业资讯</li>
         </ul>
     </div>
-    <div class="aside">
+    <div class="aside tab_1">
         <ul>
             <li>
-                <span>
+                <span class="term">
                     中央党校国资委分校举行2016年秋季直属班开学典礼
                 </span>
-                <span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="aside tab_2">
+        <ul>
+            <li>
+                <span class="term">
+                    切换党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+            </li>
+            <li>
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
                     2016-10-21
                 </span>
             </li>
         </ul>
     </div>
 </div>
+<!--页码部分-->
+<div id="page">
+    <div class="code">
+        <ul>
+            <li class="first"><a href="#">首页</a></li>
+            <li class="prev"><a href="#">上一页</a></li>
+            <li class="num active"><a href="#">1</a> </li>
+            <li class="num"><a href="#">2</a></li>
+            <li class="num"><a href="#">3</a></li>
+            <li class="num"><a href="#">4</a></li>
+            <li class="num"><a href="#">5</a></li>
+            <li class="num"><a href="#">6</a></li>
+            <li class="num"><a href="#">7</a> </li>
+            <li class="num"><a href="#">8</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+            <li class="last"><a href="#">尾页</a></li>
+        </ul>
+    </div>
+
+</div>
+<footer>
+    <ul class="concat">
+        <li>
+            <a href="#">联系我们</a>
+            <em>|</em>
+        </li>
+        <li><a href="#">机构简介</a> <em>|</em></li>
+        <li>
+            <a href="#">网站声明</a>
+            <em>|</em>
+        </li>
+        <li>
+            <a href="#">管理路口</a>
+        </li>
+    </ul>
+    <div class="line"></div>
+    <p>国务院国有资产监督管理委员会干部教育培训中心</p>
+    <p>中国华录集团培训分站</p>
+    <p class="eng">Copyright 2009 Education and Trainning Centre for Officials and Entrepreneurs Education Network,SASAC</p>
+    <p class="eng">
+        <span>地址：北京市东城区安定门外大街56号</span>
+        <span> 联系邮箱：service@tcsasac.com</span>
+        <span>邮政编码：100011</span>
+    </p>
+    <p class="eng">
+        <span>技术支持：010-64471676 fuwu@tcsasac.com</span>
+        <span>QQ客服：3450279420 3443376137</span>
+        <span>京ICP备08104266号</span>
+    </p>
+</footer>
 </body>
 </html>

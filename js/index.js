@@ -56,24 +56,28 @@ $(function() {
     })
 
 //首页部分切换
-    $(".nav li a").click(function(e){
-        e.preventDefault();
-        //console.log("1");
+    $(".nav li a").click(function(){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
 //    登录部分
     $(".login_denglu").click(function (e) {
         e.preventDefault();
-        $(".modal_1").show();
+        $(".modal_1").fadeIn();
+    })
+    $(".close_1").click(function(){
+        $(".modal_1").fadeOut();
     })
 //  注册部分的切换
     $(".login_zhuce").click(function (e) {
         e.preventDefault();
-        $(".modal_2").show();
+        $(".modal_2").fadeIn();
 
     })
     $("span.login_2").click(function(){
-        $(".modal_2").show();
+        $(".modal_2").fadeIn();
+    })
+    $(".close_2").click(function(){
+        $(".modal_2").fadeOut();
     })
 });
 

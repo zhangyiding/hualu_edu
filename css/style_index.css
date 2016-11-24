@@ -482,10 +482,21 @@ footer p.eng span{
 .modal_1 .modal-content h1{
     font-size: 36px;
     color:#F8806D;
-    margin-top: 35px;
     margin-bottom: 80px;
+    text-align: center;
+    margin-top: 5px;
 }
-
+.modal_1 .modal-content div.close_1{
+    padding-right: 20px;
+    padding-top: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.modal_1 .modal-content div.close_1 img{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
 .modal_1 .modal-content h4 i{
     display: inline-block;
     width: 90px;
@@ -537,6 +548,7 @@ border: 1px solid #E4E4E4;
     background: #F8806D;
     color: #FDE1DF;
     cursor: pointer;
+    margin-right: 20px;
 }
 .modal_1 .modal-content div.join span.login_2{
     border:1px solid  #A3A3A3;
@@ -545,10 +557,20 @@ border: 1px solid #E4E4E4;
 }
 
 /*×¢²á¹¦ÄÜÇÐ»»*/
+.modal_2 .modal-content div.close_2{
+    padding-right: 20px;
+    padding-top: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.modal_2 .modal-content div.close_2 img{
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
 .modal_2 .modal-content h1{
     font-size: 36px;
     color: #F8806D;
-    margin-top: 35px;
 }
 .modal_2 .modal-content ul.create{
     width: 740px;
