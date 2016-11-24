@@ -46,7 +46,7 @@ return array(
     'TC_IMAGE_PATH' => '/opt/web/tmpimg/',
 
     //缓存前缀
-    'CACHE_PREFIX' => 'etago:api:',
+    'CACHE_PREFIX' => 'hualu:edu:',
     //报错页面配置	
 //     'TMPL_ACTION_ERROR'     => 'Public:prompt', // 默认错误跳转对应的模板文件
 //     'TMPL_ACTION_SUCCESS'   => 'Public:prompt', // 默认成功跳转对应的模板文件

@@ -4,7 +4,7 @@
  */
 namespace Common\Lib;
 
-class EtacarRedis {
+class Redis {
 
     private static $_instance;
     // 是否使用 M/S 的读写集群方案
@@ -24,7 +24,7 @@ class EtacarRedis {
      *
      * @param boolean $isUseCluster 是否采用 M/S 方案
      */
-    public function __construct($isUseCluster=true){
+    public function __construct($isUseCluster=false){
         $this->_isUseCluster = $isUseCluster;
         $this->connect();
     }

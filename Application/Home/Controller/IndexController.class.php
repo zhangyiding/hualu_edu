@@ -4,8 +4,22 @@ use Common\Controller\BaseController;
 use Common\Model\BaseModel;
 use Home\Model\CourseModel;
 use Home\Model\NewsModel;
+use Common\Lib\Redis;
 use Think\Controller;
 class IndexController extends BaseController {
+
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->redis = new Redis();
+
+        $this->service_cache_key_weather = C("CACHE_PREFIX") . "weather:";
+
+    }
+
+
+
 
 
     public function index(){
@@ -124,10 +138,18 @@ class IndexController extends BaseController {
      */
     private function getWeather($city_name){
 
+        $key = $this->service_cache_key_weather . $city_name;
+
         if(empty($city_name)){
             return false;
         }
 
+        $redis = Redis::getInstance();
+
+        if($result = $redis->Get($key)){
+
+            return json_decode($result,true);
+        }
         $m_base = new BaseModel();
         $data = array();
         if($result = $m_base->getWeather($city_name)){
@@ -136,6 +158,7 @@ class IndexController extends BaseController {
             $data['text'] = $result['now']['text'] . ' 温度：'.$result['now']['temperature'] .' ℃';
             $data['img'] = C('WEATHER_IMG').$result['now']['code'].'.png';
 
+            $this->redis->set($key,json_encode($data),'86400');
             return $data;
 
         }else{

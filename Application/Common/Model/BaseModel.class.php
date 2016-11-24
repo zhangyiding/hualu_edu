@@ -44,11 +44,6 @@ class BaseModel extends Model{
 
 
     public function getWeather($city_name){
-//        $reids_key = $this->ip_to_coord_cache_key.$ip;
-//        $this->redis->connect('db1',1);
-//        if($result = $this->redis->get($this->$reids_key)){
-//            return json_decode($result,true);
-//        }
 
         $_url = C('GET_WEATHER');
         $url = $_url."?key=".C('WEATHER_KEY').'&location='.$city_name.'&language=zh-Hans&unit=c';
