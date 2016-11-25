@@ -3,6 +3,7 @@ namespace Home\Controller;
 use Common\Controller\BaseController;
 use Home\Model\NewsModel;
 use Think\Controller;
+use \Home\Controller\IndexController;
 class NewsController extends BaseController {
 
 
@@ -22,6 +23,14 @@ class NewsController extends BaseController {
             foreach($data as $k=>$v){
                 $data[$k]['cover'] = getImageBaseUrl($v['cover']);
             }
+        }
+
+
+        $index = new IndexController();
+        $time = $index->getTime();
+        $this->assign('time',$time);
+        if($weather = $index->getWeather()){
+            $this->assign('weather',$weather);
         }
 
         $this->assign('news_list',$data);

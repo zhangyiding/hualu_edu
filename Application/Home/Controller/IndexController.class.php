@@ -74,21 +74,14 @@ class IndexController extends BaseController {
         }
 
 
-        //处理天气日期信息
-        $time = date('Y年m月d日 ',time());
-        $wtime = date('N',time());
-        $week_time = C('week')[$wtime];
-        $this->assign('time',$time .' ' .$week_time);
 
-        if($location = $this->ipToCoord()){
-            $location = 'beijing';
-            if($weather = $this->getWeather($location)){
+        $time = $this->getTime();
+        $this->assign('time',$time);
 
-                $this->assign('weather',$weather);
-            }
+        if($weather = $this->getWeather()){
 
+            $this->assign('weather',$weather);
         }
-
 
         $this->display();
     }
@@ -101,8 +94,9 @@ class IndexController extends BaseController {
      * @param string $ip
      * @return bool
      */
-    public function ipToCoord(){
-        return true;
+    private function ipToCoord(){
+         $data['city'] = 'beijing';
+        return $data;
         $ip = $this->ip;
 
         if(empty($ip)){
@@ -130,40 +124,47 @@ class IndexController extends BaseController {
 
 
 
+    public function getTime(){
+        //处理天气日期信息
+        $time = date('Y年m月d日 ',time());
+        $wtime = date('N',time());
+        $week_time = C('week')[$wtime];
+        return $time . ' ' .$week_time;
+    }
 
     /**
      * @todo 根据城市名称获取天气数据
      * @param string $city_name
      * @return array
      */
-    private function getWeather($city_name){
+    public function getWeather(){
 
-        $key = $this->service_cache_key_weather . $city_name;
+        if($location = $this->ipToCoord()){
 
-        if(empty($city_name)){
-            return false;
+            $key = $this->service_cache_key_weather . $location['city'];
+
+            $redis = Redis::getInstance();
+
+            if($result = $redis->Get($key)){
+
+                return json_decode($result,true);
+            }
+            $m_base = new BaseModel();
+            $data = array();
+            if($result = $m_base->getWeather($location['city'])){
+                $data['name'] = $result['location']['name'];
+                $data['path'] = $result['location']['path'];
+                $data['text'] = $result['now']['text'] . ' 温度：'.$result['now']['temperature'] .' ℃';
+                $data['img'] = C('WEATHER_IMG').$result['now']['code'].'.png';
+
+                $this->redis->set($key,json_encode($data),'86400');
+                return $data;
+
+            }else{
+                return false;
+            }
         }
 
-        $redis = Redis::getInstance();
-
-        if($result = $redis->Get($key)){
-
-            return json_decode($result,true);
-        }
-        $m_base = new BaseModel();
-        $data = array();
-        if($result = $m_base->getWeather($city_name)){
-            $data['name'] = $result['location']['name'];
-            $data['path'] = $result['location']['path'];
-            $data['text'] = $result['now']['text'] . ' 温度：'.$result['now']['temperature'] .' ℃';
-            $data['img'] = C('WEATHER_IMG').$result['now']['code'].'.png';
-
-            $this->redis->set($key,json_encode($data),'86400');
-            return $data;
-
-        }else{
-            return false;
-        }
     }
 
 

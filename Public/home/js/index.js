@@ -46,7 +46,7 @@ $(function() {
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
         $(this).css("background-image","url('public/home/image/rightbar1.png')");
-        $("span.train_2").css("backgroundImage","url('image/rightbar2.png')");
+        $("span.train_2").css("backgroundImage","url('public/home/image/rightbar2.png')");
     })
     $("span.train_2").click(function(){
         $("ul.new_1").fadeOut();
@@ -56,24 +56,28 @@ $(function() {
     })
 
 //��ҳ�����л�
-    $(".nav li a").click(function(e){
-        e.preventDefault();
-        //console.log("1");
+    $(".nav li a").click(function(){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
 //    ��¼����
     $(".login_denglu").click(function (e) {
         e.preventDefault();
-        $(".modal_1").show();
+        $(".modal_1").fadeIn();
+    })
+    $(".close_1").click(function(){
+        $(".modal_1").fadeOut();
     })
 //  ע�Ჿ�ֵ��л�
     $(".login_zhuce").click(function (e) {
         e.preventDefault();
-        $(".modal_2").show();
+        $(".modal_2").fadeIn();
 
     })
     $("span.login_2").click(function(){
-        $(".modal_2").show();
+        $(".modal_2").fadeIn();
+    })
+    $(".close_2").click(function(){
+        $(".modal_2").fadeOut();
     })
 });
 

@@ -1,33 +1,3 @@
-/*样式的重置*/
-body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
-    margin: 0;
-    padding: 0;
-}
-input{
-    border: none;
-}
-body{
-    font-family: 'Microsoft Yahei',"Arial";
-    font-size: 12px;
-    text-align: center;
-}
-em,i{ font-style: normal !important; }
-img{
-    border:none;
-}
-ul,li{
-    list-style: none;
-}
-a{
-    text-decoration: none;
-    color: #000;
-}
-a:focus{outline:none;}
-a:hover { text-decoration: none;color:#000; }
-
-
-
-/*共有的样式*/
 
 /*header部分*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
@@ -132,4 +102,56 @@ div#title img{
 }
 #article div.return a{
     color:#AEAEAE;
+}
+
+
+/*内容部分区域*/
+div#content{
+    width: 1000px;
+    margin: 0 auto;
+    border: 1px solid #C8C8C8;
+    margin-top: 20px;
+    padding-top: 25px;
+}
+div#content h1{
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/*footer部分*/
+footer{
+    height:260px;
+    margin-top: 100px;
+    background: #58A5E4;
+    text-align: center;
+    padding-top: 55px;
+    color: #D5E1ED;
+}
+footer ul.concat li{
+    display: inline-block;
+}
+footer ul.concat li a{
+    text-decoration: underline;
+    color: #D5E1ED;
+    font-size: 16px;
+}
+footer div.line{
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid #9CC5E9;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+footer>p{
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+footer p.eng{
+    width: 715px;
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+footer p.eng span{
+    margin-right: 13px;
 }

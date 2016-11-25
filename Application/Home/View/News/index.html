@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>中国华录集团有限公司首页</title>
-    <link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>
+    <title>培训资讯</title>
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/style_train.css"/>
+
+    <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>-->
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <!--<script src="__PUBLIC__/home/js/train.js"></script>-->
+    <script src="__PUBLIC__/home/js/index.js"></script>
 </head>
 <body>
 <!--用户登录弹出层部分-->
@@ -171,17 +177,9 @@
     </ul>
 </header>
 <!--nan部分-->
-<nav>
-    <ul>
-        <li class="hualu">
-            <img src="__PUBLIC__/home/image/nav.png" alt=""/>
-        </li>
-        <li class="search">
-            <input type="text" placeholder="请输入课程关键字"/>
-            <span>搜索</span>
-        </li>
-    </ul>
-</nav>
+<div id="title">
+    <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+</div>
 <div id="article">
     <ul class="nav">
         <li class="active">
@@ -197,105 +195,102 @@
             <a href="/center">学习中心</a>
         </li>
     </ul>
-    <div class="title">
-        <img src="__PUBLIC__/home/image/toutiao.png" alt=""/>
-        <a href="/news/newsInfo?news=<?php echo $home_page['news_id'];?>"><h1>{$home_page.title}</h1></a>
-        <ul class="inform">
-            <foreach name="little_home" item="vo">
-               <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><li>[{$vo.title}]</li></a>
-            </foreach>
-        </ul>
-    </div>
-</div>
-<div class="banner">
-    <ul class="imgList">
-        <foreach name="banner_news" item="vo">
-            <li><a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><img src="<?php echo $vo['cover'];?>" height="368" width="660" /></a></li>
-        </foreach>
-
-
+    <ul class="search">
+        <li class="pagesum">
+            <span class="page_1">每页显示数量</span>
+            <span class="page_2">10</span>
+            <span class="page_3">20</span>
+            <span class="page_2 ">30</span>
+        </li>
+        <li class="key">
+            <input id="key" name="title" value="" type="text" placeholder="请输入新闻关键字"/>
+            <a href="/news/seacher"><i>
+                搜索
+            </i></a>
+        </li>
     </ul>
-    <ol class="btnList">
-        <li class="current"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ol>
-    <div class="section">
-        <p class="train">
-            <span class="train_1">国资委培训</span>
-            <span class="train_2">公司培训</span>
-        </p>
-        <ul class="news new_1" style="display: block;">
-            <foreach name="master_news" item="vo">
-                <li>
-                    <i></i>
-                    <p>
-                       <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
-                    </p>
-                </li>
-            </foreach>
-
-            <li class="down">
-                <a href="/news?type=1"> <span>更多&gt;&gt;</span></a>
-            </li>
-        </ul>
-        <ul class="news new_2">
-            <foreach name="subsite_news" item="vo">
-                <li>
-                    <i></i>
-                    <p>
-                        <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
-                    </p>
-                </li>
-            </foreach>
-
-            <li class="down">
-               <a href="/news?type=2"> <span>更多&gt;&gt;</span></a>
-            </li>
+</div>
+<div id="content">
+    <div class="banner">
+        <ul>
+            <li class="country active">国资资讯</li>
+            <li class="busy">企业资讯</li>
         </ul>
     </div>
-</div>
-<div id="hot">
-    <h1>
-        热门课程
-    </h1>
-    <ul class="learn">
-        <foreach name="hot_cse" item="vo">
+    <div class="aside tab_1">
+        <ul>
             <li>
-                <a href="/course/courseInfo"><img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/></a>
-                <div class="hour">{$vo.os_cn}</div>
-                <h4>{$vo.name}</h4>
-                <div class="btn">
-               <span class="btn_1">
-                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('__PUBLIC__/home/image/gongkai.png') : print_r('__PUBLIC__/home/image/neixun.png');?>" alt=""/>
+                <a href="train_list.html">
+                     <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
                 </span>
-                <span class="btn_2">
-                   <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="__PUBLIC__/home/image/baoming.png" alt=""/></a>
+                <span class="date">
+                    2016-10-21
                 </span>
-                </div>
+                </a>
+
             </li>
-        </foreach>
+            <li>
+                <a href="train_list.html">
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 
-    </ul>
-</div>
-<div id="advice">
-    <h1>推荐课程</h1>
-    <ul class="toggle">
-        <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
-        </foreach>
-    </ul>
-    <a href="/course"><span>更多&gt;&gt;</span></a>
+    <div class="aside tab_2">
+        <ul>
+            <li>
+                <a href="train_list.html">
+                     <span class="term">
+                    中央党校国资委分校举行2016sss年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+                </a>
 
-
-    <div id="content">
-        <iframe id="frmain" name="frmain" src="/course/courseList"  scrolling="no" frameborder="0"/></iframe>
+            </li>
+            <li>
+                <a href="train_list.html">
+                <span class="term">
+                    中央党校国资委分校举行2016年秋季直属班开学典礼
+                </span>
+                <span class="date">
+                    2016-10-21
+                </span>
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
-<div id="course">
+
+<div id="page">
+    <div class="code">
+        <ul>
+            <li class="first"><a href="#">首页</a></li>
+            <li class="prev"><a href="#">上一页</a></li>
+            <li class="num active"><a href="#">1</a> </li>
+            <li class="num"><a href="#">2</a></li>
+            <li class="num"><a href="#">3</a></li>
+            <li class="num"><a href="#">4</a></li>
+            <li class="num"><a href="#">5</a></li>
+            <li class="num"><a href="#">6</a></li>
+            <li class="num"><a href="#">7</a> </li>
+            <li class="num"><a href="#">8</a></li>
+            <li class="next"><a href="#">下一页</a></li>
+            <li class="last"><a href="#">尾页</a></li>
+        </ul>
+    </div>
+
 </div>
+
+
 <footer>
     <ul class="concat">
         <li>
@@ -326,9 +321,6 @@
         <span>京ICP备08104266号</span>
     </p>
 </footer>
-<script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
-<script src="__PUBLIC__/home/js/index.js"></script>
-<script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
 
 <script>
     document.oncontextmenu=function(e){
