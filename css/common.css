@@ -93,6 +93,42 @@ header li{
     text-align: center;
     cursor: pointer;
 }
+
+
+
+
+
+/*失败的head_2部分*/
+#head_2{
+    float: right;
+}
+#head_2 input{
+    width: 85px;
+    height: 15px;
+    border-radius: 3px;
+    border: 2px solid #BCBCBC;
+}
+#head_2 li.password{
+    margin-left: 5px;
+}
+#head_2 li.login div{
+    width: 52px;
+    height: 25px;
+    background: #58A5E4;
+    color: #EAF3FB;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 10px 0 18px;
+    cursor: pointer;
+}
+#head_2 li.regist div{
+    width: 52px;
+    height: 25px;
+    border: 2px solid #D5D5D5;
+    line-height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
 /*标题图片部分*/
 div#title{
     position: relative;
@@ -124,12 +160,4 @@ div#title img{
 }
 #article ul.nav li.active a{
     color: #fff;
-}
-#article div.return{
-    text-align: left;
-    margin-top: 13px;
-    cursor: pointer;
-}
-#article div.return a{
-    color:#AEAEAE;
 }

@@ -12,21 +12,6 @@
     <script src="js/train.js"></script>
     <!--[if lt IE 9]>
     <style type="text/css">
-        /*div.banner ul.imgList li div {*/
-            /*background:transparent;*/
-            /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);*/
-            /*zoom: 1;*/
-        /*}*/
-        /*ul.learn li div.hour {*/
-            /*background:transparent;*/
-            /*filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);*/
-            /*zoom: 1;*/
-        /*}*/
-        /*.modal_1 .modal-content h4.log input,.modal_1 .modal-content h4.reg input{*/
-            /*position: relative;*/
-            /*top: -28px;*/
-            /*line-height: 74px;*/
-        /*}*/
         ul.search li i{
             top:-2px;
         }
@@ -56,7 +41,23 @@
             </p>
         </li>
     </ul>
-    <ul id="head_2">
+    <ul id="head_2" class="fail">
+        <li>
+            <label for="user">用户名</label>
+            <input type="text" id="user"/>
+        </li>
+        <li class="password">
+            <label for="pwd">密码</label>
+            <input type="text" id="pwd"/>
+        </li>
+        <li class="login">
+            <div class="login_denglu">登录</div>
+        </li>
+        <li class="regist">
+            <div class="login_zhuce">注册</div>
+        </li>
+    </ul>
+    <ul id="head_2" class="succ" style="display:none;">
         <li class="rig_1">
             <span>尊敬的</span>
         </li>
@@ -73,7 +74,7 @@
                退出
            </span>
         </li>
-    </ul>
+    </ul >
 </header>
 <!--标题部分-->
 <div id="title">
@@ -95,12 +96,12 @@
         </li>
     </ul>
     <ul class="search">
-        <li class="pagesum">
-            <span class="page_1">每页显示数量</span>
-            <span class="page_2">10</span>
-            <span class="page_3">20</span>
-            <span class="page_2 ">30</span>
-        </li>
+        <!--<li class="pagesum">-->
+            <!--<span class="page_1">每页显示数量</span>-->
+            <!--<span class="page_2">10</span>-->
+            <!--<span class="page_3">20</span>-->
+            <!--<span class="page_2 ">30</span>-->
+        <!--</li>-->
         <li class="key">
             <input type="text" placeholder="请输入课程关键字"/>
             <i>
@@ -321,13 +322,32 @@
                 </a>
             </li>
         </ul>
+        <!--页码部分-->
+        <div id="page">
+            <div class="code">
+                <ul>
+                    <li class="first"><a href="#">首页</a></li>
+                    <li class="prev"><a href="#">上一页</a></li>
+                    <li class="num active"><a href="#">1</a> </li>
+                    <li class="num"><a href="#">2</a></li>
+                    <li class="num"><a href="#">3</a></li>
+                    <li class="num"><a href="#">4</a></li>
+                    <li class="num"><a href="#">5</a></li>
+                    <li class="num"><a href="#">6</a></li>
+                    <li class="num"><a href="#">7</a> </li>
+                    <li class="num"><a href="#">8</a></li>
+                    <li class="next"><a href="#">下一页</a></li>
+                    <li class="last"><a href="#">尾页</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
     <div class="aside tab_2">
         <ul>
             <li>
                 <a href="train_list.html">
                      <span class="term">
-                    切换了党校国资委分校举行2016年秋季直属班开学典礼
+                    切换了校国资委分校举行2016年秋季直属班开学典礼
                 </span>
                 <span class="date">
                     2016-10-21
@@ -527,28 +547,28 @@
                 </a>
             </li>
         </ul>
+        <!--页码部分-->
+        <div id="page">
+            <div class="code">
+                <ul>
+                    <li class="first"><a href="#">首页</a></li>
+                    <li class="prev"><a href="#">上一页</a></li>
+                    <li class="num active"><a href="#">1</a> </li>
+                    <li class="num"><a href="#">2</a></li>
+                    <li class="num"><a href="#">3</a></li>
+                    <li class="num"><a href="#">4</a></li>
+                    <li class="num"><a href="#">5</a></li>
+                    <li class="num"><a href="#">6</a></li>
+                    <li class="num"><a href="#">7</a> </li>
+                    <li class="num"><a href="#">8</a></li>
+                    <li class="next"><a href="#">下一页</a></li>
+                    <li class="last"><a href="#">尾页</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
-<!--页码部分-->
-<div id="page">
-    <div class="code">
-        <ul>
-            <li class="first"><a href="#">首页</a></li>
-            <li class="prev"><a href="#">上一页</a></li>
-            <li class="num active"><a href="#">1</a> </li>
-            <li class="num"><a href="#">2</a></li>
-            <li class="num"><a href="#">3</a></li>
-            <li class="num"><a href="#">4</a></li>
-            <li class="num"><a href="#">5</a></li>
-            <li class="num"><a href="#">6</a></li>
-            <li class="num"><a href="#">7</a> </li>
-            <li class="num"><a href="#">8</a></li>
-            <li class="next"><a href="#">下一页</a></li>
-            <li class="last"><a href="#">尾页</a></li>
-        </ul>
-    </div>
 
-</div>
 <footer>
     <ul class="concat">
         <li>
@@ -579,5 +599,6 @@
         <span>京ICP备08104266号</span>
     </p>
 </footer>
+
 </body>
 </html>

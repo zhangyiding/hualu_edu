@@ -18,7 +18,7 @@ $(function(){
     })
 //   Ê×Ò³ÇÐ»»²¿·Ö
     $(".nav li a").click(function(e){
-        e.preventDefault();
+        //e.preventDefault();
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
 
