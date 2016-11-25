@@ -86,6 +86,8 @@ $(function() {
         $(".modal_2").hide();
         $(".modal_1").show();
     })
+
+
 });
 
 
