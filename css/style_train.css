@@ -1,9 +1,4 @@
-/*iframe*/
-iframe.insert{
-    width:822px;
-    min-height: 1020px;
-    float: right;
-}
+
 /*header²¿·Ö*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
