@@ -1,10 +1,11 @@
 
+
 /*header²¿·Ö*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
     margin: 0 auto;
 }
-/*±êÌâÍ¼Æ¬²¿·Ö*/
+/*ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½*/
 div#title{
     position: relative;
     height: 50px;
@@ -14,7 +15,7 @@ div#title img{
     position: absolute;
     left: 20px;
 }
-/*articleÖÐ¼äÇÐ»»²¿·Ö*/
+/*articleï¿½Ð¼ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½*/
 ul.search{
     overflow: hidden;
     margin-top: 10px;
@@ -63,14 +64,25 @@ ul.search li.pagesum span{
     line-height: 35px;
 }
 
-/*div#content²¿·Ö*/
+/*div#contentï¿½ï¿½ï¿½ï¿½*/
 div#content{
     margin-top: 3px;
     overflow: hidden;
-    min-height: 1075px;
+    min-height: 800px;
 }
 div#content .banner{
     float: left;
+}
+div#content h1{
+    margin: 15px 0 20px 0
+}
+div#content .return{
+    float: left;
+    /*margin-bottom: 50px;*/
+    }
+div#content div.con{
+    margin-top: 50px;
+    border: 2px solid #aaa;
 }
 div#content .banner ul li{
     width: 140px;
@@ -86,12 +98,15 @@ div#content .banner ul li.active{
     margin-bottom: 10px;
 
 }
+div.list{
+    min-height: 500px;
+}
 /*div#content .banner ul li.busy{*/
     /*background: #F7F7F7;*/
     /*color: #3A3A3A;*/
 /*}*/
 
-/*ÓÒ²à²¿·ÖÄÚÈÝdiv.aside²¿·Ö*/
+/*ï¿½Ò²à²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½div.asideï¿½ï¿½ï¿½ï¿½*/
 div.aside{
     float: right;
     width:820px;
@@ -101,7 +116,7 @@ div.aside{
 }
 div.aside ul li span{
     font-size: 16px;
-    border: 1px dashed #;
+    /*border: 1px dashed #;*/
 }
 div.aside ul li{
     width: 760px;
@@ -119,7 +134,7 @@ div.aside ul li span.date{
     float: right;
 }
 
-/*Ò³Âë²¿·ÖÉèÖÃ*/
+/*Ò³ï¿½ë²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 div#page{
     width:820px;
     text-align: center;
@@ -190,7 +205,7 @@ div#page .code{
     color: #fff;
     border-radius: 17px;
 }
-/*footer²¿·Ö*/
+/*footerï¿½ï¿½ï¿½ï¿½*/
 footer{
     height:260px;
     margin-top: 50px;
@@ -230,7 +245,19 @@ footer p.eng span{
 
 
 
-/*ÇÐ»»Ð§¹ûCSS*/
+/*ï¿½Ð»ï¿½Ð§ï¿½ï¿½CSS*/
 div.tab_2{
     display: none;
+}
+
+
+
+
+#article div.return{
+    text-align: left;
+    margin-top: 13px;
+    cursor: pointer;
+}
+#article div.return a{
+    color:#AEAEAE;
 }
