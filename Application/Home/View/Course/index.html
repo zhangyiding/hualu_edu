@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>中国华录集团有限公司首页</title>
-    <link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>
+    <title>选课中心</title>
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/style_course.css"/>
+
+    <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>-->
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/home/js/course.js"></script>
+    <!--<script src="__PUBLIC__/home/js/index.js"></script>-->
 </head>
 <body>
 <!--用户登录弹出层部分-->
@@ -171,17 +177,9 @@
     </ul>
 </header>
 <!--nan部分-->
-<nav>
-    <ul>
-        <li class="hualu">
-            <img src="__PUBLIC__/home/image/nav.png" alt=""/>
-        </li>
-        <li class="search">
-            <input type="text" placeholder="请输入课程关键字"/>
-            <span>搜索</span>
-        </li>
-    </ul>
-</nav>
+<div id="title">
+    <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+</div>
 <div id="article">
     <ul class="nav">
         <li class="active">
@@ -197,105 +195,106 @@
             <a href="/center">学习中心</a>
         </li>
     </ul>
-    <div class="title">
-        <img src="__PUBLIC__/home/image/toutiao.png" alt=""/>
-        <a href="/news/newsInfo?news=<?php echo $home_page['news_id'];?>"><h1>{$home_page.title}</h1></a>
-        <ul class="inform">
-            <foreach name="little_home" item="vo">
-               <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><li>[{$vo.title}]</li></a>
-            </foreach>
-        </ul>
-    </div>
 </div>
-<div class="banner">
-    <ul class="imgList">
-        <foreach name="banner_news" item="vo">
-            <li><a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><img src="<?php echo $vo['cover'];?>" height="368" width="660" /></a></li>
-        </foreach>
 
-
-    </ul>
-    <ol class="btnList">
-        <li class="current"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ol>
-    <div class="section">
-        <p class="train">
-            <span class="train_1">国资委培训</span>
-            <span class="train_2">公司培训</span>
-        </p>
-        <ul class="news new_1" style="display: block;">
-            <foreach name="master_news" item="vo">
+<div id="select">
+    <h1>选课中心</h1>
+    <div class="concent">
+        <div class="row">
+            <div class="row_left ">
+                <span class="row_left_1">课程提供方：</span>
+                <span class="row_left_2">全部</span>
+            </div>
+            <div class="row_right">
+                <ul>
+                    <li class="active">
+                        <a href="course_part.html">国资委干教中心</a>
+                    </li>
+                    <li>
+                        <a href="course_part.html">中石油分站</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row_left ">
+                <span class="row_left_1">学习方向：</span>
+                <span class="row_left_2">全部</span>
+            </div>
+            <div class="row_right">
+                <ul>
+                    <li>
+                        <a href="#">党建党史</a>
+                    </li>
+                    <li>
+                        <a href="#">企业文化</a>
+                    </li>
+                    <li>
+                        <a href="#">企业管理</a>
+                    </li>
+                    <li>
+                        <a href="#">法律法规</a>
+                    </li>
+                    <li>
+                        <a href="#">职业办公</a>
+                    </li>
+                    <li>
+                        <a href="#">专业技能</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="row_left ">
+                <span class="row_left_1">分类：</span>
+                <span class="row_left_2">全部</span>
+            </div>
+            <div class="row_right">
+                <ul>
+                    <li>
+                        <a href="#">马克思主义哲学</a>
+                    </li>
+                    <li>
+                        <a href="#">党史知识</a>
+                    </li>
+                    <li>
+                        <a href="#">党章党规</a>
+                    </li>
+                    <li>
+                        <a href="#">党风建设</a>
+                    </li>
+                    <li>
+                        <a href="#">形式教育</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        ：        <div class="row">
+        <div class="row_left ">
+            <span class="row_left_1">类型：</span>
+            <span class="row_left_2">全部</span>
+        </div>
+        <div class="row_right">
+            <ul>
                 <li>
-                    <i></i>
-                    <p>
-                       <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
-                    </p>
+                    <a href="#">公开</a>
                 </li>
-            </foreach>
-
-            <li class="down">
-                <a href="/news?type=1"> <span>更多&gt;&gt;</span></a>
-            </li>
-        </ul>
-        <ul class="news new_2">
-            <foreach name="subsite_news" item="vo">
                 <li>
-                    <i></i>
-                    <p>
-                        <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
-                    </p>
+                    <a href="#">内训</a>
                 </li>
-            </foreach>
-
-            <li class="down">
-               <a href="/news?type=2"> <span>更多&gt;&gt;</span></a>
-            </li>
-        </ul>
+                <li>
+                    <a href="#">定向</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     </div>
 </div>
-<div id="hot">
-    <h1>
-        热门课程
-    </h1>
-    <ul class="learn">
-        <foreach name="hot_cse" item="vo">
-            <li>
-                <a href="/course/courseInfo"><img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/></a>
-                <div class="hour">{$vo.os_cn}</div>
-                <h4>{$vo.name}</h4>
-                <div class="btn">
-               <span class="btn_1">
-                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('__PUBLIC__/home/image/gongkai.png') : print_r('__PUBLIC__/home/image/neixun.png');?>" alt=""/>
-                </span>
-                <span class="btn_2">
-                   <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="__PUBLIC__/home/image/baoming.png" alt=""/></a>
-                </span>
-                </div>
-            </li>
-        </foreach>
-
-    </ul>
+<div id="allcourse">
+    <h1>共有30门课程</h1>
+    <iframe src="course_part.html" frameborder="0" scrolling="no" class="insert"></iframe>
 </div>
-<div id="advice">
-    <h1>推荐课程</h1>
-    <ul class="toggle">
-        <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?number=8&course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
-        </foreach>
-    </ul>
-    <a href="/course"><span>更多&gt;&gt;</span></a>
 
-
-    <div id="content">
-        <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"/></iframe>
-    </div>
-</div>
-<div id="course">
-</div>
 <footer>
     <ul class="concat">
         <li>
@@ -326,9 +325,6 @@
         <span>京ICP备08104266号</span>
     </p>
 </footer>
-<script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
-<script src="__PUBLIC__/home/js/index.js"></script>
-<script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
 
 <script>
     document.oncontextmenu=function(e){

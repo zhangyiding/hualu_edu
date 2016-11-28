@@ -50,6 +50,14 @@ class CourseController extends BaseController {
             $this->assign('page_arr',$page_arr);
         }
 
+
+        $index = new IndexController();
+        $time = $index->getTime();
+        $this->assign('time',$time);
+        if($weather = $index->getWeather()){
+            $this->assign('weather',$weather);
+        }
+
         $this->display();
 
 
@@ -92,16 +100,47 @@ class CourseController extends BaseController {
     {
         $course_type = $this->params['course_type'];//课程分类
         $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
+        $number = $this->params['number'];
+        $is_master = $this->params['is_master'];
+        $course_dir = $this->params['course_dir'];
+
+        if($is_master == 1){
+            $where['subsite_id'] = 0;
+        }elseif($is_master ==2){
+            $where['subsite_id'] = $this->subsite_id;
+        }
+
+
 
         $where['status'] = 0;
         $m_course = new CourseModel();
-        if (!empty($course_type)) {
-            $ct_arr = explode(',', $course_type);
-            $cse_id = $m_course->getCseByType($ct_arr);
+        if (!empty($course_type) || !empty($course_dir)) {
+            $cse_d_id = array();
+            $cse_t_id = array();
+            if(!empty($course_type)){
+                $ct_arr = explode(',', $course_type);
+                $cse_t_id_ = $m_course->getCseByType($ct_arr,$opt=1);
 
-            $where['course_id'] = array('in', $cse_id);
+            }
+
+            if(!empty($course_dir)){
+                $cd_arr = explode(',', $course_dir);
+                $cse_d_id = $m_course->getCseByType($cd_arr,$opt=2);
+
+            }
+
+            $where['course_id'] = array('in', array_merge($cse_d_id,$cse_t_id));
 
         }
+
+        if(!empty($course_dir)){
+
+        }
+
+
+
+
+
 
         if (!empty($is_recommend)) {
             $where['is_recommend'] = $is_recommend;
@@ -112,11 +151,11 @@ class CourseController extends BaseController {
 
             $where['subsite_id'] = $this->subsite_id;
 
-            if ($data = $m_course->getCourseList($where, 0, 8)) {
+            if ($data = $m_course->getCourseList($where, 0, $number)) {
                 $data = $this->formatCourse($data);
             } else {
                 $where['subsite_id'] = 0;
-                if ($data1 = $m_course->getCourseList($where, 0, 8)) {
+                if ($data1 = $m_course->getCourseList($where, 0, $number)) {
                     $data = $this->formatCourse($data1);
                 } else {
                     $this->to_back('11006');
