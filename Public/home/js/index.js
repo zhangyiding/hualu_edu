@@ -1,5 +1,19 @@
 $(function() {
-    //bannerï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
+    //$.get("//hualu.etago.cn",function(data){
+    //    console.log(data);
+    //    if(data.msg="³É¹¦"){
+    //        console.log("1");
+    //        $(".modal_1").fadeIn();
+    //    }
+    //
+    //})
+
+
+
+
+
+
+    //bannerºôÎüÂÖ²¥Ð§¹û£»
     var num=0;
     var tim;
     var nextFn=function(){
@@ -38,28 +52,29 @@ $(function() {
         num=i;
     });
     $("#advice ul li").click(function(e){
+        //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
 
-//ï¿½ï¿½ï¿½ï¿½Î¯ï¿½ï¿½Ñµï¿½Ð»ï¿½
+//¹ú×ÊÎ¯ÅàÑµÇÐ»»
     $("span.train_1").click(function(){
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
-        $(this).css("background-image","url('public/home/image/rightbar1.png')");
-        $("span.train_2").css("backgroundImage","url('public/home/image/rightbar2.png')");
+        $(this).css("background-image","url('image/rightbar1.png')");
+        $("span.train_2").css("backgroundImage","url('image/rightbar2.png')");
     })
     $("span.train_2").click(function(){
         $("ul.new_1").fadeOut();
         $("ul.new_2").fadeIn();
-        $(this).css("background-image","url('public/home/image/rightbar1.png')");
-        $("span.train_1").css("backgroundImage","url('public/home/image/rightbar2.png')");
+        $(this).css("background-image","url('image/rightbar1.png')");
+        $("span.train_1").css("backgroundImage","url('image/rightbar2.png')");
     })
 
-//ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
+//Ê×Ò³²¿·ÖÇÐ»»
     $(".nav li a").click(function(){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
-//    ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
+//    µÇÂ¼²¿·Ö
     $(".login_denglu").click(function (e) {
         e.preventDefault();
         $(".modal_1").fadeIn();
@@ -67,7 +82,7 @@ $(function() {
     $(".close_1").click(function(){
         $(".modal_1").fadeOut();
     })
-//  ×¢ï¿½á²¿ï¿½Öµï¿½ï¿½Ð»ï¿½
+//  ×¢²á²¿·ÖµÄÇÐ»»
     $(".login_zhuce").click(function (e) {
         e.preventDefault();
         $(".modal_2").fadeIn();
@@ -78,7 +93,14 @@ $(function() {
     })
     $(".close_2").click(function(){
         $(".modal_2").fadeOut();
+        $(".modal_1").fadeOut();
     })
+    $(".info_4").click(function(){
+        console.log("1");
+        $(".modal_2").hide();
+        $(".modal_1").show();
+    })
+
 });
 
 

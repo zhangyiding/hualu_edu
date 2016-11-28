@@ -93,6 +93,42 @@ header li{
     text-align: center;
     cursor: pointer;
 }
+
+
+
+
+
+/*失败的head_2部分*/
+#head_2{
+    float: right;
+}
+#head_2 input{
+    width: 85px;
+    height: 15px;
+    border-radius: 3px;
+    border: 2px solid #BCBCBC;
+}
+#head_2 li.password{
+    margin-left: 5px;
+}
+#head_2 li.login div{
+    width: 52px;
+    height: 25px;
+    background: #58A5E4;
+    color: #EAF3FB;
+    text-align: center;
+    line-height: 25px;
+    margin: 0 10px 0 18px;
+    cursor: pointer;
+}
+#head_2 li.regist div{
+    width: 52px;
+    height: 25px;
+    border: 2px solid #D5D5D5;
+    line-height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
 /*标题图片部分*/
 div#title{
     position: relative;
@@ -125,11 +161,42 @@ div#title img{
 #article ul.nav li.active a{
     color: #fff;
 }
-#article div.return{
-    text-align: left;
-    margin-top: 13px;
-    cursor: pointer;
+
+/*footer部分*/
+/*footer部分*/
+footer{
+    height:260px;
+    margin-top: 70px;
+    background: #58A5E4;
+    text-align: center;
+    padding-top: 55px;
+    color: #D5E1ED;
 }
-#article div.return a{
-    color:#AEAEAE;
+footer ul.concat li{
+    display: inline-block;
+}
+footer ul.concat li a{
+    text-decoration: underline;
+    color: #D5E1ED;
+    font-size: 16px;
+}
+footer div.line{
+    width: 800px;
+    margin: 0 auto;
+    border: 1px solid #9CC5E9;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+footer>p{
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+footer p.eng{
+    width: 715px;
+    text-align: left;
+    margin: 0 auto;
+    margin-bottom: 15px;
+}
+footer p.eng span{
+    margin-right: 13px;
 }

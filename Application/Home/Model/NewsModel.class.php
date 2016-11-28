@@ -8,9 +8,9 @@ class NewsModel extends Model{
 
 
 
-    public function getNewsList($where,$offset=0,$limit=0){
+    public function getNewsList($where,$offset=0,$limit=0,$option=19){
         $where['status'] = 0;
-        $result = $this->field('news_id,title,subsite_id,type,cover')
+        $result = $this->field('news_id,title,subsite_id,type,cover,ctime')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
@@ -19,7 +19,7 @@ class NewsModel extends Model{
             foreach($result as $k=>$v){
                 $result[$k]['cover'] = getImageBaseUrl($v['cover']);
 
-                $result[$k]['title'] = cutStr($v['title'],19);
+                $result[$k]['title'] = cutStr($v['title'],$option);
             }
 
             return $result;

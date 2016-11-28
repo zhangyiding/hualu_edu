@@ -852,6 +852,10 @@ function cutStr($str,$len){
  * @return array()
  */
 function listPage($count, $limit=10){
+
+    if(empty($count)){
+        return false;
+    }
     //获取分页总数进一取整
     $page_arr = array();
     $page_count = ceil($count/$limit);

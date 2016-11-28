@@ -8,6 +8,7 @@
     <title>培训资讯</title>
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
     <link rel="stylesheet" href="__PUBLIC__/home/css/style_train.css"/>
+    <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_train_list.css"/>-->
 
     <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>-->
     <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
@@ -195,70 +196,17 @@
             <a href="/center">学习中心</a>
         </li>
     </ul>
-    <ul class="search">
-        <li class="key">
-            <input id="key" name="title" value="" type="text" placeholder="请输入新闻关键字"/>
-            <a href="/news/seacher"><i>
-                搜索
-            </i></a>
-        </li>
-    </ul>
+
 </div>
 <div id="content">
-    <div class="banner">
-        <ul>
-            <a href="/news?news_type=1">
-                <li class="country active">国资资讯</li>
-            </a>
-            <a href="/news?news_type=2">
-                <li class="busy">企业资讯</li>
-            </a>
-        </ul>
+    <div class="return">
+        <a href="/news?news_type=1">&lt;&lt;返回培训资讯列表</a>
     </div>
-    <div class="aside tab_1">
-        <ul>
-            <foreach name="news_list" item="vo">
-                <li>
-                    <a href="/news/newsInfo?news_id=<?php echo $vo['news_id'];?>">
-                     <span class="term">
-                    {$vo.title}
-                </span>
-                <span class="date">
-                   {$vo.ctime}
-                </span>
-                    </a>
+    <div class="con">
+        <h1>{$news_info.title}</h1>
 
-                </li>
-            </foreach>
-        </ul>
-        </br>
-        <div id="page">
-            <div class="code">
-                <ul>
-                    <li class="first"><a href="/news?news_type=<?php
-                        $home_page = current($page_arr);
-                        echo $news_type . '&page='.$home_page;?>">首页</a></li>
-                    <li class="prev">
-                        <a href="/news?news_type=<?php
-                        $last_page = ($page-1 <= 0)? 1:$page-1;
-                        echo $news_type . '&page='.$last_page;?>">
-                            上一页</a></li>
-                    <volist name="page_arr" id="vo">
-                        <li class="num active">
-                            <a href="/news?news_type=<?php echo $news_type . '&page='.$vo;?>">{$vo}</a> </li>
-                    </volist>
-
-
-                    <li class="next"><a href="/news?news_type=<?php
-                    $end_page = end($page_arr);
-                        $next_page = ($page+1 > $end_page)?$end_page :$page+1;
-                        echo $news_type . '&page='.$next_page;?>">下一页</a></li>
-                    <li class="last"><a href="/news?news_type=<?php
-                        $end_page = end($page_arr);
-                        echo $news_type . '&page='.$end_page;?>">尾页</a></li>
-                </ul>
-            </div>
-
+        <div class="list">
+           {$news_info.content}
         </div>
 
 </div>
