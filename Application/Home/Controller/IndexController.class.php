@@ -89,6 +89,21 @@ class IndexController extends BaseController {
 
 
 
+
+
+
+    public function weather(){
+       $time = $this->getTime();
+       $weather = $this->getWeather();
+      $this->to_back((array('time'=>$time,'weather'=>$weather))) ;
+    }
+
+
+
+
+
+
+
     /**
      * @todo 根据ip获取坐标
      * @param string $ip
