@@ -1,4 +1,18 @@
 $(function() {
+    //$.get("//hualu.etago.cn",function(data){
+    //    console.log(data);
+    //    if(data.msg="成功"){
+    //        console.log("1");
+    //        $(".modal_1").fadeIn();
+    //    }
+    //
+    //})
+
+
+
+
+
+
     //banner呼吸轮播效果；
     var num=0;
     var tim;
@@ -86,7 +100,6 @@ $(function() {
         $(".modal_2").hide();
         $(".modal_1").show();
     })
-
 
 });
 

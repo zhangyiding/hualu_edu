@@ -1,17 +1,9 @@
 /*iframe*/
-#content{
-    width:1000px;
-    margin:0 auto;
-    margin-bottom:40px;
-    border: none;
+iframe.insert{
+    width:822px;
+    min-height: 1020px;
+    float: right;
 }
-#content iframe{
-    width:100%;
-    min-height:600px;
-    margin-top:20px;
-}
-
-
 /*header部分*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
@@ -103,18 +95,19 @@ div#content .banner ul li.active{
     /*background: #F7F7F7;*/
     /*color: #3A3A3A;*/
 /*}*/
-div#content div.aside{
+
+/*右侧部分内容div.aside部分*/
+div.aside{
     float: right;
     width:820px;
     min-height: 990px;
     border: 1px solid #AEAEAE;
     margin-top: 10px;
 }
-div#content div.aside ul li span{
+div.aside ul li span{
     font-size: 16px;
     border: 1px dashed #;
 }
-/*右侧部分内容div.aside部分*/
 div.aside ul li{
     width: 760px;
     margin: 0 auto;

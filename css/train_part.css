@@ -1,0 +1,99 @@
+/*右侧部分内容div.aside部分*/
+div.aside{
+    float: right;
+    width:820px;
+    min-height: 990px;
+    border: 1px solid #AEAEAE;
+    margin-top: 10px;
+}
+div.aside ul li span{
+    font-size: 16px;
+    border: 1px dashed #;
+}
+div.aside ul li{
+    width: 760px;
+    margin: 0 auto;
+    border-bottom: 2px solid #DDDDDD;
+    overflow: hidden;
+    height: 45px;
+    line-height: 45px;
+    cursor: pointer;
+}
+div.aside ul li span.term{
+    float: left;
+}
+div.aside ul li span.date{
+    float: right;
+}
+
+/*页码部分设置*/
+div#page{
+    width:820px;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+div#page .code{
+    width: 820px;
+}
+#page ul{
+    width:650px;
+    margin: 0 auto;
+}
+
+#page ul li a{
+    font-size: 14px;
+}
+#page ul{
+    overflow: hidden;
+}
+#page ul li{
+    float: left;
+    height: 40px;
+    margin-right: 5px;
+}
+#page ul li.first a,#page ul li.last a{
+    color:#F1F1F1 ;
+}
+#page ul li.first,#page ul li.last{
+    width:70px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 15px;
+    background:#ADADAD;
+}
+#page ul li.prev,#page ul li.next{
+    width:70px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 15px;
+    border: 1px solid #D7D7D7;
+}
+#page ul li.num{
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    border: 1px solid #DFDFDF;
+    border-radius: 17px;
+}
+#page ul li:hover a{
+    display: inline-block;
+    width: 100%;
+    background:#54A5E4;
+    color: #fff;
+    border-radius: 15px;
+}
+#page ul li.num:hover a{
+    border-radius: 17px;
+}
+#page ul li.num.active a{
+    display: inline-block;
+    width: 100%;
+    background:#54A5E4;
+    color: #fff;
+    border-radius: 17px;
+}
