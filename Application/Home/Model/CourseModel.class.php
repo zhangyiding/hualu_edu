@@ -66,12 +66,20 @@ class CourseModel extends Model{
         return $result;
     }
 
-    public function getCseByType($id,$opt){
-        if($opt == 1){
-            $where['ct_id'] = array('in',$id);
-        }else{
-            $where['cd_id'] = array('in',$id);
-        }
+
+    public function getCseDirByType($course_type){
+        $result = $this->table('course_type')
+            ->field('cd_id')
+            ->where(array(
+                'ct_id'=>$course_type,
+                'status'=>0
+            ))
+            ->find();
+        return $result['cd_id'];
+    }
+
+    public function getCseByType($ct_list){
+            $where['ct_id'] = array('in',$ct_list);
 
         $result = $this->table('course_type_map')
             ->field('course_id')
@@ -90,6 +98,28 @@ class CourseModel extends Model{
     }
 
 
+
+    public function getCourseDir(){
+        $result = $this->table('course_direction')
+            ->field('cd_id,name,order')
+            //因Order与mysql字段重复所以使用改格式
+            ->order(array('order','order'=>'desc'))
+            ->select();
+        return $result;
+    }
+
+
+
+    public function getCseTypeByDir($course_dir){
+        $result = $this->table('course_type')
+            ->field('ct_id,name,cd_id,order')
+            ->where(array('cd_id'=>$course_dir))
+            //因Order与mysql字段重复所以使用改格式
+            ->order(array('order','order'=>'desc'))
+            ->limit(0,10)
+            ->select();
+        return $result;
+    }
 
 }
 ?>

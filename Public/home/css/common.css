@@ -1,4 +1,4 @@
-/*ÑùÊ½µÄÖØÖÃ*/
+/*ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
     margin: 0;
     padding: 0;
@@ -27,9 +27,9 @@ a:hover { text-decoration: none;color:#000; }
 
 
 
-/*¹²ÓÐµÄÑùÊ½*/
+/*ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½Ê½*/
 
-/*header²¿·Ö*/
+/*headerï¿½ï¿½ï¿½ï¿½*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
     margin: 0 auto;
@@ -98,7 +98,7 @@ header li{
 
 
 
-/*Ê§°ÜµÄhead_2²¿·Ö*/
+/*Ê§ï¿½Üµï¿½head_2ï¿½ï¿½ï¿½ï¿½*/
 #head_2{
     float: right;
 }
@@ -129,7 +129,7 @@ header li{
     margin-right: 10px;
     cursor: pointer;
 }
-/*±êÌâÍ¼Æ¬²¿·Ö*/
+/*ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½ï¿½*/
 div#title{
     position: relative;
     height: 50px;
@@ -140,7 +140,7 @@ div#title img{
     left: 20px;
 
 }
-/*articleÖÐ¼äÇÐ»»²¿·Ö*/
+/*articleï¿½Ð¼ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½*/
 #article ul.nav{
     border-bottom:2px solid #D5D5D5;
 }
@@ -162,8 +162,8 @@ div#title img{
     color: #fff;
 }
 
-/*footer²¿·Ö*/
-/*footer²¿·Ö*/
+/*footerï¿½ï¿½ï¿½ï¿½*/
+/*footerï¿½ï¿½ï¿½ï¿½*/
 footer{
     height:260px;
     margin-top: 70px;
@@ -200,3 +200,6 @@ footer p.eng{
 footer p.eng span{
     margin-right: 13px;
 }
+
+
+

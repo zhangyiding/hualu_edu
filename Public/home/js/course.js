@@ -3,7 +3,6 @@
  */
 $(function(){
     $("div.row ul li").click(function(e){
-        e.preventDefault();
         location.reload("true");
     })
 })

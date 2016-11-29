@@ -284,7 +284,7 @@
     <h1>推荐课程</h1>
     <ul class="toggle">
         <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?number=8&course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
+            <li ><a href="/course/courseList?course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
         </foreach>
     </ul>
     <a href="/course"><span>更多&gt;&gt;</span></a>

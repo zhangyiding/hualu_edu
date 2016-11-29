@@ -8,6 +8,7 @@
     <title>选课中心</title>
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
     <link rel="stylesheet" href="__PUBLIC__/home/css/style_course.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/part.css"/>
 
     <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>-->
     <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
@@ -141,9 +142,6 @@
 </div>
 
 
-
-
-
 <!--head部分-->
 <header>
     <ul id="head_1">
@@ -203,15 +201,15 @@
         <div class="row">
             <div class="row_left ">
                 <span class="row_left_1">课程提供方：</span>
-               <a href="/course/courseList?number=12"> <span class="row_left_2">全部</span></a>
+               <a href="/course/courseList"> <span class="row_left_2">全部</span></a>
             </div>
             <div class="row_right">
                 <ul>
                     <li class="active">
-                        <a href="course/courseList?number=12&is_master=1">国资委干教中心</a>
+                        <a href="course?is_master=1&course_dir=1">国资委干教中心</a>
                     </li>
                     <li>
-                        <a href="course/courseList?number=12&is_master=2">中石油分站</a>
+                        <a href="course?is_master=2&course_dir=1">中石油分站</a>
                     </li>
                 </ul>
             </div>
@@ -223,78 +221,106 @@
             </div>
             <div class="row_right">
                 <ul>
-                    <li>
-                        <a href="#">党建党史</a>
-                    </li>
-                    <li>
-                        <a href="#">企业文化</a>
-                    </li>
-                    <li>
-                        <a href="#">企业管理</a>
-                    </li>
-                    <li>
-                        <a href="#">法律法规</a>
-                    </li>
-                    <li>
-                        <a href="#">职业办公</a>
-                    </li>
-                    <li>
-                        <a href="#">专业技能</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="row_left ">
-                <span class="row_left_1">分类：</span>
-                <span class="row_left_2">全部</span>
-            </div>
-            <div class="row_right">
-                <ul>
-                    <li>
-                        <a href="#">马克思主义哲学</a>
-                    </li>
-                    <li>
-                        <a href="#">党史知识</a>
-                    </li>
-                    <li>
-                        <a href="#">党章党规</a>
-                    </li>
-                    <li>
-                        <a href="#">党风建设</a>
-                    </li>
-                    <li>
-                        <a href="#">形式教育</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        ：        <div class="row">
-        <div class="row_left ">
-            <span class="row_left_1">类型：</span>
-            <span class="row_left_2">全部</span>
-        </div>
-        <div class="row_right">
-            <ul>
-                <li>
-                    <a href="#">公开</a>
-                </li>
-                <li>
-                    <a href="#">内训</a>
-                </li>
-                <li>
-                    <a href="#">定向</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    </div>
+                    <foreach name="cd_list" item="vo">
+                        <li>
+                            <!--<a  href="/course?course_dir=<?php echo $vo['cd_id'];?>" >{$vo.name}</a>-->
+                            <a  href="#" onclick="func1($vo['id'])">{$vo.name}</a>
+                       </li>
+                   </foreach>
+
+
+               </ul>
+           </div>
+       </div>
+       <div class="row">
+           <div class="row_left ">
+               <span class="row_left_1">分类：</span>
+               <span class="row_left_2">全部</span>
+           </div>
+           <div class="row_right">
+               <ul>
+                   <foreach name="ct_list" item="vo">
+                       <li>
+                           <a href="course?course_type=<?php echo $vo['ct_id'];?>">{$vo.name}</a>
+                       </li>
+                   </foreach>
+               </ul>
+           </div>
+       </div>
+       ：        <div class="row">
+       <div class="row_left ">
+           <span class="row_left_1">类型：</span>
+           <span class="row_left_2">全部</span>
+       </div>
+       <div class="row_right">
+           <ul>
+               <li>
+                   <a href="#">公开</a>
+               </li>
+               <li>
+                   <a href="#">内训</a>
+               </li>
+               <li>
+                   <a href="#">定向</a>
+               </li>
+           </ul>
+       </div>
+   </div>
+   </div>
 </div>
+<!--<div id="allcourse">-->
+    <!--<h1>共有30门课程</h1>-->
+    <!--<iframe src="/course/courseList?number=12&is_master=1" frameborder="0" scrolling="no" class="insert"></iframe>-->
+<!--</div>-->
 <div id="allcourse">
     <h1>共有30门课程</h1>
-    <iframe src="/course/courseList?number=12&is_master=1" frameborder="0" scrolling="no" class="insert"></iframe>
-</div>
+    <ul class="learn learn_1" style="display: block">
+        <foreach name="course_list" item="vo">
+            <li>
+                <img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/>
+                <div class="hour">{$vo.os_cn}</div>
+                <h4>{$vo.name}</h4>
+                <div class="btn">
+               <span class="btn_1">
+                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('__PUBLIC__/home/image/gongkai.png') : print_r('__PUBLIC__/home/image/neixun.png');?>" alt=""/>
+                </span>
+                <span class="btn_2">
+                    <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="__PUBLIC__/home/image/baoming.png" alt=""/></a>
+                </span>
+                </div>
+            </li>
+        </foreach>
+    </ul>
 
+</div>
+<div id="page">
+    <div class="code">
+        <ul>
+            <li class="first"><a href="/news?news_type=<?php
+                        $home_page = current($page_arr);
+                        echo $news_type . '&page='.$home_page;?>">首页</a></li>
+            <li class="prev">
+                <a href="/news?news_type=<?php
+                        $last_page = ($page-1 <= 0)? 1:$page-1;
+                        echo $news_type . '&page='.$last_page;?>">
+                    上一页</a></li>
+            <volist name="page_arr" id="vo">
+                <li class="num active">
+                    <a href="/news?news_type=<?php echo $news_type . '&page='.$vo;?>">{$vo}</a> </li>
+            </volist>
+
+
+            <li class="next"><a href="/news?news_type=<?php
+                    $end_page = end($page_arr);
+                        $next_page = ($page+1 > $end_page)?$end_page :$page+1;
+                        echo $news_type . '&page='.$next_page;?>">下一页</a></li>
+            <li class="last"><a href="/news?news_type=<?php
+                        $end_page = end($page_arr);
+                        echo $news_type . '&page='.$end_page;?>">尾页</a></li>
+        </ul>
+    </div>
+
+</div>
 <footer>
     <ul class="concat">
         <li>
@@ -348,5 +374,6 @@
         document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
     }
 </script>
+
 </body>
 </html>

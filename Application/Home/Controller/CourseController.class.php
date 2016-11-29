@@ -13,55 +13,105 @@ class CourseController extends BaseController {
      */
     public function index(){
         $course_type = $this->params['course_type'];//课程分类
-        $open_status = $this->params['open_status'];//课程类型，公开或者内训
-        $provider = $this->params['provider'];//提供方
+        $is_pub = $this->params['is_pub'];//课程状态1公共|2内训|3定向
+        $is_master = $this->params['is_master'];
+        $course_dir = $this->params['course_dir'];
+
+        if($is_master == 1){
+            $where['subsite_id'] = 0;
+        }elseif($is_master ==2){
+            $where['subsite_id'] = $this->subsite_id;
+        }
 
         $where['status'] = 0;
         $m_course = new CourseModel();
-        if(!empty($course_type)){
-            $ct_arr = array_filter(explode(',',$course_type));
-            $cse_id = $m_course->getCseByType($ct_arr);
 
-            $where['course_id'] = array('in',$cse_id);
+        //获取课程方向列表
+        $cd_list = $m_course->getCourseDir();
+        $this->assign('cd_list',$cd_list);
 
-        }
+        //根据课程方向获取课程分类列表
 
-        if(!empty($open_status)){
-            $where['open_status'] = $open_status;
-        }
-
-        if(!empty($provider)){
-            $where['subsite_id'] = ($provider ==1)? 0:$this->subsite_id;
+        if(!empty($course_dir)){
+            $ct_list = $m_course->getCseTypeByDir($course_dir);
         }else{
-            $where['subsite_id'] = array('in',array(0,$this->subsite_id));
-        }
-
-
-        if($count = $m_course->getCourseCount($where)){
-            //获取分页总数进一取整
-            $page_arr = listPage($count,$this->limit);
-
-            if($data = $m_course->getCourseList($where,$this->offset,$this->limit)){
-
-                $data = $this->formatCourse($data);
+            //默认加载第一条学习方向分类
+            if(!empty($course_type)){
+                $course_dir = $m_course->getCseDirByType($course_type);
+                $ct_list = $m_course->getCseTypeByDir($course_dir);
+            }else{
+                $ct_list = $m_course->getCseTypeByDir('1');
             }
 
-            $this->assign('course_list',$data);
-            $this->assign('page_arr',$page_arr);
+            }
+
+
+        if(empty($ct_list)){
+            $this->showMsg('暂无相关课程');
         }
+        $this->assign('ct_list',$ct_list);
 
 
-        $index = new IndexController();
-        $time = $index->getTime();
-        $this->assign('time',$time);
-        if($weather = $index->getWeather()){
-            $this->assign('weather',$weather);
+
+
+
+
+//        if (!empty($course_type) || !empty($course_dir)) {
+//            $cse_d_id = array();
+//            $cse_t_id = array();
+//            if(!empty($course_type)){
+//                $ct_arr = explode(',', $course_type);
+//                $cse_t_id = $m_course->getCseByType($ct_arr);
+//
+//            }
+//
+//            if(!empty($course_dir)){
+//                $cd_arr = explode(',', $course_dir);
+//                $cse_d_id = $m_course->getCseByType($cd_arr,$opt=2);
+//
+//            }
+//            $cse_arr = array_merge($cse_t_id,$cse_d_id);
+//
+//
+//            $where['course_id'] = array('in', $cse_arr);
+//
+//        }
+//
+//
+//        if(!empty($is_pub)){
+//            $where['is_pub'] = $is_pub;
+//        }
+//
+//        if ($count = $m_course->getCourseCount($where)) {
+//
+//            $where['subsite_id'] = $this->subsite_id;
+//
+//            if ($data = $m_course->getCourseList($where, 0, 12)) {
+//                $data = $this->formatCourse($data);
+//            } else {
+//                $where['subsite_id'] = 0;
+//                if ($data1 = $m_course->getCourseList($where, 0, 12)) {
+//                    $data = $this->formatCourse($data1);
+//                } else {
+//                    $this->to_back('11006');
+//                }
+//            }
+//
+//
+//
+//
+////            $this->assign('course_list', $data);
+            $index = new IndexController();
+            $time = $index->getTime();
+            $this->assign('time',$time);
+            if($weather = $index->getWeather()){
+                $this->assign('weather',$weather);
+            }
+            $this->display();
+
         }
+  //  }
 
-        $this->display();
-
-
-    }
 
 
     /*
@@ -99,69 +149,84 @@ class CourseController extends BaseController {
     public function courseList()
     {
         $course_type = $this->params['course_type'];//课程分类
-        $is_pub = $this->params['is_pub'];//课程状态1公共|2内训|3定向
-        $number = $this->params['number'];
-        $is_master = $this->params['is_master'];
-        $course_dir = $this->params['course_dir'];
-
-        if($is_master == 1){
-            $where['subsite_id'] = 0;
-        }elseif($is_master ==2){
-            $where['subsite_id'] = $this->subsite_id;
-        }
-
-
+        $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
 
         $where['status'] = 0;
         $m_course = new CourseModel();
-        if (!empty($course_type) || !empty($course_dir)) {
-            $cse_d_id = array();
-            $cse_t_id = array();
-            if(!empty($course_type)){
-                $ct_arr = explode(',', $course_type);
-                $cse_t_id = $m_course->getCseByType($ct_arr,$opt=1);
 
-            }
-
-            if(!empty($course_dir)){
-                $cd_arr = explode(',', $course_dir);
-                $cse_d_id = $m_course->getCseByType($cd_arr,$opt=2);
-
-            }
-            $cse_arr = array_merge($cse_t_id,$cse_d_id);
-
-
-            $where['course_id'] = array('in', $cse_arr);
-
+        if (!empty($course_type)) {
+            $ct_arr = explode(',', $course_type);
+           if($cse_id = $m_course->getCseByType($ct_arr)){
+               $where['course_id'] = array('in', $cse_id);
+           }
         }
 
 
-        if(!empty($is_pub)){
-            $where['is_pub'] = $is_pub;
+
+        if (!empty($is_recommend)) {
+            $where['is_recommend'] = $is_recommend;
         }
 
-        if ($count = $m_course->getCourseCount($where)) {
-
-            $where['subsite_id'] = $this->subsite_id;
-
-            if ($data = $m_course->getCourseList($where, 0, $number)) {
-                $data = $this->formatCourse($data);
+        $where['subsite_id'] = $this->subsite_id;
+        if ($data_sub = $m_course->getCourseList($where, 0, 8)) {
+            $data = $this->formatCourse($data_sub);
+        } else {
+            $where['subsite_id'] = 0;
+            if ($data_mas = $m_course->getCourseList($where, 0, 8)) {
+                $data = $this->formatCourse($data_mas);
             } else {
-                $where['subsite_id'] = 0;
-                if ($data1 = $m_course->getCourseList($where, 0, $number)) {
-                    $data = $this->formatCourse($data1);
-                } else {
-                    $this->to_back('11006');
-                }
+                $this->to_back('11006');
             }
-
-
             $this->assign('course_list', $data);
 
             $this->display();
 
 
         }
+    }
+
+
+
+    public function Recommend(){
+        $data = array(
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+            array(
+                'name'=>'中国共产党问责条例解毒',
+                'id'=>1
+            ),
+        );
+        $this->to_back($data);
     }
 
 }

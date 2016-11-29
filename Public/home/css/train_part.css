@@ -1,4 +1,4 @@
-/*ÓÒ²à²¿·ÖÄÚÈÝdiv.aside²¿·Ö*/
+/*ï¿½Ò²à²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½div.asideï¿½ï¿½ï¿½ï¿½*/
 div.aside{
     float: right;
     width:820px;
@@ -8,7 +8,7 @@ div.aside{
 }
 div.aside ul li span{
     font-size: 16px;
-    border: 1px dashed #;
+    /*border: 1px dashed #;*/
 }
 div.aside ul li{
     width: 760px;
@@ -26,7 +26,7 @@ div.aside ul li span.date{
     float: right;
 }
 
-/*Ò³Âë²¿·ÖÉèÖÃ*/
+/*Ò³ï¿½ë²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 div#page{
     width:820px;
     text-align: center;
