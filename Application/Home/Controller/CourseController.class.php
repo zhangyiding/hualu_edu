@@ -99,7 +99,7 @@ class CourseController extends BaseController {
     public function courseList()
     {
         $course_type = $this->params['course_type'];//课程分类
-        $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
+        $is_pub = $this->params['is_pub'];//课程状态1公共|2内训|3定向
         $number = $this->params['number'];
         $is_master = $this->params['is_master'];
         $course_dir = $this->params['course_dir'];
@@ -119,7 +119,7 @@ class CourseController extends BaseController {
             $cse_t_id = array();
             if(!empty($course_type)){
                 $ct_arr = explode(',', $course_type);
-                $cse_t_id_ = $m_course->getCseByType($ct_arr,$opt=1);
+                $cse_t_id = $m_course->getCseByType($ct_arr,$opt=1);
 
             }
 
@@ -128,24 +128,17 @@ class CourseController extends BaseController {
                 $cse_d_id = $m_course->getCseByType($cd_arr,$opt=2);
 
             }
+            $cse_arr = array_merge($cse_t_id,$cse_d_id);
 
-            $where['course_id'] = array('in', array_merge($cse_d_id,$cse_t_id));
 
-        }
-
-        if(!empty($course_dir)){
+            $where['course_id'] = array('in', $cse_arr);
 
         }
 
 
-
-
-
-
-        if (!empty($is_recommend)) {
-            $where['is_recommend'] = $is_recommend;
+        if(!empty($is_pub)){
+            $where['is_pub'] = $is_pub;
         }
-
 
         if ($count = $m_course->getCourseCount($where)) {
 
