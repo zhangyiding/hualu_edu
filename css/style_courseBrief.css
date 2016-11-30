@@ -238,6 +238,18 @@ div.con_2 div.line_1 span.time{
     float: right;
     margin-right: 30px;
 }
+div.con_2 span.arrow{
+    display: inline-block;
+    width: 13px;
+    height: 7px;
+    margin-left: 15px;
+    background:url("../image/arrow_06.png") no-repeat;
+    position: relative;
+    top: -3px;
+}
+div.con_2 span.active{
+    background: url("../image/arrow_03.png") no-repeat;
+}
 div.con_2 div.line_1{
     border-bottom: 1px solid #aaaaaa;
     padding-bottom: 10px;
@@ -272,6 +284,9 @@ div.con_2 ul.msg li p{
 div.con_2 ul.msg{
     margin-top: 10px;
 }
+div.con_2 ul.msg li p span.lf a{
+    color:#686868;
+}
 div.con_2 ul.msg li p span.lf a:hover{
     color:#72B2E7;
 }
@@ -281,14 +296,14 @@ div.con_2 span.rg{
 ul.msg p{
     display: none;
 }
-ul.msg{
-    display: none;
-}
-ul.msg_1{
-    display: block;
-}
 ul.msg .p_1{
     display: block;
+}
+div.con_2 h5{
+    color: #686868;
+}
+div.con_2 h5 .p_1{
+    display: none;
 }
 
 
