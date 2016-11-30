@@ -189,7 +189,7 @@
             <a href="/news">培训资讯</a>
         </li>
         <li>
-            <a href="/course">选课</a>
+            <a href="/course?is_master=1">选课</a>
         </li>
         <li>
             <a href="/center">学习中心</a>
@@ -236,26 +236,21 @@
             <div class="code">
                 <ul>
                     <li class="first"><a href="/news?news_type=<?php
-                        $home_page = current($page_arr);
-                        echo $news_type . '&page='.$home_page;?>">首页</a></li>
+                        echo $news_type . '&page='.$page_arr['home'];?>">首页</a></li>
                     <li class="prev">
                         <a href="/news?news_type=<?php
-                        $last_page = ($page-1 <= 0)? 1:$page-1;
-                        echo $news_type . '&page='.$last_page;?>">
+                        echo $news_type . '&page='.$page_arr['last'];?>">
                             上一页</a></li>
-                    <volist name="page_arr" id="vo">
+                    <volist name="page_arr['list']" id="vo">
                         <li class="num active">
                             <a href="/news?news_type=<?php echo $news_type . '&page='.$vo;?>">{$vo}</a> </li>
                     </volist>
 
 
                     <li class="next"><a href="/news?news_type=<?php
-                    $end_page = end($page_arr);
-                        $next_page = ($page+1 > $end_page)?$end_page :$page+1;
-                        echo $news_type . '&page='.$next_page;?>">下一页</a></li>
+                        echo $news_type . '&page='.$page_arr['next'];?>">下一页</a></li>
                     <li class="last"><a href="/news?news_type=<?php
-                        $end_page = end($page_arr);
-                        echo $news_type . '&page='.$end_page;?>">尾页</a></li>
+                        echo $news_type . '&page='.$page_arr['end'];?>">尾页</a></li>
                 </ul>
             </div>
 

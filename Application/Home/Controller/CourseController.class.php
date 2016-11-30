@@ -12,6 +12,8 @@ class CourseController extends BaseController {
      * 选课首页
      */
     public function index(){
+
+
         $course_type = $this->params['course_type'];//课程分类
         $is_pub = $this->params['is_pub'];//课程状态1公共|2内训|3定向
         $is_master = $this->params['is_master'];
@@ -42,7 +44,6 @@ class CourseController extends BaseController {
             }else{
                 $ct_list = $m_course->getCseTypeByDir('1');
             }
-
             }
 
 
@@ -51,66 +52,58 @@ class CourseController extends BaseController {
         }
         $this->assign('ct_list',$ct_list);
 
-
-
-
-
-
-//        if (!empty($course_type) || !empty($course_dir)) {
-//            $cse_d_id = array();
-//            $cse_t_id = array();
-//            if(!empty($course_type)){
-//                $ct_arr = explode(',', $course_type);
-//                $cse_t_id = $m_course->getCseByType($ct_arr);
-//
-//            }
-//
-//            if(!empty($course_dir)){
-//                $cd_arr = explode(',', $course_dir);
-//                $cse_d_id = $m_course->getCseByType($cd_arr,$opt=2);
-//
-//            }
-//            $cse_arr = array_merge($cse_t_id,$cse_d_id);
-//
-//
-//            $where['course_id'] = array('in', $cse_arr);
-//
-//        }
-//
-//
-//        if(!empty($is_pub)){
-//            $where['is_pub'] = $is_pub;
-//        }
-//
-//        if ($count = $m_course->getCourseCount($where)) {
-//
-//            $where['subsite_id'] = $this->subsite_id;
-//
-//            if ($data = $m_course->getCourseList($where, 0, 12)) {
-//                $data = $this->formatCourse($data);
-//            } else {
-//                $where['subsite_id'] = 0;
-//                if ($data1 = $m_course->getCourseList($where, 0, 12)) {
-//                    $data = $this->formatCourse($data1);
-//                } else {
-//                    $this->to_back('11006');
-//                }
-//            }
-//
-//
-//
-//
-////            $this->assign('course_list', $data);
-            $index = new IndexController();
-            $time = $index->getTime();
-            $this->assign('time',$time);
-            if($weather = $index->getWeather()){
-                $this->assign('weather',$weather);
+        $cse_t_list = array();
+        $cse_d_list = array();
+        if (!empty($course_type)) {
+            $cse_t_list = explode(',',$course_type);
             }
-            $this->display();
+
+        if (!empty($course_dir)) {
+            $cse_type = $m_course->getCseTypeByDir($course_dir);
+
+            foreach($cse_type as $k=>$v){
+                $cse_t_list[] = $v['ct_id'];
+            }
 
         }
-  //  }
+        if($cse_list = array_merge($cse_t_list,$cse_d_list)){
+
+            if($cse_d_id = $m_course->getCseByType($cse_list)){
+                $where['course_id'] = array('in',$cse_d_id);
+            }else{
+                $this->showMsg('暂无相关课程');
+            }
+        }
+
+        if(!empty($is_pub)){
+            $where['is_pub'] = $is_pub;
+        }
+
+        if ($count = $m_course->getCourseCount($where)) {
+            $page_arr = listPage($count,12,$this->page);
+
+            $this->assign('page_arr',$page_arr);
+            $this->assign('count',$count);
+
+            $data = $m_course->getCourseList($where, $this->offset, 12);
+
+            $data = $this->formatCourse($data);
+            $this->assign('course_list',$data);
+            }else{
+            $this->showMsg('暂无相关课程');
+        }
+
+
+        $index = new IndexController();
+        $time = $index->getTime();
+        $this->assign('time',$time);
+        if($weather = $index->getWeather()){
+            $this->assign('weather',$weather);
+        }
+        $this->display();
+
+    }
+
 
 
 
@@ -148,6 +141,7 @@ class CourseController extends BaseController {
    */
     public function courseList()
     {
+
         $course_type = $this->params['course_type'];//课程分类
         $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
 
@@ -188,6 +182,8 @@ class CourseController extends BaseController {
 
 
     public function Recommend(){
+
+        $this->to_back($this->params);
         $data = array(
             array(
                 'name'=>'中国共产党问责条例解毒',

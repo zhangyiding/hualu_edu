@@ -101,16 +101,19 @@ div#page{
     width:820px;
     text-align: center;
     overflow: hidden;
-    margin-top: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
     margin-bottom: 10px;
 }
 div#page .code{
     width: 820px;
+    text-align: center;
 
 }
 #page ul{
     width:650px;
     margin: 0 auto;
+    text-align: center;
 }
 
 #page ul li a{

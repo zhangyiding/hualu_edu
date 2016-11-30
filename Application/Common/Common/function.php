@@ -851,7 +851,7 @@ function cutStr($str,$len){
  * @param int $pagesize
  * @return array()
  */
-function listPage($count, $limit=10){
+function listPage($count, $limit=10,$page=1){
 
     if(empty($count)){
         return false;
@@ -859,10 +859,23 @@ function listPage($count, $limit=10){
     //获取分页总数进一取整
     $page_arr = array();
     $page_count = ceil($count/$limit);
+
     for($i=1;$i<=$page_count;$i++){
+
+
         $page_arr[] = $i;
     }
-    return $page_arr;
+    if(!empty($page_arr)){
+        $data['list'] = $page_arr;
+        $data['count'] = $page_count;
+        $data['home'] = current($page_arr);
+        $data['end'] = end($page_arr);
+        $data['last'] = ($page-1 <= 0)? 1:$page-1;
+        $data['next'] = ($page+1 >= $data['end'])? $data['end_page']:$page+1;
+        return $data;
+    }
+
+
 
 }
 

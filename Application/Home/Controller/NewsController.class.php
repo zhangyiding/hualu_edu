@@ -23,7 +23,7 @@ class NewsController extends BaseController {
 
         if($count = $m_news->getNewsCount($where)){
 
-            $page_arr = listPage($count,$this->limit);
+            $page_arr = listPage($count,$this->limit,$this->page);
 
             $data = $m_news->getNewsList($where,$this->offset,$this->limit,40);
 

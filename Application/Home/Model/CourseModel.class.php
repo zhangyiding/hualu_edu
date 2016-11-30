@@ -79,7 +79,7 @@ class CourseModel extends Model{
     }
 
     public function getCseByType($ct_list){
-            $where['ct_id'] = array('in',$ct_list);
+        $where['ct_id'] = array('in',$ct_list);
 
         $result = $this->table('course_type_map')
             ->field('course_id')

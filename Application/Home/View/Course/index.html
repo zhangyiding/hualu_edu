@@ -187,7 +187,7 @@
             <a href="/news">培训资讯</a>
         </li>
         <li>
-            <a href="/course">选课</a>
+            <a href="/course?is_master=1">选课</a>
         </li>
         <li>
             <a href="/center">学习中心</a>
@@ -206,29 +206,26 @@
             <div class="row_right">
                 <ul>
                     <li class="active">
-                        <a href="course?is_master=1&course_dir=1">国资委干教中心</a>
+                        <a href="course?is_master=1">国资委干教中心</a>
                     </li>
                     <li>
-                        <a href="course?is_master=2&course_dir=1">中石油分站</a>
+                        <a href="course?is_master=2">中石油分站</a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="row">
             <div class="row_left ">
-                <span class="row_left_1">学习方向：</span>
+                 <span class="row_left_1">学习方向：</span>
                 <span class="row_left_2">全部</span>
             </div>
-            <div class="row_right">
+            <div class="row_right row_right_dir">
                 <ul>
                     <foreach name="cd_list" item="vo">
                         <li>
-                            <!--<a  href="/course?course_dir=<?php echo $vo['cd_id'];?>" >{$vo.name}</a>-->
-                            <a  href="#" onclick="func1($vo['id'])">{$vo.name}</a>
+                             <a href="/course?course_dir=<?php echo $vo['cd_id'];?>">{$vo.name}</a>
                        </li>
                    </foreach>
-
-
                </ul>
            </div>
        </div>
@@ -237,7 +234,7 @@
                <span class="row_left_1">分类：</span>
                <span class="row_left_2">全部</span>
            </div>
-           <div class="row_right">
+           <div class="row_right row_right_type">
                <ul>
                    <foreach name="ct_list" item="vo">
                        <li>
@@ -247,21 +244,21 @@
                </ul>
            </div>
        </div>
-       ：        <div class="row">
+     <div class="row">
        <div class="row_left ">
            <span class="row_left_1">类型：</span>
            <span class="row_left_2">全部</span>
        </div>
-       <div class="row_right">
+       <div class="row_right row_right_status">
            <ul>
                <li>
-                   <a href="#">公开</a>
+                   <a href="course?is_pub=1">公开</a>
                </li>
                <li>
-                   <a href="#">内训</a>
+                   <a href="course?is_pub=2">内训</a>
                </li>
                <li>
-                   <a href="#">定向</a>
+                   <a href="course?is_pub=3">定向</a>
                </li>
            </ul>
        </div>
@@ -273,11 +270,11 @@
     <!--<iframe src="/course/courseList?number=12&is_master=1" frameborder="0" scrolling="no" class="insert"></iframe>-->
 <!--</div>-->
 <div id="allcourse">
-    <h1>共有30门课程</h1>
+    <h1>共有{$count}门课程</h1>
     <ul class="learn learn_1" style="display: block">
         <foreach name="course_list" item="vo">
             <li>
-                <img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/>
+                <a href="/course/courseInfo?course_id=<?php echo $vo['course_id'];?>"><img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/></a>
                 <div class="hour">{$vo.os_cn}</div>
                 <h4>{$vo.name}</h4>
                 <div class="btn">
@@ -294,29 +291,19 @@
 
 </div>
 <div id="page">
-    <div class="code">
+    <div class="code page_list">
         <ul>
-            <li class="first"><a href="/news?news_type=<?php
-                        $home_page = current($page_arr);
-                        echo $news_type . '&page='.$home_page;?>">首页</a></li>
+            <li class="first"><a href="<?php echo 'course?page='.$page_arr['home'];?>">首页</a></li>
             <li class="prev">
-                <a href="/news?news_type=<?php
-                        $last_page = ($page-1 <= 0)? 1:$page-1;
-                        echo $news_type . '&page='.$last_page;?>">
+                <a href="<?php echo 'course?page='.$page_arr['last'];?>">
                     上一页</a></li>
-            <volist name="page_arr" id="vo">
-                <li class="num active">
-                    <a href="/news?news_type=<?php echo $news_type . '&page='.$vo;?>">{$vo}</a> </li>
+            <volist name="page_arr['list']" id="vo">
+                <li class="num ">
+                    <a href="<?php echo 'course?page='.$vo;?>" >{$vo}</a> </li>
             </volist>
 
-
-            <li class="next"><a href="/news?news_type=<?php
-                    $end_page = end($page_arr);
-                        $next_page = ($page+1 > $end_page)?$end_page :$page+1;
-                        echo $news_type . '&page='.$next_page;?>">下一页</a></li>
-            <li class="last"><a href="/news?news_type=<?php
-                        $end_page = end($page_arr);
-                        echo $news_type . '&page='.$end_page;?>">尾页</a></li>
+            <li class="next"><a href="<?php echo 'course?page='.$page_arr['next'];?>">下一页</a></li>
+            <li class="last"><a href="<?php echo 'course?page='.$page_arr['end'];?>">尾页</a></li>
         </ul>
     </div>
 
@@ -353,25 +340,81 @@
 </footer>
 
 <script>
-    document.oncontextmenu=function(e){
-        return false;
-    };
-    function Golink(obj) {
-        var li = document.getElementById("study").getElementsByTagName("a");
-        for (i = 0; i < li.length; i++) {
-            //            if (i == n)
-            //                li[i].className = "leftmenusel";
-            //            else
-            li[i].className = "";
-
-        }
-        obj.className = "sel";
+    function create_code(){
+        document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
     }
 </script>
 
+<script >
+    $("div.row_right_dir ul li a").click(function(e){
+
+        var href=$(this).attr("href");
+        var is_master = GetQueryString('is_master');
+        var url = href+'&is_master='+is_master;
+        $(this).attr('href',url);
+
+    });
+
+    $("div.row_right_type ul li a").click(function(e){
+        var href=$(this).attr("href");
+        var is_master = GetQueryString('is_master');
+        var url = href+'&is_master='+is_master;
+        $(this).attr('href',url);
+
+    });
+
+
+    $("div.row_right_status ul li a").click(function(e){
+
+        var href=$(this).attr("href");
+        var is_master = GetQueryString('is_master');
+        var url = href+'&is_master='+is_master;
+
+        if(GetQueryString('course_dir')){
+            var course_dir = GetQueryString('course_dir');
+            url+='&course_dir='+course_dir;
+        }
+        if(GetQueryString('course_type')){
+            var course_type = GetQueryString('course_type');
+            url+='&course_type='+course_type;
+        }
+
+        $(this).attr('href',url);
+
+    });
+
+    $("div.page_list ul li a").click(function(e){
+
+        var href=$(this).attr("href");
+        var is_master = GetQueryString('is_master');
+        var url = href+'&is_master='+is_master;
+
+
+        if(GetQueryString('course_dir')){
+            var course_dir = GetQueryString('course_dir');
+            url+='&course_dir='+course_dir;
+        }
+        if(GetQueryString('course_type')){
+            var course_type = GetQueryString('course_type');
+            url+='&course_type='+course_type;
+        }
+
+        if(GetQueryString('is_pub')){
+            var is_pub = GetQueryString('is_pub');
+            url+='&is_pub='+is_pub;
+        }
+
+        $(this).attr('href',url);
+    })
+
+
+</script>
 <script>
-    function create_code(){
-        document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
     }
 </script>
 
