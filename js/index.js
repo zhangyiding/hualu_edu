@@ -1,18 +1,16 @@
 $(function() {
-    //$.get("//hualu.etago.cn",function(data){
-    //    console.log(data);
-    //    if(data.msg="成功"){
-    //        console.log("1");
-    //        $(".modal_1").fadeIn();
-    //    }
-    //
-    //})
+    //$.post("//edu.hl.com/course/recommend",{name:"jason",time:"2016"},
+    //function(data){
+    //    console.log(data.result);
+    //});
 
 
 
 
 
-
+    $(function(){
+        $("#footer").load("footer/footer.html");
+    })
     //banner呼吸轮播效果；
     var num=0;
     var tim;

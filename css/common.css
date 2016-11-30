@@ -1,5 +1,5 @@
 /*样式的重置*/
-body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span{
+body,ul,li,p,h1,h2,h3,h4,h5,h6,img,button,span,dl,dt,dd{
     margin: 0;
     padding: 0;
 }
@@ -15,7 +15,7 @@ em,i{ font-style: normal !important; }
 img{
     border:none;
 }
-ul,li{
+ul,li,dl,dt,dd{
     list-style: none;
 }
 a{

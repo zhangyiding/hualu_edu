@@ -244,14 +244,20 @@ div#hot>h1{
     margin-top: 30px;
     overflow:hidden;
     margin-bottom: 45px;
-    padding-left: 20px;
-    padding-right: 20px;
+     padding-left: 5px;
 
 }
  ul.learn li{
     float: left;
     position: relative;
-    margin-right: 15px;
+    margin-right: 13px;
+     border: 1px solid transparent;
+     padding: 10px 4px;
+
+}
+ul.learn li:hover{
+    border: 1px solid #aaa;
+
 }
  ul.learn li img{
     cursor: pointer;
@@ -349,7 +355,7 @@ div#course{
     height: 620px;
 }
 div#course ul.learn{
-    display: none;
+    /*display: none;*/
 }
 /*footer²¿·Ö*/
 footer{
