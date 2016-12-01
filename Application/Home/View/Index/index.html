@@ -10,166 +10,12 @@
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
 </head>
 <body>
-<!--用户登录弹出层部分-->
-<div class="modal_1" style="display:none">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close_1">
-                <img src="__PUBLIC__/home/image/close.png" alt=""/>
-            </div>
-            <h1>用户登录</h1>
-            <h4 class="log">
-                <i></i>
-                <input type="text" placeholder="请输入您的手机/邮箱"/>
-            </h4>
-            <h4 class="reg">
-                <i></i>
-                <input type="text" placeholder="请输入您的密码"/>
-            </h4>
-            <p class="rem">
-                <span class="user">记住用户名</span>
-                <span class="pwd">找回密码</span>
-            </p>
-            <div class="join">
-                <span class="login_1">登录</span>
-                <span class="login_2">注册</span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal_2" style="display:none">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close_2">
-                <img src="__PUBLIC__/home/image/close.png" alt=""/>
-            </div>
-            <h1>用户注册</h1>
-            <ul class="create">
-                <li class="create_1">
-                    <span class="info_1">创建您的账号</span>
-                    <span class="info_2">(以下信息*皆为必填项，请认真填写！)</span>
-                </li>
-                <li class="create_2">
-                    <span class="info_3">已经拥有账号?</span>
-                    <span class="info_4">直接登录</span>
-                </li>
-            </ul>
-            <p class="line">
-            </p>
-            <div class="mation">
-                <div class="mation_1">
-                    <label for="email">
-                        电子邮箱
-                    </label>
-                    <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
-                    <span>
-                        <img src="__PUBLIC__/home/image/regist_03.png" alt=""/>
-                    </span>
-                </div>
-                <div class="mation_2">
-                    <label for="jituan">
-                        集团或主管单位名称
-                    </label>
-                    <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>
-                    <span>
-                        <img src="__PUBLIC__/home/image/regist_10.png" alt=""/>
-                        <i>请输入正确信息</i>
-                    </span>
-                </div>
-                <div class="mation_3">
-                    <label>
-                        选择性别
-                    </label>
-                    <span>
-                          <input type="radio" name="rdoGender" checked value="male">男
-                    <input type="radio" name="rdoGender" value="female">女
-                    </span>
-
-                </div>
-                <div class="mation_4">
-                    <label for="name">
-                        姓名
-                    </label>
-                    <input type="text" id="name" placeholder="请输入您的姓名" class="only"/>
-                </div>
-                <div class="mation_5">
-                    <label for="danwei">
-                        单位名称
-                    </label>
-                    <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only"/>
-                </div>
-                <div class="mation_6">
-                    <label for="pwd">
-                        登录密码
-                    </label>
-                    <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_7">
-                    <label for="sure">
-                        确认密码
-                    </label>
-                    <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_8">
-                    <label for="phone">
-                        手机号码
-                    </label>
-                    <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only"/>
-                </div>
-                <div class="mation_9">
-                    <label for="yanzhen">
-                        验证码
-                    </label>
-                    <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
-                    <span>
-                        <img id="code" src="/user/createVerify" alt="看不清楚，换一张" style="cursor: pointer; vertical-align:middle;" onClick="create_code()"/>
-                    </span>
-                </div>
-            </div>
-            <div class="monent">
-                立即注册
-
-            </div>
-        </div>
-    </div>
-</div>
 
 
-
-
-
-<!--head部分-->
-<header>
-    <ul id="head_1">
-        <li>
-            <p class="date">{$time}</p>
-        </li>
-        <li>
-            <p class="addr">{$weather.name}</p>
-        </li>
-        <li>
-            <p class="weather">
-                <img src="<?php echo $weather['img'];?>" alt=""/>
-                {$weather.text}</p>
-        </li>
-    </ul>
-    <ul id="head_2">
-        <li>
-            <label for="user">用户名</label>
-            <input type="text" id="user"/>
-        </li>
-        <li class="password">
-            <label for="pwd">密码</label>
-            <input type="text" id="pwd"/>
-        </li>
-        <li class="login">
-            <div class="login_denglu">登录</div>
-        </li>
-        <li class="regist">
-            <div>注册</div>
-        </li>
-    </ul>
+<header id="header">
 </header>
+
+
 <!--nan部分-->
 <nav>
     <ul>
@@ -294,40 +140,13 @@
         <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"/></iframe>
     </div>
 </div>
-<div id="course">
-</div>
-<footer>
-    <ul class="concat">
-        <li>
-            <a href="#">联系我们</a>
-            <em>|</em>
-        </li>
-        <li><a href="#">机构简介</a> <em>|</em></li>
-        <li>
-            <a href="#">网站声明</a>
-            <em>|</em>
-        </li>
-        <li>
-            <a href="#">管理路口</a>
-        </li>
-    </ul>
-    <div class="line"></div>
-    <p>国务院国有资产监督管理委员会干部教育培训中心</p>
-    <p>中国华录集团培训分站</p>
-    <p class="eng">Copyright 2009 Education and Trainning Centre for Officials and Entrepreneurs Education Network,SASAC</p>
-    <p class="eng">
-        <span>地址：北京市东城区安定门外大街56号</span>
-        <span> 联系邮箱：service@tcsasac.com</span>
-        <span>邮政编码：100011</span>
-    </p>
-    <p class="eng">
-        <span>技术支持：010-64471676 fuwu@tcsasac.com</span>
-        <span>QQ客服：3450279420 3443376137</span>
-        <span>京ICP备08104266号</span>
-    </p>
+
+<footer id="footer" >
+
 </footer>
 <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
 <script src="__PUBLIC__/home/js/index.js"></script>
+<script src="__PUBLIC__/home/js/common.js"></script>
 <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
 
 <script>

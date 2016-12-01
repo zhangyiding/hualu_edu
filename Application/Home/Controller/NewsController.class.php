@@ -41,12 +41,7 @@ class NewsController extends BaseController {
         $this->assign('news_type',$type);
         $this->assign('page',$this->page);
 
-        $index = new IndexController();
-        $time = $index->getTime();
-        $this->assign('time',$time);
-        if($weather = $index->getWeather()){
-            $this->assign('weather',$weather);
-        }
+
 
         $this->display();
         }

@@ -2,6 +2,14 @@
  * Created by Administrator on 2016/11/24 0024.
  */
 $(function(){
+
+
+
+    $("#footer").load("/index/footer");
+    $("#header").load("/index/header");
+
+
+
     $("#page ul li a").mouseover(function(){
         $("#page ul li.active").removeClass("active");
     })
@@ -16,7 +24,7 @@ $(function(){
         $("div.tab_2").show();
         $("div.tab_1").hide();
     })
-//   Ê×Ò³ÇÐ»»²¿·Ö
+//   ï¿½ï¿½Ò³ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½
     $(".nav li a").click(function(e){
         //e.preventDefault();
         $(this).parent().addClass("active").siblings(".active").removeClass("active");

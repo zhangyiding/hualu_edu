@@ -798,6 +798,7 @@ function getImageBaseUrl($img){
 }
 
 
+
 /**
  *
  * @param string $type   goods/user
@@ -819,6 +820,23 @@ function getFileBaseUrl($path){
 
 }
 
+
+function getFileCoverByExt($ext)
+{
+    if (empty($ext)) {
+       $file_cover = '/public/home/image/file_cover.png';
+        return $file_cover;
+    }
+
+    if(in_array($ext,array('pdf'))){
+        $file_cover = '/public/home/image/pdf.png';
+    }elseif(in_array($ext,array('doc','docx'))){
+        $file_cover = '/public/home/image/doc.png';
+    }else{
+        $file_cover = '/public/home/image/file_cover.png';
+    }
+    return $file_cover;
+}
 
 
 /**
@@ -895,6 +913,26 @@ function changeTimeType($seconds){
     }
     return $time;
 }
+
+
+
+/**
+ * @tudo 格式化时间戳
+ *
+ * @param int $time //时间戳
+ * @param int $type //时间类型
+ * @return str
+ */
+function formatTime($time){
+
+    if(empty($time)){
+       return '00-00-00';
+    }
+    $date = date('Y-m-d',$time);
+
+    return $date;
+}
+
 
 function getFileInfo($file,$unit = 'm'){
 

@@ -121,5 +121,70 @@ class CourseModel extends Model{
         return $result;
     }
 
+
+
+
+    public function getCourseInfo($course_id){
+
+        $result = $this->alias('c')
+            ->field('c.course_id,c.subsite_id,c.is_recommend,c.enroll_time,c.end_time,c.open_status,
+                     c.name,c.score,c.price,c.is_pub,c.cover,c.intro,c.remark,c.teacher_id,c.ctime,
+                     t.name as tea_name,t.intro as tea_intro,t.avatar as tea_img')
+            ->join('left join teacher as t on c.teacher_id = t.teacher_id')
+            ->where(array(
+                'c.course_id'=>$course_id,
+                'c.status'=>0,
+                ))
+            ->find();
+
+        return $result;
+    }
+
+
+
+    public function getCseTypeInfo($course_id){
+
+        $result = $this->table('course_type_map')
+            ->alias('ctm')
+            ->field('ctm.cd_id,ctm.ct_id,ct.name as ct_name')
+            ->join('left join course_type as ct on ctm.ct_id = ct.ct_id')
+            ->where(array('ctm.course_id'=>$course_id))
+            //因Order与mysql字段重复所以使用改格式
+            ->limit(0,1)
+            ->find();
+        return $result;
+    }
+
+
+    public function getCseListByType($course_type,$limit=8){
+
+        $result = $this->table('course_type_map')
+            ->alias('ctm')
+            ->field('ctm.ct_id,c.name,c.course_id')
+            ->join('left join course as c on ctm.course_id= c.course_id')
+            ->where(array(
+                'ctm.ct_id'=>$course_type,
+                'c.subsite_id'=>0,
+                'c.status'=>0))
+            ->order('c.ctime desc')
+            ->limit(0,$limit)
+            ->select();
+        return $result;
+    }
+
+    public function getResource($course_id){
+
+        $result = $this->table('course_resource')
+            ->alias('cr')
+            ->field('cr.order,r.resource_id,r.name as res_name,r.type,r.ext,r.file_path,r.file_size,
+                     r.duration,r.remark')
+            ->join('join resource as r on cr.resource_id=r.resource_id')
+            ->where(array('cr.course_id'=>$course_id))
+            ->select();
+
+        return $result;
+    }
+
+
 }
 ?>

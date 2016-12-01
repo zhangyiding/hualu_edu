@@ -75,6 +75,17 @@ class IndexController extends BaseController {
 
 
 
+
+        $this->display();
+    }
+
+
+    /**
+     * @todo 加载页面header
+     */
+
+    public function header(){
+
         $time = $this->getTime();
         $this->assign('time',$time);
 
@@ -82,20 +93,16 @@ class IndexController extends BaseController {
 
             $this->assign('weather',$weather);
         }
-
         $this->display();
     }
 
+    /**
+     * @todo 加载页面footer
+     */
 
+    public function footer(){
 
-
-
-
-
-    public function weather(){
-       $time = $this->getTime();
-       $weather = $this->getWeather();
-      $this->to_back((array('time'=>$time,'weather'=>$weather))) ;
+        $this->display();
     }
 
 

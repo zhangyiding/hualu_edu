@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Common\Controller\BaseController;
+use Common\Model\BaseModel;
 use Home\Model\CourseModel;
 use Home\Model\NewsModel;
 use Home\Model\UserModel;
@@ -75,6 +76,7 @@ class CourseController extends BaseController {
             }
         }
 
+        //判断公开、内训、定向
         if(!empty($is_pub)){
             $where['is_pub'] = $is_pub;
         }
@@ -93,13 +95,6 @@ class CourseController extends BaseController {
             $this->showMsg('暂无相关课程');
         }
 
-
-        $index = new IndexController();
-        $time = $index->getTime();
-        $this->assign('time',$time);
-        if($weather = $index->getWeather()){
-            $this->assign('weather',$weather);
-        }
         $this->display();
 
     }
@@ -119,6 +114,7 @@ class CourseController extends BaseController {
                 $open_status = ($v['open_status'] == 1)?'最新上线':'即将结课';
 
                 $course_num = $m_course->getCourseNum($v['course_id']);
+                //open_status and course_num
                 $course_list[$k]['os_cn'] = $open_status .' (共' .$course_num .'节课)';
 
                 $course_list[$k]['name'] = cutStr($v['name'],12);
@@ -171,58 +167,87 @@ class CourseController extends BaseController {
             } else {
                 $this->to_back('11006');
             }
-            $this->assign('course_list', $data);
-
-            $this->display();
-
-
         }
+        $this->assign('course_list', $data);
+
+        $this->display();
+
     }
 
 
 
-    public function Recommend(){
+    public function courseInfo(){
 
-        $this->to_back($this->params);
-        $data = array(
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-            array(
-                'name'=>'中国共产党问责条例解毒',
-                'id'=>1
-            ),
-        );
-        $this->to_back($data);
+        $course_id = $this->params['course_id'];
+
+        $m_course = new CourseModel();
+        $m_base = new BaseModel();
+        if($course_info = $m_course->getCourseInfo($course_id)){
+
+            //根据课程id获取分类信息
+            if($ct_info = $m_course->getCseTypeInfo($course_id)){
+                $course_info['ct_name'] = $ct_info['ct_name'];
+                $ct_id = $ct_info['ct_id'];
+
+                $cse_list = $m_course->getCseListByType($ct_id);
+
+                $this->assign('cse_list',$cse_list);
+            }
+
+
+            $course_info['enroll_time'] = formatTime($course_info['enroll_time']);
+            $course_info['end_time'] = formatTime($course_info['end_time']);
+            $course_info['tea_img'] = getImageBaseUrl($course_info['tea_img']);
+
+            if($course_info['subsite_id'] !== 0){
+                $sub_info = $m_base->getSubsiteInfo($course_info['subsite_id']);
+                $course_info['subsite_name'] = $sub_info['name'];
+            }else{
+                $course_info['subsite_name'] = '国资委培训';
+            }
+
+
+            //根据课程id获取资源详情列表
+            if($c_res = $m_course->getResource($course_id)){
+
+                $cse_video = array();
+                $cse_file = array();
+                $cse_time = array();
+                foreach($c_res as $k=>$v){
+                    $cse_time[] = $v['duration'];
+
+                    if(!empty($v['duration'])){
+                        $c_res[$k]['duration'] = changeTimeType($v['duration']);
+                    }
+
+                    if(!empty($v['file_path'])){
+                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
+                    }
+
+                    $c_res[$k]['file_cover'] = getFileCoverByExt($v['ext']);
+
+                    if($v['type'] == C('COURSE_VE')){
+                        $cse_video[] = $c_res[$k];
+                    }else{
+                        $cse_file[] = $c_res[$k];
+                    }
+                }
+
+                $course_info['sum_dur'] = changeTimeType(array_sum($cse_time));
+
+                $cse_pub_type = C('cse_pub');
+
+
+                $this->assign('cse_info',$course_info);
+                $this->assign('cse_pub',$cse_pub_type);
+                $this->assign('cse_video',$cse_video);
+                $this->assign('cse_file',$cse_file);
+
+            }
+            $this->display();
+
+        }
+
     }
 
 }

@@ -1,7 +1,7 @@
 $(function() {
     //$.get("//hualu.etago.cn",function(data){
     //    console.log(data);
-    //    if(data.msg="³É¹¦"){
+    //    if(data.msg="ï¿½É¹ï¿½"){
     //        console.log("1");
     //        $(".modal_1").fadeIn();
     //    }
@@ -10,10 +10,7 @@ $(function() {
 
 
 
-
-
-
-    //bannerºôÎüÂÖ²¥Ð§¹û£»
+    //bannerï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½Ð§ï¿½ï¿½ï¿½ï¿½
     var num=0;
     var tim;
     var nextFn=function(){
@@ -34,7 +31,7 @@ $(function() {
         $('.imgList li').eq(num).fadeIn();
         $('.btnList li').eq(num).addClass('current').siblings().removeClass('current');
     }
-    tim=setInterval(nextFn, 3000);
+    tim=setInterval(nextFn, 1000);
     $('.rightBtn').click(nextFn);
     $('.leftBtn').click(prevFn);
 
@@ -42,7 +39,7 @@ $(function() {
         clearInterval(tim);
     }, function() {
         clearInterval(tim);
-        tim=setInterval(nextFn, 3000);
+        tim=setInterval(nextFn, 1000);
     });
 
     $('.btnList li').click(function(event) {
@@ -56,7 +53,7 @@ $(function() {
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
 
-//¹ú×ÊÎ¯ÅàÑµÇÐ»»
+//ï¿½ï¿½ï¿½ï¿½Î¯ï¿½ï¿½Ñµï¿½Ð»ï¿½
     $("span.train_1").click(function(){
         $("ul.new_1").fadeIn();
         $("ul.new_2").fadeOut();
@@ -70,36 +67,12 @@ $(function() {
         $("span.train_1").css("backgroundImage","url('image/rightbar2.png')");
     })
 
-//Ê×Ò³²¿·ÖÇÐ»»
+//ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     $(".nav li a").click(function(){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
-//    µÇÂ¼²¿·Ö
-    $(".login_denglu").click(function (e) {
-        e.preventDefault();
-        $(".modal_1").fadeIn();
-    })
-    $(".close_1").click(function(){
-        $(".modal_1").fadeOut();
-    })
-//  ×¢²á²¿·ÖµÄÇÐ»»
-    $(".login_zhuce").click(function (e) {
-        e.preventDefault();
-        $(".modal_2").fadeIn();
+//    ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½
 
-    })
-    $("span.login_2").click(function(){
-        $(".modal_2").fadeIn();
-    })
-    $(".close_2").click(function(){
-        $(".modal_2").fadeOut();
-        $(".modal_1").fadeOut();
-    })
-    $(".info_4").click(function(){
-        console.log("1");
-        $(".modal_2").hide();
-        $(".modal_1").show();
-    })
 
 });
 

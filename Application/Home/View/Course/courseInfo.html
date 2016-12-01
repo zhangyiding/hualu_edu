@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>课程详情页面</title>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/style_courseBrief.css"/>
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/home/js/couseBrief.js"></script>
+</head>
+
+<body>
+<!--head部分-->
+<header id="header">
+</header>
+<!--nan部分-->
+<div id="title">
+    <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+</div>
+<div id="article">
+    <ul class="nav">
+        <li >
+            <a href="/">首页</a>
+        </li>
+        <li>
+            <a href="/news">培训资讯</a>
+        </li>
+        <li class="active">
+            <a href="/course?is_master=1">选课</a>
+        </li>
+        <li>
+            <a href="/center">学习中心</a>
+        </li>
+    </ul>
+</div>
+<div id="way">
+    <h4><a href="/course?is_master=1">&lt;&lt;返回选课中心</a></h4>
+    <div class="public">
+        <h1>{$cse_info.name}  <span>{$cse_pub.$cse_info[is_pub]}</span></h1>
+        <h4>{$cse_info.subsite_name}</h4>
+        <ul>
+            <li>
+                <p>类目</p>
+                <p>{$cse_info.ct_name}</p>
+            </li>
+            <li>
+                <p>时长</p>
+                <p>{$cse_info.sum_dur}</p>
+            </li>
+            <li>
+                <p>报名截止时间</p>
+                <p>{$cse_info.enroll_time}</p>
+            </li>
+            <li>
+                <p>课程有限期</p>
+                <p>{$cse_info.end_time}</p>
+            </li>
+        </ul>
+        <div class="stud">
+            <span class="font">
+                <i>￥</i>
+                {$cse_info.price}
+            </span>
+           <a href="/course/register?course_id={$cse_info.course_id}"> <span class="reg">
+                报名学习
+            </span></a>
+        </div>
+    </div>
+</div>
+<div id="advice">
+    <ul class="toggle">
+        <li class="cen_1 active"><a href="#">课程简介</a></li>
+        <li><a href="#" class="cen_2">课程目录</a></li>
+        <li><a href="#" class="cen_3">相关资料</a></li>
+        <li><a href="#">报名帮助</a></li>
+    </ul>
+    <div id="course">
+
+        <div class="con_1" style="display:block">
+            <p>{$cse_info.intro}</p>
+        </div>
+        <div class="con_3" style="display: none">
+            <ul>
+                <foreach name="cse_file" item="vo">
+                    <li class="doc">
+                        <img src="{$vo.file_cover}">
+                        <span class="sp_1">{$vo.res_name}</span>
+                        <span class="sp_2">({$vo.file_size}M)</span>
+                        <a href="{$vo.file_path}"><i>立即下载</i></a>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+
+        <div class="con_2" style="display:none">
+            <div class="line_1">
+                <i>{$cse_pub.$cse_info[is_pub]}</i>
+                <span>{$cse_info[name]}</span>
+                <span class="arrow active"></span>
+                <span class="time">课程时间</span>
+            </div>
+            <h5>
+                <ul class="msg">
+                    <li>
+                        {$cse_info[name]}
+                        <foreach name="cse_video" item="vo">
+                            <p class="p_1">
+                            <span class="lf">
+                                <a href="#">{$vo.res_name}</a>
+                            </span>
+                            <span class="rg">
+                                {$vo.duration}
+                            </span>
+                            </p>
+                        </foreach>
+                    </li>
+                </ul>
+            </h5>
+
+
+
+        </div>
+    </div>
+    <div id="teachs">
+        <h4 class="right_1">授课师资</h4>
+        <dl>
+            <dt>
+                <img src="{$cse_info.tea_img}" alt=""/>
+            </dt>
+            <dd class="name">{$cse_info.tea_name}</dd>
+            <dd>{$cse_info.tea_intro}</dd>
+        </dl>
+        <h4 class="right_2">相关推荐课程</h4>
+        <div id="suggest">
+            <ul>
+                <foreach name="cse_list" item="vo">
+                    <li><a href="/course/courseInfo?course_id={$vo.course_id}">{$vo.name}</a></li>
+                </foreach>
+            </ul>
+            <p>
+                <a href="#"><img src="__PUBLIC__/home/image/change.png" alt=""/></a>
+            </p>
+        </div>
+    </div>
+    </div>
+
+<footer id="footer" >
+
+</footer>
+</body>
+</html>

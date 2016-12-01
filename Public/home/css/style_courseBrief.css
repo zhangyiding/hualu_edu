@@ -1,0 +1,387 @@
+
+div#way{
+    width: 1000px;
+    margin: 0 auto;
+}
+div#way>h4 a{
+    color: #ABABAB;
+}
+div#way>h4{
+    text-align: left;
+    margin-top: 15px;
+}
+div.public{
+    height: 195px;
+    background: #F8F8F8;
+    border: 1px solid #DFDFDF;
+    margin-top: 10px;
+    position: relative;
+}
+div.public h1{
+    margin-top: 20px;
+    text-align: left;
+    margin-left: 20px;
+    font-size: 30px;
+}
+div.public h1 span{
+    display: inline-block;
+    width:35px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #FEF0EF;
+    border-radius: 3px;
+    background: #F8806D;
+    margin-left: 20px;
+    position: relative;
+    top: -3px;
+}
+div.public h4{
+    text-align: right;
+    color:#55A5E4;
+    height: 40px;
+    font-size: 16px;
+    padding-right:38px;
+    padding-top: 3px;
+}
+div.public ul{
+    overflow: hidden;
+}
+div.public ul li{
+    float: left;
+    width: 165px;
+    height: 45px;
+    border-right: 1px solid #CACACA;
+    cursor: pointer;
+}
+div.public ul li p{
+    color: #838383;
+    font-size: 15px;
+}
+div.stud{
+    width: 220px;
+    position: absolute;
+    bottom:20px;
+    right:25px;
+}
+div.stud span.reg{
+    display: inline-block;
+    width: 125px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    background: #F8806D;
+    color: #ffffff;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+div.stud span.font{
+    font-size: 24px;
+    margin-right: 5px;
+}
+div.stud span.font i{
+    font-size: 16px;
+}
+
+
+/*�γ̼�鲿��*/
+/*�Ƽ��γ�div#advice����*/
+div#advice{
+
+    margin-top: 20px;
+    height: 840px;
+    position: relative;
+}
+div#advice h1{
+    text-align: left;
+    float: left;
+    margin-right: 30px;
+}
+div#advice ul.toggle{
+    height: 40px;
+}
+div#advice ul.toggle li {
+    width: 96px;
+    height: 40px;
+    float: left;
+    margin-right: 3px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+}
+div#advice ul.toggle li a{
+    display: inline-block;
+    width: 94px;
+    height:41px;
+    border: 1px solid #D5D5D5;
+    border-bottom: none;
+    border-radius: 3px;
+}
+div#advice ul.toggle li.active a{
+    display: inline-block;
+    width: 94px;
+    height:40px;
+    border:1px solid #55A5E4;
+    color: #7AB6EB;
+    background: #fff;
+    border-bottom:1px solid #fff;
+}
+div#advice>span{
+    float: right;
+    margin-right: 20px;
+    color: #F8806D;
+    margin-top: 20px;
+}
+#advice div#course{
+    width: 740px;
+    border: 1px solid #68AFE8;
+    height:805px;
+    margin: 0 0;
+    margin-top: -1px;
+    /*float: left;*/
+}
+div#teachs{
+    float: right;
+    width: 240px;
+    margin-left: 10px;
+    position: absolute;
+    top:-10px;
+    right: 5px;
+}
+div#teachs h4{
+    text-align: left;
+    padding-left:43px;
+    font-size:16px;
+    height: 35px;
+    line-height: 35px;
+    color: #707070;
+    margin:20px 0 8px 0;
+}
+div#teachs h4.right_1{
+    background: url("../image/right_1.png") no-repeat;
+}
+
+div#teachs dd.name{
+    margin: 10px 0 15px 0;
+    font-size:19px;
+    font-weight: bold;
+}
+div#teachs dt{
+    margin: 10px 0 15px 0;
+}
+div#teachs dt img{
+    height: 82px;
+    width: 82px;
+    border-radius:50%;
+    overflow:hidden;
+}
+
+
+div#teachs dl{
+    border: 1px solid #CBCACA;
+    border-radius: 10px;
+    margin-bottom:10px;
+    background: #F6F6F6;
+}
+div#teachs dd{
+    margin: 10px 0 15px 0;
+    font-size: 12px;
+}
+div#teachs dd{
+    margin-bottom: 6px;
+}
+div#suggest{
+    border: 1px solid #CBCACA;
+    border-radius: 10px;
+}
+div#suggest ul{
+    margin-top:25px;
+}
+div#suggest ul li{
+    text-align: left;
+    padding-left: 20px;
+    background: url("../image/circle_2_03.png") no-repeat 5px 3px;
+    margin-bottom: 18px;
+}
+div#suggest ul li a:hover{
+    color: #55A5E4;
+}
+div#suggest p{
+    margin-bottom: 8px;
+}
+
+
+
+div.con_1 p{
+    font-size: 15px;
+    margin: 20px 0 5px 0;
+}
+
+
+
+/*�γ�Ŀ¼����div.con_2*/
+div.con_2{
+    padding-top:20px;
+}
+div.con_2 div.line_1{
+    text-align: left;
+    padding-left: 20px;
+}
+div.con_2 div.line_1>i{
+    font-size: 14px;
+    display: inline-block;
+    width:38px;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    color: #ffffff;
+    background: #F8806D;
+    margin-right: 13px;
+}
+div.con_2 div.line_1>span{
+    font-size: 16px;
+}
+div.con_2 div.line_1 span{
+    font-size: 16px;
+    font-weight: bold;
+}
+div.con_2 div.line_1 span.time{
+    float: right;
+    margin-right: 30px;
+}
+div.con_2 span.arrow{
+    display: inline-block;
+    width: 13px;
+    height: 7px;
+    margin-left: 15px;
+    background:url("../image/arrow_06.png") no-repeat;
+    position: relative;
+    top: -3px;
+}
+div.con_2 span.active{
+    background: url("../image/arrow_03.png") no-repeat;
+}
+div.con_2 div.line_1{
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    cursor: pointer;
+}
+div.con_2 ul.msg{
+    text-align: left;
+    cursor: pointer;
+}
+div.con_2 ul.msg li{
+    margin-left:20px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+div.con_2 ul.msg li p span{
+    font-size: 12px;
+}
+div.con_2 ul.msg li p{
+    overflow: hidden;
+    margin: 8px 0;
+}
+div.con_2 span.lf{
+    float: left;
+}
+div.con_2 span.rg{
+    float: right;
+}
+div.con_2 ul.msg li p{
+    margin-left:90px;
+}
+div.con_2 ul.msg{
+    margin-top: 10px;
+}
+div.con_2 ul.msg li p span.lf a{
+    color:#686868;
+}
+div.con_2 ul.msg li p span.lf a:hover{
+    color:#72B2E7;
+}
+div.con_2 span.rg{
+    margin-right:40px;
+}
+ul.msg p{
+    display: none;
+}
+ul.msg .p_1{
+    display: block;
+}
+div.con_2 h5{
+    color: #686868;
+}
+div.con_2 h5 .p_1{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*�����������div.con_3*/
+div.con_3{
+    margin-top:28px;
+}
+div.con_3 ul li{
+    padding-left:40px;
+    text-align: left;
+    height: 45px;
+    margin-left: 30px;
+    margin-bottom: 35px;
+}
+div.con_3 ul li span{
+    font-size: 14px;
+}
+div.con_3 ul li i{
+    display: inline-block;
+    width: 55px;
+    height: 24px;
+    line-height: 24px;
+    background: #61A8E4;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 3px;
+    margin-right:30px;
+    float:right;
+    cursor: pointer;
+}
+
+div.con_3 ul li img{
+    margin-left: -44px;
+    margin-top: -9px;
+    float: left;
+}
+
+div.con_3 ul li span,div.con_3 ul li i{
+    margin-top: 6px;
+}
+div.con_3 span.sp_2{
+    color: #BABABA;
+
+}

@@ -12,8 +12,9 @@ header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,d
 /*����ͼƬ����*/
 div#title{
     position: relative;
-    height: 50px;
-    margin-bottom: 25px;
+    height: 44px;
+    margin-top: 25px;
+    margin-bottom: 35px;
 }
 div#title img{
     position: absolute;
@@ -114,7 +115,7 @@ div.list{
 div.aside{
     float: right;
     width:820px;
-    min-height: 990px;
+    min-height: 500px;
     border: 1px solid #AEAEAE;
     margin-top: 10px;
 }
