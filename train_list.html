@@ -9,66 +9,11 @@
     <link rel="stylesheet" href="css/style_train_list.css"/>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/html5shiv.min.js"></script>
-    <script src="js/index.js"></script>
 </head>
 <body>
-<!--head部分-->
-<header>
-    <ul id="head_1">
-        <li>
-            <p class="date">2016年 10月31日 星期一</p>
-        </li>
-        <li>
-            <p class="addr">北京</p>
-        </li>
-        <li>
-            <p class="weather">
-                <img src="image/weather.png" alt=""/>
-                晴 12℃～18℃
-            </p>
-        </li>
-    </ul>
-    <ul id="head_2">
-        <li class="rig_1">
-            <span>尊敬的</span>
-        </li>
-        <li class="rig_2">
-            <span>
-                18515251225
-            </span>
-        </li>
-        <li class="rig_1">
-            <span>您好！</span>
-        </li>
-        <li class="rig_3">
-           <span>
-               退出
-           </span>
-        </li>
-    </ul>
-</header>
-<!--标题部分-->
-<div id="title">
-    <img src="image/nav.png" alt=""/>
-</div>
-<div id="article">
-    <ul class="nav">
-        <li class="active">
-            <a href="index.html">首页</a>
-        </li>
-        <li>
-            <a href="train.html ">培训资讯</a>
-        </li>
-        <li>
-            <a href="#">选课</a>
-        </li>
-        <li>
-            <a href="#">学习中心</a>
-        </li>
-    </ul>
-    <div class="return">
-        <a href="train.html">&lt;&lt;返回培训资讯列表</a>
-    </div>
+<div id="header"></div>
+<div class="return">
+    <a href="train.html">&lt;&lt;返回培训资讯列表</a>
 </div>
 <div id="content">
     <h1>关于举办集团管控下的内控运行与评价高级研修班的通知</h1>
@@ -143,36 +88,12 @@
         2016年9月1日
     </div>
 </div>
-
-<footer>
-    <ul class="concat">
-        <li>
-            <a href="#">联系我们</a>
-            <em>|</em>
-        </li>
-        <li><a href="#">机构简介</a> <em>|</em></li>
-        <li>
-            <a href="#">网站声明</a>
-            <em>|</em>
-        </li>
-        <li>
-            <a href="#">管理路口</a>
-        </li>
-    </ul>
-    <div class="line"></div>
-    <p>国务院国有资产监督管理委员会干部教育培训中心</p>
-    <p>中国华录集团培训分站</p>
-    <p class="eng">Copyright 2009 Education and Trainning Centre for Officials and Entrepreneurs Education Network,SASAC</p>
-    <p class="eng">
-        <span>地址：北京市东城区安定门外大街56号</span>
-        <span> 联系邮箱：service@tcsasac.com</span>
-        <span>邮政编码：100011</span>
-    </p>
-    <p class="eng">
-        <span>技术支持：010-64471676 fuwu@tcsasac.com</span>
-        <span>QQ客服：3450279420 3443376137</span>
-        <span>京ICP备08104266号</span>
-    </p>
-</footer>
+<footer id="footer"></footer>
+<script>
+    $(function(){
+      $("#header").load("footer/head_2.html");
+        $("#footer").load("footer/footer.html");
+    })
+</script>
 </body>
 </html>

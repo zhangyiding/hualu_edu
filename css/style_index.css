@@ -12,55 +12,20 @@
     margin-top:20px;
 }
 /*header部分*/
-header,footer ul.concat,nav,#article,div.banner,div#hot,div#advice,div#course {
+header,footer ul.concat,nav,#article,div.banner,div#hot,div#advice,div#course,div.title{
     width: 1000px;
     margin: 0 auto;
 }
 
-/*nav部分*/
 nav{
     font-size: 14px;
     margin-bottom: 25px;
-}
-nav ul{
-    overflow: hidden;
-}
-nav li.hualu{
-    float: left;
-    cursor: pointer;
-    margin-left: 20px;
-}
-nav li.search{
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
-    position:relative;
-
-}
-nav li.search input{
-    padding-left: 42px;
-    background: url("../image/zoom.png") no-repeat 10px 8px;
-    width:195px;
-    height: 35px;
-    line-height: 35px;
-    border: 1px solid #A3A3A3;
-    border-radius: 3px;
-}
-nav li.search span{
-    display: inline-block;
-    width: 50px;
-    height: 37px;
-    position:absolute;
-    top: 1px;
-    right:1px;
-    background:#F87F6D;
-    text-align: center;
-    line-height: 35px;
-    cursor: pointer;
+    margin-top: 35px;
 }
 /*article主题部分*/
 #article ul.nav{
-    border-bottom:2px solid #D5D5D5;
+    border-bottom:
+    2px solid #D5D5D5;
 }
 #article ul.nav li{
     display: inline-block;

@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2016/11/25 0025.
+ * Created by Administrator on 2016/12/1 0001.
  */
 $(function(){
     $("#header").load("footer/head_2.html");

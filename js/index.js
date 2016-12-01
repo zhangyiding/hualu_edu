@@ -4,11 +4,8 @@ $(function() {
     //    console.log(data.result);
     //});
 
-
-
-
-
     $(function(){
+        $("#header").load("footer/head_1.html");
         $("#footer").load("footer/footer.html");
     })
     //bannerºôÎüÂÖ²¥Ğ§¹û£»

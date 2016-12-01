@@ -3,7 +3,13 @@
  */
 $(function(){
     $("#footer").load("footer/footer.html");
-    $("#header").load("footer/head.html");
+    $("#header").load("footer/head_2.html");
+    $("span.reg").click(function () {
+        location.href="courseRegist.html";
+    })
+
+
+
     $("#advice ul li").click(function(e){
         //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");

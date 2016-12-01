@@ -2,6 +2,8 @@
  * Created by Administrator on 2016/11/24 0024.
  */
 $(function(){
+    $("#header").load("footer/head_2.html");
+    $("#footer").load("footer/footer.html");
     $("#page ul li a").mouseover(function(){
         $("#page ul li.active").removeClass("active");
     })
