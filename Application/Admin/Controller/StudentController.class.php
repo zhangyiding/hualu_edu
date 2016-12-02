@@ -87,6 +87,7 @@ class StudentController extends BaseController {
         $data['unit'] = $this->params['unit'];
         $data['remark'] = $this->params['remark'];
         $data['job_position'] = $this->params['job_position'];
+        $data['password'] = encryptpass($this->params['password']);
 
         $data['subsite_id'] = $this->subsite_id;
         $data['creator'] = $this->creator;

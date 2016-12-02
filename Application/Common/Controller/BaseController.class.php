@@ -199,6 +199,19 @@ alert('%s');\r\n
     }
 
 
+    public function isLogin()
+    {
+
+        if (!session('?student_id')) {
+            $this->showMsg('尚未登录');
+            return false;
+        } else {
+
+            return session('user_info');
+        }
+
+    }
+
 
 
 

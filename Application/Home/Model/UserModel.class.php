@@ -29,13 +29,15 @@ class UserModel extends Model{
      * 根据id获取学员详细信息
      */
     public function getUserInfo($where){
-        $result = $this->field('student_id,cu_id,subsite_id,name,money,unit,job_position,level,avatar
-                                mobile,ethnic,gender')
+        $result = $this->field('student_id,cu_id,subsite_id,name,money,unit,job_position,level,avatar,
+                                mobile,ethnic,gender,birthday,email')
             ->where($where)
             ->order('ctime desc')
-            ->select();
+            ->find();
         return $result;
     }
+
+
 
 
 

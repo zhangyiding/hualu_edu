@@ -185,6 +185,21 @@ class CourseModel extends Model{
         return $result;
     }
 
+    public function getRegister($where){
+        $result = $this->table('student_course_map')
+            ->field('student_id,scm_id,course_id,status')
+            ->where($where)
+            ->find();
+        return $result;
+    }
+
+
+    public function doSignUp($map){
+        $result = $this->table('student_course_map')
+            ->add($map);
+        return $result;
+    }
+
 
 }
 ?>

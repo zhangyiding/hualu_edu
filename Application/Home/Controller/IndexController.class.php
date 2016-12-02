@@ -86,6 +86,12 @@ class IndexController extends BaseController {
 
     public function header(){
 
+        $m_base = new BaseModel();
+        $sub_list = $m_base->getSubsiteList();
+
+        $this->assign('sub_list',$sub_list);
+
+
         $time = $this->getTime();
         $this->assign('time',$time);
 

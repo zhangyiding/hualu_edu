@@ -20,6 +20,15 @@ class BaseModel extends Model{
     }
 
 
+    public function getSubsiteList(){
+        $result = $this->table('subsite')
+            ->field('subsite_id,name')
+            ->where(array('status'=>0))
+            ->select();
+        return $result;
+    }
+
+
 
 
     public function ipToCoord($ip){

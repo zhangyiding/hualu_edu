@@ -2,8 +2,7 @@
  * Created by Administrator on 2016/11/29 0029.
  */
 $(function(){
-    $("#footer").load("/index/footer");
-    $("#header").load("/index/header");
+
     $("#advice ul li").click(function(e){
         //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");

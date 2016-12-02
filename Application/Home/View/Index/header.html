@@ -17,7 +17,7 @@
             </h4>
             <h4 class="reg">
                 <i></i>
-                <input type="text" placeholder="请输入您的密码"/>
+                <input type="password" placeholder="请输入您的密码"/>
             </h4>
             <p class="rem">
                 <span class="user">记住用户名</span>
@@ -55,19 +55,20 @@
                         电子邮箱
                     </label>
                     <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
-                    <span>
-                        <img src="__PUBLIC__/home/image/regist_03.png" alt=""/>
-                    </span>
                 </div>
                 <div class="mation_2">
                     <label for="jituan">
                         集团或主管单位名称
                     </label>
-                    <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>
-                    <span>
-                        <img src="__PUBLIC__/home/image/regist_10.png" alt=""/>
-                        <i>请输入正确信息</i>
-                    </span>
+                    <!--<input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>-->
+                    <select id="jituan" name="subsite_id" class="subsite">
+                        <option value="">请选择您所在分站或主管单位</option>
+                        <foreach name="sub_list" item="vo">
+                            <option value="{$vo.subsite_id}">
+                                {$vo.name}
+                            </option>
+                        </foreach>
+                    </select>
                 </div>
                 <div class="mation_3">
                     <label>
@@ -159,7 +160,7 @@
             <div class="login_denglu">登录</div>
         </li>
         <li class="regist">
-            <div>注册</div>
+            <div class="region">注册</div>
         </li>
     </ul>
 </header>
@@ -172,6 +173,10 @@
     $(".login_denglu").click(function (e) {
         e.preventDefault();
         $(".modal_1").fadeIn();
+    })
+    $(".region").click(function (e) {
+        e.preventDefault();
+        $(".modal_2").fadeIn();
     })
     $(".close_1").click(function(){
         $(".modal_1").fadeOut();

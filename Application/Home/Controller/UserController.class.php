@@ -28,6 +28,28 @@ class UserController extends BaseController {
     }
 
 
+
+
+
+    /**
+     * 退出登录
+     */
+    public function logout()
+    {
+        $this->destroyStatus();
+        $this->to_back('成功');
+    }
+
+    /**
+     * 退出登录
+     */
+    private function destroyStatus()
+    {
+        session_destroy();
+    }
+
+
+
     /*
      * 根据用户名来判断使用哪种方式登录
      */
@@ -109,27 +131,36 @@ class UserController extends BaseController {
         $m_user = new UserModel();
         $verify = new Verify();
 
-        if(!$verify->check($this->params['code'],session_id())){
-            $this->to_back('11007');
-        }
-        if(!check_email($this->params['email'])){
-            $this->to_back('11002');
-        }
-        if($m_user->checkUname($this->params['email'])){
-            $this->to_back('11001');
-        }
         $map['email'] = $this->params['email'];
-        $map['cu_id']  = $this->params['cu_id'];
+        $map['subsite_id']  = $this->params['subsite_id'];
         $map['gender']  = $this->params['gender'];
         $map['unit']  = $this->params['unit'];
         $map['name']  = $this->params['name'];
         $map['password']  = encryptpass($this->params['password']);
+
+        $map['mobile']  = $this->params['mobile'];
+        $map['comefrom'] = C('region_type')['user'];
+
+
         if(!check_mobile($this->params['mobile'])){
             $this->to_back('11002');
         }
-        $map['mobile']  = $this->params['mobile'];
-        $map['subsite_id'] = $this->subsite_id;
-        $map['comefrom'] = C('region_type')['user'];
+
+        if(!$verify->check($this->params['code'],session_id())){
+            $this->to_back('11007');
+        }
+
+        if($this->params['password'] !== $this->params['confirm_pwd']){
+            $this->to_back('11009');
+        }
+
+        if(!check_email($this->params['email'])){
+            $this->to_back('11002');
+        }
+
+        if($m_user->checkUname($this->params['email'])){
+            $this->to_back('11001');
+        }
 
         if($this->student_id = $m_user->region($map)){
 
@@ -187,6 +218,24 @@ class UserController extends BaseController {
 
         $this->display();
     }
+
+
+
+    /*
+     * 判断用户是否登录
+     */
+    public function userIsLogin(){
+
+        if (!session('?student_id')) {
+          $this->to_back('10001');
+        } else {
+            $user_info = session('user_info');
+            $this->to_back($user_info);
+        }
+
+    }
+
+
 
 
 

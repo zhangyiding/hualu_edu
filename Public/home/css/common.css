@@ -419,7 +419,7 @@ footer p.eng span{
     padding-left: 8px;
     line-height: 25px;
 }
-.modal_2 div.mation input.only{
+.modal_2 div.mation  input.only{
     width: 225px;
     height: 25px;
     border: 1px solid #A5A5A5;
@@ -428,6 +428,12 @@ footer p.eng span{
     top: 0px;
     left: 155px;
 }
+
+.modal_2 select{
+    margin-left: 20px;
+    height: 27px;
+}
+
 .modal_2 div.mation div.mation_3 span{
     position: absolute;
     top: 0px;

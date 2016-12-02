@@ -100,8 +100,6 @@ class CourseController extends BaseController {
     }
 
 
-
-
     /*
      * 处理课程列表部分数据
      * $param array $course_list 课程列表数据
@@ -129,11 +127,8 @@ class CourseController extends BaseController {
     }
 
 
-
-
-
     /*
-   * 选课首页
+   * 首页热门课程列表
    */
     public function courseList()
     {
@@ -175,7 +170,9 @@ class CourseController extends BaseController {
     }
 
 
-
+    /*
+     * 课程详情页
+     */
     public function courseInfo(){
 
         $course_id = $this->params['course_id'];
@@ -222,6 +219,8 @@ class CourseController extends BaseController {
 
                     if(!empty($v['file_path'])){
                         $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
+                    }else{
+                        continue;
                     }
 
                     $c_res[$k]['file_cover'] = getFileCoverByExt($v['ext']);
@@ -236,18 +235,58 @@ class CourseController extends BaseController {
                 $course_info['sum_dur'] = changeTimeType(array_sum($cse_time));
 
                 $cse_pub_type = C('cse_pub');
-
-
-                $this->assign('cse_info',$course_info);
-                $this->assign('cse_pub',$cse_pub_type);
-                $this->assign('cse_video',$cse_video);
-                $this->assign('cse_file',$cse_file);
-
             }
+            $this->assign('cse_info',$course_info);
+            $this->assign('cse_pub',$cse_pub_type);
+            $this->assign('cse_video',$cse_video);
+            $this->assign('cse_file',$cse_file);
             $this->display();
 
         }
 
     }
 
+
+
+    /*
+     * 课程报名页
+     */
+    public function register(){
+        $m_course = new CourseModel();
+
+        $user_info = $this->isLogin();
+
+        $course_id = $this->params['course_id'];
+        $student_id = $user_info['student_id'];
+
+
+        $where['course_id'] = $course_id;
+        $where['student_id'] = $student_id;
+        if($reg_info = $m_course->getRegister($where)){
+           $reg_id = $reg_info['scm_id'];
+
+        }else{
+            $map['course_id'] = $course_id;
+            $map['student_id'] = $student_id;
+            $map['subsite_id'] = $user_info['subsite_id'];
+            $map['ctime'] = date('Y-m-d H:i:s',time());
+
+            $reg_id = $m_course->doSignUp($map);
+        }
+
+
+        $this->assign('reg_id',$reg_id);
+        $cse_info = $m_course->getCourseInfo($course_id);
+
+
+        $this->assign('user_info',$user_info);
+        $this->assign('cse_info',$cse_info);
+
+
+
+
+
+
+        $this->display();
+    }
 }
