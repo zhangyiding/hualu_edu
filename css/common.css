@@ -244,6 +244,14 @@ footer p.eng span{
 
 
 /*ÓÃ»§µÇÂ¼µ¯³ö¿ò*/
+
+
+div.remind{
+    font-size:20px;
+    color:#FF1917;
+    margin-bottom: 25px;
+    display: none;
+}
 .modal_1,.modal_2{
     position: fixed;
     left: 0;
@@ -269,7 +277,7 @@ footer p.eng span{
 .modal_1 .modal-content h1{
     font-size: 36px;
     color:#F8806D;
-    margin-bottom: 80px;
+    margin-bottom: 45px;
     text-align: center;
     margin-top: 5px;
 }

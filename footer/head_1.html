@@ -14,6 +14,7 @@
                 <img src="image/close.png" alt=""/>
             </div>
             <h1>用户登录</h1>
+            <div class="remind">请输入正确的用户名和密码</div>
             <h4 class="log">
                 <i></i>
                 <input type="text" placeholder="请输入您的手机/邮箱"/>
@@ -145,7 +146,7 @@
             </p>
         </li>
     </ul>
-    <ul id="head_2" class="fail">
+    <ul id="head_2" class="fail" style="display:block">
         <li>
             <label for="user">用户名</label>
             <input type="text" id="user"/>
@@ -161,7 +162,7 @@
             <div class="login_zhuce">注册</div>
         </li>
     </ul>
-    <ul id="head_2" class="succ" style="display: none">
+    <ul id="head_2" class="succ" style="display:none">
         <li class="rig_1">
             <span>尊敬的</span>
         </li>
@@ -182,24 +183,72 @@
 </header>
 <script>
     $(function(){
-//登录部分
+        var url="//edu.hl.com";
 
 
+        //首页部分的登录切换
         $("div.login_denglu").click(function(e) {
             var name=$("#head_2 #user").val();
             var pwd=$("#head_2 #pwd").val();
-            console.log(name);
-            console.log(pwd);
-
-
-
-
-
-
-
-
-//            $(".modal_1").fadeIn();
+            var requestData={
+                "username" : name,
+                "password"  : pwd
+            }
+            if(name && pwd){
+                $.post(url+'/user/login', requestData,function(response){
+                    console.log(response);
+                    if(response.code == "10000"){
+                        $("ul.fail").hide();
+                        $("ul.succ").show();
+                        $("ul.succ li.rig_2 span").html(response.result.name);
+                    }
+                })
+            }else{
+                $(".modal_1").fadeIn();
+            }
         })
+
+
+//模态框中登录交互
+        $("div.modal_1 span.login_1").click(function(){
+            var email=$("h4.log input").val();
+            console.log(email);
+            var pwd=$("h4.reg input").val();
+
+            var request={
+                "username" : email,
+                "password" : pwd
+            }
+            if(email && pwd){
+                $.post(url+'/user/login', request,function(response){
+                    console.log(response);
+                    if(response.code == "10000"){
+                        $("div.modal_1").hide();
+                        $("ul.fail").hide();
+                        $("ul.succ").show();
+                        $("ul.succ li.rig_2 span").html(response.result.name);
+                    }else{
+                        $("div.remind").show();
+                    }
+                })
+            }else{
+                $("div.remind").show();
+            }
+        })
+
+
+
+//        登录成功后点击退出时的操作
+        $("ul.succ li.rig_3 span").click(function(){
+            $("ul.succ").hide();
+            $("ul.fail").show();
+            $("ul.fail input").val("");
+        })
+
+
+
+
+
         $(".close_1").click(function(){
             $(".modal_1").fadeOut();
         })
