@@ -2,13 +2,10 @@
  * Created by Administrator on 2016/11/28 0028.
  */
 $(function(){
-    $("footer").load("footer/footer.html");
-
     $("div.page_1 .info_2").click(function(){
         $(".page_1").hide();
         $(".page_2").show();
     })
-
     $("div.page_2 span.p_2").click(function(){
         $(".page_2").hide();
         $(".page_1 .page_body").hide();
@@ -35,6 +32,5 @@ $(function(){
         $(".page_2").hide();
         $(".page_1").show();
         $("div.page_body").show();
-
     })
 })

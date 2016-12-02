@@ -2,10 +2,133 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>head部分</title>
-    <link rel="stylesheet" href="../css/common.css"/>
-</head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>中国华录集团有限公司首页</title>
 <body>
+<!--用户登录弹出层部分-->
+<div class="modal_1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close_1">
+                <img src="image/close.png" alt=""/>
+            </div>
+            <h1>用户登录</h1>
+            <h4 class="log">
+                <i></i>
+                <input type="text" placeholder="请输入您的手机/邮箱"/>
+            </h4>
+            <h4 class="reg">
+                <i></i>
+                <input type="text" placeholder="请输入您的密码"/>
+            </h4>
+            <p class="rem">
+                <span class="user">记住用户名</span>
+                <span class="pwd">找回密码</span>
+            </p>
+            <div class="join">
+                <span class="login_1">登录</span>
+                <span class="login_2">注册</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal_2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="close_2">
+                <img src="image/close.png" alt=""/>
+            </div>
+            <h1>用户注册</h1>
+            <ul class="create">
+                <li class="create_1">
+                    <span class="info_1">创建您的账号</span>
+                    <span class="info_2">(以下信息*皆为必填项，请认真填写！)</span>
+                </li>
+                <li class="create_2">
+                    <span class="info_3">已经拥有账号?</span>
+                    <span class="info_4">直接登录</span>
+                </li>
+            </ul>
+            <p class="line">
+            </p>
+            <div class="mation">
+                <div class="mation_1">
+                    <label for="email">
+                        电子邮箱
+                    </label>
+                    <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
+                    <span>
+                        <img src="image/regist_03.png" alt=""/>
+                    </span>
+                </div>
+                <div class="mation_2">
+                    <label for="jituan">
+                        集团或主管单位名称
+                    </label>
+                    <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>
+                    <span>
+                        <img src="image/regist_10.png" alt=""/>
+                        <i>请输入正确信息</i>
+                    </span>
+                </div>
+                <div class="mation_3">
+                    <label>
+                        选择性别
+                    </label>
+                    <span>
+                          <input type="radio" name="rdoGender" checked value="male">男
+                    <input type="radio" name="rdoGender" value="female">女
+                    </span>
+
+                </div>
+                <div class="mation_4">
+                    <label for="name">
+                        姓名
+                    </label>
+                    <input type="text" id="name" placeholder="请输入您的姓名" class="only"/>
+                </div>
+                <div class="mation_5">
+                    <label for="danwei">
+                        单位名称
+                    </label>
+                    <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only"/>
+                </div>
+                <div class="mation_6">
+                    <label for="pwd">
+                        登录密码
+                    </label>
+                    <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                </div>
+                <div class="mation_7">
+                    <label for="sure">
+                        确认密码
+                    </label>
+                    <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                </div>
+                <div class="mation_8">
+                    <label for="phone">
+                        手机号码
+                    </label>
+                    <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only"/>
+                </div>
+                <div class="mation_9">
+                    <label for="yanzhen">
+                        验证码
+                    </label>
+                    <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
+                    <span>
+                        <img src="image/test_03.png" alt=""/>
+                    </span>
+                </div>
+            </div>
+            <div class="monent">
+                立即注册
+
+            </div>
+        </div>
+    </div>
+</div>
 <!--head部分-->
 <header>
     <ul id="head_1">
@@ -57,33 +180,48 @@
         </li>
     </ul>
 </header>
-<!--nan部分-->
-<nav>
-    <ul>
-        <li class="hualu">
-            <img src="image/nav.png" alt=""/>
-        </li>
-        <li class="search">
-            <input type="text" placeholder="请输入课程关键字"/>
-            <span>搜索</span>
-        </li>
-    </ul>
-</nav>
-<div id="article">
-    <ul class="nav">
-        <li class="active">
-            <a href="index.html">首页</a>
-        </li>
-        <li>
-            <a href="train.html">培训资讯</a>
-        </li>
-        <li>
-            <a href="courseRegist.html">选课</a>
-        </li>
-        <li>
-            <a href="#">学习中心</a>
-        </li>
-    </ul>
-</div>
+<script>
+    $(function(){
+//登录部分
+
+
+        $("div.login_denglu").click(function(e) {
+            var name=$("#head_2 #user").val();
+            var pwd=$("#head_2 #pwd").val();
+            console.log(name);
+            console.log(pwd);
+
+
+
+
+
+
+
+
+//            $(".modal_1").fadeIn();
+        })
+        $(".close_1").click(function(){
+            $(".modal_1").fadeOut();
+        })
+//  注册部分的切换
+        $(".login_zhuce").click(function (e) {
+            e.preventDefault();
+            $(".modal_2").fadeIn();
+
+        })
+        $("span.login_2").click(function(){
+            $(".modal_2").fadeIn();
+        })
+        $(".close_2").click(function(){
+            $(".modal_2").fadeOut();
+            $(".modal_1").fadeOut();
+        })
+        $(".info_4").click(function(){
+            console.log("1");
+            $(".modal_2").hide();
+            $(".modal_1").show();
+        })
+    })
+</script>
 </body>
 </html>

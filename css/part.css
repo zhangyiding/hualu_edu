@@ -12,7 +12,7 @@ div#course ul.learn li{
 }
 div#course{
     /*border: 1px solid #68AFE8;*/
-    height: 620px;
+    min-height: 620px;
 }
 div#course ul.learn{
     display: none;

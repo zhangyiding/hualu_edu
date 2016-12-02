@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/style_index.css"/>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/index.js"></script>
         <!--[if lt IE 9]>
@@ -31,135 +32,42 @@
             }
     </style>
     <![endif]-->
+
 </head>
 <body>
-<!--用户登录弹出层部分-->
-<div class="modal_1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close_1">
-                <img src="image/close.png" alt=""/>
-            </div>
-            <h1>用户登录</h1>
-            <h4 class="log">
-                <i></i>
-                <input type="text" placeholder="请输入您的手机/邮箱"/>
-            </h4>
-           <h4 class="reg">
-               <i></i>
-               <input type="text" placeholder="请输入您的密码"/>
-           </h4>
-            <p class="rem">
-                <span class="user">记住用户名</span>
-                <span class="pwd">找回密码</span>
-            </p>
-            <div class="join">
-                <span class="login_1">登录</span>
-                <span class="login_2">注册</span>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal_2">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="close_2">
-                <img src="image/close.png" alt=""/>
-            </div>
-            <h1>用户注册</h1>
-            <ul class="create">
-                <li class="create_1">
-                    <span class="info_1">创建您的账号</span>
-                    <span class="info_2">(以下信息*皆为必填项，请认真填写！)</span>
-                </li>
-                <li class="create_2">
-                    <span class="info_3">已经拥有账号?</span>
-                    <span class="info_4">直接登录</span>
-                </li>
-            </ul>
-            <p class="line">
-            </p>
-            <div class="mation">
-                <div class="mation_1">
-                    <label for="email">
-                        电子邮箱
-                    </label>
-                    <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
-                    <span>
-                        <img src="image/regist_03.png" alt=""/>
-                    </span>
-                </div>
-                <div class="mation_2">
-                    <label for="jituan">
-                        集团或主管单位名称
-                    </label>
-                    <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>
-                    <span>
-                        <img src="image/regist_10.png" alt=""/>
-                        <i>请输入正确信息</i>
-                    </span>
-                </div>
-                <div class="mation_3">
-                    <label>
-                        选择性别
-                    </label>
-                    <span>
-                          <input type="radio" name="rdoGender" checked value="male">男
-                    <input type="radio" name="rdoGender" value="female">女
-                    </span>
 
-                </div>
-                <div class="mation_4">
-                    <label for="name">
-                        姓名
-                    </label>
-                    <input type="text" id="name" placeholder="请输入您的姓名" class="only"/>
-                </div>
-                <div class="mation_5">
-                    <label for="danwei">
-                        单位名称
-                    </label>
-                    <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only"/>
-                </div>
-                <div class="mation_6">
-                    <label for="pwd">
-                        登录密码
-                    </label>
-                    <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_7">
-                    <label for="sure">
-                        确认密码
-                    </label>
-                    <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_8">
-                    <label for="phone">
-                        手机号码
-                    </label>
-                    <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only"/>
-                </div>
-                <div class="mation_9">
-                    <label for="yanzhen">
-                        验证码
-                    </label>
-                    <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
-                    <span>
-                        <img src="image/test_03.png" alt=""/>
-                    </span>
-                </div>
-        </div>
-            <div class="monent">
-                立即注册
-
-            </div>
-    </div>
-</div>
-</div>
 
 
 
 <div id="header"></div>
+<!--nan部分-->
+<nav>
+    <ul>
+        <li class="hualu">
+            <img src="image/nav.png" alt=""/>
+        </li>
+        <li class="search">
+            <input type="text" placeholder="请输入课程关键字"/>
+            <span>搜索</span>
+        </li>
+    </ul>
+</nav>
+<div id="article">
+    <ul class="nav">
+        <li class="active">
+            <a href="index.html">首页</a>
+        </li>
+        <li>
+            <a href="train.html">培训资讯</a>
+        </li>
+        <li>
+            <a href="course.html">选课</a>
+        </li>
+        <li>
+            <a href="learnCenter.html">学习中心</a>
+        </li>
+    </ul>
+</div>
 <div class="title">
     <img src="image/toutiao.png" alt=""/>
     <h1>习近平出席全国国有企业党的建设工作会议并发表重要讲话</h1>
@@ -353,6 +261,7 @@
 </div>
 <div id="course">
 </div>
+<div id="tiao">aserhuwehroweui </div>
 <footer id="footer">
 
 </footer>
@@ -373,5 +282,12 @@
     }
 </script>
 
+<script>
+    $(function(){
+        $("#tiao").click(function(){
+            location.href="course.html";
+        })
+    })
+</script>
 </body>
 </html>

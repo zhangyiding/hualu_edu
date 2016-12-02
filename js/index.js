@@ -1,13 +1,6 @@
 $(function() {
-    //$.post("//edu.hl.com/course/recommend",{name:"jason",time:"2016"},
-    //function(data){
-    //    console.log(data.result);
-    //});
 
-    $(function(){
-        $("#header").load("footer/head_1.html");
-        $("#footer").load("footer/footer.html");
-    })
+
     //banner呼吸轮播效果；
     var num=0;
     var tim;
@@ -69,32 +62,11 @@ $(function() {
     $(".nav li a").click(function(){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
-//    登录部分
-    $(".login_denglu").click(function (e) {
-        e.preventDefault();
-        $(".modal_1").fadeIn();
-    })
-    $(".close_1").click(function(){
-        $(".modal_1").fadeOut();
-    })
-//  注册部分的切换
-    $(".login_zhuce").click(function (e) {
-        e.preventDefault();
-        $(".modal_2").fadeIn();
 
-    })
-    $("span.login_2").click(function(){
-        $(".modal_2").fadeIn();
-    })
-    $(".close_2").click(function(){
-        $(".modal_2").fadeOut();
-        $(".modal_1").fadeOut();
-    })
-    $(".info_4").click(function(){
-        console.log("1");
-        $(".modal_2").hide();
-        $(".modal_1").show();
-    })
+
+
+
+
 
 });
 

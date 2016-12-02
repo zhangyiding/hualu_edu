@@ -2,8 +2,6 @@
  * Created by Administrator on 2016/11/29 0029.
  */
 $(function(){
-    $("#footer").load("footer/footer.html");
-    $("#header").load("footer/head_2.html");
     $("span.reg").click(function () {
         location.href="courseRegist.html";
     })

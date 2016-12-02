@@ -6,65 +6,22 @@
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/courseRegist.css"/>
     <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/courseRegist.js"></script>
 </head>
 <body>
-<!--head部分-->
-<header>
-    <ul id="head_1">
-        <li>
-            <p class="date">2016年 10月31日 星期一</p>
-        </li>
-        <li>
-            <p class="addr">北京</p>
-        </li>
-        <li>
-            <p class="weather">
-                <img src="image/weather.png" alt=""/>
-                晴 12℃～18℃
-            </p>
-        </li>
-    </ul>
-    <ul id="head_2" class="fail">
-        <li>
-            <label for="user">用户名</label>
-            <input type="text" id="user"/>
-        </li>
-        <li class="password">
-            <label for="pwd">密码</label>
-            <input type="text" id="pwd"/>
-        </li>
-        <li class="login">
-            <div class="login_denglu">登录</div>
-        </li>
-        <li class="regist">
-            <div class="login_zhuce">注册</div>
-        </li>
-    </ul>
-    <ul id="head_2" class="succ" style="display:none;">
-        <li class="rig_1">
-            <span>尊敬的</span>
-        </li>
-        <li class="rig_2">
-            <span>
-                18515251225
-            </span>
-        </li>
-        <li class="rig_1">
-            <span>您好！</span>
-        </li>
-        <li class="rig_3">
-           <span>
-               退出
-           </span>
-        </li>
-    </ul >
-</header>
+<div id="header"></div>
+
 <!--标题部分-->
-<div id="title">
-    <img src="image/nav.png" alt=""/>
-</div>
+<!--nan部分-->
+<nav>
+    <ul>
+        <li class="hualu">
+            <img src="image/nav.png" alt=""/>
+        </li>
+    </ul>
+</nav>
 <div id="article">
     <ul class="nav">
         <li>
@@ -74,10 +31,10 @@
             <a href="train.html ">培训资讯</a>
         </li>
         <li class="active">
-            <a href="#">选课</a>
+            <a href="course.html">选课</a>
         </li>
         <li>
-            <a href="#">学习中心</a>
+            <a href="learnCenter.html">学习中心</a>
         </li>
     </ul>
 </div>
@@ -200,11 +157,5 @@
 
 <footer id="footer" >
 </footer>
-<script>
-    $(function(){
-        $("#footer").load("footer/footer.html");
-        $("span.reg")
-    })
-</script>
 </body>
 </html>
