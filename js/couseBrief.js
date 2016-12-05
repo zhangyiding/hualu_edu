@@ -31,8 +31,6 @@ $(function(){
         $(this).children().slideToggle();
         $(this).siblings().children().slideUp();
     })
-
-
 //    简介/目录/资料之间的相关切换
     $(".cen_2").click(function(e){
         e.preventDefault();
