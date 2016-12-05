@@ -34,6 +34,7 @@
         </div>
     </div>
 </div>
+<!--用户注册部分的遮罩层-->
 <div class="modal_2">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -54,74 +55,76 @@
             <p class="line">
             </p>
             <div class="mation">
-                <div class="mation_1">
-                    <label for="email">
-                        电子邮箱
-                    </label>
-                    <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
-                    <span>
-                        <img src="image/regist_03.png" alt=""/>
-                    </span>
-                </div>
-                <div class="mation_2">
-                    <label for="jituan">
-                        集团或主管单位名称
-                    </label>
-                    <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only"/>
-                    <span>
-                        <img src="image/regist_10.png" alt=""/>
-                        <i>请输入正确信息</i>
-                    </span>
-                </div>
-                <div class="mation_3">
-                    <label>
-                        选择性别
-                    </label>
-                    <span>
-                          <input type="radio" name="rdoGender" checked value="male">男
-                    <input type="radio" name="rdoGender" value="female">女
-                    </span>
-
-                </div>
-                <div class="mation_4">
-                    <label for="name">
-                        姓名
-                    </label>
-                    <input type="text" id="name" placeholder="请输入您的姓名" class="only"/>
-                </div>
-                <div class="mation_5">
-                    <label for="danwei">
-                        单位名称
-                    </label>
-                    <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only"/>
-                </div>
-                <div class="mation_6">
-                    <label for="pwd">
-                        登录密码
-                    </label>
-                    <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_7">
-                    <label for="sure">
-                        确认密码
-                    </label>
-                    <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
-                </div>
-                <div class="mation_8">
-                    <label for="phone">
-                        手机号码
-                    </label>
-                    <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only"/>
-                </div>
-                <div class="mation_9">
-                    <label for="yanzhen">
-                        验证码
-                    </label>
-                    <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
-                    <span>
-                        <img src="image/test_03.png" alt=""/>
-                    </span>
-                </div>
+                <form action="">
+                    <div class="mation_1">
+                        <label for="email">
+                            电子邮箱
+                        </label>
+                        <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only" name="email"/>
+                        <span>
+                            <img src="image/regist_03.png" alt=""/>
+                        </span>
+                    </div>
+                    <div class="mation_2">
+                        <label for="jituan">
+                            集团或主管单位名称
+                        </label>
+                        <input type="text" id="jituan" placeholder="请选择您的集团或主管单位" class="only" name="subsite_id"/>
+                        <span>
+                            <img src="image/regist_10.png" alt=""/>
+                            <i>请输入正确信息</i>
+                        </span>
+                    </div>
+                    <div class="mation_3">
+                        <label>
+                            选择性别
+                        </label>
+                        <span>
+                            <input type="radio" name="gender" checked value="1">男
+                            <input type="radio" name="gender" value="2">女
+                            <input type="radio" name="gender" value="3">保密
+                        </span>
+                    </div>
+                    <div class="mation_4">
+                        <label for="name">
+                            姓名
+                        </label>
+                        <input type="text" id="name" placeholder="请输入您的姓名" class="only" name="name"/>
+                    </div>
+                    <div class="mation_5">
+                        <label for="danwei">
+                            单位名称
+                        </label>
+                        <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only" name="unit"/>
+                    </div>
+                    <div class="mation_6">
+                        <label for="pwd">
+                            登录密码
+                        </label>
+                        <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                    </div>
+                    <div class="mation_7">
+                        <label for="sure">
+                            确认密码
+                        </label>
+                        <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only" name="confirm_pwd"/>
+                    </div>
+                    <div class="mation_8">
+                        <label for="phone">
+                            手机号码
+                        </label>
+                        <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only" name="mobile"/>
+                    </div>
+                    <div class="mation_9">
+                        <label for="yanzhen">
+                            验证码
+                        </label>
+                        <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only" name="code"/>
+                        <span>
+                            <img src="image/test_03.png" alt=""/>
+                        </span>
+                    </div>
+                </form>
             </div>
             <div class="monent">
                 立即注册
@@ -270,6 +273,18 @@
             $(".modal_2").hide();
             $(".modal_1").show();
         })
+
+
+// 注册功能表单序列化
+    $("div.monent").click(function(){
+        var list=$("form").serialize();
+//        console.log(list);
+        $.post(url+'/user/region',list,function(response){
+            console.log(response);
+
+        })
+    })
+
     })
 </script>
 </body>
