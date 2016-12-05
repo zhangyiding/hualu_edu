@@ -50,11 +50,12 @@
             <p class="line">
             </p>
             <div class="mation">
+                <form>
                 <div class="mation_1">
                     <label for="email">
                         电子邮箱
                     </label>
-                    <input type="text" id="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
+                    <input type="text" id="email"  name="email" placeholder="请输入真实的邮箱，登录时使用" class="only"/>
                 </div>
                 <div class="mation_2">
                     <label for="jituan">
@@ -75,8 +76,8 @@
                         选择性别
                     </label>
                     <span>
-                          <input type="radio" name="rdoGender" checked value="male">男
-                    <input type="radio" name="rdoGender" value="female">女
+                          <input type="radio" name="gender" checked value="1">男
+                    <input type="radio" name="gender" value="2">女
                     </span>
 
                 </div>
@@ -84,41 +85,42 @@
                     <label for="name">
                         姓名
                     </label>
-                    <input type="text" id="name" placeholder="请输入您的姓名" class="only"/>
+                    <input type="text" id="name" name="name" placeholder="请输入您的姓名" class="only"/>
                 </div>
                 <div class="mation_5">
                     <label for="danwei">
                         单位名称
                     </label>
-                    <input type="text" id="danwei" placeholder="请输入正确的单位名称" class="only"/>
+                    <input type="text" id="danwei" name="unit" placeholder="请输入正确的单位名称" class="only"/>
                 </div>
                 <div class="mation_6">
                     <label for="pwd">
                         登录密码
                     </label>
-                    <input type="password" id="pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                    <input type="password" id="pwd"  name="password" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
                 </div>
                 <div class="mation_7">
                     <label for="sure">
                         确认密码
                     </label>
-                    <input type="password" id="sure" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                    <input type="password" id="sure"  name="confirm_pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
                 </div>
                 <div class="mation_8">
                     <label for="phone">
                         手机号码
                     </label>
-                    <input type="text" id="phone" placeholder="请输入正确的手机号码" class="only"/>
+                    <input type="text" id="phone"  name="mobile" placeholder="请输入正确的手机号码" class="only"/>
                 </div>
                 <div class="mation_9">
                     <label for="yanzhen">
                         验证码
                     </label>
-                    <input type="text" id="yanzhen" placeholder="请输入右侧验证码" class="only"/>
+                    <input type="text" id="yanzhen" name="code" placeholder="请输入右侧验证码" class="only"/>
                     <span>
                         <img id="code" src="/user/createVerify" alt="看不清楚，换一张" style="cursor: pointer; vertical-align:middle;" onClick="create_code()"/>
                     </span>
                 </div>
+                </form>
             </div>
             <div class="monent">
                 立即注册
@@ -147,7 +149,7 @@
                 {$weather.text}</p>
         </li>
     </ul>
-    <ul id="head_2">
+    <ul id="head_2" class="fail">
         <li>
             <label for="user">用户名</label>
             <input type="text" id="user"/>
@@ -163,6 +165,24 @@
             <div class="region">注册</div>
         </li>
     </ul>
+    <ul id="head_2" class="succ" style="display:none">
+        <li class="rig_1">
+            <span>尊敬的</span>
+        </li>
+        <li class="rig_2">
+            <span>
+
+            </span>
+        </li>
+        <li class="rig_1">
+            <span>您好！</span>
+        </li>
+        <li class="rig_3">
+           <span class="login_out">
+               退出
+           </span>
+        </li>
+    </ul>
 </header>
 <!--nan部分-->
 
@@ -170,35 +190,146 @@
 
 <script>
 
-    $(".login_denglu").click(function (e) {
-        e.preventDefault();
-        $(".modal_1").fadeIn();
-    })
-    $(".region").click(function (e) {
-        e.preventDefault();
-        $(".modal_2").fadeIn();
-    })
-    $(".close_1").click(function(){
-        $(".modal_1").fadeOut();
-    })
-    //  ע�Ჿ�ֵ��л�
-    $(".login_zhuce").click(function (e) {
-        e.preventDefault();
-        $(".modal_2").fadeIn();
+    $(function(){
+        var url="//edu.hl.com";
+
+
+        $(document).ready(function(){
+            $.post(url+'/user/userIsLogin',function(reponse){
+                if(reponse.code == '10000'){
+                    $('ul.fail').hide();
+                    $('ul.succ').show();
+                    $("ul.succ li.rig_2 span").html(reponse.result.name);
+                }else {
+                    $('ul.fail').show();
+                }
+            })
+        });
+        //首页部分的登录切换
+        $("div.login_denglu").click(function(e) {
+            var name=$("#head_2 #user").val();
+            var pwd=$("#head_2 #pwd").val();
+            var requestData={
+                "username" : name,
+                "password"  : pwd
+            }
+            if(name && pwd){
+                $.post(url+'/user/login', requestData,function(response){
+                    if(response.code == "10000"){
+                        $("ul.fail").hide();
+                        $("ul.succ").show();
+                        $("ul.succ li.rig_2 span").html(response.result.name);
+                    }else {
+                        alert(response.msg);
+                        $(".modal_1").fadeIn();
+                    }
+
+                })
+            }else{
+
+                $(".modal_1").fadeIn();
+
+            }
+        });
+
+
+        //模态框中登录交互
+        $("div.modal_1 span.login_1").click(function(){
+            var email=$("h4.log input").val();
+            console.log(email);
+            var pwd=$("h4.reg input").val();
+
+            var request={
+                "username" : email,
+                "password" : pwd
+            }
+            if(email && pwd){
+                $.post(url+'/user/login', request,function(response){
+                    console.log(response);
+                    if(response.code == "10000"){
+                        $("div.modal_1").hide();
+                        $("ul.fail").hide();
+                        $("ul.succ").show();
+                        $("ul.succ li.rig_2 span").html(response.result.name);
+                    }else{
+                        $("div.remind").show();
+                    }
+                })
+            }else{
+                $("div.remind").show();
+            }
+        })
+
+
+
+        //登录成功后点击退出时的操作
+        $("ul.succ li.rig_3 span").click(function(){
+            $.post(url+'/user/logout','',function(response){
+                if(response.code == '10000'){
+                    alert('退出成功');
+                  location.reload();
+                }else {
+                    alert('退出失败,请重试');
+                }
+            })
+
+
+        });
+
+
+
+
+
+        $(".close_1").click(function(){
+            $(".modal_1").fadeOut();
+        });
+        //  注册部分的切换
+        $(".login_zhuce").click(function (e) {
+            e.preventDefault();
+            $(".modal_2").fadeIn();
+
+        });
+        $("span.login_2").click(function(){
+            $(".modal_2").fadeIn();
+        });
+        $(".close_2").click(function(){
+            $(".modal_2").fadeOut();
+            $(".modal_1").fadeOut();
+        });
+        $(".info_4").click(function(){
+            console.log("1");
+            $(".modal_2").hide();
+            $(".modal_1").show();
+        });
+        $(".regist").click(function(){
+            $(".modal_2").show();
+        })
+
+
+        //注册
+        $("div.monent").click(function(){
+            var params = $("form").serialize();
+
+                $.post(url+'/user/region', params,function(response){
+
+                    if(response.code == "10000"){
+                        $("div.modal_2").hide();
+                        $("div.modal_1").show();
+                       alert('注册成功')
+                    }else{
+                        alert(response.msg);
+                        create_code();
+                    }
+                })
+
+        });
+
+
 
     })
-    $("span.login_2").click(function(){
-        $(".modal_2").fadeIn();
-    })
-    $(".close_2").click(function(){
-        $(".modal_2").fadeOut();
-        $(".modal_1").fadeOut();
-    })
-    $(".info_4").click(function(){
-        console.log("1");
-        $(".modal_2").hide();
-        $(".modal_1").show();
-    })
+
+
+
 </script>
 
 <script>

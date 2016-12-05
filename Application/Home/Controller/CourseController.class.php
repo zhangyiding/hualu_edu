@@ -252,9 +252,16 @@ class CourseController extends BaseController {
      * 课程报名页
      */
     public function register(){
+
+
         $m_course = new CourseModel();
 
-        $user_info = $this->isLogin();
+        if($this->isLogin()){
+            $user_info = $this->isLogin();
+        }else{
+            $this->showMsg('尚未登录');
+        }
+
 
         $course_id = $this->params['course_id'];
         $student_id = $user_info['student_id'];

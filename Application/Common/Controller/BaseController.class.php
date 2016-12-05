@@ -145,6 +145,7 @@ alert('%s');\r\n
 		</script>\r\n
 		</body>\r\n
 		</html>", $message, $redirect);
+        exit;
     }
 
     /**
@@ -203,7 +204,6 @@ alert('%s');\r\n
     {
 
         if (!session('?student_id')) {
-            $this->showMsg('尚未登录');
             return false;
         } else {
 

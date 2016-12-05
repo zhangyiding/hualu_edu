@@ -143,7 +143,7 @@ class UserController extends BaseController {
 
 
         if(!check_mobile($this->params['mobile'])){
-            $this->to_back('11002');
+            $this->to_back('11003');
         }
 
         if(!$verify->check($this->params['code'],session_id())){
@@ -159,7 +159,7 @@ class UserController extends BaseController {
         }
 
         if($m_user->checkUname($this->params['email'])){
-            $this->to_back('11001');
+            $this->to_back('11010');
         }
 
         if($this->student_id = $m_user->region($map)){
