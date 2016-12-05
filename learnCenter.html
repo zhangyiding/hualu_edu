@@ -12,7 +12,8 @@
     <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/couseBrief.js"></script>
-    <!--<script src="js/learnCenter.js"></script>-->
+    <script src="js/learnCenter.js"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 <body>
     <div id="header"></div>
@@ -89,65 +90,82 @@
             </div>
             <div class="banner">
                 <h1>等待审核课程</h1>
-                <ul class="imgList">
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                           <span>
-                               审核帮助
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                           <span>
-                               审核帮助
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                           <span>
-                               审核帮助
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                           <span>
-                               审核帮助
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                           <span>
-                               审核帮助
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-                <div class="btn_left"></div>
-                <div class="btn_right"></div>
+                <div class="picScroll-left">
+                    <div class="hd">
+                        <a class="prev"></a>
+                        <a class="next"></a>
+                    </div>
+                    <div class="bd">
+                        <ul class="picList imgList">
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_07.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_07.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
             <div class="current">
                 <h1>
@@ -408,15 +426,6 @@
 
 
 <footer id="footer"></footer>
-    <script>
-        $(function(){
-            $("div.con_2 li p").hover(function(){
-                $(this).css("color","#73B2E7");
-            },
-            function(){
-                $(this).css("color","#686868")
-            })
-        })
-    </script>
+
 </body>
 </html>

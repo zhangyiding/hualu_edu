@@ -31,6 +31,7 @@
 /*右侧区域内容*/
 div.co_right{
     float: left;
+    width: 860px;
 }
 div.co_top{
     overflow: hidden;
@@ -74,7 +75,6 @@ dl.info h1{
     text-align: left;
 }
 dl.info dd p{
-    padding-left: 20px;
     font-size: 14px;
     text-align: left;
 }
@@ -87,6 +87,61 @@ dl.info p.cell{
 }
 
 
+
+
+
+
+
+/* 本例子css */
+.picScroll-left{
+    width:800px;
+    position:relative;
+}
+.picScroll-left .hd{
+    height:30px;
+    z-index: 10;
+    width: 790px;
+    position: absolute;
+    top: 98px;
+}
+
+.picScroll-left .hd ul{ float:right; overflow:hidden; zoom:1; margin-top:10px; zoom:1; }
+.picScroll-left .hd ul li{ float:left;  width:9px; height:9px;
+    overflow:hidden; margin-right:5px; text-indent:-999px;
+    cursor:pointer;
+}
+.picScroll-left .bd{ padding:10px 0;   }
+.picScroll-left .bd ul{ overflow:hidden; zoom:1; }
+.picScroll-left .bd ul li{ margin:0 8px; float:left; _display:inline; overflow:hidden; text-align:center;  }
+
+
+
+
+
+
+
+
+
+
+
+
+div.banner a.prev,div.banner a.next{
+    display: inline-block;
+    width: 20px;
+    height: 35px;
+    cursor: pointer;
+
+}
+div.banner a.prev{
+    background: url("../image/btn_lr_05.png") no-repeat;
+    position: absolute;
+    right: 5px;
+}
+div.banner a.next{
+    background: url("../image/btn_lr_03.png") no-repeat;
+    position: absolute;
+    left: -25px;
+}
 
 /*转动部分*/
 div.banner{
@@ -102,7 +157,7 @@ div.banner h1{
 }
 
 ul.imgList{
-    width:800px;
+    /*width:800px;*/
     height:255px;
     margin-top: 30px;
     overflow:hidden;
@@ -111,7 +166,7 @@ ul.imgList{
     margin-left: 10px;
 }
 ul.imgList li{
-    float: left;
+    display: inline-block;
     position: relative;
     margin-right: 18px;
     border: 1px solid transparent;
@@ -148,7 +203,7 @@ ul.imgList li>h4{
     overflow: hidden;
 }
 ul.imgList li div.btn{
-    margin-top: 35px;
+    margin-top: 15px;
     overflow:hidden;
 }
 ul.imgList li div.btn span{
@@ -162,6 +217,7 @@ ul.imgList li div.btn span{
     background: #F8806D;
     color: #ffffff;
     font-size:14px;
+    border-radius: 3px;
 }
 ul.imgList li span.lt{
     position: absolute;
