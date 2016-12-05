@@ -38,6 +38,18 @@ class UserModel extends Model{
     }
 
 
+    /*
+     * 根据学员id获取学院课程信息
+     */
+    public function getUserCse($student_id){
+        $result = $this->table('student_course_map')
+            ->field('student_id,course_id,subsite_id,cse_status,status,scm_id')
+            ->where(array('student_id'=>$student_id))
+            ->select();
+        return $result;
+    }
+
+
 
 
 

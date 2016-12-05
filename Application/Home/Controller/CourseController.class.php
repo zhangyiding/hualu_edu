@@ -205,7 +205,8 @@ class CourseController extends BaseController {
 
 
             //根据课程id获取资源详情列表
-            if($c_res = $m_course->getResource($course_id)){
+            $where['cr.course_id'] = $course_id;
+            if($c_res = $m_course->getResource($where)){
 
                 $cse_video = array();
                 $cse_file = array();

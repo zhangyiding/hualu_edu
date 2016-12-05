@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Common\Controller\BaseController;
+use Home\Model\CourseModel;
 use Home\Model\UserModel;
 use Common\Lib\Verify;
 use Think\Controller;
@@ -226,14 +227,125 @@ class UserController extends BaseController {
      */
     public function userIsLogin(){
 
-        if (!session('?student_id')) {
-          $this->to_back('10001');
-        } else {
-            $user_info = session('user_info');
+        if ($user_info = $this->isLogin()) {
             $this->to_back($user_info);
+        } else {
+            $this->to_back('10001');
         }
 
     }
+
+
+    /*
+     * 用户学习中心界面
+     *
+     */
+    public function center(){
+        if($user_info = $this->isLogin()){
+            $student_id = $user_info['student_id'];
+            $this->assign('user_info',$user_info);
+        }else{
+            $this->showMsg('尚未登录');
+        }
+
+        $m_user = new UserModel();
+
+        if($u_cse_map = $m_user->getUserCse($student_id)){
+
+            $wait_cse = array();//待审核课程列表
+            $len_cse = array();//正在学习learning学习列表
+            $over_cse = array();//已经结课列表
+
+            //根据课程状态字段分别划分三种类型课程
+            foreach($u_cse_map as $k=>$v){
+                if($v['status'] == 0 ){
+                    $wait_cse[] = $this->getWaitCse($v['course_id']);
+
+                }elseif($v['status'] == 1 && $v['cse_status'] == 1){
+
+                    $len_cse = $this->formatCse($v['course_id']);
+                }elseif($v['cse_status'] == 2){
+                    $over_cse = $this->formatCse($v['course_id']);
+                }
+            }
+
+            $cse_count = array(
+                'wait'=>count($wait_cse),
+                'learning'=>count($len_cse),
+                'over'=>count($over_cse)
+            );
+            $this->assign('cse_count',$cse_count);
+            $this->assign('wait_cse',$wait_cse);
+            $this->assign('len_cse',$len_cse);
+            $this->assign('over_cse',$over_cse);
+
+        }
+
+        $this->display();
+    }
+
+
+    private function getWaitCse($course_id){
+        $m_course = new CourseModel();
+        $c_course = new CourseController();
+        $where['course_id'] = $course_id;
+        if($cse_list = $m_course->getCourseList($where)){
+            $cse_list = $c_course->formatCourse($cse_list);
+            return $cse_list;
+        }else{
+            return false;
+        }
+    }
+
+
+    private function formatCse($course_id){
+        $m_course = new CourseModel();
+
+        if($cse_info = $m_course->getCourseInfo($course_id)){
+            $end_time = $this->formatEndTime($cse_info['end_time']);
+
+            $where['cr.course_id'] = $course_id;
+            $where['r.type'] = C('COURSE_VE');
+            if($c_res = $m_course->getResource($where)){
+                $cse_time = array();
+                foreach($c_res as $k=>$v){
+                    $cse_time[] = $v['duration'];
+
+                    if(!empty($v['duration'])){
+                        $c_res[$k]['duration'] = changeTimeType($v['duration']);
+                    }
+
+                    if(!empty($v['file_path'])){
+                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
+                    }else{
+                        continue;
+                    }
+                }
+
+                $data['course_name'] = $cse_info['name'];
+                $data['end_time'] = $end_time;
+                $data['is_pub'] = $cse_info['is_pub'];
+                $data['sum_dur'] = changeTimeType(array_sum($cse_time));
+                $data['cse_video'] = $c_res;
+                return $data;
+
+            }else{
+                return false;
+            }
+
+        }
+
+    }
+
+
+
+    private function formatEndTime($end_time){
+        if(!empty($end_time)){
+           $time_diff = $end_time-time();
+           return $time = round($time_diff/86400). '天后结束';
+        }
+    }
+
 
 
 

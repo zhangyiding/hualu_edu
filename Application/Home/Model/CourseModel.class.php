@@ -172,14 +172,14 @@ class CourseModel extends Model{
         return $result;
     }
 
-    public function getResource($course_id){
+    public function getResource($where){
 
         $result = $this->table('course_resource')
             ->alias('cr')
             ->field('cr.order,r.resource_id,r.name as res_name,r.type,r.ext,r.file_path,r.file_size,
                      r.duration,r.remark')
             ->join('join resource as r on cr.resource_id=r.resource_id')
-            ->where(array('cr.course_id'=>$course_id))
+            ->where($where)
             ->select();
 
         return $result;

@@ -128,6 +128,7 @@ $hualu_user = array(
 
 
 
+
     'WEATHER_IMG'=>'/Public/home/image/weather_img/',
 
 

@@ -35,8 +35,9 @@ class BaseController extends Controller
         //处理参数
         $this->getParams();
 
-        //判断是否登陆
+        //判断后台管理员是否登陆
         $this->checkLogin();
+
         parent::__construct();
     }
 
@@ -100,6 +101,7 @@ class BaseController extends Controller
                 return true;
             }
         }else{
+
 
         }
 

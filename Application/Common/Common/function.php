@@ -934,6 +934,8 @@ function formatTime($time){
 }
 
 
+
+
 function getFileInfo($file,$unit = 'm'){
 
     if( $arw_size = filesize(iconv('UTF-8','GB2312',$file))){
