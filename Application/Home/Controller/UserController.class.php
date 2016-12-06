@@ -259,13 +259,21 @@ class UserController extends BaseController {
             //根据课程状态字段分别划分三种类型课程
             foreach($u_cse_map as $k=>$v){
                 if($v['status'] == 0 ){
-                    $wait_cse[] = $this->getWaitCse($v['course_id']);
+                    if($data = $this->getWaitCse($v['course_id'])){
+                        $wait_cse[] = $data;
+                    }
+
 
                 }elseif($v['status'] == 1 && $v['cse_status'] == 1){
 
-                    $len_cse = $this->formatCse($v['course_id']);
+                    if($data = $this->formatCse($v['course_id'])){
+                        $len_cse[] = $data;
+                    }
+
                 }elseif($v['cse_status'] == 2){
-                    $over_cse = $this->formatCse($v['course_id']);
+                    if($data = $this->formatCse($v['course_id'])){
+                        $over_cse[] = $data;
+                    }
                 }
             }
 
@@ -274,6 +282,7 @@ class UserController extends BaseController {
                 'learning'=>count($len_cse),
                 'over'=>count($over_cse)
             );
+
             $this->assign('cse_count',$cse_count);
             $this->assign('wait_cse',$wait_cse);
             $this->assign('len_cse',$len_cse);
@@ -290,8 +299,9 @@ class UserController extends BaseController {
         $c_course = new CourseController();
         $where['course_id'] = $course_id;
         if($cse_list = $m_course->getCourseList($where)){
-            $cse_list = $c_course->formatCourse($cse_list);
-            return $cse_list;
+
+            $data = $c_course->formatCourse($cse_list[0],2);
+            return $data;
         }else{
             return false;
         }
@@ -322,13 +332,12 @@ class UserController extends BaseController {
                     }
                 }
 
-                $data['course_name'] = $cse_info['name'];
+                $data['name'] = $cse_info['name'];
                 $data['end_time'] = $end_time;
                 $data['is_pub'] = $cse_info['is_pub'];
                 $data['sum_dur'] = changeTimeType(array_sum($cse_time));
                 $data['cse_video'] = $c_res;
                 return $data;
-
             }else{
                 return false;
             }

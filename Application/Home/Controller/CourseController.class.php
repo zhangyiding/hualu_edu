@@ -103,22 +103,34 @@ class CourseController extends BaseController {
     /*
      * 处理课程列表部分数据
      * $param array $course_list 课程列表数据
+     * $param int $option 标识操作符
      * return array
      */
-    public function formatCourse($course_list){
+    public function formatCourse($course_list,$op=1){
         $m_course = new CourseModel();
         if(!empty($course_list) && is_array($course_list)){
-            foreach($course_list as $k=>$v){
-                $open_status = ($v['open_status'] == 1)?'最新上线':'即将结课';
+            if($op == 1) {
+                foreach ($course_list as $k => $v) {
+                    $open_status = ($v['open_status'] == 1) ? '最新上线' : '即将结课';
 
-                $course_num = $m_course->getCourseNum($v['course_id']);
+                    $course_num = $m_course->getCourseNum($v['course_id']);
+                    //open_status and course_num
+                    $course_list[$k]['os_cn'] = $open_status . ' (共' . $course_num . '节课)';
+
+                    $course_list[$k]['name'] = cutStr($v['name'], 12);
+
+                    $course_list[$k]['cover'] = getImageBaseUrl($v['cover']);
+                }
+            }else{
+                $open_status = ($course_list['open_status'] == 1) ? '最新上线' : '即将结课';
+
+                $course_num = $m_course->getCourseNum($course_list['course_id']);
                 //open_status and course_num
-                $course_list[$k]['os_cn'] = $open_status .' (共' .$course_num .'节课)';
+                $course_list['os_cn'] = $open_status . ' (共' . $course_num . '节课)';
 
-                $course_list[$k]['name'] = cutStr($v['name'],12);
+                $course_list['name'] = cutStr($course_list['name'], 12);
 
-                $course_list[$k]['cover'] = getImageBaseUrl($v['cover']);
-
+                $course_list['cover'] = getImageBaseUrl($course_list['cover']);
             }
             return $course_list;
         }else{

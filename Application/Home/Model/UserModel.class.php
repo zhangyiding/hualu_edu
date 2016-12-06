@@ -34,7 +34,13 @@ class UserModel extends Model{
             ->where($where)
             ->order('ctime desc')
             ->find();
-        return $result;
+        if($result !== false){
+            $result['avatar'] = getImageBaseUrl($result['avatar']);
+            return $result;
+        }else{
+            return false;
+        }
+
     }
 
 
