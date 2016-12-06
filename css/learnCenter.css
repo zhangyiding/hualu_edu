@@ -249,7 +249,6 @@ div.btn_right{
 
 /*当前学习课程模块*/
 div.current{
-    margin-top: 35px;
     text-align: left;
     margin-left: 40px;
 }
@@ -390,4 +389,65 @@ div#page .code{
     background:#54A5E4;
     color: #fff;
     border-radius: 17px;
+}
+
+
+/*已结课记录部分的页面*/
+div.current_2{
+    margin-top:25px;
+
+}
+div.current_2>h1{
+    font-size:18px;
+    border-bottom: 1px solid #979797;
+    padding-bottom: 8px;
+    text-align: left;
+    margin-left: 40px;
+
+}
+div.current_2>ul li{
+    display: inline-block;
+    font-size: 18px;
+    margin-top: 15px;
+    border-right: 1px solid #B9B9B9;
+}
+div.current_2>ul{
+    background: #F7F7F7;
+    height: 60px;
+    border: 1px solid #D7D7D7;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+div.current_2 li.rd_1{
+    width: 45%;
+}
+
+div.current_2 li.rd_2{
+    width: 13%;
+}
+div.current_2 li.rd_3{
+    width: 17%;
+}
+div.current_2 li.rd_4{
+    width:20%;
+    border: none;
+}
+div.current_2 div.con_2{
+    margin-left: 40px;
+}
+div.current_2 span.ln_1,.current_2 span.ln_2,.current_2 span.ln_3{
+    font-size: 16px;
+    color:#8F8F8F;
+}
+div.current_2 span.ln_1{
+    margin-left:40px;
+}
+div.current_2 span.ln_2{
+    margin-left: 60px;
+}
+div.current_2 span.ln_3{
+    margin-left: 118px;
+}
+div.current_2{
+    display: none;
 }

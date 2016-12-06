@@ -30,7 +30,19 @@ $(function(){
         $(this).children("p").slideToggle();
         $(this).siblings().children("p").slideUp();
     })
-
+//    当前课程表与已结课目录之间的切换
+    $("ul.co_left li.lf_1").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("div.current_2").hide();
+        $("div.banner").show();
+        $("div.current_1").show();
+    })
+    $("ul.co_left li.lf_2").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        $("div.banner").hide();
+        $("div.current_1").hide();
+        $("div.current_2").show();
+    })
 
 
 })
