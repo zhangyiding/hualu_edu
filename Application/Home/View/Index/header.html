@@ -170,9 +170,9 @@
             <span>尊敬的</span>
         </li>
         <li class="rig_2">
-            <span>
+           <a> <span>
 
-            </span>
+            </span></a>
         </li>
         <li class="rig_1">
             <span>您好！</span>
@@ -200,6 +200,7 @@
                     $('ul.fail').hide();
                     $('ul.succ').show();
                     $("ul.succ li.rig_2 span").html(reponse.result.name);
+                    $("ul.succ li.rig_2 a").attr('href','/user/center?student_id='+reponse.result.student_id)
                 }else {
                     $('ul.fail').show();
                 }
