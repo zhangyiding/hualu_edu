@@ -23,7 +23,7 @@
     <ul class="learn learn_1" style="display: block">
         <foreach name="course_list" item="vo">
         <li>
-            <img src="<?php print_r($vo['cover']);?>"  height="147" width="224" alt=""/>
+            <a href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
             <div class="hour">{$vo.os_cn}</div>
             <h4>{$vo.name}</h4>
             <div class="btn">

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>学习中心页面</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/style_courseBrief.css"/>
+    <link rel="stylesheet" href="css/learnCenter.css"/>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/html5shiv.min.js"></script>
+    <script src="js/learnCenter.js"></script>
+    <script src="js/jquery.SuperSlide.2.1.1.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <!--nan部分-->
+    <nav>
+        <ul>
+            <li class="hualu">
+                <img src="image/nav.png" alt=""/>
+            </li>
+            <li class="search">
+                <input type="text" placeholder="请输入课程关键字"/>
+                <span>搜索</span>
+            </li>
+        </ul>
+    </nav>
+    <div id="article">
+        <ul class="nav">
+            <li>
+                <a href="index.html">首页</a>
+            </li>
+            <li>
+                <a href="train.html">培训资讯</a>
+            </li>
+            <li>
+                <a href="course.html">选课</a>
+            </li>
+            <li class="active">
+                <a href="learnCenter.html">学习中心</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 以上为共有标签-->
+
+
+
+    <div id="concent">
+        <ul class="co_left">
+            <li class="active">当前课程表</li>
+            <li>已结课记录</li>
+            <li>资料中心</li>
+            <li>帮助中心</li>
+            <li>学习记录证明</li>
+        </ul>
+        <div class="co_right">
+            <div class="co_top">
+                <dl class="info">
+                    <dt>
+                        <img src="image/learnCenter_03.png" alt=""/>
+                    </dt>
+                    <dd>
+                        <h1>安妮沃德尔</h1>
+                        <p class="sir">李先生</p>
+                        <p class="cell">18515251225</p>
+                    </dd>
+                </dl>
+                <ul class="course">
+                    <li>
+                        <h1>5</h1>
+                        <p>等待审核课程</p>
+                    </li>
+                    <li>
+                        <h1>27</h1>
+                        <p>正在学习</p>
+                    </li>
+                    <li>
+                        <h1>8</h1>
+                        <p>已学完</p>
+                    </li>
+                    <li>
+                        <h1>297 <span>分钟</span></h1>
+                        <p>学习总时长</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="banner">
+                <h1>等待审核课程</h1>
+                <div class="picScroll-left">
+                    <div class="hd">
+                        <a class="prev"></a>
+                        <a class="next"></a>
+                    </div>
+                    <div class="bd">
+                        <ul class="picList imgList">
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_07.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_07.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <img src="image/learn_03.png" alt=""/>
+                                <span class="lt">公开</span>
+                                <div class="hour">最新上线( 共23节课 )</div>
+                                <h4>社交基本礼仪</h4>
+                                <div class="btn">
+                                    <span>
+                                    审核帮助
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="current">
+                <h1>
+                    当前学习课程
+                </h1>
+                <ul class="prog">
+                    <li class="pg_1">
+                        课程名称
+                        <em>|</em>
+                    </li>
+                    <li class="pg_2">
+                        学习时限
+                        <em>|</em>
+                    </li>
+                    <li class="pg_3">
+                        学习进度
+                    </li>
+                </ul>
+                <div class="con_2">
+                    <div class="line_1">
+                        <i>公开</i>
+                        <span>第二期 "两学一做" 专题网络培训班</span>
+                        <span class="arrow active"></span>
+                        <span class="end">72天后结束</span>
+                        <span class="per">25%</span>
+                    </div>
+                    <h5>
+                        <ul class="msg">
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                                    <span class="lf">
+                                        <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                                    </span>
+                                    <span class="rg">
+                                        学习中
+                                    </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                               未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                5.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p class="p_1">
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </h5>
+
+                    <div class="line_1">
+                        <i>公开</i>
+                        <span>第二期 "两学一做" 专题网络培训班</span>
+                        <span class="arrow"></span>
+                        <span class="end">72天后结束</span>
+                        <span class="per">25%</span>
+                    </div>
+                    <h5 style="display: none">
+                        <ul class="msg">
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <span class="tm">00:00:00/01:52:22</span>
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                               未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                4.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                学习中
+                            </span>
+                                </p>
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                            <li>
+                                1.研究党章_着手筑建社会主义道路探索第五座里程碑
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                               学习中
+                            </span>
+                                </p>
+                                <p>
+                            <span class="lf">
+                                <a href="#">研究党章_着手筑建社会主义道路探索第五座里程碑_01</a>
+                            </span>
+                            <span class="rg">
+                                未学习
+                            </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </h5>
+                    <div id="page">
+                        <div class="code">
+                            <ul>
+                                <li class="first"><a href="#">首页</a></li>
+                                <li class="prev"><a href="#">上一页</a></li>
+                                <li class="num active"><a href="#">1</a> </li>
+                                <li class="num"><a href="#">2</a></li>
+                                <li class="num"><a href="#">3</a></li>
+                                <li class="num"><a href="#">4</a></li>
+                                <li class="num"><a href="#">5</a></li>
+                                <li class="num"><a href="#">6</a></li>
+                                <li class="num"><a href="#">7</a> </li>
+                                <li class="num"><a href="#">8</a></li>
+                                <li class="next"><a href="#">下一页</a></li>
+                                <li class="last"><a href="#">尾页</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<footer id="footer"></footer>
+
+</body>
+</html>
