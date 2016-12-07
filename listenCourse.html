@@ -41,8 +41,28 @@
 </div>
 <!-- 以上为共有标签-->
 
+
+
+
+
+
 <!--播放器部分-->
-<div id="play"></div>
+<div id="play">
+    <!-- 验证码部分-->
+    <div id="check" style="display: none">
+        <h1>输入验证码</h1>
+        <div>
+            <input type="text" placeholder="请输入您的验证码"/>
+            <i></i>
+        </div>
+        <p>确定</p>
+    </div>
+    <!-- 验证码通过部分-->
+    <div id="succ" style="display: none">
+        <h1>恭喜您验证成功</h1>
+        <p>马上进行课程播放...</p>
+    </div>
+</div>
 
 
 
@@ -168,18 +188,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
 <footer id="footer"></footer>
 </body>
 </html>
