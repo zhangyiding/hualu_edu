@@ -5,6 +5,7 @@
     <title>part部分</title>
     <link rel="stylesheet" href="__PUBLIC__/home/css/part.css"/>
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
     <!--[if lt IE 9]>
 
     <style type="text/css">
@@ -23,7 +24,7 @@
     <ul class="learn learn_1" style="display: block">
         <foreach name="course_list" item="vo">
         <li>
-            <a href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
+            <a class="aa" href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
             <div class="hour">{$vo.os_cn}</div>
             <h4>{$vo.name}</h4>
             <div class="btn">
@@ -38,6 +39,16 @@
         </foreach>
     </ul>
 </div>
+
+<script>
+   $(".aa").click(function(e){
+//       e.preventDefault();
+       var href = $(this).attr('href');
+       location.href = '//edu.hl.com/' + href;
+   })
+</script>
+
+
 
 </body>
 </html>

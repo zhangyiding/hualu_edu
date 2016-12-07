@@ -349,6 +349,7 @@ div#course ul.learn li{
 div#course{
     border: 1px solid #68AFE8;
     height: 620px;
+    margin-top: -519px;
 }
 div#course ul.learn{
     display: none;
