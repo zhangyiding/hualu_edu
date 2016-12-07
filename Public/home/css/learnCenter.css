@@ -42,8 +42,8 @@ div.co_top dl.info{
 }
 
 div.co_top dl dt img{
-    width:70px;
-    height: 70px;
+     width:70px; height:70px;
+    border-radius:15px;
 }
 div.co_top ul.course{
     float: right;
@@ -78,18 +78,20 @@ dl.info dt{
 dl.info h1{
     font-size: 18px;
     text-align: left;
+    margin-bottom: 30px;
 }
 dl.info dd p{
     font-size: 14px;
     text-align: left;
 }
-dl.info p.sir{
-    background: url("../image/imgListCenter_06.png") no-repeat;
-   margin: 7px 0;
+/*dl.info p.sir{*/
+    /*background: url("../image/learnCenter_06.png") no-repeat;*/
+   /*margin: 7px 0;*/
+/*}*/
+dl.info dd img{
+margin-right: 4px;
 }
-dl.info p.cell{
-    background: url("../image/imgListCenter_09.png") no-repeat;
-}
+
 
 
 
