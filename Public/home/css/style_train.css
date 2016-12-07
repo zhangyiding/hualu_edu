@@ -96,12 +96,13 @@ div#content .banner ul li{
     line-height: 35px;
     font-size: 18px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 div#content .banner ul li.active{
     background: #55A5E4;
+}
+div#content .banner ul li.active a{
     color: #DAE9F8;
-    margin-bottom: 10px;
-
 }
 div.list{
     min-height: 500px;

@@ -14,6 +14,18 @@
     <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
     <script src="__PUBLIC__/home/js/course.js"></script>
     <script src="__PUBLIC__/home/js/common.js"></script>
+    <script>
+        $(function(){
+            $("div.row_right ul li a").click(function(e){
+
+                console.log("1");
+                $(this).parent().addClass("active").siblings().removeClass("active");
+
+            })
+        })
+
+
+    </script>
 
 </head>
 <body>

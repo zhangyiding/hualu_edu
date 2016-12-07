@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>听课中心页面</title>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/listenCourse.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/video-js.css"/>
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/home/js/common.js"></script>
+    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/home/js/listenCourse.js"></script>
+    <script src="__PUBLIC__/home/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="__PUBLIC__/home/js/video.js"></script>
+    <script src="__PUBLIC__/home/js/videojs-ie8.js"></script>
+</head>
+<body>
+<div id="header"></div>
+<!--nan部分-->
+<div id="title">
+    <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+</div>
+<div id="article">
+    <ul class="nav">
+        <li >
+            <a href="/">首页</a>
+        </li>
+        <li>
+            <a href="/news">培训资讯</a>
+        </li>
+        <li>
+            <a href="/course?is_master=1">选课</a>
+        </li>
+        <li class="active">
+            <a href="/user/center">学习中心</a>
+        </li>
+    </ul>
+</div>
+<!-- 以上为共有标签-->
+
+
+
+
+
+
+<!--播放器部分-->
+<div id="play">
+    <video id="video" src="//edu.hl.com/public/resource/video/course_video/161116/test.mp4" controls  >
+
+    </video>
+</div>
+<button>
+    aa
+</button>
+
+<script>
+    $(function(){
+        video = document.getElementById('video');
+        $('button').click(function(){
+
+           video.currentTime='60'
+
+        })
+    })
+
+</script>
+
+
+<!--老师介绍,资料下载部分-->
+<div id="aside">
+    <div class="teach">
+        <h4 class="wire wire_1">老师介绍</h4>
+        <div class="pic">
+            <img src="__PUBLIC__/home/image/teach.png" alt=""/>
+            <h1>张希贤</h1>
+            <p>中央党校 党建部教授、博士生导师</p>
+            <p>环球智库研究院学术委员会委员</p>
+            <p>我国研究党建理论的资深学者、博士、知名党建专家</p>
+        </div>
+    </div>
+    <div class="detail">
+        <h4 class="wire wire_2">资料下载</h4>
+        <div class="kind">
+            <ul class="book">
+                <li class="doc">
+                    1.研究党章_着手筑建社会主义道路
+                    探索第五座里程碑_01.doc
+                    <span>(1013.50KB)</span>
+                    <p>立即下载</p>
+                </li>
+                <li class="pdf">
+                    1.研究党章_着手筑建社会主义道路
+                    探索第五座里程碑_01.doc
+                    <span>(1013.50KB)</span>
+                    <p>立即下载</p>
+                </li>
+                <li class="ppt">
+                    1.研究党章_着手筑建社会主义道路
+                    探索第五座里程碑_01.doc
+                    <span>(1013.50KB)</span>
+                    <p>立即下载</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--相关课程轮播部分-->
+<div id="relate">
+    <h4 class="wire cour">相关课程</h4>
+    <div class="banner">
+        <div class="picScroll-left">
+            <div class="hd">
+                <a class="prev"></a>
+                <a class="next"></a>
+            </div>
+            <div class="bd">
+                <ul class="picList imgList">
+                    <li>
+                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
+                        <span class="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
+                        <span class="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
+                        <span class="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="__PUBLIC__/home/image/learn_07.png" alt=""/>
+                        <span class="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="__PUBLIC__/home/image/learn_07.png" alt=""/>
+                        <span class="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                    <li>
+                        <img src="image/learn_03.png" alt=""/>
+                        <span clas__PUBLIC__/home/s="lt">公开</span>
+                        <div class="hour">最新上线( 共23节课 )</div>
+                        <h4>社交基本礼仪</h4>
+                        <div class="btn">
+                                    <span>
+                                    报名学习
+                                    </span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer"></footer>
+</body>
+</html>

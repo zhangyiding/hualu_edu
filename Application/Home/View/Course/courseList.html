@@ -24,7 +24,7 @@
     <ul class="learn learn_1" style="display: block">
         <foreach name="course_list" item="vo">
         <li>
-            <a class="aa" href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
+            <a class="cse_info" href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
             <div class="hour">{$vo.os_cn}</div>
             <h4>{$vo.name}</h4>
             <div class="btn">
@@ -41,10 +41,9 @@
 </div>
 
 <script>
-   $(".aa").click(function(e){
-//       e.preventDefault();
+   $(".cse_info").click(function(e){
        var href = $(this).attr('href');
-       location.href = '//edu.hl.com/' + href;
+       parent.frames.location.href=href
    })
 </script>
 

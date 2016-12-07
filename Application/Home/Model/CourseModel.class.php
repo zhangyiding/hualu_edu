@@ -201,5 +201,14 @@ class CourseModel extends Model{
     }
 
 
+    public function getCseId($res_id){
+        $result = $this->table('course_resource')
+            ->field('course_id')
+            ->where(array('resource_id'=>$res_id))
+            ->find();
+        return $result;
+    }
+
+
 }
 ?>

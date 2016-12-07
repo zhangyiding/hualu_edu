@@ -46,11 +46,10 @@
     </div>
     <!-- 以上为共有标签-->
 
-
-
     <div id="concent">
         <ul class="co_left">
-            <a href="#"><li class="active">当前课程表</li></a>
+            <li class="active lf_1" ><a href="#">当前课程表</a></li>
+            <li class="lf_2">已结课记录</li>
             <a href="/user/info"><li>资料中心</li></a>
             <a href="/user/help"><li>帮助中心</li></a>
             <a href="/user/prove"><li>学习记录证明</li></a>
@@ -121,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="current">
+            <div class="current current_1">
                 <h1>
                     当前学习课程
                 </h1>
@@ -139,16 +138,6 @@
                     </li>
                 </ul>
                 <div class="con_2">
-                    <!--<div class="line_1">-->
-                        <!--<i>-->
-                            <!--<if condition="($len_cse.is_pub eq 1)">-->
-                                <!--公开<else />内训-->
-                            <!--</if></i>-->
-                        <!--<span>{$len_cse.name}</span>-->
-                        <!--<span class="arrow active"></span>-->
-                        <!--<span class="end">{$len_cse.end_time}</span>-->
-                        <!--<span class="per">25%</span>-->
-                    <!--</div>-->
                     <h5>
                         <ul class="msg">
                             <foreach name ="len_cse"  item="val">
@@ -160,7 +149,7 @@
                                     <foreach name="val.cse_video" item="vo">
                                         <p class="p_1">
                                     <span class="lf">
-                                        <a href="{$vo.file_path}">{$vo.res_name}</a>
+                                        <a href="/course/listenCourse?resource_id={$vo.resource_id}">{$vo.res_name}</a>
                                     </span>
                                     <span class="rg">
                                         学习中
@@ -172,25 +161,44 @@
 
                         </ul>
                     </h5>
+                </div>
+            </div>
+            <div class="current_2">
+                <h1>
+                    已结课学习记录
+                </h1>
+                <ul class="record">
+                    <li class="rd_1">
+                        课程名称
+                    </li>
+                    <li class="rd_2">课程时间
+                    </li>
+                    <li class="rd_4">学习进度</li>
+                </ul>
+                <div class="con_2">
+                    <h5>
+                        <ul class="msg">
+                            <foreach name ="over_cse"  item="val">
+                                <li>
+                                    <span class="cse_name">{$val.name}</span>
+                                    <span class="end_time">{$val.end_time}</span>
+                                    <span class="tm">{$val.sum_dur}</span>
 
-                    <!--<div id="page">-->
-                        <!--<div class="code">-->
-                            <!--<ul>-->
-                                <!--<li class="first"><a href="#">首页</a></li>-->
-                                <!--<li class="prev"><a href="#">上一页</a></li>-->
-                                <!--<li class="num active"><a href="#">1</a> </li>-->
-                                <!--<li class="num"><a href="#">2</a></li>-->
-                                <!--<li class="num"><a href="#">3</a></li>-->
-                                <!--<li class="num"><a href="#">4</a></li>-->
-                                <!--<li class="num"><a href="#">5</a></li>-->
-                                <!--<li class="num"><a href="#">6</a></li>-->
-                                <!--<li class="num"><a href="#">7</a> </li>-->
-                                <!--<li class="num"><a href="#">8</a></li>-->
-                                <!--<li class="next"><a href="#">下一页</a></li>-->
-                                <!--<li class="last"><a href="#">尾页</a></li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
-                    <!--</div>-->
+                                    <foreach name="val.cse_video" item="vo">
+                                        <p class="p_1">
+                                    <span class="lf">
+                                        <a href="{$vo.file_path}">{$vo.res_name}</a>
+                                    </span>
+                                    <span class="rg">
+                                        学习结束
+                                    </span>
+                                        </p>
+                                    </foreach>
+                                </li>
+                            </foreach>
+
+                        </ul>
+                    </h5>
                 </div>
             </div>
         </div>

@@ -303,10 +303,27 @@ class CourseController extends BaseController {
         $this->assign('cse_info',$cse_info);
 
 
+        $this->display();
+    }
+
+
+    /*
+     * 听课页面
+     */
+    public  function listenCourse(){
+        $res_id = $this->params['resource_id'];
+
+        $m_course = new CourseModel();
+
+        $cse_id = $m_course->getCseId($res_id);
+
+
+
 
 
 
 
         $this->display();
     }
+
 }
