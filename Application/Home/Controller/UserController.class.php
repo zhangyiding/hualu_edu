@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Common\Controller\BaseController;
+use Common\Model\BaseModel;
 use Home\Model\CourseModel;
 use Home\Model\UserModel;
 use Common\Lib\Verify;
@@ -215,9 +216,31 @@ class UserController extends BaseController {
      */
     public function changePwd(){
 
+        $student_id = session('student_id');
+        $old_pwd = $this->params['old_pwd'];
+        $new_pwd = $this->params['new_pwd'];
+        $cfm_pwd = $this->params['cfm_pwd'];
+
+        $m_user = new UserModel();
+        $where['student_id'] = $student_id;
+        $where['password'] = encryptpass($old_pwd);
+        $where['status'] = 0;
+
+        if($user_info = $m_user->getUserInfo($where)){
+
+            if($new_pwd !== $cfm_pwd){
+                $this->to_back('11012');
+            }
+
+            $data['password'] = encryptpass($new_pwd);
+           if($m_user->updateInfo($data,$student_id)){
+               $this->to_back('10000');
+           }
+        }else{
+            $this->to_back('11011');
+        }
 
 
-        $this->display();
     }
 
 
@@ -355,6 +378,77 @@ class UserController extends BaseController {
         }
     }
 
+
+    public function info(){
+        if(!$user_info = $this->isLogin()){
+            $this->showMsg('尚未登录');
+        }
+        $m_base = new BaseModel();
+        $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
+        $user_info['subsite_name'] = $subsite_info['name'];
+
+        $ethnic_list = C('ETHNIC_LIST');
+
+        $this->assign('user_info',$user_info);
+        $this->assign('ethnic_list',$ethnic_list);
+
+        $this->display();
+    }
+
+
+
+    /*
+     * 用户更新资料
+     */
+    public function updateInfo(){
+
+        if(!$user_info = $this->isLogin()){
+            $this->showMsg('尚未登录');
+        }
+
+        $data['gender'] = $this->params['gender'];
+        $data['avatar'] = uploadFile('student');
+        $data['ethnic'] = $this->params['ethnic'];
+        $data['name'] = $this->params['name'];
+        $data['birthday'] = $this->params['birthday'];
+        $data['mobile'] = $this->params['mobile'];
+        $data['email'] = $this->params['email'];
+        $data['unit'] = $this->params['unit'];
+        $data['job_position'] = $this->params['job_position'];
+        $data['politics_status'] = $this->params['politics_status'];
+        $data['education'] = $this->params['education'];
+        $data['post_code'] = $this->params['post_code'];
+        $data['apartment'] = $this->params['apartment'];
+        $data['mtime'] = date('Y-m-d H:i:s',time());
+
+        $m_user = new UserModel();
+
+        $student_id = $user_info['student_id'];
+
+        $result = $m_user->updateInfo(array_filter($data),$student_id);
+
+        if($result!== false){
+            $this->to_back($user_info);
+        }else{
+            $this->to_back('11013');
+        }
+    }
+
+
+
+
+
+
+
+    public function help(){
+        $this->display();
+    }
+
+
+
+    public function prove(){
+        $this->display();
+    }
 
 
 

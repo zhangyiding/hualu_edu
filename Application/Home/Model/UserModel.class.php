@@ -30,11 +30,11 @@ class UserModel extends Model{
      */
     public function getUserInfo($where){
         $result = $this->field('student_id,cu_id,subsite_id,name,money,unit,job_position,level,avatar,
-                                mobile,ethnic,gender,birthday,email')
+                                mobile,ethnic,gender,birthday,email,politics_status,education,post_code,address')
             ->where($where)
             ->order('ctime desc')
             ->find();
-        if($result !== false){
+        if($result){
             $result['avatar'] = getImageBaseUrl($result['avatar']);
             return $result;
         }else{
@@ -55,6 +55,18 @@ class UserModel extends Model{
         return $result;
     }
 
+
+
+
+    /*
+     * 修改密码
+     */
+    public function updateInfo($data,$student_id){
+        $result = $this
+            ->where(array('student_id'=>$student_id))
+            ->save($data);
+        return $result;
+    }
 
 
 

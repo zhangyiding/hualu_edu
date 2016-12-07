@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <title>学习中心页面</title>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/style_courseBrief.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/home/css/dataCenter.css"/>
+    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
+    <script src="__PUBLIC__/home/js/common.js"></script>
+    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <script src="__PUBLIC__/home/js/dataCenter.js"></script>
+    <script src="__PUBLIC__/home/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="__PUBLIC__/home/js/WdatePicker.js"></script>
+</head>
+<body>
+    <div id="header"></div>
+    <!--nan部分-->
+    <nav>
+        <ul>
+            <li class="hualu">
+                <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+            </li>
+            <li class="search">
+                <input type="text" placeholder="请输入课程关键字"/>
+                <span>搜索</span>
+            </li>
+        </ul>
+    </nav>
+    <div id="article">
+        <ul class="nav">
+            <li >
+                <a href="/">首页</a>
+            </li>
+            <li>
+                <a href="/news">培训资讯</a>
+            </li>
+            <li >
+                <a href="/course?is_master=1">选课</a>
+            </li>
+            <li class="active">
+                <a href="/user/center">学习中心</a>
+            </li>
+        </ul>
+    </div>
+    <!-- 以上为共有标签-->
+
+
+
+    <div id="concent">
+        <ul class="co_left">
+            <li class="lf_1"><a href="/user/center">当前课程表</a></li>
+            <li class="lf_3">
+                <a href="/user/info">资料中心</a>
+                <i></i>
+            </li>
+            <div class="data">
+                <p class="data_1 current">个人资料</p>
+                <p class="data_2">密码修改</p>
+            </div>
+            <li class="lf_4"><a href="/user/help"></a>帮助中心</li>
+            <li class="lf_5"><a href="/user/prove"></a>学习记录证明</li>
+        </ul>
+        <div class="co_right co_right_1">
+            <div class="pic">
+
+                添加相片
+            </div>
+            <p class="mind">注：照片尽量为一寸，或大
+                或小都会导致照片变形
+            </p>
+            <div id="main">
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">姓名:</span>
+                        <input type="text" class="name" placeholder="王小明" name="name" value="{$user_info.name}"/>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">民族:</span>
+                        <span>
+                            <select name="ethnic" id="ethnic">
+                                <option value="">--请选择</option>
+                                <foreach name="ethnic_list" item="vo">
+                                    <option value="{$vo}">{$vo}</option>
+                                </foreach>
+
+
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">性别:</span>
+                        <select name="gender" id="gender">
+                            <option value="1">男</option>
+                            <option value="2">女</option>
+                            <option value="3">保密</option>
+                        </select>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">政治面貌:</span>
+                        <span>
+                            <select name="politics_status" id="politics_status">
+                                <option value="">--请选择</option>
+                                <option value="1">团员</option>
+                                <option value="2">党员</option>
+                                <option value="3">群众</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">出生日期:</span>
+                        <input  name="birthday" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" type="text" value={$user_info.birthday}>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">学历:</span>
+                        <span>
+                            <select name="education" id="education">
+                                <option value="">--请选择</option>
+                                <option value="大学">大学</option>
+                                <option value="高中">高中</option>
+                                <option value="博士">博士</option>
+                                <option value="硕士">硕士</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">手机:</span>
+                        <input type="text" class="name" name="mobile" value="{$user_info.mobile}"/>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">集团及主管单位:</span>
+                        <span>
+                           <input type="text" disabled="true" value="{$user_info.subsite_name}"/>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">邮政编码:</span>
+                        <input type="text" class="name" name="post_code" value="{$user_info.post_code}"/>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">单位名称:</span>
+                        <span>
+                           <input type="text" name="unit" value="{$user_info.unit}"/>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">Email地址:</span>
+                        <input type="text" class="name" name="Email" value="{$user_info.Email}"/>
+                    </p>
+                    <p class="row_2">
+                        <span class="name">部门名称:</span>
+                        <span>
+                           <input type="text" name="apartment" value="{$user_info.apartment}"/>
+                        </span>
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name">职务:</span>
+                        <span>
+                           <input type="text" name="job_position" value="{$user_info.job_position}"/>
+                        </span>
+                    </p>
+                    <p class="row_2">
+
+                    </p>
+                </div>
+                <div class="line_1">
+                    <p class="row_1">
+                        <span class="name"></span>
+                    </p>
+                    <p class="row_2">
+                        <!--<span class="name">职称:</span>-->
+                        <!--<span>-->
+                            <!--<select name="" id="">-->
+                                <!--<option value="">&#45;&#45;请选择</option>-->
+                                <!--<option value="">干部</option>-->
+                                <!--<option value="">其它</option>-->
+                            <!--</select>-->
+                        <!--</span>-->
+                    </p>
+                </div>
+                <div class="btn">保存</div>
+            </div>
+        </div>
+        <div class="co_right_2">
+            <p >
+                <span>原密码:</span>
+                <input type="text" name="old_pwd" placeholder="6-20位英文大小写、数字或符号"/>
+            </p>
+            <p >
+                <span>新密码:</span>
+                <input type="password" name="new_pwd" placeholder="6-20 位英文大小写、数字或符号"/>
+            </p>
+            <p>
+                <span>确认密码:</span>
+                <input type="password" name="cfm_pwd" placeholder="6-20 位英文大小写、数字或符号"/>
+            </p>
+            <div class="firm">确认</div>
+        </div>
+    </div>
+
+
+
+    <footer id="footer"></footer>
+
+
+</body>
+</html>
