@@ -156,7 +156,7 @@
         </li>
         <li class="password">
             <label for="pwd">密码</label>
-            <input type="text" id="pwd"/>
+            <input type="password" id="pwd"/>
         </li>
         <li class="login">
             <div class="login_denglu">登录</div>
@@ -237,16 +237,13 @@
         //模态框中登录交互
         $("div.modal_1 span.login_1").click(function(){
             var email=$("h4.log input").val();
-            console.log(email);
             var pwd=$("h4.reg input").val();
-
             var request={
                 "username" : email,
                 "password" : pwd
             }
             if(email && pwd){
                 $.post(url+'/user/login', request,function(response){
-                    console.log(response);
                     if(response.code == "10000"){
                         $("div.modal_1").hide();
                         $("ul.fail").hide();
@@ -254,6 +251,7 @@
                         $("ul.succ li.rig_2 span").html(response.result.name);
                     }else{
                         $("div.remind").show();
+                        alert(response.msg)
                     }
                 })
             }else{

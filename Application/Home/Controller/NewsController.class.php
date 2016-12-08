@@ -9,13 +9,13 @@ class NewsController extends BaseController {
 
     public function index(){
         $m_news = new \Home\Model\NewsModel();
-//        $type = $this->params['news_type'];
-        //根据类型判断显示主站资讯或者分站
-//        if(!empty($type)){
-//            $where['subsite_id'] = ($type == C('MASTER_NEWS'))? 0: $this->subsite_id;
-//        }else{
-//            $where['subsite_id'] = 0;
-//        }
+        $type = $this->params['news_type'];
+       // 根据类型判断显示主站资讯或者分站
+        if(!empty($type)){
+            $where['subsite_id'] = ($type == C('MASTER_NEWS'))? 0: $this->subsite_id;
+        }else{
+            $where['subsite_id'] = 0;
+        }
 
         $where['subsite_id'] = array('in',array($this->subsite_id,0));
         $where['status'] = 0;

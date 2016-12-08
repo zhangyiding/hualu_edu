@@ -16,12 +16,43 @@
     <script src="__PUBLIC__/home/js/common.js"></script>
     <script>
         $(function(){
-            $("div.row_right ul li a").click(function(e){
+            function parseQueryString(url){
+                var json = {};
+                var arr = url.substr(url.indexOf('?') + 1).split('&');
+                arr.forEach(function(item) {
+                    var tmp = item.split('=');
+                    json[tmp[0]] = tmp[1];
+                })
+                return json;
+            }
 
-                console.log("1");
-                $(this).parent().addClass("active").siblings().removeClass("active");
+            var url =window.location.href;
+            var json = parseQueryString(url);
+            console.log(json);
 
-            })
+            if(is_master = json.is_master){
+                var c = "div.row_right ul li.master_"+is_master;
+                $(c).addClass("active")
+                        .siblings().removeClass("active");
+            }
+
+            if(course_dir = json.course_dir){
+                var d = "div.row_right_dir ul li.cse_dir_"+course_dir;
+                $(d).addClass("active")
+                        .siblings().removeClass("active");
+            }
+
+            if(is_pub = json.is_pub){
+                var a = "div.row_right_status ul li.pub_"+is_pub;
+                $(a).addClass("active")
+                        .siblings().removeClass("active");
+            }
+            if(ct_id = json.course_type){
+                var b = "div.row_right_type ul li.cse_type_"+ct_id;
+                $(b).addClass("active")
+                        .siblings().removeClass("active");
+            }
+
         })
 
 
@@ -66,10 +97,10 @@
             </div>
             <div class="row_right">
                 <ul>
-                    <li class="active">
+                    <li class="master_1 active">
                         <a href="course?is_master=1">国资委干教中心</a>
                     </li>
-                    <li>
+                    <li class="master_2">
                         <a href="course?is_master=2">中石油分站</a>
                     </li>
                 </ul>
@@ -83,7 +114,7 @@
             <div class="row_right row_right_dir">
                 <ul>
                     <foreach name="cd_list" item="vo">
-                        <li>
+                        <li class="cse_dir_{$vo.cd_id}">
                              <a href="/course?course_dir={$vo.cd_id}">{$vo.name}</a>
                        </li>
                    </foreach>
@@ -98,7 +129,7 @@
            <div class="row_right row_right_type">
                <ul>
                    <foreach name="ct_list" item="vo">
-                       <li>
+                       <li class="cse_type_{$vo.ct_id}">
                            <a href="course?course_type={$vo.ct_id}">{$vo.name}</a>
                        </li>
                    </foreach>
@@ -112,13 +143,13 @@
        </div>
        <div class="row_right row_right_status">
            <ul>
-               <li>
+               <li class="pub_1">
                    <a href="course?is_pub=1">公开</a>
-               </li>
-               <li>
+               </li >
+               <li class="pub_2">
                    <a href="course?is_pub=2">内训</a>
-               </li>
-               <li>
+               </li >
+               <li class="pub_3">
                    <a href="course?is_pub=3">定向</a>
                </li>
            </ul>
