@@ -18,12 +18,24 @@
     </style>
 
     <![endif]-->
+
+
+    <script>
+        $(function(){
+            $("li.brif a").click(function(e){
+
+                parent.frames.location.href="courseBrief.html";
+            })
+        })
+    </script>
 </head>
 <body>
 <div id="course">
     <ul class="learn learn_1" style="display: block">
-        <li>
-            <img src="image/learn_03.png" alt=""/>
+        <li class="brif">
+            <a href="courseBrief.html">
+             <img src="image/learn_03.png" alt=""/>
+            </a>
             <div class="hour">最新上线( 共23节课 )</div>
             <h4>社交基本礼仪</h4>
             <div class="btn">
@@ -128,6 +140,5 @@
         </li>
     </ul>
 </div>
-
 </body>
 </html>

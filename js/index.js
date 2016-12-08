@@ -1,6 +1,4 @@
 $(function() {
-
-
     //banner呼吸轮播效果；
     var num=0;
     var tim;
@@ -59,7 +57,7 @@ $(function() {
     })
 
 //首页部分切换
-    $(".nav li a").click(function(){
+    $(".nav li a").click(function(e){
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
 
