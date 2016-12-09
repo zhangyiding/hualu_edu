@@ -220,5 +220,37 @@ class CourseModel extends Model{
     }
 
 
+    public function getStuRecord($student_id,$res_id){
+        $result = $this->table('student_course_record')
+            ->field('id')
+            ->where(array('resource_id'=>$res_id,'student_id'=>$student_id))
+            ->find();
+        return $result['id'];
+    }
+
+
+    public function updataRecord($data,$where){
+        $result = $this->table('student_course_record')
+            ->where($where)
+            ->save($data);
+        return $result;
+    }
+
+    public function addRecord($data){
+        $result = $this->table('student_course_record')
+            ->add($data);
+        return $result;
+    }
+
+
+
+    public function getWatchTime($student_id,$resource_id){
+        $result = $this->table('student_course_record')
+            ->field('watch_time')
+            ->where(array('student_id'=>$student_id,'resource_id'=>$resource_id))
+            ->find();
+        return $result['watch_time'];
+    }
+
 }
 ?>
