@@ -67,11 +67,4 @@ $(function(){
         timer=null;
 
     })
-
-
-
-
-
-
-
 })

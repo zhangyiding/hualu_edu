@@ -12,12 +12,12 @@
     <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/listenCourse.js"></script>
+    <script src="js/videoplayer.js"></script>
     <script src="js/video.js"></script>
     <script src="js/videojs-ie8.js"></script>
     <script src="js/jquery.SuperSlide.2.1.1.js"></script>
 </head>
 <body>
-<button>diaji</button>
 <div id="header"></div>
 <!--nan部分-->
 <nav>
@@ -492,6 +492,11 @@
     </div>
 </div>
 <footer id="footer"></footer>
+<script>
+    var videoplayer=videoPlayer('video',{
+        canfast:true,
+    })
+</script>
 <!--&lt;!&ndash; 验证码部分&ndash;&gt;-->
 <!--<div id="check" style="display: none">-->
 <!--<h1>输入验证码</h1>-->
