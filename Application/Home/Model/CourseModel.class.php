@@ -160,7 +160,7 @@ class CourseModel extends Model{
 
         $result = $this->table('course_type_map')
             ->alias('ctm')
-            ->field('ctm.ct_id,c.name,c.course_id')
+            ->field('ctm.ct_id,c.name,c.cover,c.is_pub,c.course_id,c.open_status')
             ->join('left join course as c on ctm.course_id= c.course_id')
             ->where(array(
                 'ctm.ct_id'=>$course_type,
@@ -204,6 +204,16 @@ class CourseModel extends Model{
     public function getCseId($res_id){
         $result = $this->table('course_resource')
             ->field('course_id')
+            ->where(array('resource_id'=>$res_id))
+            ->find();
+        return $result['course_id'];
+    }
+
+
+
+    public function getResInfo($res_id){
+        $result = $this->table('resource')
+            ->field('resource_id,name,type,ext,file_path,file_size,duration')
             ->where(array('resource_id'=>$res_id))
             ->find();
         return $result;

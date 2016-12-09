@@ -43,29 +43,56 @@
 
 
 
-
-
+<p class="top">{$res_info.name}</p>
 <!--播放器部分-->
 <div id="play">
-    <video id="video" src="//edu.hl.com/public/resource/video/course_video/161116/test.mp4" controls  >
+    <p>{$cse_info.end_time}</p>
 
-    </video>
+
+    <!-- video播放器部分-->
+    <div id="nav">
+        <video id="video" class="video-js vjs-default-skin" controls data-setup="{}">
+            <source src="//edu.hl.com/public/resource/video/course_video/161116/test.mp4" type="video/mp4">
+        </video>
+        <div class="con_2">
+            <h4>
+                <span class="sa_1">目录</span>
+                <span class="sa_2">收起&gt;&gt;</span>
+            </h4>
+            <!--<div class="line_1">-->
+                <!--{$cse_info.name}-->
+            <!--</div>-->
+            <h5 style="display: block">
+                <ul class="msg">
+                    <li>
+                        {$cse_info.name}
+
+                        <foreach name="cse_video" item="vo">
+                            <p class="p_1">
+                                <span class="lf"></span>
+                            <span class="rg">
+                                <a href="/course/listenCourse?resource_id={$vo.resource_id}">{$vo.res_name}</a>
+                            </span>
+                            </p>
+                        </foreach>
+
+                    </li>
+
+                </ul>
+            </h5>
+            <p class="bg">
+                <span></span>
+            </p>
+        </div>
+        <div class="shrink">
+            <span><img src="__PUBLIC__/home/image/shrink_03.png">
+            </span>
+        </div>
+    </div>
+
+
 </div>
-<button>
-    aa
-</button>
 
-<script>
-    $(function(){
-        video = document.getElementById('video');
-        $('button').click(function(){
-
-           video.currentTime='60'
-
-        })
-    })
-
-</script>
 
 
 <!--老师介绍,资料下载部分-->
@@ -73,35 +100,24 @@
     <div class="teach">
         <h4 class="wire wire_1">老师介绍</h4>
         <div class="pic">
-            <img src="__PUBLIC__/home/image/teach.png" alt=""/>
-            <h1>张希贤</h1>
-            <p>中央党校 党建部教授、博士生导师</p>
-            <p>环球智库研究院学术委员会委员</p>
-            <p>我国研究党建理论的资深学者、博士、知名党建专家</p>
+            <img src="{$cse_info.tea_img}" alt=""/>
+            <h1>{$cse_info.tea_name}</h1>
+            <p>{$cse_info.tea_intro}</p>
         </div>
     </div>
     <div class="detail">
         <h4 class="wire wire_2">资料下载</h4>
         <div class="kind">
             <ul class="book">
-                <li class="doc">
-                    1.研究党章_着手筑建社会主义道路
-                    探索第五座里程碑_01.doc
-                    <span>(1013.50KB)</span>
-                    <p>立即下载</p>
-                </li>
-                <li class="pdf">
-                    1.研究党章_着手筑建社会主义道路
-                    探索第五座里程碑_01.doc
-                    <span>(1013.50KB)</span>
-                    <p>立即下载</p>
-                </li>
-                <li class="ppt">
-                    1.研究党章_着手筑建社会主义道路
-                    探索第五座里程碑_01.doc
-                    <span>(1013.50KB)</span>
-                    <p>立即下载</p>
-                </li>
+                <foreach name="cse_file" item="vo">
+                    <li class="doc">
+                        <img src="{$vo.file_cover}">
+                        <span class="res_name">{$vo.res_name}</span>
+                        <span class="res_size">{$vo.file_size}M</span>
+                        <p><a href="{$vo.file_path}">立即下载</a></p>
+                    </li>
+
+                </foreach>
             </ul>
         </div>
     </div>
@@ -119,77 +135,39 @@
             </div>
             <div class="bd">
                 <ul class="picList imgList">
-                    <li>
-                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
+                    <foreach name="cse_list" item="vo">
+                        <li>
+                            <a href="/course/info?course_id={$vo.course_id}"><img src="{$vo.cover}" alt=""/></a>
+                            <span class="lt">公开</span>
+                            <div class="hour">{$vo.os_cn}</div>
+                            <h4>{$vo.name}</h4>
+                            <div class="btn">
                                     <span>
-                                    报名学习
+                                    <a href="/course/register?course_id={$vo.course_id}"></a>报名学习
                                     </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                                    <span>
-                                    报名学习
-                                    </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="__PUBLIC__/home/image/learn_03.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                                    <span>
-                                    报名学习
-                                    </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="__PUBLIC__/home/image/learn_07.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                                    <span>
-                                    报名学习
-                                    </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="__PUBLIC__/home/image/learn_07.png" alt=""/>
-                        <span class="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                                    <span>
-                                    报名学习
-                                    </span>
-                        </div>
-                    </li>
-                    <li>
-                        <img src="image/learn_03.png" alt=""/>
-                        <span clas__PUBLIC__/home/s="lt">公开</span>
-                        <div class="hour">最新上线( 共23节课 )</div>
-                        <h4>社交基本礼仪</h4>
-                        <div class="btn">
-                                    <span>
-                                    报名学习
-                                    </span>
-                        </div>
-                    </li>
+                            </div>
+                        </li>
+                    </foreach>
+
                 </ul>
             </div>
         </div>
     </div>
 </div>
 <footer id="footer"></footer>
+<!--&lt;!&ndash; 验证码部分&ndash;&gt;-->
+<!--<div id="check" style="display: none">-->
+<!--<h1>输入验证码</h1>-->
+<!--<div>-->
+<!--<input type="text" placeholder="请输入您的验证码"/>-->
+<!--<i></i>-->
+<!--</div>-->
+<!--<p>确定</p>-->
+<!--</div>-->
+<!--&lt;!&ndash; 验证码通过部分&ndash;&gt;-->
+<!--<div id="succ" style="display: none">-->
+<!--<h1>恭喜您验证成功</h1>-->
+<!--<p>马上进行课程播放...</p>-->
+<!--</div>-->
 </body>
 </html>
