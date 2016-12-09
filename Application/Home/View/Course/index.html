@@ -14,49 +14,7 @@
     <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
     <script src="__PUBLIC__/home/js/course.js"></script>
     <script src="__PUBLIC__/home/js/common.js"></script>
-    <script>
-        $(function(){
-            function parseQueryString(url){
-                var json = {};
-                var arr = url.substr(url.indexOf('?') + 1).split('&');
-                arr.forEach(function(item) {
-                    var tmp = item.split('=');
-                    json[tmp[0]] = tmp[1];
-                })
-                return json;
-            }
 
-            var url =window.location.href;
-            var json = parseQueryString(url);
-            console.log(json);
-
-            if(is_master = json.is_master){
-                var c = "div.row_right ul li.master_"+is_master;
-                $(c).addClass("active")
-                        .siblings().removeClass("active");
-            }
-
-            if(course_dir = json.course_dir){
-                var d = "div.row_right_dir ul li.cse_dir_"+course_dir;
-                $(d).addClass("active")
-                        .siblings().removeClass("active");
-            }
-
-            if(is_pub = json.is_pub){
-                var a = "div.row_right_status ul li.pub_"+is_pub;
-                $(a).addClass("active")
-                        .siblings().removeClass("active");
-            }
-            if(ct_id = json.course_type){
-                var b = "div.row_right_type ul li.cse_type_"+ct_id;
-                $(b).addClass("active")
-                        .siblings().removeClass("active");
-            }
-
-        })
-
-
-    </script>
 
 </head>
 <body>
@@ -276,6 +234,46 @@
         if(r!=null)return  unescape(r[2]); return null;
     }
 </script>
+<script>
+    $(function(){
+        function parseQueryString(url){
+            var json = {};
+            var arr = url.substr(url.indexOf('?') + 1).split('&');
+            arr.forEach(function(item) {
+                var tmp = item.split('=');
+                json[tmp[0]] = tmp[1];
+            })
+            return json;
+        }
 
+        var url =window.location.href;
+        var json = parseQueryString(url);
+        console.log(json);
+
+        if(is_master = json.is_master){
+            var c = "div.row_right ul li.master_"+is_master;
+            $(c).addClass("active")
+                    .siblings().removeClass("active");
+        }
+
+        if(course_dir = json.course_dir){
+            var d = "div.row_right_dir ul li.cse_dir_"+course_dir;
+            $(d).addClass("active")
+                    .siblings().removeClass("active");
+        }
+
+        if(is_pub = json.is_pub){
+            var a = "div.row_right_status ul li.pub_"+is_pub;
+            $(a).addClass("active")
+                    .siblings().removeClass("active");
+        }
+        if(ct_id = json.course_type){
+            var b = "div.row_right_type ul li.cse_type_"+ct_id;
+            $(b).addClass("active")
+                    .siblings().removeClass("active");
+        }
+
+    })
+</script>
 </body>
 </html>
