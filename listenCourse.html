@@ -7,15 +7,13 @@
     <title>听课中心页面</title>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/listenCourse.css"/>
-    <link rel="stylesheet" href="css/video-js.css"/>
+    <link rel="stylesheet" href="css/videoplayer.css"/>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
     <script src="js/listenCourse.js"></script>
-    <script src="js/videoplayer.js"></script>
-    <script src="js/video.js"></script>
-    <script src="js/videojs-ie8.js"></script>
     <script src="js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="js/videoplayer.min.js"></script>
 </head>
 <body>
 <div id="header"></div>
@@ -55,9 +53,10 @@
     <p>71天以后课程结束</p>
     <!-- video播放器部分-->
     <div id="nav">
-        <video id="video" class="video-js vjs-default-skin" controls data-setup="{}">
-            <source src="videos/homepage-hero-video.mp4" type="video/mp4">
-        </video>
+        <!--<video id="video" class="video-js vjs-default-skin" controls data-setup="{}">-->
+            <!--<source src="videos/homepage-hero-video.mp4" type="video/mp4">-->
+        <!--</video>-->
+        <div class="mod-yivideo-warp" id="mod_player"></div>
         <div class="con_2">
             <h4>
                 <span class="sa_1">目录</span>

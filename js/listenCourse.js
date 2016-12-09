@@ -36,35 +36,81 @@ $(function(){
         $("div.con_2").show();
         $("div.shrink").hide();
     })
+    //实现禁用功能的播放器部分
+    var videoplayer=videoPlayer('mod_player',{
+        autoPlay:false,
+        muted:true,
+        setSource:function(canplayType){
+            if(canplayType == 'mp4'){
+            return 'http://mediaelementjs.com/media/echo-hereweare.mp4'
+            }
+        },
+        success:function(videoElement,node,videoObj){
+            videoElement.addEventListener('timeupdate',function(){
 
-    //获得视频播放和暂停事件
+            },false);
 
-
-
-    var timer;
-    var video=document.getElementById("video");
-    var request=function(){
-        var  currentTime=(video.currentTime).toFixed(1);
-        var current={
-            "currentTime" : currentTime
+            videoObj.timeupdate(function(currentTime){
+                console.log(currentTime)
+            });
+        },
+        //fires when a problem is detected
+        error:function(){
         }
-        console.log(currentTime);
-            //$.post("",current,function(response){
-            //    console.log(response);
-            //})
-        }
-    video.addEventListener("play",function(){
-        timer=setInterval(request,100);
-
     });
-    video.addEventListener("pause",function(){
-        clearInterval(timer);
-        timer=null;
-    })
-    video.addEventListener("ended",function(){
-        console.log("end");
-        clearInterval(timer);
-        timer=null;
 
-    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////获得视频播放和暂停事件
+    //var timer;
+    //var video=document.getElementById("video");
+    //var request=function(){
+    //    var  currentTime=(video.currentTime).toFixed(1);
+    //    var current={
+    //        "currentTime" : currentTime
+    //    }
+    //    console.log(currentTime);
+    //        //$.post("",current,function(response){
+    //        //    console.log(response);
+    //        //})
+    //    }
+    //video.addEventListener("play",function(){
+    //    timer=setInterval(request,100);
+    //
+    //});
+    //video.addEventListener("pause",function(){
+    //    clearInterval(timer);
+    //    timer=null;
+    //})
+    //video.addEventListener("ended",function(){
+    //    console.log("end");
+    //    clearInterval(timer);
+    //    timer=null;
+    //})
+
 })
