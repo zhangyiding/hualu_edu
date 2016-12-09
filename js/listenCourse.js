@@ -29,12 +29,12 @@ $(function(){
     //展开与收起之间的切换
     $("span.sa_2").click(function(){
         console.log("1");
-        $("div.con_2").hide();
-        $("div.shrink").show();
+        $("div.con_2").fadeOut();
+        $("div.shrink").fadeIn();
     })
     $("div.shrink span").click(function(){
-        $("div.con_2").show();
-        $("div.shrink").hide();
+        $("div.con_2").fadeIn();
+        $("div.shrink").fadeOut();
     })
     //实现禁用功能的播放器部分
     var videoplayer=videoPlayer('mod_player',{
