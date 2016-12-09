@@ -2,12 +2,10 @@
  * Created by Administrator on 2016/12/6 0006.
  */
 $(function(){
-    //¶¯»­Ð§¹û
+    //ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
     jQuery(".picScroll-left")
         .slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",vis:3});
-
-
-    //Ä¿Â¼½á¹¹Ö®¼äÏÂÀ­ÇÐ»»
+    //Ä¿Â¼ï¿½á¹¹Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     $(".con_2>div").click(function(){
         if($(this).children("span.arrow").hasClass("active")){
             $(this).children("span.arrow").removeClass("active")
@@ -22,15 +20,13 @@ $(function(){
         $(this).children().slideToggle();
         $(this).siblings().children().slideUp();
     })
-    //±³¾°Í¼µÄÊµÏÖ
+    //ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ï¿½Êµï¿½ï¿½
     $("div.con_2 ul.msg li p span.rg a").hover(function(){
         $(this).parent().siblings(".lf").show();
     },function(){
         $(this).parent().siblings(".lf").hide();
     })
-
-
-    //Õ¹¿ªÓëÊÕÆðÖ®¼äµÄÇÐ»»
+    //Õ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½Ð»ï¿½
     $("span.sa_2").click(function(){
         console.log("1");
         $("div.con_2").hide();
@@ -40,29 +36,81 @@ $(function(){
         $("div.con_2").show();
         $("div.shrink").hide();
     })
+    //Êµï¿½Ö½ï¿½ï¿½Ã¹ï¿½ï¿½ÜµÄ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    var videoplayer=videoPlayer('mod_player',{
+        autoPlay:false,
+        muted:true,
+        setSource:function(canplayType){
+            if(canplayType == 'mp4'){
+            return 'http://mediaelementjs.com/media/echo-hereweare.mp4'
+            }
+        },
+        success:function(videoElement,node,videoObj){
+            videoElement.addEventListener('timeupdate',function(){
 
-    //»ñµÃÊÓÆµ²¥·ÅºÍÔÝÍ£ÊÂ¼þ
-    var video=document.getElementById("video");
-    console.log(video);
-    video.addEventListener("play",function(){
-        console.log("1");
-        //var timer=setInterval(request,10000);
+            },false);
+
+            videoObj.timeupdate(function(currentTime){
+                console.log(currentTime)
+            });
+        },
+        //fires when a problem is detected
+        error:function(){
+        }
     });
-    video.addEventListener("pause",function(){
-        console.log("2");
-    })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½Åºï¿½ï¿½ï¿½Í£ï¿½Â¼ï¿½
+    //var timer;
+    //var video=document.getElementById("video");
+    //var request=function(){
+    //    var  currentTime=(video.currentTime).toFixed(1);
+    //    var current={
+    //        "currentTime" : currentTime
+    //    }
+    //    console.log(currentTime);
+    //        //$.post("",current,function(response){
+    //        //    console.log(response);
+    //        //})
+    //    }
+    //video.addEventListener("play",function(){
+    //    timer=setInterval(request,100);
     //
-    //$("button").click(function(){
-    //    console.log("1");
-    //    var video=document.getElementById("video");
-    //    video.addEventListener("timcupdatc", function () {
-    //        var vTime = video.attr("currentTime");
-    //        console.log(vTime);
-    //    }, false);
+    //});
+    //video.addEventListener("pause",function(){
+    //    clearInterval(timer);
+    //    timer=null;
     //})
-
-
+    //video.addEventListener("ended",function(){
+    //    console.log("end");
+    //    clearInterval(timer);
+    //    timer=null;
+    //})
 
 })
