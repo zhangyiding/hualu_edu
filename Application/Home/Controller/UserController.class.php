@@ -306,6 +306,10 @@ class UserController extends BaseController {
                 'over'=>count($over_cse)
             );
 
+            $learn_time = formatTime($m_user->getLearnTime($student_id),1);
+
+
+            $this->assign('learn_time',$learn_time);
             $this->assign('cse_count',$cse_count);
             $this->assign('wait_cse',$wait_cse);
             $this->assign('len_cse',$len_cse);

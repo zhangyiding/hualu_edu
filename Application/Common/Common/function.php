@@ -917,22 +917,35 @@ function changeTimeType($seconds){
 
 
 
+
+
 /**
  * @tudo 格式化时间戳
  *
  * @param int $time //时间戳
- * @param int $type //时间类型
+ * @param int $op //操作类型
  * @return str
  */
-function formatTime($time){
+function formatTime($time,$op=''){
 
-    if(empty($time)){
-       return '00-00-00';
+    if($op){
+        if(empty($time)){
+            return '0';
+        }
+        $data = round($time/60);
+
+    }else{
+        if(empty($time)){
+            return '00-00-00';
+        }
+        $data = date('Y-m-d',$time);
     }
-    $date = date('Y-m-d',$time);
 
-    return $date;
+
+    return $data;
 }
+
+
 
 
 

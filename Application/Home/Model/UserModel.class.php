@@ -70,6 +70,18 @@ class UserModel extends Model{
 
 
 
+    /*
+ * 修改密码
+ */
+    public function getLearnTime($student_id){
+        $result = $this->table('student_course_record')
+            ->field("sum(watch_time) as learn_time")
+            ->where(array('student_id'=>$student_id))
+            ->find();
+        return $result['learn_time'];
+    }
+
+
 
 
 }
