@@ -370,8 +370,11 @@ class CourseController extends BaseController
                     }
                 }
 
+
                 $this->assign('cse_video',$cse_video);
                 $this->assign('cse_file',$cse_file);
+                $this->assign('file_url',$res_info['file_path']);
+
             }
 
             //根据课程id获取分类信息

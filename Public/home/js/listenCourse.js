@@ -25,63 +25,63 @@ $(function(){
         $(this).parent().siblings(".lf").show();
     },function(){
         $(this).parent().siblings(".lf").hide();
-    })
+    });
     //չ��������֮����л�
     $("span.sa_2").click(function(){
         console.log("1");
         $("div.con_2").hide();
         $("div.shrink").show();
-    })
+    });
     $("div.shrink span").click(function(){
         $("div.con_2").show();
         $("div.shrink").hide();
-    })
+    });
     //ʵ�ֽ��ù��ܵĲ���������
+    var path = $("div.mod-video-warp").attr('value');
+    var res_id = $("div.mod-video-warp").attr('res_id');
+    var time = $("div.mod-video-warp").attr('time');
+    var url = '//edu.hl.com';
+    //记录学员观看视频时间
+    var updateRecord = function($res_id,$cur_time,$duration){
+        var param = {
+            'resource_id': $res_id,
+            'watch_time': $cur_time,
+            'duration': $duration
+        };
+
+        $.post(url+'/course/learnRecord/',param,function(response){
+                //if(response.code == 10000){
+                //    console.log(response)
+                //}else {
+                //    console.log('error')
+                //}
+            })
+
+    };
+
     var videoplayer=videoPlayer('mod_player',{
         autoPlay:false,
         muted:true,
-        setSource:function(canplayType){
-            if(canplayType == 'mp4'){
-            return 'http://mediaelementjs.com/media/echo-hereweare.mp4'
-            }
+        setSource:function(){
+            return path
         },
         success:function(videoElement,node,videoObj){
             videoElement.addEventListener('timeupdate',function(){
 
             },false);
+            videoElement.currentTime=time;
 
             videoObj.timeupdate(function(currentTime){
-                console.log(currentTime)
+                setTimeout(updateRecord(res_id,currentTime,videoElement.duration),1000*4)
+                //console.log(videoElement.duration)
             });
         },
         //fires when a problem is detected
         error:function(){
         }
+
+
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

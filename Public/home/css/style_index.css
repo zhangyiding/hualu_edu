@@ -29,6 +29,7 @@ nav li.hualu{
     float: left;
     cursor: pointer;
     margin-left: 20px;
+    margin-top: 24px;
 }
 nav li.search{
     float: right;

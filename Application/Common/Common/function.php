@@ -889,7 +889,8 @@ function listPage($count, $limit=10,$page=1){
         $data['home'] = current($page_arr);
         $data['end'] = end($page_arr);
         $data['last'] = ($page-1 <= 0)? 1:$page-1;
-        $data['next'] = ($page+1 >= $data['end'])? $data['end_page']:$page+1;
+
+        $data['next'] = ($page+1 >= $data['end'])? $data['end']:$page+1;
         return $data;
     }
 
