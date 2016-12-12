@@ -37,27 +37,50 @@ $(function(){
         $("div.shrink").fadeOut();
     })
     //实现禁用功能的播放器部分
+    var a;
+    var timer;
     var videoplayer=videoPlayer('mod_player',{
-        autoPlay:false,
-        muted:true,
-        setSource:function(canplayType){
-            if(canplayType == 'mp4'){
-            return 'http://mediaelementjs.com/media/echo-hereweare.mp4'
+            autoPlay:false,
+            muted:true,
+            canfast:false,
+            setSource:function(canplayType){
+                if(canplayType == 'mp4'){
+                return 'http://mediaelementjs.com/media/echo-hereweare.mp4'
+                }
+            },
+            success:function(videoElement,node,videoObj){
+                //console.log(videoElement.currentTime);
+                //console.log(node);
+                //console.log(videoObj.timeupdate);
+                //console.log(videoObj);
+                videoElement.addEventListener('timeupdate',function(){
+
+                },false);
+
+                videoObj.timeupdate(function(currentTime){
+                    //console.log(currentTime);
+                     a=currentTime;
+                    //console.log(a);
+
+
+                });
+               videoElement.addEventListener("pause",function(){
+                   console.log("end");
+                       clearInterval(timer);
+                       timer=null;
+               })
+                videoElement.addEventListener("play",function(){
+                    console.log("start");
+                    timer=setInterval(function(){
+                        console.log(a);
+                    },4000);
+                })
             }
-        },
-        success:function(videoElement,node,videoObj){
-            videoElement.addEventListener('timeupdate',function(){
-
-            },false);
-
-            videoObj.timeupdate(function(currentTime){
-                console.log(currentTime)
-            });
-        },
-        //fires when a problem is detected
-        error:function(){
-        }
     });
+
+
+
+
 
 
 

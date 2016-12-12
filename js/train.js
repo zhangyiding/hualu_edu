@@ -8,18 +8,31 @@ $(function(){
     $(".banner ul").on("click","li",function(){
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
-    $(".banner li.country").click(function(){
-        $("div.tab_1").show();
-        $("div.tab_2").hide();
-    })
-    $(".banner li.busy").click(function(){
-        $("div.tab_2").show();
-        $("div.tab_1").hide();
-    })
+    //$(".banner li.country").click(function(){
+    //    $("div.tab_1").show();
+    //    $("div.tab_2").hide();
+    //})
+    //$(".banner li.busy").click(function(){
+    //    $("div.tab_2").show();
+    //    $("div.tab_1").hide();
+    //})
 //   首页切换部分
     $(".nav li a").click(function(e){
         //e.preventDefault();
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
+
+
+
+
+//循环后台数据到指定位置
+    
+
+
+
+
+
+
+
 
 })
