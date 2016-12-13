@@ -3,7 +3,7 @@
  */
 $(function() {
 
-    var url ='//edu.hl.com';
+
     $("p.data_2").click(function () {
         $(this).addClass("current").siblings().removeClass("current");
         $("div.co_right_1").hide();
@@ -32,7 +32,7 @@ $(function() {
             'cfm_pwd': cfm_pwd
         };
 
-        $.get(url + '/user/changePwd', param, function (repeson) {
+        $.get(BASE_URL + '/user/changePwd', param, function (repeson) {
             if (repeson.code == 10000) {
                 alert('修改成功');
             } else {

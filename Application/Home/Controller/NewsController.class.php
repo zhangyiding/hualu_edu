@@ -71,4 +71,50 @@ class NewsController extends BaseController {
     }
 
 
+
+
+
+
+
+
+    public function getNewsList(){
+        $m_news = new \Home\Model\NewsModel();
+        $type = $this->params['news_type'];
+        // 根据类型判断显示主站资讯或者分站
+        if(!empty($type)){
+            $where['subsite_id'] = ($type == C('MASTER_NEWS'))? 0: $this->subsite_id;
+        }else{
+            $where['subsite_id'] = 0;
+        }
+
+        $where['subsite_id'] = array('in',array($this->subsite_id,0));
+        $where['status'] = 0;
+        $data = array();
+        $page_arr = array();
+
+        if($count = $m_news->getNewsCount($where)){
+
+            $page_arr = listPage($count,$this->limit,$this->page);
+
+            $data = $m_news->getNewsList($where,$this->offset,$this->limit,40);
+
+            foreach($data as $k=>$v){
+                $data[$k]['cover'] = getImageBaseUrl($v['cover']);
+                $data[$k]['ctime'] = date('Y-m-d',strtotime($v['ctime']));
+
+            }
+        }
+
+        $result = array(
+            'count'=>$count,
+            'limit'=>'10',
+            'data'=>$data,
+
+        );
+        $this->to_back($result);
+
+
+    }
+
+
 }

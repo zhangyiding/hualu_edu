@@ -191,11 +191,8 @@
 <script>
 
     $(function(){
-        var url="//edu.hl.com";
-
-
         $(document).ready(function(){
-            $.post(url+'/user/userIsLogin',function(reponse){
+            $.post(BASE_URL+'/user/userIsLogin',function(reponse){
                 if(reponse.code == '10000'){
                     $('ul.fail').hide();
                     $('ul.succ').show();
@@ -215,7 +212,7 @@
                 "password"  : pwd
             }
             if(name && pwd){
-                $.post(url+'/user/login', requestData,function(response){
+                $.post(BASE_URL+'/user/login', requestData,function(response){
                     if(response.code == "10000"){
                         $("ul.fail").hide();
                         $("ul.succ").show();
@@ -243,7 +240,7 @@
                 "password" : pwd
             }
             if(email && pwd){
-                $.post(url+'/user/login', request,function(response){
+                $.post(BASE_URL+'/user/login', request,function(response){
                     if(response.code == "10000"){
                         $("div.modal_1").hide();
                         $("ul.fail").hide();
@@ -309,7 +306,7 @@
         $("div.monent").click(function(){
             var params = $("form").serialize();
 
-                $.post(url+'/user/region', params,function(response){
+                $.post(BASE_URL+'/user/region', params,function(response){
 
                     if(response.code == "10000"){
                         $("div.modal_2").hide();
@@ -333,7 +330,7 @@
 
 <script>
     function create_code(){
-        document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
+        document.getElementById('code').src = BASE_URL+ '/user/createVerify?'+Math.random()*10000;
     }
 </script>
 </body>

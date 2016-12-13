@@ -40,25 +40,10 @@ $(function(){
     var path = $("div.mod-video-warp").attr('value');
     var res_id = $("div.mod-video-warp").attr('res_id');
     var time = $("div.mod-video-warp").attr('time');
-    var url = '//edu.hl.com';
-    //记录学员观看视频时间
-    var updateRecord = function($res_id,$cur_time,$duration){
-        var param = {
-            'resource_id': $res_id,
-            'watch_time': $cur_time,
-            'duration': $duration
-        };
 
-        $.post(url+'/course/learnRecord/',param,function(response){
-                //if(response.code == 10000){
-                //    console.log(response)
-                //}else {
-                //    console.log('error')
-                //}
-            })
 
-    };
-
+    var c_time ;
+    var dur_time;
     var videoplayer=videoPlayer('mod_player',{
         autoPlay:false,
         muted:true,
@@ -70,12 +55,15 @@ $(function(){
 
             },false);
             videoElement.currentTime=time;
-
+            dur_time = videoElement.duration;
             videoObj.timeupdate(function(currentTime){
-                setTimeout(updateRecord(res_id,currentTime,videoElement.duration),1000*4)
-                //console.log(videoElement.duration)
+                c_time = currentTime;
+
             });
+
+
         },
+
         //fires when a problem is detected
         error:function(){
         }
@@ -83,34 +71,24 @@ $(function(){
 
     });
 
+    //记录学员观看视频时间
+  timer = setInterval(updateRecord,1000*4)
 
 
+    function updateRecord(){
+        var param = {
+            'resource_id': res_id,
+            'watch_time': c_time,
+            'duration': dur_time
+        };
 
-    ////�����Ƶ���ź���ͣ�¼�
-    //var timer;
-    //var video=document.getElementById("video");
-    //var request=function(){
-    //    var  currentTime=(video.currentTime).toFixed(1);
-    //    var current={
-    //        "currentTime" : currentTime
-    //    }
-    //    console.log(currentTime);
-    //        //$.post("",current,function(response){
-    //        //    console.log(response);
-    //        //})
-    //    }
-    //video.addEventListener("play",function(){
-    //    timer=setInterval(request,100);
-    //
-    //});
-    //video.addEventListener("pause",function(){
-    //    clearInterval(timer);
-    //    timer=null;
-    //})
-    //video.addEventListener("ended",function(){
-    //    console.log("end");
-    //    clearInterval(timer);
-    //    timer=null;
-    //})
+        $.post(BASE_URL+'/course/learnRecord/',param,function(response){
+            if(response.code == 10000){
+                console.log(response);
+            }else {
+                console.log('erroe');
+            }
+            })
+    }
 
 })
