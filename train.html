@@ -7,9 +7,11 @@
     <title>培训资讯页面</title>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/style_train.css"/>
+    <link rel="stylesheet" href="css/pagination.css"/>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
+    <script src="js/pagination.js"></script>
 
     <!--[if lt IE 9]>
     <style type="text/css">
@@ -71,8 +73,9 @@
             <li class="busy">企业资讯</li>
         </ul>
     </div>
-    <div class="aside tab_1">
-        <div class="list">
+    <div class="aside">
+        <div id="dataContainer" class="data-container"></div>
+        <div id="dataPage"></div>
             <!--<ul>-->
                 <!--<li>-->
                     <!--<a href="train_list.html">-->
@@ -277,7 +280,6 @@
                     <!--</a>-->
                 <!--</li>-->
             <!--</ul>-->
-        </div>
         <!--页码部分-->
         <!--<div id="page">-->
             <!--<div class="code">-->

@@ -110,19 +110,23 @@ div.list{
     /*color: #3A3A3A;*/
 /*}*/
 
-/*�Ҳಿ������div.aside����*/
+/*�Ҳಿ������#dataContainer����*/
 div.aside{
     float: right;
     width:820px;
-    min-height: 990px;
+    overflow: hidden;
+}
+#dataContainer{
+    width:810px;
+    min-height: 300px;
     border: 1px solid #AEAEAE;
     margin-top: 10px;
 }
-div.aside ul li span{
+#dataContainer ul li span{
     font-size: 16px;
     /*border: 1px dashed #;*/
 }
-div.aside ul li{
+#dataContainer ul li{
     width: 760px;
     margin: 0 auto;
     border-bottom: 2px solid #DDDDDD;
@@ -131,13 +135,22 @@ div.aside ul li{
     line-height: 45px;
     cursor: pointer;
 }
-div.aside ul li span.term{
+#dataContainer ul li span.term{
     float: left;
 }
-div.aside ul li span.date{
+#dataContainer ul li span.date{
     float: right;
 }
-
+#dataPage{
+    width: 400px;
+    margin:10px auto;
+    /*margin-top: -100px;*/
+}
+#dataPage li{
+}
+#dataPage li a:hover{
+    color: #0be2fe;
+}
 /*ҳ�벿������*/
 div#page{
     width:820px;

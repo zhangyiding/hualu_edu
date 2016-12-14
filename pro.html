@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>练习</title>
+    <link rel="stylesheet" href="css/pagination.css"/>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/pagination.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="dataPage"></div>
+
+
+<script>
+   $(function(){
+//        $("#demo").pagination({
+//            dataSource:function (done) {
+//                var result=[];
+//                for(var i=1;i<30;i++){
+//                    result.push(i);
+//                }
+//                done(result);
+//            },
+//            pageSize:7,
+//            showPrevious:true,
+//            showNext:true,
+//            callback:function(data,pagination){
+////                console.log(data);
+////                console.log(pagination);
+//                var html="<ul>";
+//                for(var i=0;i<data.length;i++){
+//                  html+="<li>"+data[i]+"</li>";
+//                }
+//                html+="</ul>";
+//                $("#page").html(html);
+//            }
+//        })
+
+//ajax写法
+       $("#dataPage").pagination({
+            dataSource:function (done) {
+                $.ajax({
+                    type: "GET",
+                    url: "//edu.hl.com/news/getNewsList",
+                    success: function(response){
+//                        console.log(response);
+                        done(response.result.data);
+                    }
+                })
+
+            },
+            pageSize:7,
+            showPrevious:true,
+            showNext:true,
+            callback:function(data,pagination){
+                console.log(data);
+                var html="<ul>";
+                for(var i=0;i<data.length;i++){
+                  html+="<li>"+data[i].title+"</li>";
+                }
+                html+="</ul>";
+                $("#container").html(html);
+            }
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   })
+</script>
+</body>
+</html>
