@@ -33,9 +33,14 @@ class CourseController extends BaseController {
             foreach($data as $k=>$v){
                 $data[$k]['cover'] = getImageBaseUrl($v['cover']);
 
+                //获取教师信息
+                $tea_info = $m_course->getTeacherInfo($v['teacher_id']);
+                $data[$k]['tea_name'] = $tea_info['name'];
+
                 //获取课程父级分类名称
                 $type = $m_course->getCourseType($v['course_id']);
                 $data[$k]['type_name'] = $type['name'];
+                $data[$k]['dir_name'] = $type['cd_name'];
 
                 //获取分站信息
                 $subsite_info = $m_base->getSubsiteInfo($v['subsite_id']);

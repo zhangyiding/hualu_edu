@@ -85,9 +85,9 @@
                                             <th width="6%">课程类型</th>
                                             <th width="8%">课程时长</th>
                                             <th width="10%">所属分类</th>
-                                            <th width="6%">课程状态</th>
                                             <th width="6%">授课老师</th>
                                             <th width="8%">课程类别</th>
+                                            <th width="8%">课程方向</th>
                                             <th width="8%">课程价格</th>
                                             <th width="10%">所属分站</th>
                                         </tr>
@@ -105,15 +105,16 @@
                                         </td>
                                         <td>22:22</td>
                                         <td>{$vo.type_name}</td>
-                                        <td>
-                                            <if condition="($vo['open_status'] eq 1)">即将结课
-                                            <else />最新上线
-                                            </if>
-                                        </td>
-                                        <td>{$vo.fast_teacher}</td>
+                                        <!--<td>-->
+                                            <!--<if condition="($vo['open_status'] eq 1)">即将结课-->
+                                            <!--<else />最新上线-->
+                                            <!--</if>-->
+                                        <!--</td>-->
+                                        <td>{$vo.tea_name}</td>
                                         <td><if condition="($vo['is_pub'] eq 1)">公开课程
                                             <else />内训
                                         </if></td>
+                                        <td>{$vo.dir_name}</td>
                                         <td>{$vo.price}</td>
                                         <td>{$vo.subsite_name}</td>
 

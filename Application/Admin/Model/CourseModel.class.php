@@ -9,7 +9,7 @@ class CourseModel extends Model{
 	public function getCourseList($where,$offset,$limit){
 	    $result = $this
             ->field('course_id,subsite_id,is_recommend,name,score,
-                     level,price,is_pub,cover,intro,status,fast_teacher,open_status,is_pub')
+                     level,price,is_pub,cover,intro,status,teacher_id,open_status,is_pub')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
@@ -57,8 +57,9 @@ class CourseModel extends Model{
     public function getCourseType($course_id){
         $result = $this->table('course_type_map')
             ->alias('ctm')
-            ->field('ctm.course_id,ctm.ct_id,ct.name')
+            ->field('ctm.course_id,ctm.ct_id,ct.name,cd.name as cd_name')
             ->join('left join course_type as ct on ctm.ct_id = ct.ct_id')
+            ->join('left join course_direction as cd on ctm.cd_id = cd.cd_id')
             ->where(array('ctm.course_id'=>$course_id,'ctm.status'=>'0'))
             ->select();
         return ($result)? $result['0'] : false;
@@ -104,6 +105,12 @@ class CourseModel extends Model{
     }
 
 
+    public function getTeacherInfo($teacher_id){
+        $result = $this->table('teacher')
+            ->where(array('teacher_id'=>$teacher_id,'status'=>0))
+            ->find();
+        return $result;
+    }
 
 }
 ?>
