@@ -4,7 +4,8 @@
 $(function(){
     //动画效果
     jQuery(".picScroll-left")
-        .slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"leftLoop",vis:3});
+        .slide({titCell:".hd ul",mainCell:".bd ul",
+		autoPage:true,effect:"leftLoop",vis:3});
     //目录结构之间下拉切换
     $(".con_2>div").click(function(){
         if($(this).children("span.arrow").hasClass("active")){

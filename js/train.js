@@ -38,7 +38,7 @@ $(function(){
             })
 
         },
-        pageSize:5,
+        pageSize:3,
         showPrevious:true,
         showNext:true,
         callback:function(data,pagination){
