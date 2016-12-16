@@ -9,6 +9,15 @@ use Common\Controller\BaseController;
 class CourseController extends BaseController {
 
 
+    protected $cse_id = '';//课程id
+    protected $cse_type = '';//课程类型
+    protected $cse_dir = '';//课程学习方向
+    protected $cse_res = '';//课程相关资源
+
+
+
+
+
     /*
      * 课程管理
      */
@@ -302,43 +311,80 @@ class CourseController extends BaseController {
      * 新增/修改课程动作
      */
     public function doAddCourse (){
-print_r(json_encode($this->params));exit;
+
+        //操作类型，为1时更新，为空时插入
         $op_type = $this->params['op_type'];
 
-        $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadFile('student');
-        $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
-        $data['birthday'] = $this->params['birthday'];
-        $data['mobile'] = $this->params['mobile'];
-        $data['email'] = $this->params['email'];
-        $data['address'] = $this->params['address'];
-        $data['unit'] = $this->params['unit'];
-        $data['remark'] = $this->params['remark'];
-        $data['job_position'] = $this->params['job_position'];
+        $data['cover'] = uploadFile('course');
+        $data['intro'] = $this->params['intro'];
+        $data['is_pub'] = $this->params['is_pub'];
+        $data['price'] = $this->params['price'];
+        $data['score'] = $this->params['score'];
+        $data['is_recommend'] = $this->params['is_recommend'];
+        $data['enroll_time'] = $this->params['enroll_time'];
+        $data['end_time'] = $this->params['end_time'];
+        $data['teacher_id'] = $this->params['teacher_id'];
+
+
+        $course_type = $this->params['course_type'];
+        $course_dir = $this->params['course_dir'];
+
+        $resource_id = $this->params['resource_id'];
 
         $data['subsite_id'] = $this->subsite_id;
-        $data['creator'] = $this->creator;
+        $data['su_id'] = $this->creator;
 
-        $m_student = new \Admin\Model\StudentModel();
+        $m_cse = new \Admin\Model\CourseModel();
 
         if($op_type == 1){
-            $student_id = $this->params['student_id'];
-            $where = array('student_id'=>$student_id,'status'=>0);
+            $this->cse_id = $this->params['course_id'];
+            $where = array('course_id'=>$this->cse_id,'status'=>0);
             $data['mtime'] = date('Y-m-d H:i:s',time());
-            $result = $m_student->updateStudent(array_filter($data),$where);
-        }else{
-            if($m_student->checkEmail($data)){
-                $this->showMsg('该用户已存在');
-            }
-            $data['ctime'] = date('Y-m-d H:i:s',time());
-            $result = $m_student->addStudent($data);
-        }
 
-        if($result!== false){
-            $this->showMsg('添加成功','index',1);
+           if($result = $m_cse->updateCourse(array_filter($data),$where)){
+               if(!empty($course_type) && !empty($course_dir)){
+                   $m_cse->updateCseType($this->cse_id,$course_type,$course_dir);
+               }
+
+               if(!empty($resource_id)){
+                   $res_arr = explode(',',$resource_id);
+                   foreach($res_arr as $v){
+                       $m_cse->updateCseRes($this->cse_id,$v);
+                   }
+               }
+               $this->showMsg('添加成功','index',1);
+               exit;
+           }else{
+               $this->showMsg('添加失败，请重试');
+           }
+
+
         }else{
-            $this->showMsg('添加失败，请重试');
+
+            $data['ctime'] = date('Y-m-d H:i:s',time());
+            if($this->cse_id = $m_cse->addCourse($data)) {
+
+                if(!empty($course_type) && !empty($course_dir)){
+                    $m_cse->addCseType($this->cse_id,$course_type,$course_dir);
+                }
+
+                if(!empty($resource_id)){
+                    $res_arr = explode(',',$resource_id);
+                    foreach($res_arr as $v){
+                        $m_cse->addCseRes($this->cse_id,$v);
+                    }
+                }
+
+                $this->showMsg('添加成功','index',1);
+                exit;
+            }else{
+                $this->showMsg('添加失败，请重试');
+            }
+
+
+
+
         }
     }
 

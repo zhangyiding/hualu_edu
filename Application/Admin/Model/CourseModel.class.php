@@ -112,5 +112,46 @@ class CourseModel extends Model{
         return $result;
     }
 
+
+    public function updateCourse($where,$data){
+        $result = $this->where($where)
+        ->save($data);
+        return $result;
+    }
+
+
+    public function updateCseType($course_id,$course_type,$course_dir){
+        $result = $this->table('course_type_map')
+        ->where(array('course_id'=>$course_id,'status'=>0))
+        ->save(array('cd_id'=>$course_dir,'ct_id'=>$course_type));
+        return $result;
+    }
+
+
+    public function updateCseRes($course_id,$resource_id){
+        $result = $this->table('course_resource')
+            ->where(array('resource_id'=>$resource_id,'status'=>0))
+            ->save(array('course_id'=>$course_id));
+        return $result;
+    }
+
+    public function addCourse($data){
+        $result = $this->add($data);
+        return $result;
+    }
+
+
+    public function addCseType($course_id,$course_type,$course_dir){
+        $result = $this->table('course_type_map')
+            ->add(array('cd_id'=>$course_dir,'ct_id'=>$course_type,'course_id'=>$course_id));
+        return $result;
+    }
+
+
+    public function addCseRes($course_id,$res_id){
+        $result = $this->table('course_resource')
+            ->add(array('resource_id'=>$res_id,'course_id'=>$course_id));
+        return $result;
+    }
 }
 ?>
