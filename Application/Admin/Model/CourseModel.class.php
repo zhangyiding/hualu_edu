@@ -114,9 +114,10 @@ class CourseModel extends Model{
 
 
     public function updateCourse($where,$data){
+
         $result = $this->where($where)
         ->save($data);
-        return $result;
+        return $result!==false? true: false;
     }
 
 
@@ -151,6 +152,29 @@ class CourseModel extends Model{
     public function addCseRes($course_id,$res_id){
         $result = $this->table('course_resource')
             ->add(array('resource_id'=>$res_id,'course_id'=>$course_id));
+        return $result;
+    }
+
+    public function getCseType($cd_id){
+        $result = $this->table('course_type')
+            ->where(array('status'=>0,'cd_id'=>$cd_id))
+            ->select();
+        return $result;
+    }
+
+
+    public function getCseDir(){
+        $result = $this->table('course_direction')
+            ->where(array('status'=>0))
+            ->select();
+        return $result;
+    }
+
+    public function getTeacherList($where){
+        $result = $this->table('teacher')
+            ->field('teacher_id,name')
+            ->where($where)
+            ->select();
         return $result;
     }
 }

@@ -213,14 +213,31 @@ class CourseController extends BaseController {
         if($this->su_type = C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
-        //只显示未导入的课件列表
         $where['status'] = 0;
-
-        if($res_list = $m_course->getAllResource($where)){
-            $this->assign('res_list',$res_list);
+        if($tea_list = $m_course->getTeacherList($where)){
+            $this->assign('tea_list',$tea_list);
         }
 
-        $this->assign('op_type',$op_type);
+
+
+        //只显示未导入的课件列表
+
+
+        $where['type'] = 1;
+
+        if($ct_list = $m_course->getCseDir()){
+            $this->assign('cse_dir',$ct_list);
+        }
+
+
+        if($video = $m_course->getAllResource($where)){
+            $this->assign('video',$video);
+        }
+        $where['type'] = 2;
+        if($study_file = $m_course->getAllResource($where)){
+            $this->assign('study_file',$study_file);
+        }
+
         $this->display();
     }
 
@@ -307,10 +324,28 @@ class CourseController extends BaseController {
     }
 
 
+
+
+    /*
+     * 根据课程方向获取课程类型内容
+     */
+    public function getCseType(){
+        $m_course = new CourseModel();
+        $cd_id = $this->params['cd_id'];
+        if($result = $m_course->getCseType($cd_id)){
+            $this->to_back($result);
+        }else{
+            $this->to_back('11015');
+        }
+
+    }
+
+
     /*
      * 新增/修改课程动作
      */
     public function doAddCourse (){
+
 
         //操作类型，为1时更新，为空时插入
         $op_type = $this->params['op_type'];
@@ -320,15 +355,14 @@ class CourseController extends BaseController {
         $data['intro'] = $this->params['intro'];
         $data['is_pub'] = $this->params['is_pub'];
         $data['price'] = $this->params['price'];
-        $data['score'] = $this->params['score'];
         $data['is_recommend'] = $this->params['is_recommend'];
-        $data['enroll_time'] = $this->params['enroll_time'];
-        $data['end_time'] = $this->params['end_time'];
+        $data['enroll_time'] = strtotime($this->params['enroll_time']);
+        $data['end_time'] = strtotime($this->params['end_time']);
         $data['teacher_id'] = $this->params['teacher_id'];
 
 
-        $course_type = $this->params['course_type'];
-        $course_dir = $this->params['course_dir'];
+        $cse_type = $this->params['cse_type'];
+        $cse_dir = $this->params['cse_dir'];
 
         $resource_id = $this->params['resource_id'];
 
@@ -342,44 +376,43 @@ class CourseController extends BaseController {
             $where = array('course_id'=>$this->cse_id,'status'=>0);
             $data['mtime'] = date('Y-m-d H:i:s',time());
 
-           if($result = $m_cse->updateCourse(array_filter($data),$where)){
-               if(!empty($course_type) && !empty($course_dir)){
-                   $m_cse->updateCseType($this->cse_id,$course_type,$course_dir);
+           if($result = $m_cse->updateCourse($where,array_filter($data))){
+               if(!empty($cse_type) && !empty($cse_dir)){
+                   $m_cse->updateCseType($this->cse_id,$cse_type,$cse_dir);
                }
 
                if(!empty($resource_id)){
-                   $res_arr = explode(',',$resource_id);
+                   $res_arr = array_filter(explode(',',$resource_id));
                    foreach($res_arr as $v){
                        $m_cse->updateCseRes($this->cse_id,$v);
                    }
                }
-               $this->showMsg('添加成功','index',1);
-               exit;
+               $this->to_back('10000');
+
            }else{
-               $this->showMsg('添加失败，请重试');
+               $this->to_back('11016');
            }
 
 
         }else{
 
             $data['ctime'] = date('Y-m-d H:i:s',time());
+
             if($this->cse_id = $m_cse->addCourse($data)) {
 
-                if(!empty($course_type) && !empty($course_dir)){
-                    $m_cse->addCseType($this->cse_id,$course_type,$course_dir);
+                if(!empty($cse_type) && !empty($cse_dir)){
+                    $m_cse->addCseType($this->cse_id,$cse_type,$cse_dir);
                 }
 
                 if(!empty($resource_id)){
-                    $res_arr = explode(',',$resource_id);
+                    $res_arr = array_filter(explode(',',$resource_id));
                     foreach($res_arr as $v){
                         $m_cse->addCseRes($this->cse_id,$v);
                     }
                 }
-
-                $this->showMsg('添加成功','index',1);
-                exit;
+               $this->to_back('10000');
             }else{
-                $this->showMsg('添加失败，请重试');
+                $this->to_back('11016');
             }
 
 

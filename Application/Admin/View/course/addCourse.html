@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
       <script src="__PUBLIC__/admin/js/jquery-1.7.1.min.js"></script>
+      <script src="__PUBLIC__/admin/js/common.js"></script>
+      <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
     <!-- Le styles -->
     <link href="__PUBLIC__/admin/css/bootstrap.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/bootstrap-responsive.css" rel="stylesheet">
@@ -25,15 +27,19 @@
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-
-
     <![endif]-->
-    
+      <style>
+        div.form_list label{
+            width:80px;
+        }
+        #file{
+            margin-left:30px;
+        }
+      </style>
   </head>
 
   <body>
 
-    
     <div id="content"> <!-- Content start -->
       <div class="inner_content">
           <div class="widgets_area">
@@ -47,7 +53,7 @@
                            
                          </div>
                         <div class="well brown">
-                         <form action="/admin/course/doAddCourse" method="post" enctype="multipart/form-data">
+                         <form>
                             <div class="form_list"><label class="lable_title">课程名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
                              <div class="form_list"><label class="lable_title">课程简介</label><input id="intro" name="intro" class="form_input" type="text" value={$data.intro}></div>
 
@@ -55,7 +61,7 @@
                                 <input type="file" name="uploadFile" class="file" id="file" />
                               </div>
 
-                             <div><img src="<?php print_r($data['cover']);?>" />
+                             <div><img src="<?php print_r($data['cover']);?>"  style="width: 360px;height: 200px"/>
                                  </div>
                              <div class="form_list"><label class="lable_title">
                                  课程类别
@@ -64,44 +70,53 @@
                                  <input type="radio" name="is_pub" value="2">内训
                              </div>
                              <div class="form_list"><label class="lable_title">课程价格</label>
-                                 <input id="price" name="price" class="form_input" type="text" value={$data.title}>
-                             </div>
-                             <div class="form_list"><label class="lable_title">课程学分</label>
-                                 <input id="score" name="score" class="form_input" type="text" value={$data.title}>
-                             </div>
-
-                             <div class="form_list"><label class="lable_title">课程分类</label>
-                                 <input id="course_type" name="course_type" class="form_input" type="text" value={$data.title}>
+                                 <input id="price" name="price" class="form_input" type="text" value={$data.price}>
                              </div>
 
                              <div class="form_list"><label class="lable_title">课程方向</label>
-                                 <input id="course_dir" name="course_type" class="form_input" type="text" value={$data.title}>
+                                 <select id="cse_dir" name="cse_dir"  style="width:150px; margin-left:15px;">
+                                     <option value="">请选择方向</option>
+                                     <foreach name="cse_dir" item="vo">
+                                         <option value="{$vo.cd_id}" >{$vo.name}</option>
+                                     </foreach>
+
+                                 </select>
                              </div>
-
-
+                             <div class="form_list"><label class="lable_title" >课程分类</label>
+                                 <!--<input id="course_type" name="course_type" class="form_input" type="text" value={$data.title}>-->
+                                 <select name="cse_type" id="kind" style="width:150px; margin-left:15px;"></select>
+                             </div>
 
                              <div class="form_list"><label class="lable_title">课程类型</label>
-                            <select id="is_recommend" name="is_recommend"  style="width:150px; margin-left:15px;">
-                              <option value="">请选择类型</option>
-                                <option value="2" >热门课程</option>
-                                <option value="1" >推荐课程</option>
-                            </select>
-                                    </div>
+                                 <input type="radio" name="is_recommend" value="2">热门课程
+                                 <input type="radio" name="is_recommend" value="1">推荐课程
+                             </div>
 
-                             <div class="form_list"><label class="lable_title">学习目标</label>
-                                 <input id="学习目标" name="title" class="form_input" type="text" value={$data.title}>
+                             <div class="form_list"><label class="lable_title">授课老师</label>
+                                 <select id="teacher_id" name="teacher_id"  style="width:150px; margin-left:15px;">
+                                     <option value="">请选择老师</option>
+                                     <foreach name="tea_list" item="vo">
+                                         <option value="{$vo.teacher_id}" >{$vo.name}</option>
+                                     </foreach>
+
+                                 </select>
                              </div>
                              <div class="form_list"><label class="lable_title">报名截至时间</label>
-                                 <input id="enroll_time" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="enroll_time" class="form_input" type="text" value={$data.enroll_time}>
                              </div>
                              <div class="form_list"><label class="lable_title">课程结束时间</label>
-                                 <input id="end_time" name="title" class="form_input" type="text" value={$data.title}>
+                                 <input onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="end_time" class="form_input" type="text" value={$data.end_time}>
                              </div>
 
                              <div class="form_list"><label class="lable_title">关联视频</label>
-                                <b class="acity" name="course_ve" >请选择视频</b>
+                                 <textarea class="acity"  id="video"></textarea>
                              </div>
-                             <div class="city">
+
+                             <div class="form_list"><label class="lable_title">关联资料</label>
+                                 <textarea class="acity"  id="study_file"></textarea>
+                             </div>
+
+                             <div class="city video">
                                  <div class="top01-city"  >
                                      <em class="ok">确定</em><b >请选择相关视频课件</b>
                                  </div>
@@ -115,9 +130,9 @@
                                          <tr><td>
                                              <ul class="cityul">
                                                  <li>
-                                                     <foreach name="res_list" item="vo">
-                                                     <a><b >{$vo.name}</b></a>
-                                                   </foreach>
+                                                     <foreach name="video" item="vo">
+                                                         <a><b value="{$vo.resource_id}">{$vo.name}</b></a>
+                                                     </foreach>
                                                  </li>
                                              </ul></td>
                                          </tr>
@@ -126,21 +141,34 @@
                                      </div>
                                  </div>
                              </div>
-                             <div class="form_list"><label class="lable_title">关联资料</label>
-                                 <input id="course_file" name="course_file" class="form_input" type="text" value={$data.title}>
-                             </div>
+                             <div class="city study_file">
+                                 <div class="top01-city"  >
+                                     <em class="ok">确定</em><b >请选择相关学习资料</b>
+                                 </div>
+                                 <div class="mid01-city">
+                                     <div class="cityshow" id="file_show">
+                                         <i>已选资料:</i>
+                                         <ul></ul>
+                                     </div>
+                                     <div class="cityshow1">
+                                         <tr><td colspan="2"><i>未选资料:</i></td></tr>
+                                         <tr><td>
+                                             <ul class="cityul">
+                                                 <li>
+                                                     <foreach name="study_file" item="vo">
+                                                         <a><b value="{$vo.resource_id}">{$vo.name}</b></a>
+                                                     </foreach>
+                                                 </li>
+                                             </ul></td>
+                                         </tr>
 
-                            <!--<div class="form_list"><label class="lable_title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input class="form_input" type="text"/></div>-->
-                            <!--<div class="form_list"><label class="lable_title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;女</div>-->
-                            <!--&lt;!&ndash;<div class="form_list"><label class="lable_title">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</label><input class="form_input" type="text"/></div>&ndash;&gt;-->
-                            <!--<div class="form_list"><label class="lable_title">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="zhuangtai">&nbsp;&nbsp;启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="zhuangtai">&nbsp;&nbsp;禁用</div>-->
-                             <!--<div class="form_list"><label class="lable_title">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label><input class="form_input" type="text"/></div>-->
-                             <!--<div><textarea name="contents" id="myEditor">{$data.content}</textarea></div>-->
-                             <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
-                             <input type="hidden" name="op_type" value="{$op_type}" />
-                             <input type="hidden" name="news_id" value="{$data.news_id}" />
+                                         </table>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="form_list"><input style="margin-left: 180px; float: left; width: 60px; cursor:pointer;" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
+                             <input type="hidden" id="course_id" name="course_id" value="{$data.course_id}" />
                          </form>
-                           
 
                         </div>
                     </div>
@@ -160,13 +188,20 @@
     <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
     <script type="text/javascript">
         var cityId = 0;
+
         $(function(){
-            $('.acity').click(function(){
-                $('.city').show();
-                $('.mask').show();
+            $('#video').click(function(){
+                $('.video').show();
+                $('.city').attr('type',1);
+            });
+            $('#study_file').click(function(){
+                $('.study_file').show();
+                $('.city').attr('type',0);
             });
             $('.cityul b').click(function(){
                 var test=$(this).html();
+
+                var value=$(this).attr("value");
 
                 if($(this).attr("city") == undefined){ $(this).attr("city", window.cityId++);}
                 var city = $(this).attr("city");
@@ -178,7 +213,12 @@
                         alert('最多只能添加10个');
                     }else{
                         var test=$(this).html();
-                        $('<li class="licity"><input  name="citychk" type="checkbox" checked="true" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('.cityshow ul');
+                        if($('.city').attr('type') == 1){
+                            $('<li class="licity li_video" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('#show ul');
+                        }else {
+                            $('<li class="licity li_file" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('#file_show ul');
+                        }
+
                     }
                 }
 
@@ -190,26 +230,94 @@
             $('.ok').click(function(){
 
                 var total="";
+                var value = '';
                 if($('.cityshow ul li').text()=='')
                 {
                     $('.city').hide();
-                    $('.mask').hide();
                 }else{
-                    $('.cityshow ul li').each(function(){
-                        total += (total.length > 0 ? "," : "" ) + $(this).text();
-                    });
 
-                    $('.acity').text(total);
+                    if($('.city').attr('type') == 1){
+                        $.each($('#show ul li'),function(i,n){
+
+                            total += (total.length > 0 ? "\r\n" : "" ) + $(this).text();
+                        });
+
+                        $.each($(".li_video input"),function (i,n) {
+                            value += (value.length > 0 ? ',' : '') + $(n).attr('value');
+                        })
+
+                        $('#video').attr('value',total);
+                        $('#video').attr('course_ve',value);
+                    }else {
+                        $('#file_show ul li').each(function(){
+                            total += (total.length > 0 ? "\r\n" : "" ) + $(this).text();
+                        });
+
+                        $.each($(".li_file input"),function (i,n) {
+                            value += (value.length > 0 ? ',' : '') + $(n).attr('value');
+                        })
+                        $('#study_file').attr('value',total);
+                        $('#study_file').attr('course_file',value);
+                    }
+
                     $('.city').hide();
-                    $('.mask').hide();
                 }
-
 
             })
 
+            $("#cse_dir").change(function(){
+                $("#kind").html("");
+                var val=$(this).attr("value");
+               var request={
+                    cd_id :val
+                };
+
+                $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
+                    $.each(response.result,function(i,n){
+                        var option=$("<option value="+ n.ct_id +">"+n.name+"</option>");
+                        $("#kind").append(option);
+                    });
+
+                })
+
+            })
+
+            $('.submit').click(function(){
+                var course_ve = $('#video').attr('course_ve');
+                var course_file = $('#study_file').attr('course_file');
+                var course_id = $('#course_id').attr('value');
+                var params = $('form').serialize();
+
+                if(course_ve || course_file){
+                    if(!course_ve){
+                        course_ve = '';
+                    }
+                    if(!course_file){
+                        course_file = '';
+                    }
+                    params += '&resource_id='+course_ve+','+course_file;
+                }
+
+                //当课程id有值时操作类型为更新
+                if(course_id){
+                    params += '&op_type=1';
+                }
+
+                $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
+
+                    if(response.code == 10000){
+                        alert('操作成功');
+                        location.href = BASE_URL+'/admin/course';
+                    }else {
+                        alert(response.msg);
+                    }
+                });
+            })
+
         })
+    </script>
+    <script>
 
     </script>
-
   </body>
 </html>

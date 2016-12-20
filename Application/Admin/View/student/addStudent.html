@@ -132,6 +132,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
    <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
     <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
+    <script src="__PUBLIC__/admin/js/common.js"></script>
     <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
     <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
     <script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>
@@ -142,31 +143,7 @@
         var editor = new UE.ui.Editor();
         editor.render("myEditor");
     </script>
-    <script type="text/javascript">
-        function uploadimg() {
-            $.ajaxFileUpload({
-                url: "/admin/news/uploadImg",
-                secureuri:false,
-                fileElementId:'uploadFile',
-                dataType: "text",
-                success : function(msg) {
-                    var src = 0;
-                    var imgUrl = "/";
-                    arr = msg.split("|");
-                    if (arr[0] == "error") {
-                        alert(arr[1]);
-                        return;
-                    }
-                    $("#news_img").attr("src", imgUrl + arr[1]);
-                    $("#profile").val(arr[1]);
-                },
-                error : function(msg) {
-                    alert("头像上传失败");
-                }
-            })
-        }
 
-    </script>
 
   </body>
 </html>

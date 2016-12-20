@@ -36,7 +36,7 @@ class BaseController extends Controller
         $this->getParams();
 
         //判断后台管理员是否登陆
-        $this->checkLogin();
+     //   $this->checkLogin();
 
         parent::__construct();
     }
