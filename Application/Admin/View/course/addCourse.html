@@ -35,6 +35,13 @@
         #file{
             margin-left:30px;
         }
+         #video,#study_file{
+              height: 130px;
+              overflow: auto;
+          }
+          .video{
+              height: 150px;
+          }
       </style>
   </head>
 
@@ -50,10 +57,11 @@
                            <a href="/admin">首页</a><span>></span>
                            <a href="/admin/course">课程管理</a><span>></span>
                            <a href="/admin/news/addNews">添加课程</a>
-                           
+
                          </div>
                         <div class="well brown">
                          <form>
+
                             <div class="form_list"><label class="lable_title">课程名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
                              <div class="form_list"><label class="lable_title">课程简介</label><input id="intro" name="intro" class="form_input" type="text" value={$data.intro}></div>
 
@@ -63,9 +71,9 @@
 
                              <div><img src="<?php print_r($data['cover']);?>"  style="width: 360px;height: 200px"/>
                                  </div>
-                             <div class="form_list"><label class="lable_title">
+                             <div class="form_list" id="is_pub" ><label class="lable_title" >
                                  课程类别
-                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             </label>
                                  <input type="radio" name="is_pub" value="1">公开
                                  <input type="radio" name="is_pub" value="2">内训
                              </div>
@@ -83,11 +91,10 @@
                                  </select>
                              </div>
                              <div class="form_list"><label class="lable_title" >课程分类</label>
-                                 <!--<input id="course_type" name="course_type" class="form_input" type="text" value={$data.title}>-->
                                  <select name="cse_type" id="kind" style="width:150px; margin-left:15px;"></select>
                              </div>
 
-                             <div class="form_list"><label class="lable_title">课程类型</label>
+                             <div class="form_list" id="is_recommend"><label class="lable_title">课程类型</label>
                                  <input type="radio" name="is_recommend" value="2">热门课程
                                  <input type="radio" name="is_recommend" value="1">推荐课程
                              </div>
@@ -108,11 +115,11 @@
                                  <input onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="end_time" class="form_input" type="text" value={$data.end_time}>
                              </div>
 
-                             <div class="form_list"><label class="lable_title">关联视频</label>
-                                 <textarea class="acity"  id="video"></textarea>
+                             <div class="form_list video"><label class="lable_title">关联视频</label>
+                                 <textarea class="acity"  id="video" ></textarea>
                              </div>
 
-                             <div class="form_list"><label class="lable_title">关联资料</label>
+                             <div class="form_list video"><label class="lable_title">关联资料</label>
                                  <textarea class="acity"  id="study_file"></textarea>
                              </div>
 
@@ -174,7 +181,7 @@
                     </div>
                 </div>
 
-            
+
             </div>
         </div>
     </div>
@@ -187,11 +194,12 @@
     <!--<script src="__PUBLIC__/admin/js/WdatePicker.js"></script>-->
     <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
     <script type="text/javascript">
+
         var cityId = 0;
 
         $(function(){
             $('#video').click(function(){
-                $('.video').show();
+                 $('.video').show();
                 $('.city').attr('type',1);
             });
             $('#study_file').click(function(){
@@ -265,21 +273,55 @@
 
             })
 
-            $("#cse_dir").change(function(){
+
+
+            function selDir(val){
                 $("#kind").html("");
-                var val=$(this).attr("value");
-               var request={
+                var request={
                     cd_id :val
                 };
-
                 $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
+
                     $.each(response.result,function(i,n){
                         var option=$("<option value="+ n.ct_id +">"+n.name+"</option>");
                         $("#kind").append(option);
                     });
 
                 })
+            }
 
+
+
+
+
+            var data = '<?php echo $data_r;?>';
+            var cse_file = '<?php echo $cse_file;?>';
+            var cse_video = '<?php echo $cse_video;?>';
+            var cse_video_obj = new Function("return" + cse_video)();
+console.log(cse_video_obj);
+            if(data){
+                var obj = new Function("return" + data)();
+
+                var is_pub=$("input[type='radio']");
+
+                $("#is_pub input[value="+obj.is_pub+"]").attr("checked","true");
+
+                $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
+
+                if(obj.cse_dir){
+                    $("#cse_dir option[value="+obj.cse_dir+"]").attr("selected","true");
+                    selDir(obj.cse_dir)
+                }
+
+
+            }
+
+
+
+
+            $("#cse_dir").change(function(){
+                var val=$(this).attr("value");
+               selDir(val);
             })
 
             $('.submit').click(function(){

@@ -207,35 +207,50 @@ class CourseController extends BaseController {
             $data = $m_course->getCourseInfo($id);
 
             $data['cover'] = getImageBaseUrl($data['cover']);
+            $data['enroll_time'] = date('Y-m-d',$data['enroll_time']);
+            $data['end_time'] = date('Y-m-d',$data['end_time']);
+
+            $cse_type = $m_course->getCourseType($data['course_id']);
+
+
+            $where['r.type'] = C('COURSE_VE');
+            $where['cr.course_id'] = $data['course_id'];
+            if( $cse_video = $m_course->getCseRes($where)){
+
+                $this->assign('cse_video',json_encode($cse_video));
+            }
+
+            $where['r.type'] = C('COURSE_FILE');
+            if( $cse_file = $m_course->getCseRes($where)){
+                $this->assign('cse_file',json_encode($cse_file));
+            }
+
+            $this->assign('cse_type',$cse_type);
+
             $this->assign('data',$data);
+            $data['cse_dir'] = '3';
+            $data['cse_type'] = '4';
+            $this->assign('data_r',json_encode($data));
+
         }
-        //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
-            $where['subsite_id'] = $this->subsite_id;
-        }
-        $where['status'] = 0;
-        if($tea_list = $m_course->getTeacherList($where)){
+
+        if($tea_list = $m_course->getTeacherList()){
             $this->assign('tea_list',$tea_list);
         }
 
-
-
         //只显示未导入的课件列表
+        $map['type'] = C('COURSE_VE');
 
-
-        $where['type'] = 1;
+        if($video = $m_course->getAllResource($map)){
+            $this->assign('video',$video);
+        }
+        $map['type'] =  C('COURSE_FILE');
+        if($study_file = $m_course->getAllResource($map)){
+            $this->assign('study_file',$study_file);
+        }
 
         if($ct_list = $m_course->getCseDir()){
             $this->assign('cse_dir',$ct_list);
-        }
-
-
-        if($video = $m_course->getAllResource($where)){
-            $this->assign('video',$video);
-        }
-        $where['type'] = 2;
-        if($study_file = $m_course->getAllResource($where)){
-            $this->assign('study_file',$study_file);
         }
 
         $this->display();

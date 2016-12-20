@@ -85,8 +85,8 @@ class CourseModel extends Model{
     public function getCourseInfo($id){
         $result = $this
             ->where(array('course_id'=>$id,'status'=>'0'))
-            ->select();
-        return ($result)? $result['0'] : false;
+            ->find();
+        return ($result)? $result : false;
     }
 
 
@@ -170,9 +170,20 @@ class CourseModel extends Model{
         return $result;
     }
 
-    public function getTeacherList($where){
+    public function getTeacherList(){
         $result = $this->table('teacher')
             ->field('teacher_id,name')
+            ->where(array('status'=>0))
+            ->select();
+        return $result;
+    }
+
+
+    public function getCseRes($where){
+        $result = $this->table('course_resource')
+            ->alias('cr')
+            ->field('cr.course_id,r.type,r.name,r.resource_id,cr.cw_id')
+            ->join('left join resource as r on cr.resource_id = r.resource_id')
             ->where($where)
             ->select();
         return $result;
