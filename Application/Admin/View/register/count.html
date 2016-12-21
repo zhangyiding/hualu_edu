@@ -78,25 +78,23 @@
                                             <th width="4%">课程Id</th>
                                             <th width="20%">课程名称</th>
                                             <th width="5%">学员数量</th>
-                                            <th width="18%">学费总计</th>
+                                            <th width="9%">学费总计</th>
                                             <th width="13%">所属分站</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <foreach name="reg_list" item="vo">
                                     <tr>
-                                        <td>{$vo.scm_id}</td>
-                                        <td>{$vo.course_name}</td>
-                                        <td>{$vo.student_name}</td>
-                                        <td>{$vo.ctime}</td>
-                                        <td>{$reg_status.$vo[status]}</td>
-                                        <td>{$vo.price}</td>
+                                        <td>{$vo.course_id}</td>
+                                        <td>{$vo.name}</td>
+                                        <td>{$vo.scm_count}</td>
+                                        <td>{$vo.price}元</td>
                                         <td>{$vo.subsite_name}</td>
-                                        <td>
-                                            <a class="btn" href="/admin/register/changeStatus?status=3&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>
-                                            <a class="btn" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>
-                                            <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
-                                        </td>
+                                        <!--<td>-->
+                                            <!--<a class="btn" href="/admin/register/changeStatus?status=3&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>-->
+                                            <!--<a class="btn" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>-->
+                                            <!--&lt;!&ndash;<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>&ndash;&gt;-->
+                                        <!--</td>-->
                                         </foreach>
 
                                     </tr></tbody>

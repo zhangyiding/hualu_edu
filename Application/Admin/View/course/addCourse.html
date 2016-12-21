@@ -195,12 +195,17 @@
     <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
     <script type="text/javascript">
 
-        var cityId = 0;
-
         $(function(){
 
             //选择视频和资料相关js操作
             $('#video').click(function(){
+                var str = $(this).attr('value').split(',');
+                var res_id = $(this).attr('course_ve').split(',');
+
+                $.each(str,function(i,n) {
+                    $('<li class="licity li_video" ><input name="checked" type="checkbox" checked="true"   class="check"><b>' + n+ '</b></li>').appendTo('#show ul');
+                });
+
                 $('.video').show();
                 $('.city').attr('type',1);
             });
@@ -212,11 +217,8 @@
                 var test=$(this).html();
 
                 var value=$(this).attr("value");
-
-                if($(this).attr("city") == undefined){ $(this).attr("city", window.cityId++);}
-                var city = $(this).attr("city");
-                if( $('input[city="'+ city +'"]').size()){
-                    $('input[city="'+ city +'"]').parent().remove();
+                if( $('input[value="'+ value +'"]').size()){
+                    $('input[value="'+ value +'"]').parent().remove();
                 } else {
                     var ml=$('.cityshow li').length;
                     if(ml>10){
@@ -224,19 +226,18 @@
                     }else{
                         var test=$(this).html();
                         if($('.city').attr('type') == 1){
-                            $('<li class="licity li_video" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('#show ul');
+                            $('<li class="licity li_video" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" class="check"><b>'+test+'</b></li>').appendTo('#show ul');
                         }else {
-                            $('<li class="licity li_file" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" city="'+ city +'" class="check"><b>'+test+'</b></li>').appendTo('#file_show ul');
+                            $('<li class="licity li_file" ><input name="checked" type="checkbox" checked="true" value="'+ value +'" class="check"><b>'+test+'</b></li>').appendTo('#file_show ul');
                         }
 
                     }
                 }
 
-                $('input[name=citychk]').click(function(){
-                    $(this).parent('.licity').remove();
-                });
-
             });
+
+
+
             $('.ok').click(function(){
 
                 var total="";
@@ -248,7 +249,6 @@
 
                     if($('.city').attr('type') == 1){
                         $.each($('#show ul li'),function(i,n){
-
                             total += (total.length > 0 ? "\r\n" : "" ) + $(this).text();
                         });
 
@@ -310,20 +310,23 @@
                 if(obj.cse_video){
                     var str="";
                     var res_id="";
+
+                    var str_res = {};
                     $.each(obj.cse_video,function(i,n){
-                        str += (n.name+"\r\n");
+                        str += (n.name+',' + '\r\n');
                         res_id += (n.resource_id+',')
                     });
 
                     $("#video").attr("value",str);
                     $("#video").attr("course_ve",res_id);
+
                 }
 
                 if(obj.cse_file){
                     var str="";
                     var res_id="";
                     $.each(obj.cse_file,function(i,n){
-                        str += (n.name+"\r\n");
+                        str += (n.name+','+'\r\n');
                         res_id += (n.resource_id+',')
                     });
                     $("#study_file").attr("value",str);

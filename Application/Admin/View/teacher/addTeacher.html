@@ -26,7 +26,24 @@
     <!--[if lt IE 9]>
       <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
     <![endif]-->
-    
+    <style type="text/css">
+        .cover img{
+            height: 200px;
+            width: 360px;
+        }
+
+        .cse_type{
+            margin-left: 81px;
+            margin-bottom: 10px;
+            margin-top: -20px;
+            width: 400px;
+            min-height: 100px;
+            border-style: ridge;
+        }
+        .cse_type label{
+            
+        }
+    </style>
   </head>
 
   <body>
@@ -51,17 +68,19 @@
                               <div class="form_list"><label  class="lable_title">头像</label>
                                 <input type="file" name="uploadFile" class="file" id="file" />
                                   </div>
-                             <div><img src="<?php print_r($data['avatar']);?>" />
+                             <div class="cover"><img src="<?php print_r($data['avatar']);?>" />
                               </div>
                              <div class="form_list"><label  class="lable_title">选择擅长分类</label>
-                                 </br>
-                                 <foreach name="ct_list" item="vo">
-                                     <label><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </label>
-                                 </foreach>
+
+
+
 
                              </div>
-
-</br>
+                             <div class="cse_type" >
+                                 <foreach name="ct_list" item="vo">
+                                     <lable><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </lable>
+                                 </foreach>
+                             </div>
                              <div class="form_list"><label class="lable_title">
                                  性别
                              </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -138,39 +157,10 @@
     <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
     <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
     <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
-    <script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/lang/zh-cn/zh-cn.js"  charset="utf-8"></script>
-    <script src="__PUBLIC__/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
-    <script type="text/javascript">
-        var editor = new UE.ui.Editor();
-        editor.render("myEditor");
-    </script>
-    <script type="text/javascript">
-        function uploadimg() {
-            $.ajaxFileUpload({
-                url: "/admin/news/uploadImg",
-                secureuri:false,
-                fileElementId:'uploadFile',
-                dataType: "text",
-                success : function(msg) {
-                    var src = 0;
-                    var imgUrl = "/";
-                    arr = msg.split("|");
-                    if (arr[0] == "error") {
-                        alert(arr[1]);
-                        return;
-                    }
-                    $("#news_img").attr("src", imgUrl + arr[1]);
-                    $("#profile").val(arr[1]);
-                },
-                error : function(msg) {
-                    alert("头像上传失败");
-                }
-            })
-        }
+    <script src="__PUBLIC__/admin/js/common.js"></script>
 
-    </script>
+
+
 
   </body>
 </html>

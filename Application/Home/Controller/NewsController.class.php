@@ -74,9 +74,6 @@ class NewsController extends BaseController {
 
 
 
-
-
-
     public function getNewsList(){
         $m_news = new \Home\Model\NewsModel();
         $type = $this->params['news_type'];
@@ -90,11 +87,9 @@ class NewsController extends BaseController {
         $where['subsite_id'] = array('in',array($this->subsite_id,0));
         $where['status'] = 0;
         $data = array();
-        $page_arr = array();
+
 
         if($count = $m_news->getNewsCount($where)){
-
-            $page_arr = listPage($count,$this->limit,$this->page);
 
             $data = $m_news->getNewsList($where,$this->offset,$this->limit,40);
 

@@ -77,7 +77,7 @@
                                             <!--<th width="5%">排序</th>-->
                                             <th width="4%">序号</th>
                                             <th width="20%">课程名称</th>
-                                            <th width="5%">学员名称</th>
+                                            <th width="8%">学员名称</th>
                                             <th width="18%">报名时间</th>
                                             <th width="8%">审核状态</th>
                                             <th width="7%">学费</th>
@@ -91,12 +91,12 @@
                                         <td>{$vo.course_name}</td>
                                         <td>{$vo.student_name}</td>
                                         <td>{$vo.ctime}</td>
-                                        <td>{$reg_status.$vo[status]}</td>
+                                        <td class="status" value="{$vo.status}">{$reg_status.$vo[status]}</td>
                                         <td>{$vo.price}</td>
                                         <td>{$vo.subsite_name}</td>
                                         <td>
-                                            <a class="btn" href="/admin/register/changeStatus?status=3&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>
-                                            <a class="btn" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>
+                                            <a  class="btn pass" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>
+                                            <a  class="btn no_pass" href="/admin/register/changeStatus?status=2&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>
                                             <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
                                         </td>
                                         </foreach>
@@ -108,7 +108,7 @@
                                     <ul class="pagination" style="float:right">
                                         <li><a href="#">&laquo;</a></li>
                                         <volist  name="page_arr" id="vo">
-                                            <li><a href="/admin/student/?page=<?php echo $vo;?>">{$vo}</a></li>
+                                            <li><a href="/admin/student?page=<?php echo $vo;?>">{$vo}</a></li>
                                         </volist>
                                         <li><a href="#">&raquo;</a></li>
                                     </ul>
@@ -127,46 +127,25 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
-    <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
     <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
-
-    <script src="__PUBLIC__/admin/js/library/jquery.collapsible.min.js"></script>
-    <!--<script src="__PUBLIC__/admin/js/library/jquery.mCustomScrollbar.min.js"></script>-->
-    <script src="__PUBLIC__/admin/js/library/jquery.mousewheel.min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.uniform.min.js"></script>
-
-   
-    <script src="__PUBLIC__/admin/js/library/jquery.sparkline.min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/chosen.jquery.min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.easytabs.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/excanvas.min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/jquery.flot.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/jquery.flot.pie.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/jquery.flot.selection.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/jquery.flot.resize.js"></script>
-    <script src="__PUBLIC__/admin/js/library/flot/jquery.flot.orderBars.js"></script>
-    <script src="__PUBLIC__/admin/js/library/maps/jquery.vmap.js"></script>
-    <script src="__PUBLIC__/admin/js/library/maps/maps/jquery.vmap.world.js"></script>
-    <script src="__PUBLIC__/admin/js/library/maps/data/jquery.vmap.sampledata.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.autosize-min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/charCount.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.minicolors.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.tagsinput.js"></script>
-    <script src="__PUBLIC__/admin/js/library/fullcalendar.min.js"></script>
-    <script src="__PUBLIC__/admin/js/library/footable/footable.js"></script>
-    <script src="__PUBLIC__/admin/js/library/footable/data-generator.js"></script>
-
-    <script src="__PUBLIC__/admin/js/library/bootstrap-datetimepicker.js"></script>
-    <script src="__PUBLIC__/admin/js/library/bootstrap-timepicker.js"></script>
-    <script src="__PUBLIC__/admin/js/library/bootstrap-datepicker.js"></script>
-    <script src="__PUBLIC__/admin/js/library/bootstrap-fileupload.js"></script>
-    <script src="__PUBLIC__/admin/js/library/jquery.inputmask.bundle.js"></script>
-
     <script src="__PUBLIC__/admin/js/library/jquery.dataTables.js"></script>
+    <script src="__PUBLIC__/admin/js/common.js"></script>
+  <script type="text/javascript">
+      $(function(){
 
-    <script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>
+          $.each($('.status'),function (i,n){
 
-    <script src="__PUBLIC__/admin/js/datatables.js"></script>
+              if($(n).attr('value') == 1){
+                  $(n).siblings().find(".pass").hide();
+              }else if($(n).attr('value') ==2){
+                  $(n).siblings().find('.no_pass').hide();
+              }
+          })
+
+      })
+  </script>
+
+
 
   </body>
 </html>

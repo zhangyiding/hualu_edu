@@ -17,9 +17,11 @@ class RegisterController extends BaseController {
         //当分站管理员访问时只能查看所属分站的数据
         if($this->su_type = C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
+        }else{
+            $where['scm_id'] = array('egt',0);
         }
 
-        $where['status'] = array('egt',0);
+
 
         $data = array();
         $page_arr = array();
@@ -86,14 +88,15 @@ class RegisterController extends BaseController {
         $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的数据
         if($this->su_type = C('SUBSITE_USER')){
-            $where['subsite_id'] = $this->subsite_id;
+            $where['scm.subsite_id'] = $this->subsite_id;
+        }else{
+            $where['scm.scm_id'] = array('egt',0);
         }
 
-        $where['status'] = array('egt',0);
 
         $data = array();
         $page_arr = array();
-        if($count = $m_register->getRegisterCount($where)){
+        if($count = $m_register->getCseRegCount($where)){
 
             //获取分页总数进一取整
             $page_count = ceil($count/$this->limit);
@@ -101,19 +104,12 @@ class RegisterController extends BaseController {
                 $page_arr[] = $i;
             }
 
-            $data = $m_register->getRegisterList($where,$this->offset,$this->limit);
+            $data = $m_register->getCseRegCountList($where,$this->offset,$this->limit);
 
-            $m_student = new \Admin\Model\StudentModel();
-            $m_course = new \Admin\Model\CourseModel();
+
             foreach($data as $k=>$v){
-                //获取学员信息
-                $student_info = $m_student->getStudentInfo($v['student_id']);
-                $data[$k]['student_name'] = $student_info['name'];
 
-                //获取课程信息
-                $course_info = $m_course->getCourseInfo($v['course_id']);
-                $data[$k]['course_name'] = $course_info['name'];
-                $data[$k]['price'] = $course_info['price'];
+                $data[$k]['price'] = round($v['price']*$v['scm_count']);
 
                 //获取分站信息
                 $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
@@ -122,7 +118,6 @@ class RegisterController extends BaseController {
         }
 
         $this->assign('reg_list',$data);
-        $this->assign('reg_status',$this->reg_status);
         $this->assign('page_arr',$page_arr);
         $this->display();
     }

@@ -15,15 +15,11 @@ class RegisterModel extends Model{
 	    return $result;
 	}
 
-
     public function getRegisterCount($where){
         $result = $this->where($where)
             ->count();
         return $result;
     }
-
-
-
 
     public function changeStatus($where,$data){
         $result = $this
@@ -33,6 +29,40 @@ class RegisterModel extends Model{
 
     }
 
+    public function getCseRegCount($where){
+        $where['scm.status'] = 1;
+        $where['scm.is_pay'] = 1;
+        $result = $this->table('course')
+            ->alias('c')
+            ->field(array(
+                'count(scm.student_id)'=>'scm_count',
+                'c.course_id',
+                'c.price'
+            ))
+            ->join('left join student_course_map AS scm ON c.course_id = scm.course_id')
+            ->where($where)
+            ->group('c.course_id')
+            ->count();
+        return $result;
+    }
 
+
+    public function getCseRegCountList($where,$offset,$limit){
+        $where['scm.status'] = 1;
+        $result = $this->table('course')
+            ->alias('c')
+            ->field(array(
+                'count(scm.student_id)'=>'scm_count',
+                'c.course_id',
+                'c.price',
+                'c.name'
+            ))
+            ->join('left join student_course_map AS scm ON c.course_id = scm.course_id')
+            ->where($where)
+            ->group('c.course_id')
+            ->limit($offset,$limit)
+            ->select();
+        return $result;
+    }
 }
 ?>

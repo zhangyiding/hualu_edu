@@ -27,7 +27,7 @@ $(function(){
             }
         })
     }
-
+    $('#content').css('margin-left', '0px')
 
 
 
