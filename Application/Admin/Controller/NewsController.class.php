@@ -63,6 +63,7 @@ class NewsController extends BaseController {
             $id = $this->params['news_id'];
             $data = $m_news->getNewsInfo($id);
             $data['cover'] = getImageBaseUrl($data['cover']);
+
             $this->assign('data',$data);
         }
 
