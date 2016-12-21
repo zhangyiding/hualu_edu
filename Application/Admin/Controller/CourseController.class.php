@@ -210,27 +210,23 @@ class CourseController extends BaseController {
             $data['enroll_time'] = date('Y-m-d',$data['enroll_time']);
             $data['end_time'] = date('Y-m-d',$data['end_time']);
 
-            $cse_type = $m_course->getCourseType($data['course_id']);
-
+            if($cse_type = $m_course->getCourseType($data['course_id'])){
+                $data['cse_type'] = $cse_type;
+            }
 
             $where['r.type'] = C('COURSE_VE');
             $where['cr.course_id'] = $data['course_id'];
             if( $cse_video = $m_course->getCseRes($where)){
-
-                $this->assign('cse_video',json_encode($cse_video));
+                $data['cse_video'] = $cse_video;
             }
 
             $where['r.type'] = C('COURSE_FILE');
             if( $cse_file = $m_course->getCseRes($where)){
-                $this->assign('cse_file',json_encode($cse_file));
+               $data['cse_file'] = $cse_file;
             }
 
-            $this->assign('cse_type',$cse_type);
-
             $this->assign('data',$data);
-            $data['cse_dir'] = '3';
-            $data['cse_type'] = '4';
-            $this->assign('data_r',json_encode($data));
+            $this->assign('data_json',json_encode($data));
 
         }
 

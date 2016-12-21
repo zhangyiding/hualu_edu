@@ -198,8 +198,10 @@
         var cityId = 0;
 
         $(function(){
+
+            //选择视频和资料相关js操作
             $('#video').click(function(){
-                 $('.video').show();
+                $('.video').show();
                 $('.city').attr('type',1);
             });
             $('#study_file').click(function(){
@@ -275,6 +277,7 @@
 
 
 
+            //根据课程方向获取课程类型
             function selDir(val){
                 $("#kind").html("");
                 var request={
@@ -291,38 +294,50 @@
             }
 
 
-
-
-
-            var data = '<?php echo $data_r;?>';
-            var cse_file = '<?php echo $cse_file;?>';
-            var cse_video = '<?php echo $cse_video;?>';
-            var cse_video_obj = new Function("return" + cse_video)();
-console.log(cse_video_obj);
+            //当为修改内容时根据数据渲染数据
+            var data = '<?php echo $data_json;?>';
             if(data){
                 var obj = new Function("return" + data)();
 
-                var is_pub=$("input[type='radio']");
-
                 $("#is_pub input[value="+obj.is_pub+"]").attr("checked","true");
-
                 $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
+                $('#teacher_id option[value=' +obj.teacher_id + ']').attr('selected','true');
+                if(obj.cse_type){
+                    $("#cse_dir option[value="+obj.cse_type.cd_id+"]").attr("selected","true");
+                    selDir(obj.cse_type.cd_id)
+                }
 
-                if(obj.cse_dir){
-                    $("#cse_dir option[value="+obj.cse_dir+"]").attr("selected","true");
-                    selDir(obj.cse_dir)
+                if(obj.cse_video){
+                    var str="";
+                    var res_id="";
+                    $.each(obj.cse_video,function(i,n){
+                        str += (n.name+"\r\n");
+                        res_id += (n.resource_id+',')
+                    });
+
+                    $("#video").attr("value",str);
+                    $("#video").attr("course_ve",res_id);
+                }
+
+                if(obj.cse_file){
+                    var str="";
+                    var res_id="";
+                    $.each(obj.cse_file,function(i,n){
+                        str += (n.name+"\r\n");
+                        res_id += (n.resource_id+',')
+                    });
+                    $("#study_file").attr("value",str);
+                    $("#study_file").attr("course_file",res_id);
                 }
 
 
             }
 
-
-
-
             $("#cse_dir").change(function(){
                 var val=$(this).attr("value");
                selDir(val);
             })
+
 
             $('.submit').click(function(){
                 var course_ve = $('#video').attr('course_ve');
