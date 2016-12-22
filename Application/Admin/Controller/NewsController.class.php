@@ -14,9 +14,20 @@ class NewsController extends BaseController {
         //当分站管理员访问时只能查看所属分站的新闻
         if($this->su_type = C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
+            $new_type = C('news_type_admin_sub');
+        }else{
+            $new_type = C('news_type_admin');
         }
 
         $where['status'] = 0;
+
+        if($name = $this->params['title']){
+            $where['title'] = array('like','%'.$name.'%');
+        }
+
+        if($type = $this->params['type']){
+           $where['type'] = $type;
+        }
 
         $data = array();
         $page_arr = array();
@@ -35,11 +46,14 @@ class NewsController extends BaseController {
                $subsite_info = $m_base->getSubsiteInfo($v['subsite_id']);
                $data[$k]['subsite_name'] = $subsite_info['name'];
            }
+       }else{
+           $this->showMsg('暂无数据');
        }
 
         $this->assign('news_list',$data);
         $this->assign('page_arr',$page_arr);
-        $this->assign('news_type',C('news_type_admin'));
+        $this->assign('news_type',$new_type);
+
         $this->display();
     }
 

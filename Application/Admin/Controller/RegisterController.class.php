@@ -21,6 +21,10 @@ class RegisterController extends BaseController {
             $where['scm_id'] = array('egt',0);
         }
 
+        if($status = $this->params['status']){
+            $where['status'] = $status;
+        }
+
 
 
         $data = array();
@@ -51,6 +55,8 @@ class RegisterController extends BaseController {
                $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
                $data[$k]['subsite_name'] = $subsite_info['name'];
            }
+       }else{
+           $this->showMsg('暂无数据');
        }
 
         $this->assign('reg_list',$data);

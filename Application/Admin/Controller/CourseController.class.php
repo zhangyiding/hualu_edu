@@ -30,6 +30,38 @@ class CourseController extends BaseController {
             $where['subsite_id'] = $this->subsite_id;
         }
 
+        if($name = $this->params['name']){
+            $where['name'] = array('like','%'.$name.'%');
+        }
+
+        if($is_recommend = $this->params['is_recommend']){
+            $where['is_recommend'] = $is_recommend;
+        }
+
+        if($teacher_id = $this->params['teacher_id']){
+            $where['teacher_id'] = $teacher_id;
+        }
+
+        if($cse_type = $this->params['cse_type']){
+            $map['ct_id'] = $cse_type;
+            if(!$cse_list = $m_course->getCseListByType($map)){
+                $this->showMsg('暂无数据');
+            }
+        }
+
+        if($cse_dir = $this->params['cse_dir']){
+            $map['cd_id'] = $cse_dir;
+            if(!$cse_list = $m_course->getCseListByType($map)){
+                $this->showMsg('暂无数据');
+            }
+        }
+
+        if(!empty($cse_list)){
+            $where['course_id'] = array('in',array_unique($cse_list));
+        }
+
+
+
         $where['status'] = 0;
 
         $data = array();
@@ -57,6 +89,9 @@ class CourseController extends BaseController {
             }
         }
 
+        $cse_dir = $m_course->getCseDir();
+
+        $this->assign('cse_dir',$cse_dir);
         $this->assign('course_list',$data);
         $this->assign('page_arr',$page_arr);
 

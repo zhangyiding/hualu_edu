@@ -41,7 +41,7 @@
             border-style: ridge;
         }
         .cse_type label{
-            
+
         }
     </style>
   </head>
@@ -72,16 +72,13 @@
                               </div>
                              <div class="form_list"><label  class="lable_title">选择擅长分类</label>
 
-
-
-
                              </div>
-                             <div class="cse_type" >
+                             <div class="cse_type" value="{$data.ct_id}" >
                                  <foreach name="ct_list" item="vo">
                                      <lable><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </lable>
                                  </foreach>
                              </div>
-                             <div class="form_list"><label class="lable_title">
+                             <div class="form_list gender" value="{$data.gender}"><label class="lable_title">
                                  性别
                              </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                  <input type="radio" name="gender" value="1">男
@@ -100,7 +97,7 @@
 
 
                              <div class="form_list"><label class="lable_title">民族</label>
-                            <select id="ethnic" name="ethnic"  style="width:150px; margin-left:15px;">
+                            <select id="ethnic" name="ethnic" value="{$data.ethnic}" style="width:150px; margin-left:15px;">
                               <option value="">请选择民族</option>
                                 <volist name='ethnic_list' id='vo' key="k">
                                     <option value="<?php print($k); ?>" >{$vo}</option>
@@ -160,6 +157,24 @@
     <script src="__PUBLIC__/admin/js/common.js"></script>
 
 
+  <script type="text/javascript">
+      $(function(){
+
+          if(cse_type = $('.cse_type').attr('value').split(',')){
+              $.each(cse_type,function(i,n){
+                  $('.cse_type input[value='+ n+']').prop('checked',true);
+              })
+          }
+
+          if(ethnic = $('#ethnic').attr('value')){
+              $('#ethnic option[value='+ethnic+']').prop('selected',true);
+          }
+
+          if(gender = $('.gender').attr('value')){
+              $('.gender input[value=' + gender +']').prop('checked',true);
+          }
+      })
+  </script>
 
 
   </body>

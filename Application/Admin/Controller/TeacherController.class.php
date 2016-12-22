@@ -1,5 +1,6 @@
 <?php
 namespace Admin\Controller;
+use Admin\Model\CourseModel;
 use Common\Lib\Upimg;
 use Common\Lib\UpimgClass;
 use Think\Controller;
@@ -9,11 +10,18 @@ class TeacherController extends BaseController {
     public function index(){
         $m_teacher = new \Admin\Model\TeacherModel();
         $m_base = new \Common\Model\BaseModel();
+        $m_course = new CourseModel();
         //当分站管理员访问时只能查看所属分站的课程
         if($this->su_type = C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
 
+        if($name = $this->params['name']){
+            $where['name'] = array('like','%'.$name.'%');
+        }
+        if($cse_type = $this->params['cse_type']){
+            $where['ct_id'] = array('in',$cse_type);
+        }
         $where['status'] = 0;
 
         $data = array();
@@ -46,6 +54,8 @@ class TeacherController extends BaseController {
            }
        }
 
+        $ct_list = $m_course->getCseType();
+        $this->assign('ct_list',$ct_list);
         $this->assign('tec_list',$data);
         $this->assign('page_arr',$page_arr);
         $this->display();

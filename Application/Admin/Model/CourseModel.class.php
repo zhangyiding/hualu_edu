@@ -155,9 +155,13 @@ class CourseModel extends Model{
         return $result;
     }
 
-    public function getCseType($cd_id){
+    public function getCseType($cd_id=''){
+        if(!empty($cd_id)){
+            $where['cd_id'] = $cd_id;
+        }
+        $where['status'] = 0;
         $result = $this->table('course_type')
-            ->where(array('status'=>0,'cd_id'=>$cd_id))
+            ->where($where)
             ->select();
         return $result;
     }
@@ -187,6 +191,24 @@ class CourseModel extends Model{
             ->where($where)
             ->select();
         return $result;
+    }
+
+
+    public function getCseListByType($map){
+        $map['status'] = 0;
+        $result = $this->table('course_type_map')
+            ->field('course_id')
+            ->where($map)
+            ->select();
+        $cse_arr = array();
+        if(is_array($result) && !empty($result)) {
+            foreach ($result as $k => $v) {
+                $cse_arr[] = $v['course_id'];
+            }
+        }else{
+            return false;
+        }
+        return $cse_arr;
     }
 }
 ?>

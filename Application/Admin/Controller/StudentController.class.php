@@ -16,6 +16,9 @@ class StudentController extends BaseController {
 
         $where['status'] = 0;
 
+        if($name = $this->params['name']){
+            $where['name'] = array('like','%'.$name.'%');
+        }
         $data = array();
         $page_arr = array();
        if($count = $m_student->getStudentCount($where)){
