@@ -21,43 +21,37 @@ $(function(){
         //e.preventDefault();
         $(this).parent().addClass("active").siblings(".active").removeClass("active");
     })
+////循环后台数据到指定位置
+//    $("#dataPage").pagination({
+//
+//        dataSource:function (done) {
+//            $.ajax({
+//                type: "GET",
+//                url: "//edu.hl.com/news/getNewsList?page=2",
+//                success: function(response){
+//                    done(response.result.data);
+//                }
+//            })
+//        },
+//        //totalPage:5,
+//
+//        callback:function(data,pagination){
+//            console.log(data);
+//            //    console.log(pagination);
+//            pagination.totalPage=5;
+//            var html="<ul>";
+//            for(var i=0;i<data.length;i++){
+//                html+="<li><a href='train_list.html'><span class='term'>"
+//                +data[i].title+"</span><span class='date'>"
+//                + data[i].ctime+"</span></a></li>";
+//            }
+//            html+="</ul>";
+//            $("#dataContainer").html(html);
+//        }
+//    })
 
 
-
-
-//循环后台数据到指定位置
-    $("#dataPage").pagination({
-        dataSource:function (done) {
-            $.ajax({
-                type: "GET",
-                url: "//edu.hl.com/news/getNewsList",
-                success: function(response){
-//                        console.log(response);
-                    done(response.result.data);
-                }
-            })
-
-        },
-        pageSize:3,
-        showPrevious:true,
-        showNext:true,
-        callback:function(data,pagination){
-            console.log(data);
-//                console.log(pagination);
-            var html="<ul>";
-            for(var i=0;i<data.length;i++){
-                html+="<li><a href='train_list.html'><span class='term'>"
-                +data[i].title+"</span><span class='date'>"
-                + data[i].ctime+"</span></a></li>";
-            }
-            html+="</ul>";
-            $("#dataContainer").html(html);
-        }
-    })
-
-
-
-
+//    处理ajax分页处理数据
 
 
 

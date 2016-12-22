@@ -1,11 +1,11 @@
 
 
-/*header����*/
+/*header部分*/
 header,footer ul.concat,nav,#article,div#content,div#hot,div#advice,div#course,div#title {
     width: 1000px;
     margin: 0 auto;
 }
-/*����ͼƬ����*/
+/*锟斤拷锟斤拷图片锟斤拷锟斤拷*/
 div#title{
     position: relative;
     height: 50px;
@@ -19,7 +19,7 @@ div#sousuo{
     width: 1000px;
     margin: 0 auto;
 }
-/*article�м��л�����*/
+/*article锟叫硷拷锟叫伙拷锟斤拷锟斤拷*/
 ul.search{
     overflow: hidden;
     margin-top: 10px;
@@ -37,6 +37,7 @@ ul.search li input{
     height: 30px;
     padding-left:35px;
     background: url("../image/zoom.png") no-repeat 8px 4px;
+    outline-color: #A3A3A3;
 }
 ul.search li i{
     display: inline-block;
@@ -68,7 +69,7 @@ ul.search li.pagesum span{
     line-height: 35px;
 }
 
-/*div#content����*/
+/*div#content锟斤拷锟斤拷*/
 div#content{
     margin-top: 3px;
     overflow: hidden;
@@ -110,7 +111,7 @@ div.list{
     /*color: #3A3A3A;*/
 /*}*/
 
-/*�Ҳಿ������#dataContainer����*/
+/*锟揭侧部锟斤拷锟斤拷锟斤拷#dataContainer锟斤拷锟斤拷*/
 div.aside{
     float: right;
     width:820px;
@@ -151,7 +152,7 @@ div.aside{
 #dataPage li a:hover{
     color: #0be2fe;
 }
-/*ҳ�벿������*/
+/*页锟诫部锟斤拷锟斤拷锟斤拷*/
 div#page{
     width:820px;
     text-align: center;
@@ -222,7 +223,7 @@ div#page .code{
     color: #fff;
     border-radius: 17px;
 }
-/*footer����*/
+/*footer锟斤拷锟斤拷*/
 footer{
     height:260px;
     margin-top: 50px;
@@ -262,7 +263,7 @@ footer p.eng span{
 
 
 
-/*�л�Ч��CSS*/
+/*锟叫伙拷效锟斤拷CSS*/
 div.tab_2{
     display: none;
 }
