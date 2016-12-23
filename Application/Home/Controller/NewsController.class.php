@@ -17,6 +17,9 @@ class NewsController extends BaseController {
             $where['subsite_id'] = 0;
         }
 
+        if($title = $this->params['title']){
+            $where['title'] = array('like','%'.$title.'%');
+        }
 //        $where['subsite_id'] = array('in',array($this->subsite_id,0));
         $where['status'] = 0;
         $data = array();

@@ -36,6 +36,12 @@ $(function(){
     }
 
 
+    $('.search i').click(function(){
+
+        if(title = $('.search input').val()){
+            location.href = BASE_URL+'/news?title='+title;
+        }
+    })
 
 
 
