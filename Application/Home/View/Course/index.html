@@ -14,6 +14,8 @@
     <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
     <script src="__PUBLIC__/home/js/course.js"></script>
     <script src="__PUBLIC__/home/js/common.js"></script>
+    <!--<script src="__PUBLIC__/home/js/jquery.page.js"></script>-->
+    <script src="__PUBLIC__/home/js/jquery.twbsPagination.min.js"></script>
 
 
 </head>
@@ -53,13 +55,13 @@
                 <span class="row_left_1">课程提供方：</span>
                <a href="/course/courseList"> <span class="row_left_2">全部</span></a>
             </div>
-            <div class="row_right">
+            <div class="row_right row_right_master">
                 <ul>
-                    <li class="master_1 active">
-                        <a href="course?is_master=1">国资委干教中心</a>
+                    <li value="1">
+                       国资委干教中心
                     </li>
-                    <li class="master_2">
-                        <a href="course?is_master=2">中石油分站</a>
+                    <li  value="2">
+                       中石油分站
                     </li>
                 </ul>
             </div>
@@ -72,8 +74,8 @@
             <div class="row_right row_right_dir">
                 <ul>
                     <foreach name="cd_list" item="vo">
-                        <li class="cse_dir_{$vo.cd_id}">
-                             <a href="/course?course_dir={$vo.cd_id}">{$vo.name}</a>
+                        <li  value="{$vo.cd_id}">
+                            {$vo.name}
                        </li>
                    </foreach>
                </ul>
@@ -85,13 +87,7 @@
                <span class="row_left_2">全部</span>
            </div>
            <div class="row_right row_right_type">
-               <ul>
-                   <foreach name="ct_list" item="vo">
-                       <li class="cse_type_{$vo.ct_id}">
-                           <a href="course?course_type={$vo.ct_id}">{$vo.name}</a>
-                       </li>
-                   </foreach>
-               </ul>
+
            </div>
        </div>
      <div class="row">
@@ -101,174 +97,29 @@
        </div>
        <div class="row_right row_right_status">
            <ul>
-               <li class="pub_1">
-                   <a href="course?is_pub=1">公开</a>
+               <li class="pub_1" value="1">
+                  公开
                </li >
-               <li class="pub_2">
-                   <a href="course?is_pub=2">内训</a>
+               <li class="pub_2" value="2">
+                  内训
                </li >
-               <li class="pub_3">
-                   <a href="course?is_pub=3">定向</a>
+               <li class="pub_3" value="3">
+                   定向
                </li>
            </ul>
        </div>
    </div>
    </div>
 </div>
-<!--<div id="allcourse">-->
-    <!--<h1>共有30门课程</h1>-->
-    <!--<iframe src="/course/courseList?number=12&is_master=1" frameborder="0" scrolling="no" class="insert"></iframe>-->
-<!--</div>-->
 <div id="allcourse">
-    <h1>共有{$count}门课程</h1>
-    <ul class="learn learn_1" style="display: block">
-        <foreach name="course_list" item="vo">
-            <li>
-                <a href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo.cover}"  height="147" width="224" alt=""/></a>
-                <div class="hour">{$vo.os_cn}</div>
-                <h4>{$vo.name}</h4>
-                <div class="btn">
-               <span class="btn_1">
-                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('__PUBLIC__/home/image/gongkai.png') : print_r('__PUBLIC__/home/image/neixun.png');?>" alt=""/>
-                </span>
-                <span class="btn_2">
-                    <a href="/course/register?course_id={$vo.course_id}"> <img src="__PUBLIC__/home/image/baoming.png" alt=""/></a>
-                </span>
-                </div>
-            </li>
-        </foreach>
-    </ul>
-
 </div>
-<div id="page">
-    <div class="code page_list">
-        <ul>
-            <li class="first"><a href="<?php echo 'course?page='.$page_arr['home'];?>">首页</a></li>
-            <li class="prev">
-                <a href="<?php echo 'course?page='.$page_arr['last'];?>">
-                    上一页</a></li>
-            <volist name="page_arr['list']" id="vo">
-                <li class="num ">
-                    <a href="<?php echo 'course?page='.$vo;?>" >{$vo}</a> </li>
-            </volist>
 
-            <li class="next"><a href="<?php echo 'course?page='.$page_arr['next'];?>">下一页</a></li>
-            <li class="last"><a href="<?php echo 'course?page='.$page_arr['end'];?>">尾页</a></li>
-        </ul>
-    </div>
-
+<div class="pageBox"  id="pageBox" style="text-align: center;">
+    <ul id="pagination" class="pagination m-n"></ul>
 </div>
 <footer id="footer" >
 
 </footer>
-
-<script >
-    $("div.row_right_dir ul li a").click(function(e){
-
-        var href=$(this).attr("href");
-        var is_master = GetQueryString('is_master');
-        var url = href+'&is_master='+is_master;
-        $(this).attr('href',url);
-
-    });
-    $("div.row_right_type ul li a").click(function(e){
-        var href=$(this).attr("href");
-        var is_master = GetQueryString('is_master');
-        var url = href+'&is_master='+is_master;
-        $(this).attr('href',url);
-
-    });
-    $("div.row_right_status ul li a").click(function(e){
-
-        var href=$(this).attr("href");
-        var is_master = GetQueryString('is_master');
-        var url = href+'&is_master='+is_master;
-
-        if(GetQueryString('course_dir')){
-            var course_dir = GetQueryString('course_dir');
-            url+='&course_dir='+course_dir;
-        }
-        if(GetQueryString('course_type')){
-            var course_type = GetQueryString('course_type');
-            url+='&course_type='+course_type;
-        }
-
-        $(this).attr('href',url);
-
-    });
-    $("div.page_list ul li a").click(function(e){
-
-        var href=$(this).attr("href");
-        var is_master = GetQueryString('is_master');
-        var url = href+'&is_master='+is_master;
-
-
-        if(GetQueryString('course_dir')){
-            var course_dir = GetQueryString('course_dir');
-            url+='&course_dir='+course_dir;
-        }
-        if(GetQueryString('course_type')){
-            var course_type = GetQueryString('course_type');
-            url+='&course_type='+course_type;
-        }
-
-        if(GetQueryString('is_pub')){
-            var is_pub = GetQueryString('is_pub');
-            url+='&is_pub='+is_pub;
-        }
-
-        $(this).attr('href',url);
-    })
-</script>
-<script>
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
-</script>
-<script>
-    $(function(){
-        function parseQueryString(url){
-            var json = {};
-            var arr = url.substr(url.indexOf('?') + 1).split('&');
-            arr.forEach(function(item) {
-                var tmp = item.split('=');
-                json[tmp[0]] = tmp[1];
-            })
-            return json;
-        }
-
-        var url =window.location.href;
-        var json = parseQueryString(url);
-
-        if(is_master = json.is_master){
-            var c = "div.row_right ul li.master_"+is_master;
-            $(c).addClass("active")
-                    .siblings().removeClass("active");
-        }
-
-        if(course_dir = json.course_dir){
-            var d = "div.row_right_dir ul li.cse_dir_"+course_dir;
-            $(d).addClass("active")
-                    .siblings().removeClass("active");
-        }
-
-        if(is_pub = json.is_pub){
-            var a = "div.row_right_status ul li.pub_"+is_pub;
-            $(a).addClass("active")
-                    .siblings().removeClass("active");
-        }
-        if(ct_id = json.course_type){
-            var b = "div.row_right_type ul li.cse_type_"+ct_id;
-            $(b).addClass("active")
-                    .siblings().removeClass("active");
-        }
-
-    })
-</script>
-
 
 </body>
 </html>

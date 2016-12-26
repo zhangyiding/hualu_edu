@@ -252,5 +252,18 @@ class CourseModel extends Model{
         return $result['watch_time'];
     }
 
+
+    public function getCseType($cd_id='',$limit='6'){
+        if(!empty($cd_id)){
+            $where['cd_id'] = $cd_id;
+        }
+        $where['status'] = 0;
+        $result = $this->table('course_type')
+            ->field('ct_id,name,cd_id')
+            ->where($where)
+            ->limit($limit)
+            ->select();
+        return $result;
+    }
 }
 ?>
