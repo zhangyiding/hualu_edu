@@ -3,48 +3,80 @@
  */
 $(function(){
 
+    var news_type = '';
+    var title = '';
 
-    $("#page ul li a").mouseover(function(){
-        $("#page ul li.active").removeClass("active");
-    })
-
-
-//   ��ҳ�л�����
-    $(".nav li a").click(function(e){
-        //e.preventDefault();
-        $(this).parent().addClass("active").siblings(".active").removeClass("active");
+    $(".banner ul li").click(function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        title = '';
+        news_type = $(this).attr('value');
+        $("#pageBox").html('<ul id="pagination" class="pagination-sm"></ul>');
+        newsList()
     });
-
-
-    //将当前url中参数转换为数组
-    function parseQueryString(url){
-        var json = {};
-        var arr = url.substr(url.indexOf('?') + 1).split('&');
-        arr.forEach(function(item) {
-            var tmp = item.split('=');
-            json[tmp[0]] = tmp[1];
-        })
-        return json;
-    }
-    var url =window.location.href;
-    var json = parseQueryString(url);
-
-    if(json.news_type == 2){
-        $('div.banner ul li.busy').addClass('active');
-    }else {
-        $('div.banner ul li.country').addClass('active');
-    }
 
 
     $('.search i').click(function(){
 
         if(title = $('.search input').val()){
-            location.href = BASE_URL+'/news?title='+title;
+            title = '';
+            newsList();
         }
-    })
+    });
 
+    function newsList(page){
+        var param={};
+        param.limit = 8;
+        param.page = page;
+        param.title = title;
+        param.news_type = news_type;
 
+        $.ajax({
+            type:"get",
+            url:BASE_URL+"/news/getNewsList",
+            data:param,
+            success:function(data){
+                if(data.code =='10000'){
+                    $('.aside').html('');
 
+                    var temp = '<ul>';
+                    $.each(data.result.data_list,function(i,n){
+                        temp+= '<li>'
+                                +'<a href="'+'/news/newsInfo?news_id='+ n.news_id + '">'
+                                + '<span class="term">'
+                                + n.title
+                                +'</span>'
+                                +'<span class="date"> '
+                                + n.ctime
+                                +'</span>'
+                                +'</a>'
+                                +'</li>'
+                    });
+
+                    temp+='</ul>'
+                    $('.aside').append(temp);
+
+                    //分页管理
+                    pageStatus = 0;
+                    var pageTotal = Math.ceil(parseInt(data.result.count)/(param.limit));
+
+                    $('#pagination').twbsPagination({
+                        totalPages: pageTotal,
+                        visiblePages: 7,
+                        onPageClick: function (event, page) {
+                            if(pageStatus>0){
+                                newsList(page);
+                            }
+                        }
+                    });
+                    pageStatus++;
+                }else {
+                    alert(data.msg);
+                }
+            }
+        });
+    }
+
+    newsList(1);
 
 
 

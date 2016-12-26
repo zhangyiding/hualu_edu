@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
     <link rel="stylesheet" href="__PUBLIC__/home/css/style_train.css"/>
 
-    <!--<link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>-->
     <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
     <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
-    <script src="__PUBLIC__/home/js/train.js"></script>
     <script src="__PUBLIC__/home/js/common.js"></script>
-    <!--<script src="__PUBLIC__/home/js/index.js"></script>-->
+    <script src="__PUBLIC__/home/js/train.js"></script>
+    <script src="__PUBLIC__/home/js/jquery.twbsPagination.min.js"></script>
+
 </head>
 <body>
 
@@ -53,53 +53,16 @@
 <div id="content">
     <div class="banner">
         <ul>
-            <li class="country"> <a href="/news?news_type=1">国资资讯</a></li>
-            <li class="busy"><a href="/news?news_type=2">企业资讯</a></li>
+            <li class="country active" value="1"> 国资资讯</li>
+            <li class="busy" value="2">企业资讯</li>
         </ul>
     </div>
     <div class="aside tab_1">
-        <ul>
-            <foreach name="news_list" item="vo">
-                <li>
-                    <a href="/news/newsInfo?news_id=<?php echo $vo['news_id'];?>">
-                     <span class="term">
-                    {$vo.title}
-                </span>
-                <span class="date">
-                   {$vo.ctime}
-                </span>
-                    </a>
-
-                </li>
-            </foreach>
-        </ul>
-        </br>
-        <div id="page">
-            <div class="code">
-                <ul>
-                    <li class="first"><a href="/news?news_type=<?php
-                        echo $news_type . '&page='.$page_arr['home'];?>">首页</a></li>
-                    <li class="prev">
-                        <a href="/news?news_type=<?php
-                        echo $news_type . '&page='.$page_arr['last'];?>">
-                            上一页</a></li>
-                    <volist name="page_arr['list']" id="vo">
-                        <li class="num active">
-                            <a href="/news?news_type=<?php echo $news_type . '&page='.$vo;?>">{$vo}</a> </li>
-                    </volist>
-
-
-                    <li class="next"><a href="/news?news_type=<?php
-                        echo $news_type . '&page='.$page_arr['next'];?>">下一页</a></li>
-                    <li class="last"><a href="/news?news_type=<?php
-                        echo $news_type . '&page='.$page_arr['end'];?>">尾页</a></li>
-                </ul>
-            </div>
-
-        </div>
 
 </div>
-
+    <div class="pageBox"  id="pageBox" style="text-align: center;">
+        <ul id="pagination" class="pagination m-n"></ul>
+    </div>
 </div>
 
 
