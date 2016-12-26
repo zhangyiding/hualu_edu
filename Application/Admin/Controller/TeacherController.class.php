@@ -1,8 +1,6 @@
 <?php
 namespace Admin\Controller;
 use Admin\Model\CourseModel;
-use Common\Lib\Upimg;
-use Common\Lib\UpimgClass;
 use Think\Controller;
 use Common\Controller\BaseController;
 class TeacherController extends BaseController {
@@ -102,7 +100,10 @@ class TeacherController extends BaseController {
             $data['ct_id'] = implode(',',$this->params['ct_id']);
         }
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadFile('teacher');
+        if($this->params['cover']){
+            $data['avatar'] = $this->params['cover'];
+        }
+
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];

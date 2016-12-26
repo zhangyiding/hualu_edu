@@ -1007,18 +1007,20 @@ function path_info($filepath)
 /**
  * @todo 上传文件
  */
- function uploadFile($upload_dir,$type='3') {
+ function uploadFile($type='3') {
 
      $upimgObj = new Upimg($_FILES['uploadFile']);
 
      if($type == C('COURSE_IMG')){
-         $upload_dir = C('IMG_DIR') .'/'.$upload_dir;
+         $upload_dir = C('IMG_DIR') ;
      }elseif($type == C('COURSE_VE')){
-         $upload_dir = C('VIDEO_DIR') .'/'.$upload_dir;
+         $upload_dir = C('VIDEO_DIR') ;
          $upimgObj->SetSaveMod(0);
      }elseif($type == C('COURSE_FILE')){
-         $upload_dir = C('FILE_DIR') .'/'.$upload_dir;
+         $upload_dir = C('FILE_DIR') ;
          $upimgObj->SetSaveMod(0);
+     }else{
+         return false;
      }
     //文件上传路径
     if(!is_dir($upload_dir)){

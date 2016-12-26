@@ -80,7 +80,10 @@ class StudentController extends BaseController {
         $op_type = $this->params['op_type'];
 
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadFile('student');
+        if($this->params['cover']){
+            $data['avatar'] = $this->params['cover'];
+        }
+
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];
@@ -111,9 +114,9 @@ class StudentController extends BaseController {
         }
 
         if($result!== false){
-            $this->showMsg('添加成功','index',1);
+            $this->showMsg('操作成功','index',1);
         }else{
-            $this->showMsg('添加失败，请重试');
+            $this->showMsg('操作失败，请重试');
         }
     }
 

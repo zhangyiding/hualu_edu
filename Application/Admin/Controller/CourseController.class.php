@@ -147,7 +147,23 @@ class CourseController extends BaseController {
         $this->display();
     }
 
+    /*
+        * @todu 保存上传文件
+        */
+    public function upload(){
 
+        //上传文件类型,视频，普通文件,图片
+        $type = $this->params['type'];
+        $this->checkFile($type);
+
+        if($path = uploadFile($type)){
+            $result['path'] = ($path);
+            $this->to_back($result);
+        }else{
+            $this->to_back('10101');
+        }
+
+    }
 
     /*
      * @todu 保存上传视频文件
@@ -156,16 +172,14 @@ class CourseController extends BaseController {
         $map['subsite_id'] = $this->subsite_id;
         $map['creator'] = $this->creator;
 
-        //上传文件类型，1为视频，2为普通文件,3为图片
+        //上传文件类型,视频，普通文件,图片
         $type = $this->params['type'];
         $this->checkFile($type);
 
-        //根据业务类型定义相关目录名称
-        $service_dir = $this->params['service_type'];
 
         $Upvideo = new UpVideo();
         $m_course = new CourseModel();
-        if($path = uploadFile($service_dir,$type)){
+        if($path = uploadFile($type)){
 
            if($type == C('COURSE_VE')){
                $file_info = $Upvideo->getInfo($path);
@@ -397,7 +411,9 @@ class CourseController extends BaseController {
         $op_type = $this->params['op_type'];
 
         $data['name'] = $this->params['name'];
-        $data['cover'] = uploadFile('course');
+        if(!empty($this->params['cover'])){
+            $data['cover'] = $this->params['cover'];
+        }
         $data['intro'] = $this->params['intro'];
         $data['is_pub'] = $this->params['is_pub'];
         $data['price'] = $this->params['price'];

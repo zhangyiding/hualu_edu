@@ -6,8 +6,8 @@
   
     <meta name="description" content="">
     <meta name="author" content="">
-      <script src="__PUBLIC__/admin/js/jquery-1.7.1.min.js"></script>
-      <script src="__PUBLIC__/admin/js/common.js"></script>
+      <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
+      <script src="__PUBLIC__/admin/js/common.js" type="text/javascript"></script>
       <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
     <!-- Le styles -->
     <link href="__PUBLIC__/admin/css/bootstrap.css" rel="stylesheet">
@@ -16,24 +16,13 @@
     <link href="__PUBLIC__/admin/css/index.css" rel="stylesheet">
       <link href="__PUBLIC__/admin/css/checkbox.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/icon/font-awesome.css" rel="stylesheet">
-    
+      <script src="__PUBLIC__/admin/js/jquery.uploadify.min.js" ></script>
+      <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/uploadify.css">
+      <script src="__PUBLIC__/admin/js/html5shiv.min.js"></script>
 
-    <!-- Le fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="__PUBLIC__/admin/img/apple-touch-icon-144-precomposed.html">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="__PUBLIC__/admin/img/apple-touch-icon-114-precomposed.html">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="__PUBLIC__/admin/img/apple-touch-icon-72-precomposed.html">
-                    <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/admin/img/apple-touch-icon-57-precomposed.html">
-
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-    <![endif]-->
       <style>
         div.form_list label{
             width:80px;
-        }
-        #file{
-            margin-left:30px;
         }
          #video,#study_file{
               height: 130px;
@@ -42,6 +31,7 @@
           .video{
               height: 150px;
           }
+
       </style>
   </head>
 
@@ -65,12 +55,21 @@
                             <div class="form_list"><label class="lable_title">课程名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
                              <div class="form_list"><label class="lable_title">课程简介</label><input id="intro" name="intro" class="form_input" type="text" value={$data.intro}></div>
 
-                              <div class="form_list"><label  class="lable_title">课程封面</label>
-                                <input type="file" name="uploadFile" class="file" id="file" />
+                              <div class="form_list" ><label  class="lable_title">课程封面</label>
                               </div>
+                             <div class="cover">
+                                 <img src="<?php print_r($data['cover']);?>" style="width: 360px;height: 200px;margin-top: -7px;margin-left: 61px;"/>
+                             </div>
+                             <div class="upload">
+                                     <div id="queue"></div>
+                                     <input id="uploadify" name="uploadify" type="file" multiple="true">
+                                     <p>
+                                         <a href="javascript:jQuery('#uploadify').uploadify('upload','*');">上传</a>|
+                                         <a href="javascript:jQuery('#uploadify').uploadify('ClearQueue','*');">取消上传</a>|
+                                     </p>
+                             </div>
 
-                             <div><img src="<?php print_r($data['cover']);?>"  style="width: 360px;height: 200px"/>
-                                 </div>
+
                              <div class="form_list" id="is_pub" ><label class="lable_title" >
                                  课程类别
                              </label>
@@ -176,40 +175,42 @@
                              <div class="form_list"><input style="margin-left: 180px; float: left; width: 60px; cursor:pointer;" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
                              <input type="hidden" id="course_id" name="course_id" value="{$data.course_id}" />
                          </form>
-
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-    <!--<script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/WdatePicker.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
     <script type="text/javascript">
 
         $(function(){
 
             //选择视频和资料相关js操作
             $('#video').click(function(){
-                var str = $(this).attr('value').split(',');
-                var res_id = $(this).attr('course_ve').split(',');
+                str = $(this).val();
+                if(str){
+                    var res_id = $(this).attr('course_ve').split(',');
+                    $.each(str.split(','),function(i,n) {
+                        $('<li class="licity li_video" ><input name="checked" type="checkbox" value="'+res_id[i]+'" checked="true"   class="check"><b>' + n+ '</b></li>').appendTo('#show ul');
+                    });
 
-                $.each(str,function(i,n) {
-                    $('<li class="licity li_video" ><input name="checked" type="checkbox" checked="true"   class="check"><b>' + n+ '</b></li>').appendTo('#show ul');
-                });
+                }
 
                 $('.video').show();
                 $('.city').attr('type',1);
             });
             $('#study_file').click(function(){
+                str = $(this).val();
+                if(str){
+                    var res_id = $(this).attr('course_file').split(',');
+                    $.each(str.split(','),function(i,n) {
+                        $('<li class="licity li_file" ><input name="checked" type="checkbox" value="'+res_id[i]+'" checked="true"   class="check"><b>' + n+ '</b></li>').appendTo('#file_show ul');
+                    });
+
+                }
+
+
                 $('.study_file').show();
                 $('.city').attr('type',0);
             });
@@ -296,6 +297,7 @@
 
             //当为修改内容时根据数据渲染数据
             var data = '<?php echo $data_json;?>';
+
             if(data){
                 var obj = new Function("return" + data)();
 
@@ -308,29 +310,28 @@
                 }
 
                 if(obj.cse_video){
-                    var str="";
-                    var res_id="";
+                    var ve_str="";
+                    var ve_res_id="";
 
-                    var str_res = {};
                     $.each(obj.cse_video,function(i,n){
-                        str += (n.name+',' + '\r\n');
-                        res_id += (n.resource_id+',')
+                        ve_str += (n.name+',' + '\r\n');
+                        ve_res_id += (n.resource_id+',')
                     });
 
-                    $("#video").attr("value",str);
-                    $("#video").attr("course_ve",res_id);
+                    $("#video").val(ve_str);
+                    $("#video").attr("course_ve",ve_res_id);
 
                 }
 
                 if(obj.cse_file){
-                    var str="";
-                    var res_id="";
+                    var fi_str="";
+                    var fi_res_id="";
                     $.each(obj.cse_file,function(i,n){
-                        str += (n.name+','+'\r\n');
-                        res_id += (n.resource_id+',')
+                        fi_str += (n.name+','+'\r\n');
+                        fi_res_id += (n.resource_id+',')
                     });
-                    $("#study_file").attr("value",str);
-                    $("#study_file").attr("course_file",res_id);
+                    $("#study_file").val(fi_str);
+                    $("#study_file").attr("course_file",fi_res_id);
                 }
 
 
@@ -345,7 +346,6 @@
             $('.submit').click(function(){
                 var course_ve = $('#video').attr('course_ve');
                 var course_file = $('#study_file').attr('course_file');
-                var course_id = $('#course_id').attr('value');
                 var params = $('form').serialize();
 
                 if(course_ve || course_file){
@@ -359,8 +359,13 @@
                 }
 
                 //当课程id有值时操作类型为更新
-                if(course_id){
+                if(course_id = $('#course_id').attr('value')){
                     params += '&op_type=1';
+                    params += '&course_id='+course_id;
+                }
+
+                if(cover =  $('.cover img').attr('value')){
+                    params += '&cover='+cover;
                 }
 
                 $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
@@ -375,8 +380,46 @@
 
         })
     </script>
-    <script>
+    <script type="text/javascript">
 
+        $(function() {
+            $('#uploadify').uploadify({
+                'formData'     : {
+                    'timestamp' : new Date().getTime(),
+                    'token'     : '<?php echo md5('+unique_salt+' . $timestamp);?>',
+                    'type'     : '3',
+                },
+                'swf'      : '/Public/admin/js/uploadify.swf',//swf路径
+                'uploader' : '/admin/course/upload',//处理文件的服务器地址
+                'filesSelected' : '1',//同时选择文件的个数
+                'uploadLimit' : '30',//选择文件的总数
+                'method' : 'post',
+                'auto' : false,
+                'multi' : true,
+                'width' :　 '120',
+                'height' : '40',
+                'cancelImg' : '/Public/admin/image/uploadify-cancel.png',
+                'buttonText': '请选择图片',
+                'fileObjName' : 'uploadFile',
+                'fileSizeLimit' : '0',
+                'onUploadSuccess': function (file, data, response) {
+                    var obj = eval('(' + data + ')');
+
+                    if (obj.code !== 10000)
+                        alert(obj.msg);
+                    else
+                       if(img_url = obj.result.path){
+                           $('.cover img').attr('src',BASE_URL+'/'+img_url);
+                           $('.cover img').attr('value',img_url);
+                       }
+
+                }
+
+
+//
+            });
+
+        });
     </script>
   </body>
 </html>

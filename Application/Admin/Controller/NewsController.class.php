@@ -94,7 +94,9 @@ class NewsController extends BaseController {
         $op_type = $this->params['op_type'];
         $data['title'] = $this->params['title'];
         $data['content'] = $this->params['contents'];
-        $data['cover'] = uploadFile('news');
+        if(!empty($this->params['cover'])){
+            $data['cover'] = $this->params['cover'];
+        }
         $data['type'] = $this->params['type'];
         $data['title_format'] = $this->params['title_format'];
 
@@ -116,9 +118,9 @@ class NewsController extends BaseController {
         }
 
         if($result!== false){
-            $this->showMsg('添加成功','index',1);
+            $this->to_back('10000');
         }else{
-            $this->showMsg('添加失败，请重试');
+            $this->to_back('11016');
         }
     }
 

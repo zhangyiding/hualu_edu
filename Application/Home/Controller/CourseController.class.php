@@ -13,6 +13,100 @@ class CourseController extends BaseController
     /*
      * 选课首页
      */
+    public function getCseList()
+    {
+
+
+        $course_type = $this->params['course_type'];//课程分类
+        $is_pub = $this->params['is_pub'];//课程状态1公共|2内训|3定向
+        $is_master = $this->params['is_master'];
+        $course_dir = $this->params['course_dir'];
+
+        if ($is_master == 1) {
+            $where['subsite_id'] = 0;
+        } elseif ($is_master == 2) {
+            $where['subsite_id'] = $this->subsite_id;
+        }
+
+        $where['status'] = 0;
+        $m_course = new CourseModel();
+
+        //获取课程方向列表
+        $cd_list = $m_course->getCourseDir();
+        $this->assign('cd_list', $cd_list);
+
+        //根据课程方向获取课程分类列表
+
+        if (!empty($course_dir)) {
+            $ct_list = $m_course->getCseTypeByDir($course_dir);
+        } else {
+            //默认加载第一条学习方向分类
+            if (!empty($course_type)) {
+                $course_dir = $m_course->getCseDirByType($course_type);
+                $ct_list = $m_course->getCseTypeByDir($course_dir);
+            } else {
+                $ct_list = $m_course->getCseTypeByDir('1');
+            }
+        }
+
+
+        if (empty($ct_list)) {
+            $this->showMsg('暂无相关课程');
+        }
+        $this->assign('ct_list', $ct_list);
+
+        $cse_t_list = array();
+        $cse_d_list = array();
+        if (!empty($course_type)) {
+            $cse_t_list = explode(',', $course_type);
+        }
+
+        if (!empty($course_dir)) {
+            $cse_type = $m_course->getCseTypeByDir($course_dir);
+
+            foreach ($cse_type as $k => $v) {
+                $cse_t_list[] = $v['ct_id'];
+            }
+
+        }
+        if ($cse_list = array_merge($cse_t_list, $cse_d_list)) {
+
+            if ($cse_d_id = $m_course->getCseByType($cse_list)) {
+                $where['course_id'] = array('in', $cse_d_id);
+            } else {
+                $this->showMsg('暂无相关课程');
+            }
+        }
+
+        //判断公开、内训、定向
+        if (!empty($is_pub)) {
+            $where['is_pub'] = $is_pub;
+        }
+
+        if ($count = $m_course->getCourseCount($where)) {
+            $page_arr = listPage($count, 12, $this->page);
+
+            $this->assign('page_arr', $page_arr);
+            $this->assign('count', $count);
+
+            $data = $m_course->getCourseList($where, $this->offset, 12);
+
+            $data = $this->formatCourse($data);
+            $this->to_back($data);
+
+        } else {
+            $this->showMsg('暂无相关课程');
+        }
+
+
+
+    }
+
+
+
+    /*
+     * 选课首页
+     */
     public function index()
     {
 
@@ -93,6 +187,7 @@ class CourseController extends BaseController
 
             $data = $this->formatCourse($data);
             $this->assign('course_list', $data);
+
         } else {
             $this->showMsg('暂无相关课程');
         }
@@ -100,6 +195,8 @@ class CourseController extends BaseController
         $this->display();
 
     }
+
+
 
 
     /*

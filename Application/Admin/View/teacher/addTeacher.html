@@ -13,19 +13,16 @@
     <link href="__PUBLIC__/admin/css/stylesheet.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/index.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/icon/font-awesome.css" rel="stylesheet">
-    
+      <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/uploadify.css">
 
-    <!-- Le fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="__PUBLIC__/admin/img/apple-touch-icon-144-precomposed.html">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="__PUBLIC__/admin/img/apple-touch-icon-114-precomposed.html">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="__PUBLIC__/admin/img/apple-touch-icon-72-precomposed.html">
-                    <link rel="apple-touch-icon-precomposed" href="__PUBLIC__/admin/img/apple-touch-icon-57-precomposed.html">
-                                  
-
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
+      <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
+      <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
+      <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
       <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
-    <![endif]-->
+      <script src="__PUBLIC__/admin/js/common.js"></script>
+      <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
+      <script src="__PUBLIC__/admin/js/jquery.uploadify.min.js" ></script>
+
     <style type="text/css">
         .cover img{
             height: 200px;
@@ -66,10 +63,22 @@
                             <div class="form_list"><label class="lable_title">姓名</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
 
                               <div class="form_list"><label  class="lable_title">头像</label>
-                                <input type="file" name="uploadFile" class="file" id="file" />
                                   </div>
-                             <div class="cover"><img src="<?php print_r($data['avatar']);?>" />
-                              </div>
+                             <div class="cover">
+                                 <img src="<?php print_r($data['avatar']);?>" style="width: 360px;height: 200px;margin-top: -7px;margin-left: 61px;"/>
+                                 <input type="hidden" name="cover">
+                             </div>
+                             <div class="upload">
+
+                                     <div id="queue"></div>
+                                     <input id="uploadify" name="uploadify" type="file" multiple="true">
+                                     <p>
+                                         <a href="javascript:jQuery('#uploadify').uploadify('upload','*');">上传</a>|
+                                         <a href="javascript:jQuery('#uploadify').uploadify('ClearQueue','*');">取消上传</a>|
+                                     </p>
+
+                             </div>
+
                              <div class="form_list"><label  class="lable_title">选择擅长分类</label>
 
                              </div>
@@ -123,18 +132,15 @@
                              <div class="form_list"><label class="lable_title">介绍</label>
                                  <textarea id="intro" name="intro" class="form_input" type="text" value={$data.intro}>
                                      </textarea>
+
                              </div>
 
-
-                            <!--<div class="form_list"><label class="lable_title">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label><input class="form_input" type="text"/></div>-->
-                            <!--<div class="form_list"><label class="lable_title">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;男&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="sex">&nbsp;&nbsp;女</div>-->
-                            <!--&lt;!&ndash;<div class="form_list"><label class="lable_title">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机</label><input class="form_input" type="text"/></div>&ndash;&gt;-->
-                            <!--<div class="form_list"><label class="lable_title">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="zhuangtai">&nbsp;&nbsp;启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="zhuangtai">&nbsp;&nbsp;禁用</div>-->
-                             <!--<div class="form_list"><label class="lable_title">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label><input class="form_input" type="text"/></div>-->
-                             <!--<div><textarea name="contents" id="myEditor">{$data.content}</textarea></div>-->
-                             <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
                              <input type="hidden" name="op_type" value="{$op_type}" />
                              <input type="hidden" name="teacher_id" value="{$data.teacher_id}" />
+                             <div class="form_list">
+                                 <input type="submit" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;">
+                             </div>
+
                          </form>
                            
 
@@ -146,15 +152,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   <script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>
-    <script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>
-    <script src="__PUBLIC__/admin/js/bootstrap.js"></script>
-    <script src="__PUBLIC__/admin/js/WdatePicker.js"></script>
-    <script src="__PUBLIC__/admin/js/common.js"></script>
 
 
   <script type="text/javascript">
@@ -173,6 +170,41 @@
           if(gender = $('.gender').attr('value')){
               $('.gender input[value=' + gender +']').prop('checked',true);
           }
+
+
+          $('#uploadify').uploadify({
+              'formData': {
+                  'timestamp': new Date().getTime(),
+                  'token': '<?php echo md5(' + unique_salt + ' . $timestamp);?>',
+                  'type': '3',
+              },
+              'swf': '/Public/admin/js/uploadify.swf',//swf路径
+              'uploader': '/admin/course/upload',//处理文件的服务器地址
+              'filesSelected': '1',//同时选择文件的个数
+              'uploadLimit': '30',//选择文件的总数
+              'method': 'post',
+              'auto': false,
+              'multi': true,
+              'width': '120',
+              'height': '40',
+              'cancelImg': '/Public/admin/image/uploadify-cancel.png',
+              'buttonText': '请选择图片',
+              'fileObjName': 'uploadFile',
+              'fileSizeLimit': '0',
+              'onUploadSuccess': function (file, data, response) {
+                  var obj = eval('(' + data + ')');
+
+                  if (obj.code !== 10000)
+                      alert(obj.msg);
+                  else if (img_url = obj.result.path) {
+                      $('.cover img').attr({src:BASE_URL+'/'+img_url});
+                      $('.cover input').attr({value:img_url});
+                  }
+
+              }
+
+
+          })
       })
   </script>
 

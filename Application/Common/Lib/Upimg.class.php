@@ -21,7 +21,7 @@ class Upimg {
     private $outpath="";    //默认原图保存路径；
     private $outthumbpath="";   //默认普通缩略图保存路径；
     private $outbigthumbpath="";    //默认大缩略图保存路径；
-    private $fileTypeArr = array('image/gif','image/x-png','image/png','image/jpg','image/pjpeg','image/jpeg'); //默认允许的图片种类；
+    private $fileTypeArr = array('image/gif','image/x-png','image/png','application/octet-stream','image/jpg','image/pjpeg','image/jpeg'); //默认允许的图片种类；
 
 
 
@@ -136,6 +136,7 @@ class Upimg {
      */
     public function Save($savepath,$mksubdir=false)
     {
+
         //保存图片；
         if($this->mode){
 
