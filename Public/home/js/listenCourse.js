@@ -84,9 +84,8 @@ $(function(){
 
         $.post(BASE_URL+'/course/learnRecord/',param,function(response){
             if(response.code == 10000){
-                console.log(response);
             }else {
-                console.log('erroe');
+                console.log('error');
             }
             })
     }

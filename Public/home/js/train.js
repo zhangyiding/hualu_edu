@@ -18,7 +18,7 @@ $(function(){
     $('.search i').click(function(){
 
         if(title = $('.search input').val()){
-            title = '';
+            news_type = '';
             newsList();
         }
     });
