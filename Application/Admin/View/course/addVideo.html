@@ -11,6 +11,7 @@
     <link href="__PUBLIC__/admin/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/stylesheet.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/css/index.css" rel="stylesheet">
+      <link href="__PUBLIC__/admin/css/style.css" rel="stylesheet">
     <link href="__PUBLIC__/admin/icon/font-awesome.css" rel="stylesheet">
 
       <script src="__PUBLIC__/admin/js/html5shiv.min.js"></script>
@@ -64,24 +65,16 @@
         </div>
     </div>
 
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-   <!--<script src="__PUBLIC__/admin/js/jquery-1.10.2.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/jquery-ui-1.10.3.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/bootstrap.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/WdatePicker.js"></script>-->
-    <!--<script src="__PUBLIC__/admin/js/flatpoint_core.js"></script>-->
+
 
     <script type="text/javascript">
-        <?php $timestamp = time();?>
+
         $(function() {
             $('#uploadify').uploadify({
                 'formData'     : {
-                    'timestamp' : '<?php echo $timestamp;?>',
-                    'token'     : '<?php echo md5('unique_salt' . $timestamp);?>',
+                    'timestamp' : new Date().getTime(),
+                    'token'     : '<?php echo md5('+unique_salt+' . $timestamp);?>',
                     'type'     : '1',
-                    'service_type'     : 'course_video'
                 },
                 'swf'      : '/Public/admin/js/uploadify.swf',//swf路径
                 'uploader' : '/admin/course/saveFile',//处理文件的服务器地址

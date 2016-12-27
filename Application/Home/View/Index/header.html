@@ -260,7 +260,7 @@
 
         //登录成功后点击退出时的操作
         $("ul.succ li.rig_3 span").click(function(){
-            $.post(url+'/user/logout','',function(response){
+            $.post(BASE_URL+'/user/logout','',function(response){
                 if(response.code == '10000'){
                     alert('退出成功');
                   location.reload();
@@ -304,19 +304,27 @@
 
         //注册
         $("div.monent").click(function(){
+
+            if(!$('#email').val()){
+                alert('邮箱不能为空');
+            }
+
+            if(!$('#name').val().length > 4){
+                alert('名字长度超出限制');
+            }
+
             var params = $("form").serialize();
+            $.post(BASE_URL+'/user/region', params,function(response){
 
-                $.post(BASE_URL+'/user/region', params,function(response){
-
-                    if(response.code == "10000"){
-                        $("div.modal_2").hide();
-                        $("div.modal_1").show();
-                       alert('注册成功')
-                    }else{
-                        alert(response.msg);
-                        create_code();
-                    }
-                })
+                if(response.code == "10000"){
+                    $("div.modal_2").hide();
+                    $("div.modal_1").show();
+                    alert('注册成功')
+                }else{
+                    alert(response.msg);
+                    create_code();
+                }
+            })
 
         });
 
