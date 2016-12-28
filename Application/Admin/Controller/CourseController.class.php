@@ -2,10 +2,10 @@
 namespace Admin\Controller;
 
 use Admin\Model\CourseModel;
-use Admin\Model\TeacherModel;
 use Think\Controller;
 use Common\Lib\UpVideo;
 use Common\Controller\BaseController;
+
 class CourseController extends BaseController {
 
 
@@ -23,6 +23,7 @@ class CourseController extends BaseController {
      */
     public function index()
     {
+
         $m_base = new \Common\Model\BaseModel();
         $m_course = new \Admin\Model\CourseModel();
         //当分站管理员访问时只能查看所属分站的课程
@@ -133,6 +134,8 @@ class CourseController extends BaseController {
             }
         }
 
+
+
         $this->assign('ware_list',$data);
         $this->assign('page_arr',$page_arr);
         $this->display();
@@ -143,6 +146,11 @@ class CourseController extends BaseController {
      * 上传视频
      */
     public function addVideo(){
+
+
+
+
+
 
         $this->display();
     }
@@ -185,23 +193,29 @@ class CourseController extends BaseController {
                $file_info = $Upvideo->getInfo($path);
            }else{
                $file_info = getFileInfo($path);
-
            }
 
-            $map['name'] = $file_info['name'];
-            $map['ext'] = $file_info['ext'];
-            $map['file_path'] = $path;
-            $map['file_size'] = $file_info['size'];
-            $map['duration'] = $file_info['duration'];
-            $map['ctime'] = date('Y-m-d H:i:s',time());
-            $map['type'] = $type;
 
-            if($m_course->addVideo($map)){
-                $data['path'] = $path;
-                $this->to_back($data);
+
+            if($file_info){
+                $map['name'] = $file_info['name'];
+                $map['ext'] = $file_info['ext'];
+                $map['file_path'] = $path;
+                $map['file_size'] = $file_info['size'];
+                $map['duration'] = $file_info['duration'];
+                $map['ctime'] = date('Y-m-d H:i:s',time());
+                $map['type'] = $type;
+
+                if($m_course->addVideo($map)){
+                    $data['path'] = $path;
+                    $this->to_back($data);
+                }else{
+                    $this->to_back('10100');
+                }
             }else{
-                $this->to_back('10100');
+                $this->to_back('10101');
             }
+
         }else{
            $this->to_back('10101');
        }
@@ -218,7 +232,7 @@ class CourseController extends BaseController {
 
         if($type == C('COURSE_VE')){
             if(!in_array($ext,array(
-                'rmvb','avi','mp4','3gp','mkv','swf','flv','f4v','dat','ts','m4v'))){
+                'rmvb','avi','mp4','3gp','mkv','swf','wmv','flv','f4v','dat','ts','m4v'))){
                 $this->to_back('10104');
             }
         }elseif($type == C('COURSE_FILE')){

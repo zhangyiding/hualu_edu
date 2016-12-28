@@ -1,5 +1,4 @@
 <?php
-
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 define('ECAR_TP_PATH' , __DIR__);
 define('APP_PATH', ECAR_TP_PATH . '/Application/');
