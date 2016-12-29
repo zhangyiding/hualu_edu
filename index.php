@@ -6,10 +6,10 @@ define('__PUBLIC__','__ROOT__/public/');
 define('APP_DEBUG',true);
 define('APP_STATUS','config_db');
 //引入composer 包管理文件
-require_once './vendor/autoload.php';
+//require_once './vendor/autoload.php';
 //处理环境变量文件
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
+//$dotenv = new Dotenv\Dotenv(__DIR__);
+//$dotenv->load();
 
 header("Content-type: text/html; charset=utf-8");
 
