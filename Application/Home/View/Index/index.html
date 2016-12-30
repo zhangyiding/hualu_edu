@@ -50,10 +50,10 @@
     </ul>
     <div class="title">
         <img src="../Public/home/image/toutiao.png" alt=""/>
-        <a href="/news/newsInfo?news=<?php echo $home_page['news_id'];?>"><h1>{$home_page.title}</h1></a>
+        <a href="/news/newsInfo?news_id={$home_page.news_id}"><h1>{$home_page.title}</h1></a>
         <ul class="inform">
             <foreach name="little_home" item="vo">
-               <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><li>[{$vo.title}]</li></a>
+               <a href="/news/newsInfo?news_id={$vo.news_id}"><li>[{$vo.title}]</li></a>
             </foreach>
         </ul>
     </div>
@@ -61,7 +61,7 @@
 <div class="banner">
     <ul class="imgList">
         <foreach name="banner_news" item="vo">
-            <li><a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"><img src="<?php echo $vo['cover'];?>" height="368" width="660" /></a></li>
+            <li><a href="/news/newsInfo?news_id={$vo.news_id}"><img src="{$vo.cover}" height="368" width="660" /></a></li>
         </foreach>
 
 
@@ -83,7 +83,7 @@
                 <li>
                     <i></i>
                     <p>
-                       <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
+                       <a href="/news/newsInfo?news_id={$vo.news_id}"> <span>{$vo.title}</span></a>
                     </p>
                 </li>
             </foreach>
@@ -97,7 +97,7 @@
                 <li>
                     <i></i>
                     <p>
-                        <a href="/news/newsInfo?news=<?php echo $vo['news_id'];?>"> <span>{$vo.title}</span></a>
+                        <a href="/news/newsInfo?news_id={$news_id}"> <span>{$vo.title}</span></a>
                     </p>
                 </li>
             </foreach>
@@ -123,7 +123,7 @@
                     <img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>
                 </span>
                 <span class="btn_2">
-                   <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="../Public/home/image/baoming.png" alt=""/></a>
+                   <a href="/course/register?course_id={$vo.course_id}"> <img src="../Public/home/image/baoming.png" alt=""/></a>
                 </span>
                 </div>
             </li>
@@ -135,7 +135,7 @@
     <h1>推荐课程</h1>
     <ul class="toggle">
         <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?course_type=<?php echo $vo['ct_id'];?>" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
+            <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
         </foreach>
     </ul>
     <a href="/course"><span>更多&gt;&gt;</span></a>
