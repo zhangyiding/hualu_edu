@@ -4,7 +4,7 @@ $hualu_admin = array(
     'ADMIN_USER'=>1,//主站管理员
     'SUBSITE_USER'=>2,//分站管理员
 
-    'RESOURCE_URL'=>'http://edu.hl.com',
+    'RESOURCE_URL'=>'http://test.tcsasac.com',
 
     //图片资源路径
     'IMG_DIR'=>'Public/resource/image',
