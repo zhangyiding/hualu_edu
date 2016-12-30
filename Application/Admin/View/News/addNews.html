@@ -39,7 +39,7 @@
                            
                          </div>
                         <div class="well brown">
-                         <form action="/admin/news/doAddNews" method="post" enctype="multipart/form-data">
+                         <form enctype="multipart/form-data">
                             <div class="form_list"><label class="lable_title">新闻标题</label><input id="title" name="title" class="form_input" type="text" value={$data.title}></div>
 
                              <div class="form_list"><label class="lable_title">新闻简述</label><input id="title_format" name="title_format" class="form_input" type="text" value={$data.title_format}></div>
@@ -49,9 +49,10 @@
 
                              <div class="cover">
                                  <img src="<?php print_r($data['cover']);?>" style="width: 360px;height: 200px;margin-top: -7px;margin-left: 61px;"/>
-                                 <input type="hidden" name="cover">
+                                 <input type="hidden" >
                              </div>
                              <div class="upload">
+
                                  <form>
                                      <div id="queue"></div>
                                      <input id="uploadify" name="uploadify" type="file" multiple="true">
@@ -106,10 +107,14 @@
 
 
 
+
           $('.submit').click(function(){
               var params = $('form').serialize();
-              if(type = $('#type').attr('value')){
+
+              if(type = $('#type').val()){
                   params += '&type='+type;
+              }else {
+                  alert('类型不能为空');
               }
               var contents =  UE.getEditor('myEditor').getContent();
               params += '&contents='+contents;
