@@ -30,7 +30,7 @@ class LoginController extends Controller {
 
 
         Header("Location: /admin");
-        $this->display('/index/index');
+        $this->display('Index/index');
     }
 
 
