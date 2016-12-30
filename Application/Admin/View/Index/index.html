@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>华录学堂后台管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../../Public/admin/css/bootstrap.css" rel="stylesheet">
+    <link href="../../Public/admin/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../Public/admin/css/stylesheet.css" rel="stylesheet">
+    <link href="../../Public/admin/css/index.css" rel="stylesheet">
+    <link href="../../Public/admin/icon/font-awesome.css" rel="stylesheet">
+
+    <!-- Le fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../../Public/admin/img/apple-touch-icon-144-precomposed.html">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../../Public/admin/img/apple-touch-icon-114-precomposed.html">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../../Public/admin/img/apple-touch-icon-72-precomposed.html">
+                    <link rel="apple-touch-icon-precomposed" href="../../Public/admin/img/apple-touch-icon-57-precomposed.html">
+                                
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../Public/admin/js/html5shiv.js"></script>
+    <![endif]-->
+
+    
+
+    <script>
+    function getclassname(obj){
+		if(document.getElementsByClassName('link_onclick').length==0){
+			obj.className='link_onclick';
+			obj.id='link_onclick';
+			}else{
+				var obj1=document.getElementById('link_onclick');
+				obj1.className='111';
+				obj1.id='1';
+				obj.className='link_onclick';
+			   obj.id='link_onclick';
+				
+			
+			}
+
+		
+		}
+    </script>
+  </head>
+
+  <body>
+
+    <header class="dark_grey">
+     <!-- Header start -->
+       <div class="top">
+    <div class="logo">
+    <img src="../../Public/admin/image/logo.png" />
+    </div>
+     <div class="login">
+         <a href="admin/login/doLogout"> <img src="../../Public/admin/image/login.png" /></a>
+    </div>
+    <div class="username">
+       {$username}
+    </div>
+    <div class="user">
+    <img src="../../Public/admin/image/user.png" />
+    </div>
+   
+
+</div>
+       
+    </header>
+
+    <div id="main_navigation" class="dark_navigation"> <!-- Main navigation start -->
+        <div class="inner_navigation" >
+            <ul class="main" >
+                <li ><a class="expand"  href=""><i class="icon-home"></i>&nbsp;&nbsp;资讯管理</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                          <div style=" height:8px; width:100%;"></div>
+                          <li><a href="/admin/news/" target="right" onClick="getclassname(this)">资讯管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                           <div style=" height:8px; width:100%;"></div>
+                    </ul>
+                </li>
+
+                <li ><a class="expand"  href="/admin/coures"><i class="icon-home"></i>&nbsp;&nbsp;课程管理</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                        <div style=" height:8px; width:100%;"></div>
+                        <li><a href="/admin/course/" target="right" onClick="getclassname(this)">课程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <li><a href="/admin/course/wareManage" target="right" onClick="getclassname(this)">课件管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <li><a href="/admin/course/studyManage" target="right" onClick="getclassname(this)">学习资料管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <div style=" height:8px; width:100%;"></div>
+                    </ul>
+                </li>
+
+                <li ><a class="expand"  href="/admin/coures"><i class="icon-home"></i>&nbsp;&nbsp;报名管理</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                        <div style=" height:8px; width:100%;"></div>
+                        <li><a href="/admin/register/" target="right" onClick="getclassname(this)">报名管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <li><a href="/admin/register/count" target="right" onClick="getclassname(this)">报名信息汇总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <div style=" height:8px; width:100%;"></div>
+                    </ul>
+                </li>
+
+                <li ><a class="expand"  href="/admin/teacher"><i class="icon-home"></i>&nbsp;&nbsp;师资管理</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                        <div style=" height:8px; width:100%;"></div>
+                        <li><a href="/admin/teacher" target="right" onClick="getclassname(this)">师资管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <div style=" height:8px; width:100%;"></div>
+                    </ul>
+                </li>
+                <li ><a class="expand"  href="/admin/student"><i class="icon-home"></i>&nbsp;&nbsp;学员管理</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                        <div style=" height:8px; width:100%;"></div>
+                        <li><a href="/admin/student/" target="right" onClick="getclassname(this)">学员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <div style=" height:8px; width:100%;"></div>
+
+                    </ul>
+                </li>
+                <li ><a class="expand"  href="/admin/coures"><i class="icon-home"></i>&nbsp;&nbsp;账户设置</a>
+                    <ul class="sub_main" style="background-color: #20477C;">
+                        <div style=" height:8px; width:100%;"></div>
+                        <li><a href="/admin/coures/areaManage" target="right" onClick="getclassname(this)">密码修改&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <li><a href="/admin/coures/areaManage" target="right" onClick="getclassname(this)">个人资料&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="float:right;font-size:20px;">></font></a></li>
+                        <div style=" height:8px; width:100%;"></div>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="content" class="no-sidebar">
+     <!-- Content start -->
+
+            <iframe  class="inner_navigation1" name="right" src="" frameborder="0" width="100%" scrolling="auto" height="100%"></iframe>
+
+               <!-- Content END -->
+            </div>
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../Public/admin/js/jquery-1.10.2.js"></script>
+    <script src="../../Public/admin/js/jquery-ui-1.10.3.js"></script>
+    <script src="../../Public/admin/js/bootstrap.js"></script>
+
+    <script src="../../Public/admin/js/library/jquery.collapsible.min.js"></script>
+    <!--<script src="../../Public/admin/js/library/jquery.mCustomScrollbar.min.js"></script>-->
+    <script src="../../Public/admin/js/library/jquery.mousewheel.min.js"></script>
+    <script src="../../Public/admin/js/library/jquery.uniform.min.js"></script>
+
+    
+    <script src="../../Public/admin/js/library/jquery.sparkline.min.js"></script>
+    <script src="../../Public/admin/js/library/chosen.jquery.min.js"></script>
+    <script src="../../Public/admin/js/library/jquery.easytabs.js"></script>
+    <script src="../../Public/admin/js/library/flot/excanvas.min.js"></script>
+    <script src="../../Public/admin/js/library/flot/jquery.flot.js"></script>
+    <script src="../../Public/admin/js/library/flot/jquery.flot.pie.js"></script>
+    <script src="../../Public/admin/js/library/flot/jquery.flot.selection.js"></script>
+    <script src="../../Public/admin/js/library/flot/jquery.flot.resize.js"></script>
+    <script src="../../Public/admin/js/library/flot/jquery.flot.orderBars.js"></script>
+    <script src="../../Public/admin/js/library/maps/jquery.vmap.js"></script>
+    <script src="../../Public/admin/js/library/maps/maps/jquery.vmap.world.js"></script>
+    <script src="../../Public/admin/js/library/maps/data/jquery.vmap.sampledata.js"></script>
+    <script src="../../Public/admin/js/library/jquery.autosize-min.js"></script>
+    <script src="../../Public/admin/js/library/charCount.js"></script>
+    <script src="../../Public/admin/js/library/jquery.minicolors.js"></script>
+    <script src="../../Public/admin/js/library/jquery.tagsinput.js"></script>
+    <script src="../../Public/admin/js/library/fullcalendar.min.js"></script>
+    <script src="../../Public/admin/js/library/footable/footable.js"></script>
+    <script src="../../Public/admin/js/library/footable/data-generator.js"></script>
+
+    <script src="../../Public/admin/js/library/bootstrap-datetimepicker.js"></script>
+    <script src="../../Public/admin/js/library/bootstrap-timepicker.js"></script>
+    <script src="../../Public/admin/js/library/bootstrap-datepicker.js"></script>
+    <script src="../../Public/admin/js/library/bootstrap-fileupload.js"></script>
+    <script src="../../Public/admin/js/library/jquery.inputmask.bundle.js"></script>
+
+    <script src="../../Public/admin/js/flatpoint_core.js"></script>
+
+    <script>
+        jQuery('#vmap').vectorMap({
+            map:"world_en",
+            backgroundColor:null,
+            color:"#ffffff",
+            hoverOpacity:.7,
+            selectedColor:"#2d91ef",
+            enableZoom:0,
+            showTooltip:1,
+            values:sample_data,
+            scaleColors:["#8cc3f6","#5c86ac"],
+            normalizeFunction:"polynomial",
+            onRegionClick:function(){alert("This Region has "+(Math.floor(Math.random()*10)+1)+" users!"
+            )}
+        });
+
+        jQuery(document).ready(function($) {
+            $('.footable').footable();
+            $('.responsive_table_container').mCustomScrollbar({
+                set_height: 400,
+                advanced:{
+                  updateOnContentResize: true,
+                  updateOnBrowserResize: true
+                }
+            });
+
+            $('.responsive_table_container_2').mCustomScrollbar({
+                set_height: 520,
+                advanced:{
+                  updateOnContentResize: true,
+                  updateOnBrowserResize: true
+                }
+            });
+        });
+    </script>
+
+    <script src="../../Public/admin/js/calendar.js"></script>
+    <script src="../../Public/admin/js/forms.js"></script>
+    <script src="../../Public/admin/js/dashboard.js"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>华录文化管理后台</title>
+  
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="../../Public/admin/css/bootstrap.css" rel="stylesheet">
+    <link href="../../Public/admin/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../Public/admin/css/stylesheet.css" rel="stylesheet">
+    <link href="../../Public/admin/icon/font-awesome.css" rel="stylesheet">
+      <link href="../../Public/admin/css/style.css" rel="stylesheet">
+
+      <!--分页加载的Js-->
+      <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+
+      <script src="../../Public/admin/js/jquery-1.10.2.js"></script>
+      <script src="../../Public/admin/js/bootstrap.js"></script>
+      <script src="../../Public/admin/js/library/jquery.dataTables.js"></script>
+      <script src="../../Public/admin/js/common.js"></script>
+
+      <!--[if lt IE 9]>
+      <script src="../../Public/admin/js/html5shiv.js"></script>
+<![endif]-->
+    <style type="text/css">
+    .input{ width:40px;
+	text-align:center;}
+	.daohanglink{
+		height:40px; line-height:40px; vertical-align:middle; width:100%;
+		background-color:rgb(248,248,248);
+		margin-bottom:15px;
+		}
+	.daohanglink span{
+		margin-left:5px;}
+	.daohang{
+	float: left;
+	height: 15px;
+	width: 5px;
+	border-left-width: 5px;
+	border-left-style: solid;
+	border-left-color: #036;
+	margin-top:12px;
+	margin-left:15px;
+		}
+    </style>
+  </head>
+
+  <body>
+
+    
+    <div id="content"> <!-- Content start -->
+      <div class="inner_content">
+          <div class="widgets_area">
+                <div class="row-fluid">
+                    <div class="span12">
+                         <div  class="daohanglink"style="">
+                           <span class="daohang"></span>
+                           <a href="/admin">首页</a><span>></span>
+                           <a href="/admin/register">报名管理</a><span>></span>
+                           <span>报名管理</span>
+                           <!--<a  href="/admin/student/addStudent" class="label label-warning"  style="float:right; margin:8px;">添加</a>-->
+                         </div>
+                        <div class="well brown">
+                            
+                           
+                            <div class="well-content" style="border:0px ; display:block;">
+
+                                <div id="select">
+                                    <div class="choose">
+                                        <span class="lf">审核状态</span>
+                                        <span class="rg"></span>
+                                        <ul class="kind">
+                                            <volist name="reg_status" id="vo" key="k">
+                                                <li value="{$k}">{$vo}</li>
+                                            </volist>
+                                        </ul>
+                                    </div>
+                                    <div class="search">
+                                        <input type="text" placeholder="请输入搜索的课程"/>
+                                        <i></i>
+                                    </div>
+                                </div>
+                                <table class="table table-striped table-bordered table-hover datatable" >
+                                    <thead>
+                                        <tr>
+                                            <!--<th width="5%">排序</th>-->
+                                            <th width="4%">序号</th>
+                                            <th width="20%">课程名称</th>
+                                            <th width="8%">学员名称</th>
+                                            <th width="18%">报名时间</th>
+                                            <th width="8%">审核状态</th>
+                                            <th width="7%">学费</th>
+                                            <th width="13%">所属分站</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <foreach name="reg_list" item="vo">
+                                    <tr>
+                                        <td>{$vo.scm_id}</td>
+                                        <td>{$vo.course_name}</td>
+                                        <td>{$vo.student_name}</td>
+                                        <td>{$vo.ctime}</td>
+                                        <td class="status" value="{$vo.status}">{$reg_status.$vo[status]}</td>
+                                        <td>{$vo.price}</td>
+                                        <td>{$vo.subsite_name}</td>
+                                        <td>
+                                            <a  class="btn pass" href="/admin/register/changeStatus?status=1&scm_id=<?php echo $vo['scm_id'];?>" title="审核通过">审核通过</a>
+                                            <a  class="btn no_pass" href="/admin/register/changeStatus?status=2&scm_id=<?php echo $vo['scm_id'];?>" title="不通过">不通过</a>
+                                            <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
+                                        </td>
+                                        </foreach>
+
+                                    </tr></tbody>
+                                    </tbody>
+                                    </table>
+                                <div>
+                                    <ul class="pagination" style="float:right">
+                                        <li><a href="#">&laquo;</a></li>
+                                        <volist  name="page_arr" id="vo">
+                                            <li><a href="/admin/student?page=<?php echo $vo;?>">{$vo}</a></li>
+                                        </volist>
+                                        <li><a href="#">&raquo;</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+
+  <script type="text/javascript">
+      $(function(){
+
+          $.each($('.status'),function (i,n){
+
+              if($(n).attr('value') == 1){
+                  $(n).siblings().find(".pass").hide();
+              }else if($(n).attr('value') ==2){
+                  $(n).siblings().find('.no_pass').hide();
+              }
+          })
+
+          $('.search i').click(function(){
+              if(name = $('.search input').val()){
+                  location.href  = BASE_URL+'/admin/register?name='+name;
+              }
+          });
+
+          $('.kind li').click(function(){
+              var status = $(this).attr('value');
+              location.href = BASE_URL+'/admin/register?status='+status;
+          })
+
+      })
+  </script>
+
+
+
+  </body>
+</html>

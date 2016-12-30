@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>华录文化管理后台</title>
+  
+    <meta name="description" content="">
+    <meta name="author" content="">
+      <script src="../../Public/admin/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <!-- Le styles -->
+    <link href="../../Public/admin/css/bootstrap.css" rel="stylesheet">
+    <link href="../../Public/admin/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../Public/admin/css/stylesheet.css" rel="stylesheet">
+    <link href="../../Public/admin/css/index.css" rel="stylesheet">
+      <link href="../../Public/admin/css/style.css" rel="stylesheet">
+    <link href="../../Public/admin/icon/font-awesome.css" rel="stylesheet">
+
+      <script src="../../Public/admin/js/html5shiv.min.js"></script>
+
+      <script src="../../Public/admin/js/jquery.uploadify.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="../../Public/admin/css/uploadify.css">
+
+
+  </head>
+
+  <body>
+    <div id="content"> <!-- Content start -->
+      <div class="inner_content">
+          <div class="widgets_area">
+                <div class="row-fluid">
+                    <div class="span12">
+                         <div  class="daohanglink"style="">
+                           <span class="daohang"></span>
+                             <a href="/admin">首页</a><span>></span>
+                           <a href="/admin/course">课程管理</a><span>></span>
+                           <a>上传视频</a>
+
+                         </div>
+                        <div class="well brown">
+                         <form action="/admin/news/doAddVideo" method="post" enctype="multipart/form-data">
+
+                             <div>
+                                 <form>
+                                     <div id="queue"></div>
+                                     <input id="uploadify" name="uploadify" type="file" multiple="true">
+                                     <p>
+                                         <a href="javascript:jQuery('#uploadify').uploadify('upload','*');">上传</a>|
+                                         <a href="javascript:jQuery('#uploadify').uploadify('ClearQueue','*');">取消上传</a>|
+                                     </p>
+                                 </form>
+
+                             </div>
+
+                             <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
+                             <input type="hidden" name="op_type" value="{$op_type}" />
+                             <input type="hidden" name="news_id" value="{$data.news_id}" />
+                         </form>
+                           
+
+                        </div>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript">
+
+        $(function() {
+            $('#uploadify').uploadify({
+                'formData'     : {
+                    'timestamp' : new Date().getTime(),
+                    'token'     : '<?php echo md5('+unique_salt+' . $timestamp);?>',
+                    'type'     : '1',
+                },
+                'swf'      : '/Public/admin/js/uploadify.swf',//swf路径
+                'uploader' : '/admin/course/saveFile',//处理文件的服务器地址
+                'filesSelected' : '1',//同时选择文件的个数
+                'uploadLimit' : '30',//选择文件的总数
+                'method' : 'post',
+                'auto' : false,
+                'multi' : true,
+                'width' :　 '120',
+                'height' : '40',
+                'cancelImg' : '/Public/admin/image/uploadify-cancel.png',
+                'buttonText': '请选择上传视频',
+                'fileObjName' : 'uploadFile',
+                'fileSizeLimit' : '0',
+                'onUploadSuccess': function (file, data, response) {
+                    var obj = eval('(' + data + ')');
+
+                    if (obj.code !== 10000)
+                        alert(obj.msg);
+                    else
+                        alert('上传成功')
+                }
+
+
+//
+            });
+
+        });
+    </script>
+
+  </body>
+</html>
