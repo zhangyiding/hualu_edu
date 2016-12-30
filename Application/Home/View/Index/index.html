@@ -6,12 +6,12 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>中国华录集团有限公司首页</title>
-    <link rel="stylesheet" href="__PUBLIC__/home/css/common.css"/>
-    <link rel="stylesheet" href="__PUBLIC__/home/css/style_index.css"/>
-    <script src="__PUBLIC__/home/js/jquery-1.11.3.js"></script>
-    <script src="__PUBLIC__/home/js/index.js"></script>
-    <script src="__PUBLIC__/home/js/common.js"></script>
-    <script src="__PUBLIC__/home/js/html5shiv.min.js"></script>
+    <link rel="stylesheet" href="../Public/home/css/common.css"/>
+    <link rel="stylesheet" href="../Public/home/css/style_index.css"/>
+    <script src="../Public/home/js/jquery-1.11.3.js"></script>
+    <script src="../Public/home/js/index.js"></script>
+    <script src="../Public/home/js/common.js"></script>
+    <script src="../Public/home/js/html5shiv.min.js"></script>
 
 </head>
 <body>
@@ -25,7 +25,7 @@
 <nav>
     <ul>
         <li class="hualu">
-            <img src="__PUBLIC__/home/image/nav.png" alt=""/>
+            <img src="../Public/home/image/nav.png" alt=""/>
         </li>
         <li class="search">
             <input type="text" placeholder="请输入课程关键字"/>
@@ -49,7 +49,7 @@
         </li>
     </ul>
     <div class="title">
-        <img src="__PUBLIC__/home/image/toutiao.png" alt=""/>
+        <img src="../Public/home/image/toutiao.png" alt=""/>
         <a href="/news/newsInfo?news=<?php echo $home_page['news_id'];?>"><h1>{$home_page.title}</h1></a>
         <ul class="inform">
             <foreach name="little_home" item="vo">
@@ -120,10 +120,10 @@
                 <h4>{$vo.name}</h4>
                 <div class="btn">
                <span class="btn_1">
-                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('__PUBLIC__/home/image/gongkai.png') : print_r('__PUBLIC__/home/image/neixun.png');?>" alt=""/>
+                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>
                 </span>
                 <span class="btn_2">
-                   <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="__PUBLIC__/home/image/baoming.png" alt=""/></a>
+                   <a href="/course/register?course_id=<?php echo $vo['course_id'];?>"> <img src="../Public/home/image/baoming.png" alt=""/></a>
                 </span>
                 </div>
             </li>
