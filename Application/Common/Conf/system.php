@@ -7,11 +7,11 @@ $hualu_admin = array(
     'RESOURCE_URL'=>'http://edu.hl.com',
 
     //图片资源路径
-    'IMG_DIR'=>'public/resource/image',
+    'IMG_DIR'=>'Public/resource/image',
     //视频资源路径
-    'VIDEO_DIR'=>'public/resource/video',
+    'VIDEO_DIR'=>'Public/resource/video',
     //其他文件资源路径
-    'FILE_DIR'=>'public/resource/file',
+    'FILE_DIR'=>'Public/resource/file',
 
 
     'news_type_admin'=>array(
