@@ -74,6 +74,9 @@ class RegisterController extends BaseController {
         $data['status'] = $this->params['status'];
         $where['scm_id'] = $this->params['scm_id'];
 
+        if($data['status'] == 1){
+            $data['cse_status'] = 1;
+        }
         $m_register = new \Admin\Model\RegisterModel();
 
         if($m_register->changeStatus($where,$data)!== false){

@@ -264,6 +264,7 @@ class UserController extends BaseController {
      *
      */
     public function center(){
+
         if($user_info = $this->isLogin()){
             $student_id = $user_info['student_id'];
             $this->assign('user_info',$user_info);
@@ -339,6 +340,7 @@ class UserController extends BaseController {
         $m_course = new CourseModel();
 
         if($cse_info = $m_course->getCourseInfo($course_id)){
+
             $end_time = $this->formatEndTime($cse_info['end_time']);
 
             $where['cr.course_id'] = $course_id;
@@ -378,7 +380,7 @@ class UserController extends BaseController {
     private function formatEndTime($end_time){
         if(!empty($end_time)){
            $time_diff = $end_time-time();
-           return $time = round($time_diff/86400). '天后结束';
+           return $time = ($time_diff>0)?round($time_diff/86400). '天后结束':'已结束';
         }
     }
 
@@ -388,17 +390,33 @@ class UserController extends BaseController {
             $this->showMsg('尚未登录');
         }
         $m_base = new BaseModel();
-        $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
-        $user_info['subsite_name'] = $subsite_info['name'];
+        $m_user = new UserModel();
+
+        $where['student_id'] = $user_info['student_id'];
+        if($data = $m_user->getUserInfo($where)){
+            $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
+            $data['subsite_name'] = $subsite_info['name'];
+            $this->assign('user_info',$data);
+        }
 
         $ethnic_list = C('ETHNIC_LIST');
-
-        $this->assign('user_info',$user_info);
         $this->assign('ethnic_list',$ethnic_list);
 
         $this->display();
     }
 
+    public function userInfo(){
+        if(!$user_info = $this->isLogin()){
+            $this->to_back(10001);
+        }
+        $m_base = new BaseModel();
+        $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
+        $user_info['subsite_name'] = $subsite_info['name'];
+
+        $this->to_back($user_info);
+
+
+    }
 
 
     /*
@@ -407,16 +425,17 @@ class UserController extends BaseController {
     public function updateInfo(){
 
         if(!$user_info = $this->isLogin()){
-            $this->showMsg('尚未登录');
+            $this->to_back('10001');
         }
 
         $data['gender'] = $this->params['gender'];
-        $data['avatar'] = uploadFile('student');
+        if($this->params['avatar']){
+            $data['avatar'] = $this->params['avatar'];
+        }
         $data['ethnic'] = $this->params['ethnic'];
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];
         $data['mobile'] = $this->params['mobile'];
-        $data['email'] = $this->params['email'];
         $data['unit'] = $this->params['unit'];
         $data['job_position'] = $this->params['job_position'];
         $data['politics_status'] = $this->params['politics_status'];

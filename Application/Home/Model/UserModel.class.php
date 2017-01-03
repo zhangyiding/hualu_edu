@@ -30,7 +30,7 @@ class UserModel extends Model{
      */
     public function getUserInfo($where){
         $result = $this->field('student_id,cu_id,subsite_id,name,money,unit,job_position,level,avatar,
-                                mobile,ethnic,gender,birthday,email,politics_status,education,post_code,address')
+                                mobile,ethnic,gender,birthday,email,politics_status,education,post_code,address,apartment')
             ->where($where)
             ->order('ctime desc')
             ->find();

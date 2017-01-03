@@ -7,10 +7,21 @@
     <title>学习中心页面</title>
     <link rel="stylesheet" href="../Public/home/css/common.css"/>
     <link rel="stylesheet" href="../Public/home/css/dataCenter.css"/>
+    <link rel="stylesheet" type="text/css" href="../Public/admin/css/uploadify.css">
     <script src="../Public/home/js/jquery-1.11.3.js"></script>
     <script src="../Public/home/js/common.js"></script>
     <script src="../Public/home/js/html5shiv.min.js"></script>
     <script src="../Public/home/js/dataCenter.js"></script>
+    <script src="../Public/home/js/WdatePicker.js"></script>
+    <script src="../Public/admin/js/jquery.uploadify.min.js" ></script>
+    <style>
+        .uploadify{
+            margin-left: 349px;
+        }
+        #uploadify-queue{
+            margin-left: 100px;
+        }
+    </style>
 </head>
 <body>
     <div id="header"></div>
@@ -59,10 +70,20 @@
             <a href="/user/help"> <li class="lf_4">帮助中心</li></a>
             <a href="/user/prove"> <li class="lf_5">学习记录证明</li></a>
         </ul>
-        <div class="co_right co_right_1">
-            <div class="pic">
 
-                添加相片
+        <div class="co_right co_right_1">
+            <form>
+            <div class="pic">
+             <img src="../Public/no_img.jpg">
+            </div>
+            <div class="upload">
+                <div id="queue"></div>
+                <input id="uploadify" name="uploadify" type="file" multiple="true">
+                <p>
+                    <a href="javascript:jQuery('#uploadify').uploadify('upload','*');">上传</a>|
+                    <a href="javascript:jQuery('#uploadify').uploadify('ClearQueue','*');">取消上传</a>|
+                </p>
+
             </div>
             <p class="mind">注：照片尽量为一寸，或大
                 或小都会导致照片变形
@@ -78,9 +99,9 @@
                         <span>
                             <select name="ethnic" id="ethnic">
                                 <option value="">--请选择</option>
-                                <foreach name="ethnic_list" item="vo">
-                                    <option value="{$vo}">{$vo}</option>
-                                </foreach>
+                                <volist name="ethnic_list" id="vo" key="key">
+                                    <option value="{$key}">{$vo}</option>
+                                </volist>
 
 
                             </select>
@@ -118,10 +139,11 @@
                         <span>
                             <select name="education" id="education">
                                 <option value="">--请选择</option>
-                                <option value="大学">大学</option>
-                                <option value="高中">高中</option>
-                                <option value="博士">博士</option>
-                                <option value="硕士">硕士</option>
+                                <option value="2">大专</option>
+                                <option value="1">高中</option>
+                                <option value="3">本科</option>
+                                <option value="4">硕士</option>
+                                <option value="5">博士</option>
                             </select>
                         </span>
                     </p>
@@ -151,10 +173,7 @@
                     </p>
                 </div>
                 <div class="line_1">
-                    <p class="row_1">
-                        <span class="name">Email地址:</span>
-                        <input type="text" class="name" name="Email" value="{$user_info.Email}"/>
-                    </p>
+
                     <p class="row_2">
                         <span class="name">部门名称:</span>
                         <span>
@@ -190,6 +209,7 @@
                 </div>
                 <div class="btn">保存</div>
             </div>
+            </form>
         </div>
         <div class="co_right_2">
             <p >
