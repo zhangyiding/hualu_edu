@@ -61,6 +61,7 @@ div.co_top ul.course li h1{
     font-size:24px;
     margin-top: 10px;
     margin-bottom:8px;
+    cursor: pointer;
 }
 div.co_top ul.course li h1 span{
     font-size: 14px;
@@ -305,6 +306,7 @@ ul.prog li.pg_3{
 /*��ʽ���ظ�*/
 div.con_2 ul.msg li p{
     margin-left: 70px;
+    display: block;
 }
 div.con_2{
     border: 1px solid #D2D2D2;
@@ -323,16 +325,20 @@ div.con_2 span.per{
 div.con_2 span.rg{
     margin-right: 75px;
 }
-ul.msg li span.tm{
-    float: right;
-    margin-right: 35px;
-}
+
 
 span.end_time{
+    display: inline-block;
+    width: 200px;
     text-align: center;
-    margin-left: 301px;
-}
+    padding-left: 23px;
 
+}
+ul.msg li span.tm{
+    display: inline-block;
+    width: 207px;
+    text-align: center;
+}
 
 /*��ҳ����*/
 div#page{
@@ -466,3 +472,14 @@ div.current_2 span.ln_3{
 div.current_2{
     display: none;
 }
+
+.cse_name {
+    display: inline-block;
+    width: 45%;
+
+}
+div.con_2 span.lf a:hover{
+    text-decoration: underline;
+}
+
+

@@ -41,5 +41,87 @@ $(function() {
 
 
         })
+    });
+
+    function getUserInfo(){
+
+        $.ajax({
+            type:"get",
+            url:BASE_URL+"/user/userInfo",
+            success:function(data){
+                if(data.code =='10000'){
+                    var result = data.result;
+                    if(result.avatar){
+                        $('div.pic').html('');
+                        var temp = '<img src="'+ result.avatar +'">';
+                        $('div.pic').append(temp);
+                    }
+                  if(result.ethnic){
+                      $('#ethnic option[value = '+ result.ethnic+']').attr('selected','true');
+                  }
+
+                    if(result.politics_status){
+                        $('#politics_status option[value = '+ result.politics_status+']').attr('selected','true');
+                    }
+                    if(result.education){
+                        $('#education option[value = '+ result.education+']').attr('selected','true');
+                    }
+
+                }else {
+                    alert('暂无数据');
+                }
+            }
+        });
+    }
+    getUserInfo();
+
+    $('#uploadify').uploadify({
+        'formData': {
+            'timestamp': new Date().getTime(),
+            'type': '3'
+        },
+        'swf': '/Public/admin/js/uploadify.swf',//swf路径
+        'uploader': '/admin/course/upload',//处理文件的服务器地址
+        'filesSelected': '1',//同时选择文件的个数
+        'uploadLimit': '30',//选择文件的总数
+        'method': 'post',
+        'auto': false,
+        'multi': true,
+        'width': '120',
+        'height': '40',
+        'cancelImg': '/Public/admin/image/uploadify-cancel.png',
+        'buttonText': '请选择图片',
+        'fileObjName': 'uploadFile',
+        'fileSizeLimit': '0',
+        'onUploadSuccess': function (file, data, response) {
+            var obj = eval('(' + data + ')');
+
+            if (obj.code !== 10000)
+                alert(obj.msg);
+            else if (img_url = obj.result.path) {
+                $('div.pic img').attr({src:BASE_URL+'/'+img_url,value:img_url});
+            }
+        }
     })
+
+
+    $('div.btn').click(function(){
+        var params = $('div.co_right_1 form').serialize();
+
+
+        if(avatar =  $('div.pic img').attr('value')){
+            params += '&avatar='+avatar;
+        }
+
+
+        $.post(BASE_URL+'/user/updateInfo',params,function(response){
+            if(response.code == 10000){
+                alert('操作成功');
+                location.href = BASE_URL+'/user/info';
+            }else {
+                alert(response.msg);
+            }
+        });
+    })
+
 })

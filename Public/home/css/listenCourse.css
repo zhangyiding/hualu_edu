@@ -219,7 +219,7 @@ div.con_2 h5{
     display: none;
 }
 div.con_2 h5 .p_1{
-    display: none;
+    display: block;
 }
 div.con_2 p.bg{
     position: absolute;

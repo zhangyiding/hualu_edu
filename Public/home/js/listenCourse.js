@@ -16,10 +16,10 @@ $(function(){
         }
         $(this).next().slideToggle(1000).siblings("h5").slideUp(1000);
     })
-    $("ul.msg li").click(function(){
-        $(this).children().slideToggle();
-        $(this).siblings().children().slideUp();
-    })
+    //$("ul.msg li").click(function(){
+    //    $(this).children().slideToggle();
+    //    $(this).siblings().children().slideUp();
+    //})
     //����ͼ��ʵ��
     $("div.con_2 ul.msg li p span.rg a").hover(function(){
         $(this).parent().siblings(".lf").show();
