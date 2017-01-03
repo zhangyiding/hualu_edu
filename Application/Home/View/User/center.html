@@ -67,15 +67,15 @@
                     </dd>
                 </dl>
                 <ul class="course">
-                    <li>
-                        <h1>{$cse_count.wait}</h1>
+                    <li id="wait_count">
+                        <a href="#wait_cse"><h1>{$cse_count.wait}</h1></a>
                         <p>等待审核课程</p>
                     </li>
-                    <li>
-                        <h1>{$cse_count.learning}</h1>
+                    <li id="learn">
+                        <a href="#learn_cse"><h1>{$cse_count.learning}</h1></a>
                         <p>正在学习</p>
                     </li>
-                    <li>
+                    <li id="over">
                         <h1>{$cse_count.over}</h1>
                         <p>已学完</p>
                     </li>
@@ -85,7 +85,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="banner">
+            <div class="banner" id="wait_cse">
                 <h1>等待审核课程</h1>
                 <div class="picScroll-left">
                     <div class="hd">
@@ -120,7 +120,7 @@
                     </div>
                 </div>
             </div>
-            <div class="current current_1">
+            <div class="current current_1" id="learn_cse">
                 <h1>
                     当前学习课程
                 </h1>

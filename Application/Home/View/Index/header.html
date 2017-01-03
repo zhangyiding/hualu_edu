@@ -192,12 +192,12 @@
 
     $(function(){
         $(document).ready(function(){
-            $.post(BASE_URL+'/user/userIsLogin',function(reponse){
-                if(reponse.code == '10000'){
+            $.post(BASE_URL+'/user/userIsLogin',function(response){
+                if(response.code == '10000'){
                     $('ul.fail').hide();
                     $('ul.succ').show();
-                    $("ul.succ li.rig_2 span").html(reponse.result.name);
-                    $("ul.succ li.rig_2 a").attr('href','/user/center?student_id='+reponse.result.student_id)
+                    $("ul.succ li.rig_2 span").html(response.result.name);
+                    $("ul.succ li.rig_2 a").attr('href','/user/center?student_id='+response.result.student_id)
                 }else {
                     $('ul.fail').show();
                 }
@@ -217,6 +217,7 @@
                         $("ul.fail").hide();
                         $("ul.succ").show();
                         $("ul.succ li.rig_2 span").html(response.result.name);
+                        $("ul.succ li.rig_2 a").attr('href','/user/center?student_id='+response.result.student_id);
                     }else {
                         alert(response.msg);
                         $(".modal_1").fadeIn();
