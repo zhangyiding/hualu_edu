@@ -147,10 +147,10 @@ class UserController extends BaseController {
         if(!check_mobile($this->params['mobile'])){
             $this->to_back('11003');
         }
-
-        if(!$verify->check($this->params['code'],session_id())){
-            $this->to_back('11007');
-        }
+//
+//        if(!$verify->check($this->params['code'],session_id())){
+//            $this->to_back('11007');
+//        }
 
         if($this->params['password'] !== $this->params['confirm_pwd']){
             $this->to_back('11009');
