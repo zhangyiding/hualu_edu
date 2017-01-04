@@ -30,7 +30,6 @@ $(function() {
         clearInterval(tim);
         tim=setInterval(nextFn, 3000);
     });
-
     $('.btnList li').click(function(event) {
         var i=$(this).index();
         $(this).addClass('current').siblings().removeClass('current');

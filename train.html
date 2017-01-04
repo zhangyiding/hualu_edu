@@ -7,11 +7,12 @@
     <title>培训资讯页面</title>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/style_train.css"/>
-    <link rel="stylesheet" href="css/pagination.css"/>
-    <script src="js/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" href="css/mricode.pagination.css"/>
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/html5shiv.min.js"></script>
-    <script src="js/pagination.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.page.js"></script>
     <!--[if lt IE 9]>
     <style type="text/css">
         ul.search li i{
@@ -72,213 +73,215 @@
         </ul>
     </div>
     <div class="aside">
-        <div id="dataContainer" class="data-container">
-        </div>
-        <div id="dataPage"></div>
+        <div id="dataContainer">
+            <!--<ul></ul>-->
             <!--<ul>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                     <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
 
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
 
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                    <!--<a href="train_list.html">-->
-                <!--<span class="term">-->
-                    <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
-                <!--</span>-->
-                <!--<span class="date">-->
-                    <!--2016-10-21-->
-                <!--</span>-->
-                    <!--</a>-->
-                <!--</li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<a href="train_list.html">-->
+            <!--<span class="term">-->
+            <!--中央党校国资委分校举行2016年秋季直属班开学典礼-->
+            <!--</span>-->
+            <!--<span class="date">-->
+            <!--2016-10-21-->
+            <!--</span>-->
+            <!--</a>-->
+            <!--</li>-->
             <!--</ul>-->
+        </div>
+        <div class="mpage"></div>
+
         <!--页码部分-->
         <!--<div id="page">-->
             <!--<div class="code">-->
