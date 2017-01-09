@@ -93,7 +93,7 @@ class BaseController extends Controller
         $url = $_SERVER['REQUEST_URI'];
         //当访问后台时判断是否存在分站id
         if(strpos($url,'admin')){
-            if (!session('?subsite_id')) {
+            if (!session('?su_id')) {
                 showMsg('尚未登录','/admin/login/index',1);
                 return false;
             } else {

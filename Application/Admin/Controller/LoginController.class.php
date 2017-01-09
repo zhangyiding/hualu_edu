@@ -18,7 +18,6 @@ class LoginController extends Controller {
         $login_model = new \Admin\Model\LoginModel();
         if (!$user_info = $login_model->login($user, $pwd)) {
             showMsg('登录失败');
-            exit;
         }
 
         session_start();
