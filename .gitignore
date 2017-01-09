@@ -9,8 +9,7 @@ Application/Runtime
 .env
 Runtime/
 .idea/*
-Public/resource/*
-
+Public/resource/video/*
 # composer
 composer.lock
 *.tmp
