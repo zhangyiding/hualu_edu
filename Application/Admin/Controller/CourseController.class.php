@@ -16,8 +16,6 @@ class CourseController extends BaseController {
 
 
 
-
-
     /*
      * 课程管理
      */
@@ -148,16 +146,12 @@ class CourseController extends BaseController {
     public function addVideo(){
 
 
-
-
-
-
         $this->display();
     }
 
     /*
-        * @todu 保存上传文件
-        */
+     * @todu 保存上传文件
+     */
     public function upload(){
 
         //上传文件类型,视频，普通文件,图片
@@ -194,7 +188,6 @@ class CourseController extends BaseController {
            }else{
                $file_info = getFileInfo($path);
            }
-
 
 
             if($file_info){

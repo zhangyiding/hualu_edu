@@ -297,6 +297,7 @@ class CourseController extends BaseController
         $where['course_id'] = $course_id;
         $where['student_id'] = $student_id;
         if ($reg_info = $m_course->getRegister($where)) {
+            $this->showMsg('该课程已报名过');
             $reg_id = $reg_info['scm_id'];
 
         } else {

@@ -257,7 +257,7 @@
                             value += (value.length > 0 ? ',' : '') + $(n).attr('value');
                         })
 
-                        $('#video').attr('value',total);
+                        $('#video').val(total);
                         $('#video').attr('course_ve',value);
                     }else {
                         $('#file_show ul li').each(function(){
@@ -267,7 +267,7 @@
                         $.each($(".li_file input"),function (i,n) {
                             value += (value.length > 0 ? ',' : '') + $(n).attr('value');
                         })
-                        $('#study_file').attr('value',total);
+                        $('#study_file').val(total);
                         $('#study_file').attr('course_file',value);
                     }
 

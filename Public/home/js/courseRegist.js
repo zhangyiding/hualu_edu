@@ -36,4 +36,7 @@ $(function(){
         $("div.page_body").show();
 
     })
+    $('div.check_2 span').click(function(){
+        location.href = BASE_URL+'/course'
+    })
 })
