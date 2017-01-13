@@ -3,6 +3,7 @@ namespace Home\Controller;
 use Common\Controller\BaseController;
 use Common\Model\BaseModel;
 use Home\Model\CourseModel;
+use Home\Model\IndexModel;
 use Home\Model\NewsModel;
 use Common\Lib\Redis;
 use Think\Controller;
@@ -19,6 +20,20 @@ class IndexController extends BaseController {
     }
 
 
+    public function format(){
+       $m_index = new IndexModel();
+        $data = $m_index->getCseRes();
+//print_r(json_encode($data));exit;
+
+        foreach($data as $k=>$v){
+            $where['course_id'] = $v['course_id'];
+            $map['subsite_id'] = $v['subsite_id'];
+            $map['end_time'] = strtotime($v['deadline']);
+
+            $m_index->addCseRes($where,$map);
+        }
+
+    }
 
 
 

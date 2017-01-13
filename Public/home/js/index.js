@@ -11,7 +11,8 @@ $(function() {
 
 
     //banner�����ֲ�Ч����
-    var num=0;
+    var size=$('ul.imgList li').size-1;
+    var num = 0;
     var tim;
     var nextFn=function(){
         $('.imgList li').eq(num).fadeOut();

@@ -135,7 +135,7 @@
     <h1>推荐课程</h1>
     <ul class="toggle">
         <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain" onClick="Golink(this)">{$vo.name}</a></li>
+            <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain">{$vo.name}</a></li>
         </foreach>
     </ul>
     <a href="/course"><span>更多&gt;&gt;</span></a>
@@ -153,22 +153,6 @@
 </footer>
 
 
-<script>
-    document.oncontextmenu=function(e){
-        return false;
-    };
-    function Golink(obj) {
-        var li = document.getElementById("study").getElementsByTagName("a");
-        for (i = 0; i < li.length; i++) {
-            //            if (i == n)
-            //                li[i].className = "leftmenusel";
-            //            else
-            li[i].className = "";
-
-        }
-        obj.className = "sel";
-    }
-</script>
 
 <script>
     function create_code(){

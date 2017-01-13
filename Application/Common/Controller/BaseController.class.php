@@ -19,6 +19,7 @@ class BaseController extends Controller
     protected $ip='';
 
     protected $subsite_id = '';//分站id
+    protected $subsite_name = '';//分站名称
     protected $creator = '';//分站管理员id
     protected $subsite_host = '';//分站域名
     protected $admin_name = '';//管理员名称
@@ -43,14 +44,18 @@ class BaseController extends Controller
 
     public function getParams()
     {
-        //获取用户访问的二级域名地址
-        $host = $_SERVER['SERVER_NAME'];
-        preg_match("#(.*?)\.#",$host,$match);
-        $this->subsite_host = $match[1];
+
         $m_base = new \Common\Model\BaseModel();
-        $subsite_info = $m_base->getSubsiteId($this->subsite_host);
-       // $this->subsite_id = $subsite_info['subsite_id'];
-        $this->subsite_id = '130301704';
+        //获取用户访问的二级域名地址
+        preg_match("#(.*?)\.#", $_SERVER['SERVER_NAME'],$match);
+        $this->subsite_host = $match[1];
+
+        if($subsite_info = $m_base->getSubsiteId($this->subsite_host)){
+        $this->subsite_id = $subsite_info['subsite_id'];
+        $this->subsite_name = $subsite_info['name'];
+        }
+
+//        $this->subsite_id = '130301704';
 
         $this->ip = $_SERVER["REMOTE_ADDR"];
 
@@ -84,7 +89,6 @@ class BaseController extends Controller
     {
 
     }
-
 
 
 

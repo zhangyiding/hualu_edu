@@ -97,6 +97,9 @@ class CourseController extends BaseController
         //获取课程方向列表
         $cd_list = $m_course->getCourseDir();
         $this->assign('cd_list', $cd_list);
+        $this->assign('sub_name', $this->subsite_name);
+
+
 
         if ($count = $m_course->getCourseCount($where)) {
             $data = $m_course->getCourseList($where, $this->offset, 12);
@@ -131,7 +134,7 @@ class CourseController extends BaseController
                     //open_status and course_num
                     $course_list[$k]['os_cn'] = $open_status . ' (共' . $course_num . '节课)';
 
-                    $course_list[$k]['name'] = cutStr($v['name'], 12);
+                    $course_list[$k]['name'] = cutStr($v['name'], 17);
 
                     $course_list[$k]['cover'] = getImageBaseUrl($v['cover']);
                 }
@@ -185,7 +188,7 @@ class CourseController extends BaseController
             if ($data_mas = $m_course->getCourseList($where, 0, 8)) {
                 $data = $this->formatCourse($data_mas);
             } else {
-                $this->to_back('11006');
+                $this->showMsg('暂无数据');
             }
         }
         $this->assign('course_list', $data);

@@ -8,7 +8,7 @@ class CourseModel extends Model{
     public function getCourseList($where,$offset=0,$limit=0){
 
         $result = $this
-            ->field('course_id,subsite_id,is_recommend,open_status,name,score,price,is_pub,
+            ->field('course_id,subsite_id,is_recommend,open_status,name,default_score,price,is_pub,
                      cover,intro,ctime')
             ->where($where)
             ->order('ctime desc')
@@ -24,7 +24,7 @@ class CourseModel extends Model{
         $where['c.subsite_id'] = $subsite_id;
         $where['c.status'] = '0';
         $result = $this->alias('c')
-            ->field('c.course_id,c.subsite_id,c.is_recommend,c.open_status,c.name,c.score,c.price,c.is_pub,
+            ->field('c.course_id,c.subsite_id,c.is_recommend,c.open_status,c.name,c.default_score,c.price,c.is_pub,
                      c.cover,c.intro,c.ctime,ct.ct_id,ct.name as ct_name')
             ->join('left join course_type_map as ctm on c.course_id = ctm.course_id')
             ->join('left join course_type as ct on ctm.ct_id = ct.ct_id')
@@ -85,6 +85,7 @@ class CourseModel extends Model{
             ->field('course_id')
             ->where($where)
             ->select();
+
         if($result !== false){
             foreach($result as $k=>$v){
                 $data[] = $result[$k]['course_id'];
@@ -128,7 +129,7 @@ class CourseModel extends Model{
 
         $result = $this->alias('c')
             ->field('c.course_id,c.subsite_id,c.is_recommend,c.enroll_time,c.end_time,c.open_status,
-                     c.name,c.score,c.price,c.is_pub,c.cover,c.intro,c.remark,c.teacher_id,c.ctime,
+                     c.name,c.default_score,c.price,c.is_pub,c.cover,c.intro,c.remark,c.teacher_id,c.ctime,
                      t.name as tea_name,t.intro as tea_intro,t.avatar as tea_img')
             ->join('left join teacher as t on c.teacher_id = t.teacher_id')
             ->where(array(

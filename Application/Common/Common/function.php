@@ -47,7 +47,7 @@ function create_sign($sign_time, $key = 'tuanche1234abcd1234')
     if (!$pass)
         return false;
 
-    return md5(C('PARAM_KEY') . $pass);
+    return md5($pass);
 }
 
 /**
@@ -788,7 +788,12 @@ function getImageBaseUrl($img){
         $img_url = C('RESOURCE_URL') . '/' . 'Public/no_img.jpg';
     }else{
         if(!strstr($img,'http:')){
-            $img_url = C('RESOURCE_URL') . '/' . $img;
+            if(strstr($img,'showimage')){
+                $img_url = C('TCS_URL').$img;
+            }else{
+                $img_url = C('RESOURCE_URL') . '/' . $img;
+            }
+
         }else{
             $img_url = $img;
         }
@@ -849,9 +854,10 @@ function cutStr($str,$len){
    if(empty($str)){
        return false;
    }
-    $str_len = mb_strlen($str);
+    $str_len = abslength($str);
 
-    if( $str_len >= $len){
+
+    if( $str_len > $len){
         $c_str = mb_substr($str , 0 , $len,'utf-8');
         return $c_str . '..';
     }else{
@@ -860,6 +866,26 @@ function cutStr($str,$len){
 
 }
 
+
+/**
+ * 可以统计中文字符串长度的函数
+ * @param $str 要计算长度的字符串
+ * @param $type 计算长度类型，0(默认)表示一个中文算一个字符，1表示一个中文算两个字符
+ *
+ */
+function abslength($str)
+{
+    if(empty($str)){
+        return 0;
+    }
+    if(function_exists('mb_strlen')){
+        return mb_strlen($str,'utf-8');
+    }
+    else {
+        preg_match_all("/./u", $str, $ar);
+        return count($ar[0]);
+    }
+}
 
 /**
  * 后台列表分页
