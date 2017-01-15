@@ -15,7 +15,7 @@ class RegisterController extends BaseController {
         $m_register = new \Admin\Model\RegisterModel();
         $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的数据
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }else{
             $where['scm_id'] = array('egt',0);
@@ -96,7 +96,7 @@ class RegisterController extends BaseController {
         $m_register = new \Admin\Model\RegisterModel();
         $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的数据
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['scm.subsite_id'] = $this->subsite_id;
         }else{
             $where['scm.scm_id'] = array('egt',0);

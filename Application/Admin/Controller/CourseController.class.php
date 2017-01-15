@@ -25,7 +25,7 @@ class CourseController extends BaseController {
         $m_base = new \Common\Model\BaseModel();
         $m_course = new \Admin\Model\CourseModel();
         //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
 
@@ -107,7 +107,7 @@ class CourseController extends BaseController {
         $m_base = new \Common\Model\BaseModel();
 
         //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
 
@@ -358,7 +358,7 @@ class CourseController extends BaseController {
         $m_base = new \Common\Model\BaseModel();
 
         //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
 

@@ -86,7 +86,7 @@
                                                 <else />女
                                                 </if>
                                         </td>
-                                        <td>{$vo.unit}</td>
+                                        <td>{$vo.department}</td>
                                         <td>{$vo.email}</td>
                                         <td>{$vo.mobile}</td>
                                         <td>{$vo.ctime}</td>
@@ -96,20 +96,21 @@
                                             <a class="btn" href="/admin/student/delStudent?student_id=<?php echo $vo['student_id'];?>" title="删除"><i class="icon-trash"></i></a>
                                             <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
                                         </td>
+                                    </tr>
                                         </foreach>
 
-                                    </tr></tbody>
                                     </tbody>
                                     </table>
-                                <div>
-                                    <ul class="pagination" style="float:right">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <volist  name="page_arr" id="vo">
-                                            <li><a href="/admin/student/?page=<?php echo $vo;?>">{$vo}</a></li>
-                                        </volist>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
-                                </div>
+                                    <!--</table>-->
+                                <!--<div>-->
+                                    <!--<ul class="pagination" style="float:right">-->
+                                        <!--<li><a href="#">&laquo;</a></li>-->
+                                        <!--<volist  name="page_arr" id="vo">-->
+                                            <!--<li><a href="/admin/student/?page=<?php echo $vo;?>">{$vo}</a></li>-->
+                                        <!--</volist>-->
+                                        <!--<li><a href="#">&raquo;</a></li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>

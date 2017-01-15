@@ -25,7 +25,9 @@ a:hover{color:#c00;text-decoration:underline;}
 .cityshow ul{float:left;}
 .cityshow ul li{float:left;padding-right:14px;}
 .cityshow ul li .check{margin-right:5px;}
-.cityul{width:100%;float:left;}
+.cityul{width:100%;float:left;    overflow: auto;
+    height: 300px;
+}
 .cityul li{width:100%;float:left;padding-bottom:7px;height:16px;line-height:26px;}
 .cityul li b{float:left;padding:0 16px;cursor:pointer;}
 

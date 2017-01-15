@@ -71,6 +71,15 @@
                                 </volist>
                             </select>
                                     </div>
+
+                             <div class="form_list"><label class="lable_title">所属分站</label>
+                                 <select id="subsite_id" name="subsite_id" value="{$data.subsite_id}" style="width:150px; margin-left:15px;">
+                                     <option value="">请选择所属分站</option>
+                                     <volist name='sub_list' id='vo' key="k">
+                                         <option value="{$vo.subsite_id}" >{$vo.name}</option>
+                                     </volist>
+                                 </select>
+                             </div>
                              <div class="form_list"><label class="lable_title">资讯内容</label>
                                  </div>
 
@@ -101,8 +110,12 @@
   <script type="text/javascript">
       $(function() {
           var n_type = $('#type').attr('value');
+          var sub_site = $('#subsite_id').attr('value');
           if (n_type) {
               $('#type option[value=' + n_type + ']').attr('selected', 'true');
+          }
+          if(sub_site){
+              $('#subsite_id option[value='+sub_site+']').attr('selected','true');
           }
 
 

@@ -7,15 +7,13 @@ class TeacherModel extends Model{
     protected $tableName = 'teacher';
 
 	public function getTeacherList($where,$offset,$limit){
-        $map['t.subsite_id'] = $where['subsite_id'];
-        $map['t.status'] = $where['status'];
 
 	    $result = $this->alias('t')
             ->field('t.teacher_id,t.cu_id,t.ct_id,t.name,t.subsite_id,t.avatar,t.ethnic,t.gender,t.birthday,t.degree,
             t.mobile,t.email,t.post_code,t.address,t.intro,t.course_num,t.ctime,tw.start_time,tw.end_time,tw.unit,tw.apartment,
             tw.duties')
             ->join('left join teacher_work_record as tw on t.teacher_id = tw.teacher_id')
-            ->where($map)
+            ->where($where)
             ->limit($offset,$limit)
             ->order('t.ctime desc')
             ->select();
@@ -24,7 +22,9 @@ class TeacherModel extends Model{
 
 
     public function getTeacherCount($where){
-        $result = $this->where($where)
+        $result = $this->table('teacher')
+            ->alias('t')
+            ->where($where)
             ->count();
         return $result;
     }

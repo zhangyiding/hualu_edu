@@ -74,6 +74,7 @@ div.row_right ul li{
     height: 40px;
     margin-right: 23px;
     cursor: pointer;
+    text-align: left;
 }div.row_right ul li:hover a,div.row_right ul li.active{
     color: #84B9E8;
  }

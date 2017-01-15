@@ -10,17 +10,17 @@ class TeacherController extends BaseController {
         $m_base = new \Common\Model\BaseModel();
         $m_course = new CourseModel();
         //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
-            $where['subsite_id'] = $this->subsite_id;
+        if($this->su_type == C('SUBSITE_USER')){
+            $where['t.subsite_id'] = $this->subsite_id;
         }
 
         if($name = $this->params['name']){
-            $where['name'] = array('like','%'.$name.'%');
+            $where['t.name'] = array('like','%'.$name.'%');
         }
         if($cse_type = $this->params['cse_type']){
-            $where['ct_id'] = array('in',$cse_type);
+            $where['t.ct_id'] = array('in',$cse_type);
         }
-        $where['status'] = 0;
+        $where['t.status'] = 0;
 
         $data = array();
         $page_arr = array();

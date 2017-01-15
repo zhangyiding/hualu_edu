@@ -10,7 +10,7 @@ class StudentController extends BaseController {
         $m_student = new \Admin\Model\StudentModel();
         $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的课程
-        if($this->su_type = C('SUBSITE_USER')){
+        if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
         }
 
@@ -23,10 +23,10 @@ class StudentController extends BaseController {
         $page_arr = array();
        if($count = $m_student->getStudentCount($where)){
            //获取分页总数进一取整
-           $page_count = ceil($count/$this->limit);
-           for($i=1;$i<=$page_count;$i++){
-               $page_arr[] = $i;
-           }
+//           $page_count = ceil($count/$this->limit);
+//           for($i=1;$i<=$page_count;$i++){
+//               $page_arr[] = $i;
+//           }
 
            $data = $m_student->getStudentList($where,$this->offset,$this->limit);
 
@@ -42,7 +42,7 @@ class StudentController extends BaseController {
        }
 
         $this->assign('stu_list',$data);
-        $this->assign('page_arr',$page_arr);
+//        $this->assign('page_arr',$page_arr);
         $this->display();
     }
 
