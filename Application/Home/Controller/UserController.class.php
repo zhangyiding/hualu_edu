@@ -131,12 +131,11 @@ class UserController extends BaseController {
     public function region(){
 
         $m_user = new UserModel();
-        $verify = new Verify();
 
         $map['email'] = $this->params['email'];
         $map['subsite_id']  = $this->params['subsite_id'];
         $map['gender']  = $this->params['gender'];
-        $map['unit']  = $this->params['unit'];
+        $map['apartment']  = $this->params['apartment'];
         $map['name']  = $this->params['name'];
         $map['password']  = encryptpass($this->params['password']);
 
@@ -273,12 +272,12 @@ class UserController extends BaseController {
         }
 
         $m_user = new UserModel();
+        $wait_cse = array();//待审核课程列表
+        $len_cse = array();//正在学习learning学习列表
+        $over_cse = array();//已经结课列表
+        $learn_time = 0;
 
         if($u_cse_map = $m_user->getUserCse($student_id)){
-
-            $wait_cse = array();//待审核课程列表
-            $len_cse = array();//正在学习learning学习列表
-            $over_cse = array();//已经结课列表
 
             //根据课程状态字段分别划分三种类型课程
             foreach($u_cse_map as $k=>$v){
@@ -301,23 +300,25 @@ class UserController extends BaseController {
                 }
             }
 
-            $cse_count = array(
-                'wait'=>count($wait_cse),
-                'learning'=>count($len_cse),
-                'over'=>count($over_cse)
-            );
-
             $learn_time = formatTime($m_user->getLearnTime($student_id),1);
-
-
-            $this->assign('learn_time',$learn_time);
-            $this->assign('cse_count',$cse_count);
-            $this->assign('wait_cse',$wait_cse);
-            $this->assign('len_cse',$len_cse);
-            $this->assign('over_cse',$over_cse);
 
         }
 
+        $wait_count = (count($wait_cse)>0)?count($wait_cse):'0';
+        $len_count = (count($len_cse)>0)?count($len_cse):'0';
+        $over_count = (count($over_cse)>0)?count($over_cse):'0';
+
+
+        $cse_count = array(
+            'wait'=>$wait_count,
+            'learning'=>$len_count,
+            'over'=>$over_count
+        );
+        $this->assign('learn_time',$learn_time.'分钟');
+        $this->assign('cse_count',$cse_count);
+        $this->assign('wait_cse',$wait_cse);
+        $this->assign('len_cse',$len_cse);
+        $this->assign('over_cse',$over_cse);
         $this->display();
     }
 
@@ -410,12 +411,15 @@ class UserController extends BaseController {
             $this->to_back(10001);
         }
         $m_base = new BaseModel();
-        $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
-        $user_info['subsite_name'] = $subsite_info['name'];
+        $m_user = new UserModel();
 
-        $this->to_back($user_info);
+        $where['student_id'] = $user_info['student_id'];
+        if($data = $m_user->getUserInfo($where)){
+            $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
+            $data['subsite_name'] = $subsite_info['name'];
 
-
+        }
+        $this->to_back($data);
     }
 
 
@@ -436,10 +440,10 @@ class UserController extends BaseController {
         $data['name'] = $this->params['name'];
         $data['birthday'] = $this->params['birthday'];
         $data['mobile'] = $this->params['mobile'];
-        $data['unit'] = $this->params['unit'];
+        $data['department'] = $this->params['department'];
         $data['job_position'] = $this->params['job_position'];
         $data['politics_status'] = $this->params['politics_status'];
-        $data['education'] = $this->params['education'];
+        $data['culture_degree'] = $this->params['culture_degree'];
         $data['post_code'] = $this->params['post_code'];
         $data['apartment'] = $this->params['apartment'];
         $data['mtime'] = date('Y-m-d H:i:s',time());

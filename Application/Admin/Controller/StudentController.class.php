@@ -90,7 +90,7 @@ class StudentController extends BaseController {
         $data['mobile'] = $this->params['mobile'];
         $data['email'] = $this->params['email'];
         $data['address'] = $this->params['address'];
-        $data['unit'] = $this->params['unit'];
+        $data['apartment'] = $this->params['apartment'];
         $data['remark'] = $this->params['remark'];
         $data['job_position'] = $this->params['job_position'];
         $data['password'] = encryptpass($this->params['password']);

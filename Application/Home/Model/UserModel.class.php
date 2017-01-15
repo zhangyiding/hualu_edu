@@ -29,8 +29,8 @@ class UserModel extends Model{
      * 根据id获取学员详细信息
      */
     public function getUserInfo($where){
-        $result = $this->field('student_id,cu_id,subsite_id,name,money,unit,job_position,level,avatar,
-                                mobile,ethnic,gender,birthday,email,politics_status,education,post_code,address,apartment')
+        $result = $this->field('student_id,cu_id,subsite_id,name,job_position,avatar,
+                                mobile,ethnic,department,gender,birthday,email,politics_status,culture_degree,post_code,address,apartment')
             ->where($where)
             ->order('ctime desc')
             ->find();

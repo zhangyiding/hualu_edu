@@ -97,7 +97,7 @@
                     <p class="row_2">
                         <span class="name">民族:</span>
                         <span>
-                            <select name="ethnic" id="ethnic">
+                            <select name="ethnic" id="ethnic" value="{$user_info.ethnic}">
                                 <option value="">--请选择</option>
                                 <volist name="ethnic_list" id="vo" key="key">
                                     <option value="{$key}">{$vo}</option>
@@ -120,7 +120,7 @@
                     <p class="row_2">
                         <span class="name">政治面貌:</span>
                         <span>
-                            <select name="politics_status" id="politics_status">
+                            <select name="politics_status" id="politics_status" value="{$data.politics_status}">
                                 <option value="">--请选择</option>
                                 <option value="1">团员</option>
                                 <option value="2">党员</option>
@@ -137,13 +137,13 @@
                     <p class="row_2">
                         <span class="name">学历:</span>
                         <span>
-                            <select name="education" id="education">
+                            <select name="culture_degree" id="culture_degree" value="{$data.culture_degree}">
                                 <option value="">--请选择</option>
-                                <option value="2">大专</option>
-                                <option value="1">高中</option>
-                                <option value="3">本科</option>
-                                <option value="4">硕士</option>
-                                <option value="5">博士</option>
+                                <option value="2">博士</option>
+                                <option value="1">博士后</option>
+                                <option value="3">硕士/研究生</option>
+                                <option value="4">本科</option>
+                                <option value="5">专科</option>
                             </select>
                         </span>
                     </p>
@@ -168,7 +168,7 @@
                     <p class="row_2">
                         <span class="name">单位名称:</span>
                         <span>
-                           <input type="text" name="unit" value="{$user_info.unit}"/>
+                           <input type="text" name="apartment" value="{$user_info.apartment}"/>
                         </span>
                     </p>
                 </div>
@@ -177,7 +177,7 @@
                     <p class="row_2">
                         <span class="name">部门名称:</span>
                         <span>
-                           <input type="text" name="apartment" value="{$user_info.apartment}"/>
+                           <input type="text" name="department" value="{$user_info.department}"/>
                         </span>
                     </p>
                 </div>

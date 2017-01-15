@@ -91,25 +91,25 @@
                     <label for="danwei">
                         单位名称
                     </label>
-                    <input type="text" id="danwei" name="unit" placeholder="请输入正确的单位名称" class="only"/>
+                    <input type="text" id="apartment" name="apartment" placeholder="请输入正确的单位名称" class="only"/>
                 </div>
                 <div class="mation_6">
                     <label for="pwd">
                         登录密码
                     </label>
-                    <input type="password" id="pwd"  name="password" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                    <input type="password" id="password"  name="password" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
                 </div>
                 <div class="mation_7">
                     <label for="sure">
                         确认密码
                     </label>
-                    <input type="password" id="sure"  name="confirm_pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
+                    <input type="password" id="confirm_pwd"  name="confirm_pwd" placeholder="6-20位大小写英文字母、数字或符号" class="only"/>
                 </div>
                 <div class="mation_8">
                     <label for="phone">
                         手机号码
                     </label>
-                    <input type="text" id="phone"  name="mobile" placeholder="请输入正确的手机号码" class="only"/>
+                    <input type="text" id="mobile"  name="mobile" placeholder="请输入正确的手机号码" class="only"/>
                 </div>
                 <!--<div class="mation_9">-->
                     <!--<label for="yanzhen">-->
@@ -247,6 +247,7 @@
                         $("ul.fail").hide();
                         $("ul.succ").show();
                         $("ul.succ li.rig_2 span").html(response.result.name);
+                        $("ul.succ li.rig_2 a").attr('href','/user/center?student_id='+response.result.student_id);
                     }else{
                         $("div.remind").show();
                         alert(response.msg)
@@ -308,12 +309,28 @@
 
             if(!$('#email').val()){
                 alert('邮箱不能为空');
+                return false;
             }
 
             if(!$('#name').val().length > 4){
                 alert('名字长度超出限制');
+                return false;
             }
 
+            if(!$('#apartment').val()){
+                alert('单位名称不能为空');
+                return false;
+            }
+
+            if(!$('#password').val()){
+                alert('密码不能为空');
+                return false;
+            }
+
+            if($('#password').val()!== $('#confirm_pwd').val()){
+                alert('两次密码不一致');
+                return false;
+            }
             var params = $("form").serialize();
             $.post(BASE_URL+'/user/region', params,function(response){
 

@@ -63,8 +63,8 @@ $(function() {
                     if(result.politics_status){
                         $('#politics_status option[value = '+ result.politics_status+']').attr('selected','true');
                     }
-                    if(result.education){
-                        $('#education option[value = '+ result.education+']').attr('selected','true');
+                    if(result.culture_degree){
+                        $('#culture_degree option[value = '+ result.culture_degree+']').attr('selected','true');
                     }
 
                 }else {

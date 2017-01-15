@@ -7,7 +7,7 @@ class StudentModel extends Model{
     protected $tableName = 'student';
 
 	public function getStudentList($where,$offset,$limit){
-	    $result = $this->field('student_id,subsite_id,department,job_position,name,avatar,gender,mobile,email,ctime,remark')
+	    $result = $this->field('student_id,subsite_id,department,job_position,name,avatar,gender,mobile,email,ctime,remark,apartment')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
