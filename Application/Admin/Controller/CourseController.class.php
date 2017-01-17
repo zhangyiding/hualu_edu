@@ -99,6 +99,31 @@ class CourseController extends BaseController {
     }
 
 
+
+    /*
+    * 课程类型管理
+    */
+    public function cseTypeManage(){
+        $m_course = new \Admin\Model\CourseModel();
+
+        $where['ct.status'] = 0;
+        $data = array();
+        $page_arr = array();
+        if($count = $m_course->getCseTypeCount($where)){
+            //获取分页总数进一取整
+            $page_arr = listPage($count,$this->limit);
+
+            $data = $m_course->getCseTypeList($where,$this->offset,$this->limit);
+
+        }
+
+        $this->assign('ct_list',$data);
+        $this->assign('page_arr',$page_arr);
+        $this->display();
+    }
+
+
+
     /*
     * 课件管理
     */
@@ -301,12 +326,34 @@ class CourseController extends BaseController {
             $this->assign('study_file',$study_file);
         }
 
-        if($ct_list = $m_course->getCseDir()){
-            $this->assign('cse_dir',$ct_list);
+        if($cd_list = $m_course->getCseDir()){
+            $this->assign('cse_dir',$cd_list);
         }
 
         $this->display();
     }
+
+
+    /*
+     * 添加课程分类
+    */
+    public function addCseType(){
+
+        $m_course = new \Admin\Model\CourseModel();
+        $ct_id = $this->params['ct_id'];
+        if(!empty($ct_id)){
+            if( $data = $m_course->getCseTypeById($ct_id)){
+                $this->assign('data',$data);
+            }
+        }
+
+        if($cd_list = $m_course->getCseDir()){
+            $this->assign('cse_dir',$cd_list);
+        }
+
+        $this->display();
+    }
+
 
 
 
@@ -338,6 +385,20 @@ class CourseController extends BaseController {
         }
     }
 
+
+
+    /*
+     * 删除课程类型
+     */
+    public function delCseType(){
+        $where['ct_id'] = $this->params['ct_id'];
+        $m_course = new \Admin\Model\CourseModel();
+        if($m_course->delCseType($where) !== false){
+            $this->showMsg('删除成功','index',1);
+        }else{
+            $this->showMsg('删除失败，请重试');
+        }
+    }
 
     /*
         * 上传学习资料
@@ -491,6 +552,46 @@ class CourseController extends BaseController {
     }
 
 
+    /*
+      * 新增/修改课程类型
+      */
+    public function doAddCseType (){
+
+        //类型Id,为空时插入，有值时更新
+        $ct_id = $this->params['ct_id'];
+
+        $data['name'] = $this->params['name'];
+        $data['cd_id'] = $this->params['cd_id'];
+//        $data['order'] = $this->params['order'];
+
+        $m_cse = new \Admin\Model\CourseModel();
+
+        if(!empty($ct_id)){
+
+            $where = array('ct_id'=>$ct_id,'status'=>0);
+            $data['mtime'] = date('Y-m-d H:i:s',time());
+
+            if($result = $m_cse->updateCT($where,array_filter($data))){
+                $this->to_back('10000');
+                }else{
+                $this->to_back('11016');
+            }
+
+        }else{
+
+            $data['ctime'] = date('Y-m-d H:i:s',time());
+
+            if($result = $m_cse->addCT($data)) {
+                $this->to_back('10000');
+            }else{
+                $this->to_back('11016');
+            }
+
+
+
+
+        }
+    }
 
 
 }

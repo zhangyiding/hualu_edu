@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>华录文化管理后台</title>
+  
+    <meta name="description" content="">
+    <meta name="author" content="">
+      <script src="../../Public/admin/js/jquery-1.10.2.js"></script>
+      <script src="../../Public/admin/js/common.js" type="text/javascript"></script>
+      <script src="../../Public/admin/js/WdatePicker.js"></script>
+    <!-- Le styles -->
+    <link href="../../Public/admin/css/bootstrap.css" rel="stylesheet">
+    <link href="../../Public/admin/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../../Public/admin/css/stylesheet.css" rel="stylesheet">
+    <link href="../../Public/admin/css/index.css" rel="stylesheet">
+      <link href="../../Public/admin/css/checkbox.css" rel="stylesheet">
+    <link href="../../Public/admin/icon/font-awesome.css" rel="stylesheet">
+      <script src="../../Public/admin/js/jquery.uploadify.min.js" ></script>
+      <link rel="stylesheet" type="text/css" href="../../Public/admin/css/uploadify.css">
+      <script src="../../Public/admin/js/html5shiv.min.js"></script>
+
+      <style>
+        div.form_list label{
+            width:80px;
+        }
+         #video,#study_file{
+              height: 130px;
+              overflow: auto;
+          }
+          .video{
+              height: 150px;
+          }
+
+      </style>
+  </head>
+
+  <body>
+
+    <div id="content"> <!-- Content start -->
+      <div class="inner_content">
+          <div class="widgets_area">
+                <div class="row-fluid">
+                    <div class="span12">
+                         <div  class="daohanglink"style="">
+                           <span class="daohang"></span>
+                           <a href="/admin">首页</a><span>></span>
+                           <a href="/admin/course">课程管理</a><span>></span>
+                           <a href="/admin/course/addCseType">添加课程分类</a>
+
+                         </div>
+                        <div class="well brown">
+                         <form>
+
+                            <div class="form_list"><label class="lable_title">分类名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
+                             <!--<div class="form_list"><label class="lable_title">显示排序</label><input id="intro" name="order" class="form_input" type="text" value={$data.order}></div>-->
+
+
+                             <div class="form_list"><label class="lable_title">所属方向</label>
+                                 <select id="cse_dir" name="cse_dir" value="{$data.cd_id}" style="width:150px; margin-left:15px;">
+                                     <option value="">请选择方向</option>
+                                     <foreach name="cse_dir" item="vo">
+                                         <option value="{$vo.cd_id}" >{$vo.name}</option>
+                                     </foreach>
+
+                                 </select>
+                             </div>
+
+                             <div class="form_list"><input style="margin-left: 180px; float: left; width: 60px; cursor:pointer;" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
+                             <input type="hidden" id="ct_id" name="ct_id" value="{$data.ct_id}" />
+                         </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        $(function(){
+            if(cd_id = $('#cse_dir').attr('value')){
+                $('#cse_dir option[value=' +cd_id + ']').attr('selected','true');
+            }
+
+            $('.submit').click(function(){
+
+                var params = $('form').serialize();
+                if(ct_id = $('#ct_id').attr('value')){
+                    params+='&ct_id='+ct_id;
+                }
+
+
+                $.post(BASE_URL+'/admin/course/doAddCseType',params,function(response){
+                    if(response.code == 10000){
+                        alert('操作成功');
+                        location.href = BASE_URL+'/admin/course/cseTypeManage';
+                    }else {
+                        alert(response.msg);
+                    }
+                });
+            })
+
+        })
+    </script>
+
+  </body>
+</html>

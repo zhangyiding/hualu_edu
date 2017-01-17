@@ -55,6 +55,15 @@ class CourseModel extends Model{
         return $result;
     }
 
+
+    public function getCseTypeCount($where){
+        $result = $this->table('course_type')
+            ->alias('ct')
+            ->where($where)
+            ->count();
+        return $result;
+    }
+
     public function getCourseType($course_id){
         $result = $this->table('course_type_map')
             ->alias('ctm')
@@ -77,6 +86,15 @@ class CourseModel extends Model{
 
     public function delResource($where){
         $result = $this->table('resource')
+            ->where($where)
+            ->save(array('status'=>-1));
+        return $result;
+
+    }
+
+
+    public function delCseType($where){
+        $result = $this->table('course_type')
             ->where($where)
             ->save(array('status'=>-1));
         return $result;
@@ -167,6 +185,14 @@ class CourseModel extends Model{
         return $result;
     }
 
+    public function getCseTypeById($ct_id){
+
+        $result = $this->table('course_type')
+            ->where(array('ct_id'=>$ct_id,'status'=>0))
+            ->select();
+        return $result['0'];
+    }
+
 
     public function getCseDir(){
         $result = $this->table('course_direction')
@@ -183,6 +209,20 @@ class CourseModel extends Model{
         return $result;
     }
 
+    public function updateCT($where,$data){
+        $result = $this->table('course_type')
+            ->where($where)
+            ->save($data);
+        return $result;
+    }
+
+
+    public function addCT($data){
+        $result = $this->table('course_type')
+            ->add($data);
+
+        return $result;
+    }
 
     public function getCseRes($where){
         $result = $this->table('course_resource')
@@ -194,6 +234,17 @@ class CourseModel extends Model{
         return $result;
     }
 
+
+    public function getCseTypeList($where,$offset,$limit){
+        $result = $this->table('course_type')
+            ->alias('ct')
+            ->field('ct.ct_id,ct.name,ct.ctime,cd.cd_id,cd.name as cd_name')
+            ->join('left join course_direction as cd on ct.cd_id = cd.cd_id')
+            ->where($where)
+            ->limit($offset,$limit)
+            ->select();
+        return $result;
+    }
 
     public function getCseListByType($map){
         $map['status'] = 0;

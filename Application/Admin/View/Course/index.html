@@ -59,7 +59,7 @@
                            <a href="/admin/">首页</a><span>></span>
                            <a href="/admin/course">课程管理</a><span>></span>
                            <a href="/admin/course">课程管理</a>
-                           <a  href="/admin/course/addCourse" class="label label-warning"  style="float:right; margin:8px;">添加</a>
+                           <a  href="/admin/course/addCourse" class="label label-warning"  style="float:right; margin:8px;">添加课程</a>
                          </div>
                         <div class="well brown">
                             
@@ -138,7 +138,7 @@
                                     <ul class="pagination" style="float:right">
                                         <li><a href="#">&laquo;</a></li>
                                         <volist  name="page_arr.list" id="vo">
-                                            <li><a href="/admin/news/?page=<?php echo $vo;?>">{$vo}</a></li>
+                                            <li><a href="/admin/course?page=<?php echo $vo;?>">{$vo}</a></li>
                                         </volist>
                                         <li><a href="#">&raquo;</a></li>
                                     </ul>
