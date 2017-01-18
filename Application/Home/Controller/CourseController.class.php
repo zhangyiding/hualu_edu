@@ -352,6 +352,7 @@ class CourseController extends BaseController
         if($res_info = $m_course->getResInfo($res_id)){
             $res_info['file_path'] = getFileBaseUrl($res_info['file_path']);
             $this->assign('res_info',$res_info);
+
         }
 
         if ($cse_info = $m_course->getCourseInfo($cse_id)) {
@@ -365,16 +366,12 @@ class CourseController extends BaseController
 
             //根据课程id获取资源详情列表
             $where['cr.course_id'] = $cse_id;
+
             if ($c_res = $m_course->getResource($where)) {
 
                 $cse_video = array();
                 $cse_file = array();
                 foreach ($c_res as $k => $v) {
-                    if (!empty($v['file_path'])) {
-                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
-                    } else {
-                        continue;
-                    }
 
                     $c_res[$k]['file_cover'] = getFileCoverByExt($v['ext']);
 
@@ -408,6 +405,22 @@ class CourseController extends BaseController
     }
 
 
+    /*
+     * 返回视频URL
+     */
+    public function showVideo(){
+        $outputID = $this->params['id'];
+        if($outputID){
+            $dir1 = $outputID / 16777216 % 256;
+            $dir2 = $outputID / 65536 % 256;
+            $dir3 = $outputID /256 % 256;
+            $relativePath = C('TCS_VIDEO').'/'.$dir1."/".$dir2."/".$dir3."/".$outputID.".f4v";
+            print_r($relativePath);exit;
+        }else{
+            $this->showMsg('视频加载失败');
+        }
+
+}
 
 
     /*

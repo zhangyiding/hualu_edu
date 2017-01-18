@@ -21,7 +21,7 @@ $(function(){
     //    $(this).siblings().children().slideUp();
     //})
     //����ͼ��ʵ��
-    $("div.con_2 ul.msg li p span.rg a").hover(function(){
+    $("div.con_2 ul.msg li p ").hover(function(){
         $(this).parent().siblings(".lf").show();
     },function(){
         $(this).parent().siblings(".lf").hide();
@@ -44,35 +44,35 @@ $(function(){
 
     var c_time ;
     var dur_time;
-    var videoplayer=videoPlayer('mod_player',{
-        autoPlay:false,
-        muted:true,
-        setSource:function(){
-            return path
-        },
-        success:function(videoElement,node,videoObj){
-            videoElement.addEventListener('timeupdate',function(){
-
-            },false);
-            videoElement.currentTime=time;
-            dur_time = videoElement.duration;
-            videoObj.timeupdate(function(currentTime){
-                c_time = currentTime;
-
-            });
-
-
-        },
-
-        //fires when a problem is detected
-        error:function(){
-        }
-
-
-    });
+    //var videoplayer=videoPlayer('mod_player',{
+    //    autoPlay:false,
+    //    muted:true,
+    //    setSource:function(){
+    //        return path
+    //    },
+    //    success:function(videoElement,node,videoObj){
+    //        videoElement.addEventListener('timeupdate',function(){
+    //
+    //        },false);
+    //        videoElement.currentTime=time;
+    //        dur_time = videoElement.duration;
+    //        videoObj.timeupdate(function(currentTime){
+    //            c_time = currentTime;
+    //
+    //        });
+    //
+    //
+    //    },
+    //
+    //    //fires when a problem is detected
+    //    error:function(){
+    //    }
+    //
+    //
+    //});
 
     //记录学员观看视频时间
-  timer = setInterval(updateRecord,1000*4)
+  //timer = setInterval(updateRecord,1000*4)
 
 
     function updateRecord(){

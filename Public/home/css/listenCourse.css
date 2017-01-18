@@ -172,7 +172,7 @@ div.con_2 ul.msg{
 }
 div.con_2 ul.msg li{
     margin-left:20px;
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 20px;
     color: #E1E1E1;
 }
@@ -204,6 +204,7 @@ div.con_2 ul.msg{
 }
 div.con_2 ul.msg li p span.rg a{
     color:#E1E1E1;
+    float: left;
 }
 div.con_2 ul.msg li p span.rg a:hover {
     color:#72B2E7;
@@ -300,6 +301,8 @@ div.pic img{
     margin: 16px 0 15px 0;
     border-radius: 50%;
     overflow: hidden;
+    width: 82px;
+    height: 82px;
 }
 div.pic h1{
     margin-bottom: 10px;
@@ -307,6 +310,7 @@ div.pic h1{
 div.pic p{
     font-size: 14px;
     margin-bottom:8px;
+    text-align: left;
 }
 div.kind{
     margin-top: 10px;

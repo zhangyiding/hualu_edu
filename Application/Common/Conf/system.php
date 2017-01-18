@@ -6,6 +6,7 @@ $hualu_admin = array(
 
     'RESOURCE_URL'=>'http://test.tcsasac.com',
     'TCS_URL'=>'http://www.tcsasac.com',
+    'TCS_VIDEO'=>'http://video.tcsasac.com',
 
     //图片资源路径
     'IMG_DIR'=>'Public/resource/image',

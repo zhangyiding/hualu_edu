@@ -177,7 +177,7 @@ class CourseModel extends Model{
 
         $result = $this->table('course_resource')
             ->alias('cr')
-            ->field('cr.order,r.resource_id,r.name as res_name,r.type,r.ext,r.file_path,r.file_size,
+            ->field('cr.order,r.resource_id,r.name as res_name,r.type,r.output_id,r.ext,r.file_path,r.file_size,
                      r.duration,r.remark')
             ->join('join resource as r on cr.resource_id=r.resource_id')
             ->where($where)
@@ -214,7 +214,7 @@ class CourseModel extends Model{
 
     public function getResInfo($res_id){
         $result = $this->table('resource')
-            ->field('resource_id,name,type,ext,file_path,file_size,duration')
+            ->field('resource_id,output_id,name,type,ext,file_path,file_size,duration')
             ->where(array('resource_id'=>$res_id))
             ->find();
         return $result;

@@ -7,13 +7,15 @@
     <title>听课中心页面</title>
     <link rel="stylesheet" href="../Public/home/css/common.css"/>
     <link rel="stylesheet" href="../Public/home/css/listenCourse.css"/>
-    <link rel="stylesheet" href="../Public/home/css/videoplayer.css"/>
     <script src="../Public/home/js/jquery-1.11.3.js"></script>
     <script src="../Public/home/js/common.js"></script>
     <script src="../Public/home/js/html5shiv.min.js"></script>
     <script src="../Public/home/js/listenCourse.js"></script>
     <script src="../Public/home/js/jquery.SuperSlide.2.1.1.js"></script>
-    <script src="../Public/home/js/videoplayer.min.js"></script>
+    <script src="../Public/home/js/ckplayer/ckplayer.js"></script>
+    <script src="../Public/home/js/offlights.js"></script>
+
+
 
 </head>
 <body>
@@ -48,53 +50,48 @@
 <div id="play">
     <p>{$cse_info.end_time}</p>
 
+        <!-- video播放器部分-->
+        <div id="nav">
 
-    <!-- video播放器部分-->
-    <div id="nav">
-        <div class="mod-video-warp" id="mod_player" value="{$file_url}" time="{$watch_time}" res_id="{$res_info.resource_id}" >
+                <div id="a1"></div>
 
-        </div>
-        <div class="con_2">
-            <h4>
-                <span class="sa_1">目录</span>
-                <span class="sa_2">收起&gt;&gt;</span>
-            </h4>
-            <!--<div class="line_1">-->
-                <!--{$cse_info.name}-->
-            <!--</div>-->
-            <h5 style="display: block">
-                <ul class="msg">
-                    <li>
-                        {$cse_info.name}
+            <div class="con_2">
+                <h4>
+                    <span class="sa_1">目录</span>
+                    <span class="sa_2">收起&gt;&gt;</span>
+                </h4>
+                <!--<div class="line_1">-->
+                    <!--{$cse_info.name}-->
+                <!--</div>-->
+                <h5 style="display: block">
+                    <ul class="msg">
+                       <li>
+                            {$cse_info.name}
 
-                        <foreach name="cse_video" item="vo">
-                            <p class="p_1">
-                                <span class="lf"></span>
-                            <span class="rg">
+                            <foreach name="cse_video" item="vo">
+                                <p class="p_1">
+                                    <span class="lf"></span>
+                                <span class="rg">
                                 <a href="/course/listenCourse?resource_id={$vo.resource_id}">{$vo.res_name}</a>
                             </span>
-                            </p>
-                        </foreach>
+                                </p>
+                            </foreach>
 
-                    </li>
+                        </li>
 
-                </ul>
-            </h5>
-            <p class="bg">
-                <span></span>
-            </p>
-        </div>
-        <div class="shrink">
-            <span><img src="../Public/home/image/shrink_03.png">
-            </span>
-        </div>
-    </div>
-
+                    </ul>
+                </h5>
+                <p class="bg">
+                    <span></span>
+                </p>
+            </div>
+            <div class="shrink">
+                <span><img src="../Public/home/image/shrink_03.png">
+                    </span></div>
 
 </div>
 
-
-
+</div>
 <!--老师介绍,资料下载部分-->
 <div id="aside">
     <div class="teach">
@@ -155,19 +152,20 @@
     </div>
 </div>
 <footer id="footer"></footer>
-<!--&lt;!&ndash; 验证码部分&ndash;&gt;-->
-<!--<div id="check" style="display: none">-->
-<!--<h1>输入验证码</h1>-->
-<!--<div>-->
-<!--<input type="text" placeholder="请输入您的验证码"/>-->
-<!--<i></i>-->
-<!--</div>-->
-<!--<p>确定</p>-->
-<!--</div>-->
-<!--&lt;!&ndash; 验证码通过部分&ndash;&gt;-->
-<!--<div id="succ" style="display: none">-->
-<!--<h1>恭喜您验证成功</h1>-->
-<!--<p>马上进行课程播放...</p>-->
-<!--</div>-->
+<script type="text/javascript">
+
+    var flashvars={
+        f:'/course/showVideo?id=[$pat]',
+        a:'{$res_info.output_id}',
+        s:1,
+        c:0,
+        b:1,
+        g:0,//控制从N秒开始播放
+        loaded:'loadedHandler'
+    };
+    var params={bgcolor:'#FFF',allowFullScreen:true,allowScriptAccess:'always',wmode:'transparent'};
+    CKobject.embedSWF('../Public/home/js/ckplayer/ckplayer.swf','a1','ckplayer_a1','930','480',flashvars,params);
+
+</script>
 </body>
 </html>
