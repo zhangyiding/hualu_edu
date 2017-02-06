@@ -357,8 +357,9 @@ class CourseController extends BaseController
 
         if ($cse_info = $m_course->getCourseInfo($cse_id)) {
 
-            $end_time = round(($cse_info['end_time'] - time()) / 86400) . '天以后课程结束';
-            $cse_info['end_time'] = $end_time;
+            $end_time = round(($cse_info['end_time'] - time()) / 86400);
+
+            $cse_info['end_time'] = $end_time>0 ?$end_time.'天以后课程结束':'该课程已结束';
 
             $cse_info['tea_img'] = getImageBaseUrl($cse_info['tea_img']);
 
