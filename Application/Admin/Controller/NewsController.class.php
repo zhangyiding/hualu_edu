@@ -31,13 +31,8 @@ class NewsController extends BaseController {
         }
 
         $data = array();
-        $page_arr = array();
        if($count = $m_news->getNewsCount($where)){
-           //获取分页总数进一取整
-           $page_count = ceil($count/$this->limit);
-           for($i=1;$i<=$page_count;$i++){
-               $page_arr[] = $i;
-           }
+           $page = listPage($count,$this->limit);
 
            $data = $m_news->getNewsList($where,$this->offset,$this->limit);
            foreach($data as $k=>$v){
@@ -47,12 +42,12 @@ class NewsController extends BaseController {
                $subsite_info = $m_base->getSubsiteInfo($v['subsite_id']);
                $data[$k]['subsite_name'] = $subsite_info['name'];
            }
+           $this->assign('page_arr',$page);
        }else{
            $this->showMsg('暂无数据');
        }
 
         $this->assign('news_list',$data);
-        $this->assign('page_arr',$page_arr);
         $this->assign('news_type',$new_type);
 
         $this->display();

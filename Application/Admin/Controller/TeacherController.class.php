@@ -26,10 +26,7 @@ class TeacherController extends BaseController {
         $page_arr = array();
        if($count = $m_teacher->getTeacherCount($where)){
            //获取分页总数进一取整
-           $page_count = ceil($count/$this->limit);
-           for($i=1;$i<=$page_count;$i++){
-               $page_arr[] = $i;
-           }
+           $page_arr = listPage($count,$this->limit);
 
            $data = $m_teacher->getTeacherList($where,$this->offset,$this->limit);
 

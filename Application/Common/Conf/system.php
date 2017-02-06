@@ -14,6 +14,7 @@ $hualu_admin = array(
     'VIDEO_DIR'=>'Public/resource/video',
     //其他文件资源路径
     'FILE_DIR'=>'Public/resource/file',
+    'VAR_PAGE'=>'page',
 
 
     'news_type_admin'=>array(

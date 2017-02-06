@@ -14,8 +14,6 @@
     <link href="../../Public/admin/icon/font-awesome.css" rel="stylesheet">
       <link href="../../Public/admin/css/style.css" rel="stylesheet">
 
-      <!--分页加载的Js-->
-      <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
 
 
     <style type="text/css">
@@ -43,6 +41,9 @@
             height: 185px;
             width: 246px;
         }
+
+
+  
     </style>
 
   </head>
@@ -115,14 +116,8 @@
                                     </tr></tbody>
                                     </tbody>
                                     </table>
-                                <div>
-                                    <ul class="pagination" style="float:right">
-                                        <li><a href="#">&laquo;</a></li>
-                                        <volist  name="page_arr" id="vo">
-                                            <li><a href="/admin/news/?page=<?php echo $vo;?>">{$vo}</a></li>
-                                        </volist>
-                                        <li><a href="#">&raquo;</a></li>
-                                    </ul>
+                                <div class="pagination">
+                                    　　{$page_arr}
                                 </div>
                             </div>
                         </div>

@@ -14,7 +14,6 @@ class IndexController extends BaseController {
     {
         parent::__construct();
         $this->redis = new Redis();
-
         $this->service_cache_key_weather = C("CACHE_PREFIX") . "weather:";
 
     }

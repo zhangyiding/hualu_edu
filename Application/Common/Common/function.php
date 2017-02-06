@@ -1,6 +1,7 @@
 <?php
 use Common\Lib\Crypt3Des;
 use Common\Lib\Upimg;
+use Common\Lib\Page;
 /**
  * get方式获取接口数据
  * $url 请求地址
@@ -802,6 +803,24 @@ function getImageBaseUrl($img){
 
 }
 
+/**
+ * TODO 基础分页的相同代码封装，使前台的代码更少
+ * @param $m 模型，引用传递
+ * @param $where 查询条件
+ * @param int $pagesize 每页查询条数
+ * @return
+ */
+function listPage($count,$pagesize=10){
+    $p=new Page($count,$pagesize);
+
+    $p->url = $_SERVER['PHP_SELF'];
+
+
+    $p->lastSuffix=false;
+
+    return $p->show();
+}
+
 
 
 /**
@@ -887,42 +906,7 @@ function abslength($str)
     }
 }
 
-/**
- * 后台列表分页
- *
- * @param int $count
- * @param int $page
- * @param int $pagesize
- * @return array()
- */
-function listPage($count, $limit=10,$page=1){
 
-    if(empty($count)){
-        return false;
-    }
-    //获取分页总数进一取整
-    $page_arr = array();
-    $page_count = ceil($count/$limit);
-
-    for($i=1;$i<=$page_count;$i++){
-
-
-        $page_arr[] = $i;
-    }
-    if(!empty($page_arr)){
-        $data['list'] = $page_arr;
-        $data['count'] = $page_count;
-        $data['home'] = current($page_arr);
-        $data['end'] = end($page_arr);
-        $data['last'] = ($page-1 <= 0)? 1:$page-1;
-
-        $data['next'] = ($page+1 >= $data['end'])? $data['end']:$page+1;
-        return $data;
-    }
-
-
-
-}
 
 /**
  * @tudo 格式化秒数

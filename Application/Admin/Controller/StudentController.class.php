@@ -20,13 +20,10 @@ class StudentController extends BaseController {
             $where['name'] = array('like','%'.$name.'%');
         }
         $data = array();
-        $page_arr = array();
+
        if($count = $m_student->getStudentCount($where)){
            //获取分页总数进一取整
-//           $page_count = ceil($count/$this->limit);
-//           for($i=1;$i<=$page_count;$i++){
-//               $page_arr[] = $i;
-//           }
+           $page_arr = listPage($count,$this->limit);
 
            $data = $m_student->getStudentList($where,$this->offset,$this->limit);
 
@@ -39,10 +36,11 @@ class StudentController extends BaseController {
                $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
                $data[$k]['subsite_name'] = $subsite_info['name'];
            }
+           $this->assign('page_arr',$page_arr);
        }
 
         $this->assign('stu_list',$data);
-//        $this->assign('page_arr',$page_arr);
+
         $this->display();
     }
 

@@ -32,10 +32,7 @@ class RegisterController extends BaseController {
        if($count = $m_register->getRegisterCount($where)){
 
            //获取分页总数进一取整
-           $page_count = ceil($count/$this->limit);
-           for($i=1;$i<=$page_count;$i++){
-               $page_arr[] = $i;
-           }
+        $page_arr = listPage($count,$this->limit);
 
            $data = $m_register->getRegisterList($where,$this->offset,$this->limit);
 
