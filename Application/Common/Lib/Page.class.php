@@ -79,7 +79,7 @@ class Page {
         if($this->url){
 //            $depr       =   C('URL_PATHINFO_DEPR');
             $depr       =   '?page=';
-            $url        =   rtrim(U('/'.$this->url,'',false),$depr).$depr.'__PAGE__';
+            $url        =   U('/'.$this->url,'',false).$depr.'__PAGE__';
         }else{
             if($this->parameter && is_string($this->parameter)) {
                 parse_str($this->parameter,$parameter);
@@ -100,6 +100,7 @@ class Page {
         //上下翻页字符串
         $upRow          =   $this->nowPage-1;
         $downRow        =   $this->nowPage+1;
+
         if ($upRow>0){
             $upPage     =   "<a href='".str_replace('__PAGE__',$upRow,$url)."'>".$this->config['prev']."</a>";
         }else{

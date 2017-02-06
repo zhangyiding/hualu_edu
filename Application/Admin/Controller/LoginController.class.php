@@ -42,4 +42,9 @@ class LoginController extends Controller {
         showMsg('退出成功','index',1);
     }
 
+
+    /*
+     * 修改密码
+     */
+
 }

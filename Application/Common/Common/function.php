@@ -811,10 +811,9 @@ function getImageBaseUrl($img){
  * @return
  */
 function listPage($count,$pagesize=10){
+
     $p=new Page($count,$pagesize);
-
-    $p->url = $_SERVER['PHP_SELF'];
-
+    $p->url = '/';
 
     $p->lastSuffix=false;
 

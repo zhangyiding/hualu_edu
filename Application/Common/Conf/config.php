@@ -2,7 +2,7 @@
 //系统及固定配置
 return array(
     //路由配置
-    'URL_MODEL' => 2,
+    'URL_MODEL' =>2,
     'URL_CASE_INSENSITIVE' => true, //url支持大小写
     'VAR_MODULE' => 'ecm',     // 默认模块获取变量
     'VAR_CONTROLLER' => 'ecc',    // 默认控制器获取变量
@@ -47,11 +47,6 @@ return array(
 
     //缓存前缀
     'CACHE_PREFIX' => 'hualu:edu:',
-    //报错页面配置	
-//     'TMPL_ACTION_ERROR'     => 'Public:prompt', // 默认错误跳转对应的模板文件
-//     'TMPL_ACTION_SUCCESS'   => 'Public:prompt', // 默认成功跳转对应的模板文件
-//     'TMPL_TRACE_FILE'       => APP_PATH.'/Tuanche/View/Public/404.html',    // 页面Trace的模板文件
-//     'TMPL_EXCEPTION_FILE'   => APP_PATH.'/Tuanche/View/Public/404.html',// 异常页面的模板文件
 
     'LANG_SWITCH_ON' => true,   // 开启语言包功能
     'LANG_AUTO_DETECT' => false, // 自动侦测语言 开启多语言功能后有效
@@ -61,21 +56,5 @@ return array(
     'SMS_SEND_NUM_PER_HOUR' => '3',    //手机登录短信验证码连续最大发送次数
     'SMS_CAPTCHA_DEBUG_CODE' => '99998',  //万能验证码
     'SMS_CATCH_TIME' => '300',
-    'USER_TYPE' => array('commonUser' => 1, 'officialUser' => 2),
-    'CLIENT_NAME_ARR' => array('iphone' => 1, 'android' => 2, 'background' => 3),
-    'USER_DEFAULT_ONLIE_DAY' => '15',
-    'ETA_PASS_PREFIX' => 'etago_pwd',
-    'USER_LOGIN_ERROR_TIME' => '6',
-    'THIRD_LOGIN_STATE' => 'etago_third_log',
-    'WX_APP_ID' => 'wxcd482fbf8b35b750',
-    'WX_APP_SECRET' => '33050dce8e4e6dd0662bf4c26abeff43',
-    'FACEBOOK_APP_ID' => '307148626290551',
-    'FACEBOOK_APP_SECRET' => '848b44274a4274b965cb99e94a0bdeb5',
-    'DEFAULT_USER_FACE' => "head_default_200.png",
-    "SCAN_CODE_SIZE" => 4,
-    "ETAGO_LOG_PATH" => '/opt/web/log/etago/',
-    'ETASERVER_API_URL' => $_SERVER['ETASERVER_API_URL'],
-    'ETAGO_IMG_HOST' => 'https://etago-app-dev.s3.amazonaws.com',
-    'ETAGO_IMG_URL_ARR' => array('goods' => '/images/source/goods/', 'user' => '/images/source/user/'),
 
 );
