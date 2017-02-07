@@ -67,7 +67,7 @@ class CourseModel extends Model{
     public function getCourseType($course_id){
         $result = $this->table('course_type_map')
             ->alias('ctm')
-            ->field('ctm.course_id,ctm.ct_id,ct.name,cd.name as cd_name,ctm.cd_id')
+            ->field('ctm.course_id,ctm.ct_id,ct.name,cd.name as cd_name,ctm.cd_id,ctm.ctm_id')
             ->join('left join course_type as ct on ctm.ct_id = ct.ct_id')
             ->join('left join course_direction as cd on ctm.cd_id = cd.cd_id')
             ->where(array('ctm.course_id'=>$course_id,'ctm.status'=>'0'))

@@ -460,6 +460,7 @@ class CourseController extends BaseController {
     public function getCseType(){
         $m_course = new CourseModel();
         $cd_id = $this->params['cd_id'];
+
         if($result = $m_course->getCseType($cd_id)){
             $this->to_back($result);
         }else{

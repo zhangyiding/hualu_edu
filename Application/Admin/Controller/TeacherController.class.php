@@ -113,7 +113,7 @@ class TeacherController extends BaseController {
         $data['duties'] = $this->params['duties'];
 
         $data['subsite_id'] = $this->subsite_id;
-        $data['creator'] = $this->creator;
+
 
         $m_teacher = new \Admin\Model\TeacherModel();
 

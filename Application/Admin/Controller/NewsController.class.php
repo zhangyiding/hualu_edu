@@ -15,11 +15,9 @@ class NewsController extends BaseController {
         //当分站管理员访问时只能查看所属分站的新闻
         if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
-            $new_type = C('news_type_admin_sub');
         }else{
-            $new_type = C('news_type_admin');
         }
-
+        $new_type = C('news_type_admin');
         $where['status'] = 0;
 
         if($name = $this->params['title']){

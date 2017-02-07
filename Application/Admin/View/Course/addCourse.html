@@ -92,7 +92,14 @@
                              <div class="form_list"><label class="lable_title" >课程分类</label>
                                  <select name="cse_type" id="kind" style="width:150px; margin-left:15px;"></select>
                              </div>
+                             <div class="cse_type" value="{$data.ct_id}" >
+                                 <ul>
+                                     <foreach name="ct_list" item="vo">
+                                         <li><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </li>
+                                     </foreach>
+                                 </ul>
 
+                             </div>
                              <div class="form_list" id="is_recommend"><label class="lable_title">课程类型</label>
                                  <input type="radio" name="is_recommend" value="2">热门课程
                                  <input type="radio" name="is_recommend" value="1">推荐课程
@@ -338,7 +345,7 @@
             }
 
             $("#cse_dir").change(function(){
-                var val=$(this).attr("value");
+                var val=$(this).val();
                selDir(val);
             })
 
