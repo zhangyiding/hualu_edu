@@ -77,10 +77,19 @@ class CourseController extends BaseController {
                 $tea_info = $m_course->getTeacherInfo($v['teacher_id']);
                 $data[$k]['tea_name'] = $tea_info['name'];
 
-                //获取课程父级分类名称
-                $type = $m_course->getCourseType($v['course_id']);
-                $data[$k]['type_name'] = $type['name'];
-                $data[$k]['dir_name'] = $type['cd_name'];
+                //因旧数据课程类型存储在cse_type_map表中，而新的系统课程类型存储在course表中，所以优先使用course表中课程字段
+                if($v['ct_id']){
+                    $whe['ct.ct_id'] = $v['ct_id'];
+                    $whe['ct.status'] = 0;
+                    $type_info = $m_course->getCseTypeList($whe);
+                    $data[$k]['type_name'] = $type_info['0']['name'];
+                    $data[$k]['dir_name'] = $type_info['0']['cd_name'];
+                }else{
+                    $type = $m_course->getCourseType($v['course_id']);
+                    $data[$k]['type_name'] = $type['name'];
+                    $data[$k]['dir_name'] = $type['cd_name'];
+
+                }
 
                 //获取分站信息
                 $subsite_info = $m_base->getSubsiteInfo($v['subsite_id']);
@@ -469,7 +478,6 @@ class CourseController extends BaseController {
 
     }
 
-
     /*
      * 新增/修改课程动作
      */
@@ -490,7 +498,7 @@ class CourseController extends BaseController {
         $data['enroll_time'] = strtotime($this->params['enroll_time']);
         $data['end_time'] = strtotime($this->params['end_time']);
         $data['teacher_id'] = $this->params['teacher_id'];
-
+        $data['ct_id'] = $this->params['cse_type'];
 
         $cse_type = $this->params['cse_type'];
         $cse_dir = $this->params['cse_dir'];
@@ -508,9 +516,10 @@ class CourseController extends BaseController {
             $data['mtime'] = date('Y-m-d H:i:s',time());
 
            if($result = $m_cse->updateCourse($where,array_filter($data))){
-               if(!empty($cse_type) && !empty($cse_dir)){
-                   $m_cse->updateCseType($this->cse_id,$cse_type,$cse_dir);
-               }
+//               if(!empty($cse_type) && !empty($cse_dir)){
+//
+//                   $m_cse->updateCseType($this->cse_id,$cse_type,$cse_dir);
+//               }
 
                if(!empty($resource_id)){
                    $res_arr = array_filter(explode(',',$resource_id));

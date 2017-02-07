@@ -9,7 +9,7 @@ class CourseModel extends Model{
 	public function getCourseList($where,$offset,$limit){
 	    $result = $this
             ->field('course_id,subsite_id,is_recommend,name,default_score,
-                     level,price,is_pub,cover,intro,status,teacher_id,open_status,is_pub')
+                     level,price,is_pub,cover,intro,status,teacher_id,open_status,is_pub,ct_id')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
