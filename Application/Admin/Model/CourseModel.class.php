@@ -9,7 +9,7 @@ class CourseModel extends Model{
 	public function getCourseList($where,$offset,$limit){
 	    $result = $this
             ->field('course_id,subsite_id,is_recommend,name,default_score,
-                     level,price,is_pub,cover,intro,status,teacher_id,open_status,is_pub,ct_id')
+                     level,price,is_pub,cover,intro,status,teacher_id,open_status,is_pub,ct_id,duration')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
@@ -261,6 +261,22 @@ class CourseModel extends Model{
             return false;
         }
         return $cse_arr;
+    }
+
+
+    public function getResourceDur($res_id){
+        $result = $this->table('resource')
+            ->field('sum(duration)')
+            ->where(array('in',$res_id))
+            ->select();
+        return $result;
+    }
+
+    public function updateCseDur($map,$course_id){
+        $result = $this->table('course')
+            ->where(array('course_id'=>$course_id))
+            ->save($map);
+        return $result;
     }
 }
 ?>

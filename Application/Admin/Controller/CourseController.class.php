@@ -77,6 +77,9 @@ class CourseController extends BaseController {
                 $tea_info = $m_course->getTeacherInfo($v['teacher_id']);
                 $data[$k]['tea_name'] = $tea_info['name'];
 
+                //格式化课程总时长
+                $data[$k]['duration'] = changeTimeType($v['duration']);
+
                 //因旧数据课程类型存储在cse_type_map表中，而新的系统课程类型存储在course表中，所以优先使用course表中课程字段
                 if($v['ct_id']){
                     $whe['ct.ct_id'] = $v['ct_id'];
@@ -521,12 +524,12 @@ class CourseController extends BaseController {
 //                   $m_cse->updateCseType($this->cse_id,$cse_type,$cse_dir);
 //               }
 
-               if(!empty($resource_id)){
-                   $res_arr = array_filter(explode(',',$resource_id));
-                   foreach($res_arr as $v){
-                       $m_cse->updateCseRes($this->cse_id,$v);
-                   }
-               }
+//               if(!empty($resource_id)){
+//                   $res_arr = array_filter(explode(',',$resource_id));
+//                   foreach($res_arr as $v){
+//                       $m_cse->updateCseRes($this->cse_id,$v);
+//                   }
+//               }
                $this->to_back('10000');
 
            }else{
@@ -546,6 +549,12 @@ class CourseController extends BaseController {
 
                 if(!empty($resource_id)){
                     $res_arr = array_filter(explode(',',$resource_id));
+
+                    //获取视频总时长
+                    $cse_dur = $m_cse->getResourceDur($res_arr);
+                    $map['duration'] = $cse_dur;
+                    $m_cse->updateCseDur($map,$this->cse_id);
+
                     foreach($res_arr as $v){
                         $m_cse->addCseRes($this->cse_id,$v);
                     }
