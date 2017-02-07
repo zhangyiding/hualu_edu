@@ -18,45 +18,21 @@ class IndexController extends BaseController {
 
     }
 
-
-    private function format(){
-       $m_index = new IndexModel();
-        $data = $m_index->getCseRes();
-
-        foreach($data as $k=>$v){
-
-            $cse_list = $m_index->getCseByTrain($v['train_id']);
-            if(is_array($cse_list)){
-                foreach($cse_list as $key=>$val){
-                    $map['student_id'] = $v['student_id'];
-                    $map['course_id'] = $val['course_id'];
-                    $map['cse_status'] = $v['is_answer'];
-                    $map['ctime'] = $v['ctime'];
-
-                    switch($v['final_status']){
-                        case 0:
-                            $status = 1;
-                            break;
-                        case 1:
-                            $status = 2;
-                            break;
-                        case 2:
-                            $status = 0;
-                            break;
-                        default:
-                            $status = 0;
-                    }
-                    $map['status'] = $status;
-                    if($m_index->addCseRes($map)){
-                        print_r('1');
-                    }
-
-                }
-            }
-
-        }
-
-    }
+//
+//    public function format(){
+//       $m_index = new IndexModel();
+//        $result = $m_index->getCseRes();
+//
+//        $data = array();
+//        foreach($result as $k=>$v){
+//
+//$map['duration'] = round($v['dur']);
+//            $where['course_id'] = $v['course_id'];
+//            $m_index->addCseRes($map,$where);
+//
+//        }
+//
+//    }
 
 
 

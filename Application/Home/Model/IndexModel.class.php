@@ -6,24 +6,26 @@ class IndexModel extends Model{
 
     public function getCseRes(){
 
-        $result = $this->table('train_member')
-//            ->alias('tc')
-            ->field('train_id,student_id,final_status,is_answer,ctime')
-//            ->join('left join ware as w on cw.ware_id = w.ware_id')
+        $result = $this->table('course_resource')
+            ->alias('cr')
+            ->field('cr.course_id,sum(r.duration) as dur')
+            ->join('left join resource as r on cr.resource_id = r.resource_id')
 ////            ->group('w.teacher_id')
-                ->where(array('status'=>0,'ctime'=>array('gt','2016-01-01')))
-            ->order('ctime desc ')
-
-//            ->limit(100)
-            ->select();
+                ->where(array('r.status'=>array('NEQ','-1')))
+            ->group('cr.course_id')
+            ->order('cr.course_id desc')
+            ->select()
+        ;
         return $result? $result: false;
     }
 
 
 
-    public function addCseRes($map){
-        $result = $this->table('student_course_map')
-            ->add($map);
+    public function addCseRes($map,$where){
+        $result = $this->table('course')
+            ->where($where)
+            ->save($map);
+
         return $result? $result: false;
     }
 
