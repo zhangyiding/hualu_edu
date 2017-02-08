@@ -187,9 +187,14 @@ class CourseModel extends Model{
 
     public function getCseTypeById($ct_id){
 
+        if(!empty($ct_id)){
+            $where[] = $ct_id;
+        }
+
         $result = $this->table('course_type')
-            ->where(array('ct_id'=>$ct_id,'status'=>0))
+            ->where(array('ct_id'=>array('in',$ct_id),'status'=>0))
             ->select();
+
         return $result['0'];
     }
 
@@ -263,6 +268,22 @@ class CourseModel extends Model{
         return $cse_arr;
     }
 
+
+    public function getCseTypeByDir($cd_id){
+        $result = $this->table('course_type')
+            ->field('ct_id')
+            ->where(array('cd_id'=>$cd_id,'status'=>0))
+            ->select();
+        if($result){
+            foreach($result as $k=>$v){
+                $data[] = $v['ct_id'];
+            }
+            return $data;
+        }else{
+            return false;
+        }
+
+    }
 
     public function getResourceDur($res_id){
         $result = $this->table('resource')

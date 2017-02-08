@@ -6,14 +6,14 @@ class IndexModel extends Model{
 
     public function getCseRes(){
 
-        $result = $this->table('course_resource')
-            ->alias('cr')
-            ->field('cr.course_id,sum(r.duration) as dur')
-            ->join('left join resource as r on cr.resource_id = r.resource_id')
+        $result = $this->table('course_type_map')
+//            ->alias('cr')
+            ->field('course_id,ct_id')
+//            ->join('left join resource as r on cr.resource_id = r.resource_id')
 ////            ->group('w.teacher_id')
-                ->where(array('r.status'=>array('NEQ','-1')))
-            ->group('cr.course_id')
-            ->order('cr.course_id desc')
+                ->where(array('status'=>array('NEQ','-1'),'ct_id'=>array('NEQ','0')))
+//            ->group('cr.course_id')
+            ->order('course_id desc')
             ->select()
         ;
         return $result? $result: false;

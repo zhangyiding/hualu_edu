@@ -81,7 +81,7 @@
                              </div>
 
                              <div class="form_list"><label class="lable_title">课程方向</label>
-                                 <select id="cse_dir" name="cse_dir"  style="width:150px; margin-left:15px;">
+                                 <select id="cse_dir" name="cse_dir" value="{$data.cd_id}" style="width:150px; margin-left:15px;">
                                      <option value="">请选择方向</option>
                                      <foreach name="cse_dir" item="vo">
                                          <option value="{$vo.cd_id}" >{$vo.name}</option>
@@ -243,9 +243,6 @@
                 }
 
             });
-
-
-
             $('.ok').click(function(){
 
                 var total="";
@@ -283,13 +280,11 @@
 
             })
 
-
-
             //根据课程方向获取课程类型
-            function selDir(val){
+            function selDir(cd_id){
                 $("#kind").html("");
                 var request={
-                    cd_id :val
+                    cd_id :cd_id
                 };
                 $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
 
@@ -311,11 +306,11 @@
                 $("#is_pub input[value="+obj.is_pub+"]").attr("checked","true");
                 $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
                 $('#teacher_id option[value=' +obj.teacher_id + ']').attr('selected','true');
-                if(obj.cse_type){
-                    $("#cse_dir option[value="+obj.cse_type.cd_id+"]").attr("selected","true");
-                    selDir(obj.cse_type.cd_id)
+                $('#cse_dir option[value='+obj.cd_id + ']').attr('selected',true);
+                if(obj.cd_id){
+                    selDir(obj.cd_id)
                 }
-
+                $("#cse_type option[value="+obj.ct_id+"]").attr("selected","true");
                 if(obj.cse_video){
                     var ve_str="";
                     var ve_res_id="";

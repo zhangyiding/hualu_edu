@@ -33,32 +33,25 @@ class CourseController extends BaseController {
             $where['name'] = array('like','%'.$name.'%');
         }
 
-        if($is_recommend = $this->params['is_recommend']){
-            $where['is_recommend'] = $is_recommend;
-        }
+//        if($is_recommend = $this->params['is_recommend']){
+//            $where['is_recommend'] = $is_recommend;
+//        }
+//
+//        if($teacher_id = $this->params['teacher_id']){
+//            $where['teacher_id'] = $teacher_id;
+//        }
 
-        if($teacher_id = $this->params['teacher_id']){
-            $where['teacher_id'] = $teacher_id;
-        }
-
-        if($cse_type = $this->params['cse_type']){
-            $map['ct_id'] = $cse_type;
-            if(!$cse_list = $m_course->getCseListByType($map)){
-                $this->showMsg('暂无数据');
-            }
-        }
+//        if($cse_type = $this->params['cse_type']){
+//            $map['ct_id'] = $cse_type;
+//            if(!$cse_list = $m_course->getCseListByType($map)){
+//                $this->showMsg('暂无数据');
+//            }
+//        }
 
         if($cse_dir = $this->params['cse_dir']){
-            $map['cd_id'] = $cse_dir;
-            if(!$cse_list = $m_course->getCseListByType($map)){
-                $this->showMsg('暂无数据');
-            }
+           $ct_list = $m_course->getCseTypeByDir($cse_dir);
+            $where['ct_id'] = array('in',$ct_list);
         }
-
-        if(!empty($cse_list)){
-            $where['course_id'] = array('in',array_unique($cse_list));
-        }
-
 
 
         $where['status'] = 0;
@@ -66,6 +59,7 @@ class CourseController extends BaseController {
         $data = array();
         $page_arr = array();
         if($count = $m_course->getCourseCount($where)){
+
             //获取分页总数进一取整
             $page_arr = listPage($count,$this->limit);
 
@@ -303,8 +297,8 @@ class CourseController extends BaseController {
             $data['enroll_time'] = date('Y-m-d',$data['enroll_time']);
             $data['end_time'] = date('Y-m-d',$data['end_time']);
 
-            if($cse_type = $m_course->getCourseType($data['course_id'])){
-                $data['cse_type'] = $cse_type;
+            if($cse_dir = $m_course->getCseTypeById($data['ct_id'])){
+                $data['cd_id'] = $cse_dir['cd_id'];
             }
 
             $where['r.type'] = C('COURSE_VE');

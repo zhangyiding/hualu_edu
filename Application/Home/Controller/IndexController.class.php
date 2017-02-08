@@ -18,19 +18,40 @@ class IndexController extends BaseController {
 
     }
 
-//
+    /*
+     * 调试代码
+     */
+
 //    public function format(){
 //       $m_index = new IndexModel();
 //        $result = $m_index->getCseRes();
 //
-//        $data = array();
-//        foreach($result as $k=>$v){
 //
-//$map['duration'] = round($v['dur']);
-//            $where['course_id'] = $v['course_id'];
-//            $m_index->addCseRes($map,$where);
+//        foreach($result as $k=>$v){
+//            $data[] = $v['course_id'];
+//
 //
 //        }
+//
+//        $da = array_unique($data);
+//        foreach($da as $val){
+//
+//            foreach($result as $k=>$v){
+//                if($v['course_id'] == $val){
+//                    $a[$val][] = $v['ct_id'];
+//                }
+//            }
+//        }
+//
+//        foreach($a as $k=>$v){
+//            $a[$k] = implode(',',$v);
+//        }
+//        foreach ($a as $k=>$v) {
+//            $map['ct_id'] = $v;
+//            $where['course_id'] = $k;
+//            $m_index->addCseRes($map,$where);
+//     }
+//
 //
 //    }
 
