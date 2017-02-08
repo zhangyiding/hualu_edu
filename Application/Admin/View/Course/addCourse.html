@@ -32,6 +32,17 @@
               height: 150px;
           }
 
+        .cse_type{
+            margin-left: 96px;
+            margin-bottom: 10px;
+            margin-top: -20px;
+            width: 400px;
+            min-height: 100px;
+            border-style: ridge;
+            height: 150px;
+            overflow: auto;
+        }
+
       </style>
   </head>
 
@@ -90,13 +101,13 @@
                                  </select>
                              </div>
                              <div class="form_list"><label class="lable_title" >课程分类</label>
-                                 <select name="cse_type" id="kind" style="width:150px; margin-left:15px;"></select>
+
                              </div>
-                             <div class="cse_type" value="{$data.ct_id}" >
+                             <div id="cse_type" class="cse_type" value="{$data.ct_id}" >
                                  <ul>
-                                     <foreach name="ct_list" item="vo">
-                                         <li><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </li>
-                                     </foreach>
+                                     <!--<foreach name="ct_list" item="vo">-->
+                                         <!--<li><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </li>-->
+                                     <!--</foreach>-->
                                  </ul>
 
                              </div>
@@ -282,21 +293,36 @@
 
             //根据课程方向获取课程类型
             function selDir(cd_id){
-                $("#kind").html("");
+                $("#cse_type ul").html("");
                 var request={
                     cd_id :cd_id
                 };
-                $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
 
+                $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
                     $.each(response.result,function(i,n){
-                        var option=$("<option value="+ n.ct_id +">"+n.name+"</option>");
-                        $("#kind").append(option);
+                        var data=$("<li><input name=ct_id[] type=checkbox value="+ n.ct_id +">"+n.name+"</li>");
+                        $("#cse_type ul").append(data);
                     });
 
                 })
+
+                var ct_id = $('#cse_type').attr('value');
+                if(ct_id.indexOf(',') > 0){
+                        var ct_list = ct_id.split(',');
+                        $.each(ct_list,function(i,n){
+                            $('.cse_type input[value='+ n+']').prop('checked','true');
+                        })
+
+                }else {
+                        $('.cse_type input[value='+ ct_id+']').prop('checked','true');
+                }
+
             }
 
 
+            if($('#cse_dir').attr('value')){
+                selDir($('#cse_dir').attr('value'));
+            }
             //当为修改内容时根据数据渲染数据
             var data = '<?php echo $data_json;?>';
 
@@ -307,10 +333,12 @@
                 $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
                 $('#teacher_id option[value=' +obj.teacher_id + ']').attr('selected','true');
                 $('#cse_dir option[value='+obj.cd_id + ']').attr('selected',true);
-                if(obj.cd_id){
-                    selDir(obj.cd_id)
-                }
-                $("#cse_type option[value="+obj.ct_id+"]").attr("selected","true");
+//                if(obj.cd_id){
+//                    selDir(obj.cd_id)
+//                }
+
+
+//                $("#cse_type option[value="+obj.ct_id+"]").attr("selected","true");
                 if(obj.cse_video){
                     var ve_str="";
                     var ve_res_id="";
@@ -335,6 +363,7 @@
                     $("#study_file").val(fi_str);
                     $("#study_file").attr("course_file",fi_res_id);
                 }
+
 
 
             }
@@ -371,6 +400,7 @@
                 }
 
                 $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
+                    console.log(response);
                     if(response.code == 10000){
                         alert('操作成功');
                         location.href = BASE_URL+'/admin/course';

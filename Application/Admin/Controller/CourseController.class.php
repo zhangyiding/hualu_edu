@@ -495,10 +495,10 @@ class CourseController extends BaseController {
         $data['enroll_time'] = strtotime($this->params['enroll_time']);
         $data['end_time'] = strtotime($this->params['end_time']);
         $data['teacher_id'] = $this->params['teacher_id'];
-        $data['ct_id'] = $this->params['cse_type'];
-
-        $cse_type = $this->params['cse_type'];
-        $cse_dir = $this->params['cse_dir'];
+        $ct_id = $this->params['ct_id'];
+        if($ct_id && is_array($ct_id)){
+            $data['ct_id'] = implode(',',$ct_id);
+        }
 
         $resource_id = $this->params['resource_id'];
 
@@ -536,10 +536,10 @@ class CourseController extends BaseController {
             $data['ctime'] = date('Y-m-d H:i:s',time());
 
             if($this->cse_id = $m_cse->addCourse($data)) {
-
-                if(!empty($cse_type) && !empty($cse_dir)){
-                    $m_cse->addCseType($this->cse_id,$cse_type,$cse_dir);
-                }
+//
+//                if(!empty($cse_type) && !empty($cse_dir)){
+//                    $m_cse->addCseType($this->cse_id,$cse_type,$cse_dir);
+//                }
 
                 if(!empty($resource_id)){
                     $res_arr = array_filter(explode(',',$resource_id));
