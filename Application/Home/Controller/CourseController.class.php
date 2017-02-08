@@ -44,26 +44,17 @@ class CourseController extends BaseController
         $where['status'] = 0;
         $m_course = new CourseModel();
 
-        $ct_list = array();
-        if (!empty($course_type)) {
-            $ct_list = explode(',', $course_type);
-        }else{
-            if (!empty($course_dir)) {
-                $cse_type = $m_course->getCseTypeByDir($course_dir);
-                foreach ($cse_type as $k => $v) {
-                    $ct_list[] = $v['ct_id'];
-                }
 
-            }
+        if($course_dir){
+            $ct_list = $m_course->getCseTypeByDir($course_dir);
+            $where['ct_id'] = array('in',$ct_list);
         }
 
-        if (!empty($ct_list)) {
-            if ($cse_d_id = $m_course->getCseByType($ct_list)) {
-                $where['course_id'] = array('in', $cse_d_id);
-            } else {
-                $this->showMsg('暂无相关课程');
-            }
+        if($course_type){
+            $where['ct_id'] = array('in',$course_type);
         }
+
+
 
         //判断公开、内训、定向
         if (!empty($is_pub)) {
@@ -169,10 +160,7 @@ class CourseController extends BaseController
         $m_course = new CourseModel();
 
         if (!empty($course_type)) {
-            $ct_arr = explode(',', $course_type);
-            if ($cse_id = $m_course->getCseByType($ct_arr)) {
-                $where['course_id'] = array('in', $cse_id);
-            }
+            $where['ct_id'] = array('in',$course_type);
         }
 
 

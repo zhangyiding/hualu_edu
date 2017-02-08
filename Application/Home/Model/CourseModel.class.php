@@ -110,18 +110,21 @@ class CourseModel extends Model{
     }
 
 
-
-    public function getCseTypeByDir($course_dir){
+    public function getCseTypeByDir($cd_id){
         $result = $this->table('course_type')
-            ->field('ct_id,name,cd_id,order')
-            ->where(array('cd_id'=>$course_dir))
-            //因Order与mysql字段重复所以使用改格式
-            ->order(array('order','order'=>'desc'))
-            ->limit(0,10)
+            ->field('ct_id')
+            ->where(array('cd_id'=>$cd_id,'status'=>0))
             ->select();
-        return $result;
-    }
+        if($result){
+            foreach($result as $k=>$v){
+                $data[] = $v['ct_id'];
+            }
+            return $data;
+        }else{
+            return false;
+        }
 
+    }
 
 
 
