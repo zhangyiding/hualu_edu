@@ -19,6 +19,7 @@ class BaseController extends Controller
     protected $ip='';
 
     protected $subsite_id = '';//分站id
+    protected $subsite_info = array();//分站信息
     protected $subsite_name = '';//分站名称
     protected $creator = '';//分站管理员id
     protected $subsite_host = '';//分站域名
@@ -50,9 +51,9 @@ class BaseController extends Controller
         preg_match("#(.*?)\.#", $_SERVER['SERVER_NAME'],$match);
         $this->subsite_host = $match[1];
 
-        if($subsite_info = $m_base->getSubsiteId($this->subsite_host)){
-        $this->subsite_id = $subsite_info['subsite_id'];
-        $this->subsite_name = $subsite_info['name'];
+        if($this->subsite_info = $m_base->getSubsiteId($this->subsite_host)){
+        $this->subsite_id = $this->subsite_info['subsite_id'];
+        $this->subsite_name = $this->subsite_info['name'];
         }
 
 //        $this->subsite_id = '130301704';

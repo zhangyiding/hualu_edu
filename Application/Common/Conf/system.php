@@ -4,7 +4,7 @@ $hualu_admin = array(
     'ADMIN_USER'=>1,//主站管理员
     'SUBSITE_USER'=>2,//分站管理员
 
-    'RESOURCE_URL'=>'http://test.tcsasac.com',
+    'RESOURCE_URL'=>'http://'.$_SERVER['SERVER_NAME'],
     'TCS_URL'=>'http://www.tcsasac.com',
     'TCS_VIDEO'=>'http://video.tcsasac.com',
 

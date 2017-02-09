@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>中国华录集团有限公司首页</title>
+
+</head>
+<body>
+<!--用户登录弹出层部分-->
+
+<nav id="nav">
+    <ul>
+        <li class="hualu">
+            <img src="{$nav_img}" alt=""/>
+        </li>
+    </ul>
+</nav>
+
+<script>
+    function create_code(){
+        document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
+    }
+</script>
+</body>
+</html>

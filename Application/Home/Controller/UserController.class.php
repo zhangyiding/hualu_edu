@@ -59,7 +59,6 @@ class UserController extends BaseController {
     private function doLogin()
     {
 
-
         if (strripos($this->username, '@') != false) {
             return $this->loginByEmail();
         } elseif (intval($this->username) > 0 && strlen($this->username) > 10) {
@@ -190,11 +189,14 @@ class UserController extends BaseController {
     {
         $user_info = $this->user_info;
 
+
         session_start();
+
         session('subsite_id', $user_info['subsite_id']);
         session('student_id', $user_info['student_id']);
         session('name', $user_info['name']);
         session('user_info', $user_info);
+
     }
 
 

@@ -2,7 +2,7 @@
  * Created by Administrator on 2016/11/25 0025.
  */
 $(function(){
-    window.BASE_URL = '//test.tcsasac.com';
+    window.BASE_URL = '//'+document.domain;
 
     $('#content').css('margin-left', '0px');
 

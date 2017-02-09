@@ -104,6 +104,7 @@ class IndexController extends BaseController {
 
             $ct_data = $m_course->getCourseType();
             $this->assign('ct_data',$ct_data);
+            $this->assign('title',$this->subsite_name);
 
 
         }
@@ -147,6 +148,16 @@ class IndexController extends BaseController {
     }
 
 
+    /**
+     * @todo 加载页面nav
+     */
+
+    public function nav(){
+        $nav_img = getImageBaseUrl($this->subsite_info['subsite_banner']);
+        $this->assign('nav_img',$nav_img);
+
+        $this->display();
+    }
 
 
 

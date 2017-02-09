@@ -20,6 +20,8 @@ class LoginController extends Controller {
             showMsg('登录失败');
         }
 
+        session(null);
+
         session_start();
         session(array('name'=>'session_id','expire'=>3600));
         session('subsite_id',$user_info['subsite_id']);
