@@ -243,9 +243,10 @@ class CourseModel extends Model{
     public function getCseTypeList($where,$offset,$limit){
         $result = $this->table('course_type')
             ->alias('ct')
-            ->field('ct.ct_id,ct.name,ct.ctime,cd.cd_id,cd.name as cd_name')
+            ->field('ct.ct_id,ct.order,ct.name,ct.ctime,cd.cd_id,cd.name as cd_name')
             ->join('left join course_direction as cd on ct.cd_id = cd.cd_id')
             ->where($where)
+            ->order('ct.order desc')
             ->limit($offset,$limit)
             ->select();
         return $result;

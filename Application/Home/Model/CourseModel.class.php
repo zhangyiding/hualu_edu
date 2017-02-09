@@ -36,10 +36,12 @@ class CourseModel extends Model{
 
     public function getCourseType(){
         $result = $this->table('course_type')
-            ->where(array('status'=>'0'))
+            ->alias('ct')
+            ->where(array('ct.status'=>'0'))
+            ->order('ct.order desc')
             ->limit(0,8)
-            ->order('ctime desc')
             ->select();
+
         if($result !== false){
             foreach ($result as $k=>$v){
                 $result[$k]['name'] = cutStr($v['name'],6);
@@ -131,7 +133,7 @@ class CourseModel extends Model{
     public function getCourseInfo($course_id){
 
         $result = $this->alias('c')
-            ->field('c.course_id,c.subsite_id,c.is_recommend,c.enroll_time,c.end_time,c.open_status,
+            ->field('c.course_id,c.subsite_id,c.ct_id,c.is_recommend,c.enroll_time,c.end_time,c.open_status,
                      c.name,c.default_score,c.price,c.is_pub,c.cover,c.intro,c.remark,c.teacher_id,c.ctime,
                      t.name as tea_name,t.intro as tea_intro,t.avatar as tea_img')
             ->join('left join teacher as t on c.teacher_id = t.teacher_id')
@@ -146,15 +148,13 @@ class CourseModel extends Model{
 
 
 
-    public function getCseTypeInfo($course_id){
+    public function getCseTypeInfo($ct_id){
 
-        $result = $this->table('course_type_map')
-            ->alias('ctm')
-            ->field('ctm.cd_id,ctm.ct_id,ct.name as ct_name')
-            ->join('left join course_type as ct on ctm.ct_id = ct.ct_id')
-            ->where(array('ctm.course_id'=>$course_id))
-            //因Order与mysql字段重复所以使用改格式
-            ->limit(0,1)
+        $where['ct_id'] = (strpos($ct_id,','))? array('in',explode(',',$ct_id)) : $ct_id;
+        $where['status'] = 0;
+
+        $result = $this->table('course_type')
+            ->where($where)
             ->find();
         return $result;
     }
@@ -162,15 +162,11 @@ class CourseModel extends Model{
 
     public function getCseListByType($course_type,$limit=8){
 
-        $result = $this->table('course_type_map')
-            ->alias('ctm')
-            ->field('ctm.ct_id,c.name,c.cover,c.is_pub,c.course_id,c.open_status')
-            ->join('left join course as c on ctm.course_id= c.course_id')
+        $result = $this->table('course')
             ->where(array(
-                'ctm.ct_id'=>$course_type,
-                'c.subsite_id'=>0,
-                'c.status'=>0))
-            ->order('c.ctime desc')
+                'ct_id'=>array('in',$course_type),
+                'status'=>0))
+            ->order('ctime desc')
             ->limit(0,$limit)
             ->select();
         return $result;

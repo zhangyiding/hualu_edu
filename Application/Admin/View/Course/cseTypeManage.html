@@ -70,6 +70,7 @@
                                             <th width="4%">类型Id</th>
                                             <th width="20%">课程类型名称</th>
                                             <th width="16%">所属方向</th>
+                                            <th width="16%">优先值</th>
                                             <th width="17%">创建时间</th>
                                         </tr>
                                     </thead>
@@ -79,6 +80,7 @@
                                         <td>{$vo.ct_id}</td>
                                         <td>{$vo.name}</td>
                                         <td>{$vo.cd_name}</td>
+                                        <td>{$vo.order}</td>
                                         <td>{$vo.ctime}</td>
                                         <td>
                                             <a class="btn" href="/admin/course/addCseType?ct_id={$vo.ct_id}" title="编辑"><i >编辑</i></a>

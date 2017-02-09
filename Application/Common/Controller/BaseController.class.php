@@ -67,12 +67,9 @@ class BaseController extends Controller
         $this->limit = $pagesize ? $pagesize : $this->limit;
         $this->offset = ($this->page - 1) * $this->limit;
 
-        if(session('?subsite_id')){
-            $this->subsite_id = session('subsite_id');
-            $this->creator = session('su_id');
-            $this->admin_name = session('username');
-            $this->su_type = session('su_type');
-        }
+
+
+
 
         $this->params = $_REQUEST;
 
@@ -102,6 +99,10 @@ class BaseController extends Controller
                 showMsg('尚未登录','/admin/login/index',1);
                 return false;
             } else {
+                    $this->subsite_id = session('subsite_id');
+                    $this->creator = session('su_id');
+                    $this->admin_name = session('username');
+                    $this->su_type = session('su_type');
                 return true;
             }
         }else{

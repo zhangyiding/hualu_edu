@@ -575,6 +575,7 @@ class CourseController extends BaseController {
 
         $data['name'] = $this->params['name'];
         $data['cd_id'] = $this->params['cd_id'];
+        $data['order'] = $this->params['order'];
 //        $data['order'] = $this->params['order'];
 
         $m_cse = new \Admin\Model\CourseModel();

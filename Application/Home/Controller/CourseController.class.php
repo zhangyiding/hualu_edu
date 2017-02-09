@@ -199,8 +199,9 @@ class CourseController extends BaseController
         if ($course_info = $m_course->getCourseInfo($course_id)) {
 
             //根据课程id获取分类信息
-            if ($ct_info = $m_course->getCseTypeInfo($course_id)) {
-                $course_info['ct_name'] = $ct_info['ct_name'];
+            if ($ct_info = $m_course->getCseTypeInfo($course_info['ct_id'])) {
+
+                $course_info['ct_name'] = $ct_info['name'];
                 $ct_id = $ct_info['ct_id'];
 
                 $cse_list = $m_course->getCseListByType($ct_id);
@@ -208,6 +209,11 @@ class CourseController extends BaseController
                 $this->assign('cse_list', $cse_list);
             }
 
+            if($course_info['is_pub']){
+                $course_info['is_pub'] = C('cse_pub')[$course_info['is_pub']];
+            }else{
+                $course_info['is_pub'] = '公开';
+            }
 
             $course_info['enroll_time'] = formatTime($course_info['enroll_time']);
             $course_info['end_time'] = formatTime($course_info['end_time']);
@@ -252,8 +258,10 @@ class CourseController extends BaseController
 
                 $course_info['sum_dur'] = changeTimeType(array_sum($cse_time));
 
-                $cse_pub_type = C('cse_pub');
+
             }
+
+
             $this->assign('cse_info', $course_info);
             $this->assign('cse_pub', $cse_pub_type);
             $this->assign('cse_video', $cse_video);
@@ -379,8 +387,10 @@ class CourseController extends BaseController
             }
 
             //根据课程id获取分类信息
-            if ($ct_info = $m_course->getCseTypeInfo($cse_id)) {
+            if ($ct_info = $m_course->getCseTypeInfo($cse_info['ct_id'])) {
+
                if($cse_list = $m_course->getCseListByType($ct_info['ct_id'])){
+
                    $cse_list = $this->formatCourse($cse_list);
                }
 
