@@ -16,6 +16,9 @@ $hualu_admin = array(
     'FILE_DIR'=>'Public/resource/file',
     'VAR_PAGE'=>'page',
 
+    //主站默认id
+    'MASTER_ID'=>1,
+
 
     'news_type_admin'=>array(
         '1'=>'头条新闻',

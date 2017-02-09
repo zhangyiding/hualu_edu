@@ -169,6 +169,10 @@ div.con_2 div.line_1{
 div.con_2 ul.msg{
     text-align: left;
     cursor: pointer;
+    margin-top: 10px;
+    width: 350px;
+    height: 400px;
+    overflow: auto;
 }
 div.con_2 ul.msg li{
     margin-left:20px;
@@ -199,9 +203,7 @@ div.con_2 span.rg{
 div.con_2 ul.msg li p{
 
 }
-div.con_2 ul.msg{
-    margin-top: 10px;
-}
+
 div.con_2 ul.msg li p span.rg a{
     color:#E1E1E1;
     float: left;

@@ -86,7 +86,7 @@ div.title{
 }
 
 div.title img{
-    float: left;
+    /*float: left;*/
 }
 div.title h1{
     margin-top: 35px;
@@ -106,7 +106,7 @@ div.title ul.inform li:first-child{
 /*�ֲ�banner����*/
 div.banner{
     text-align: left;
-    margin-top: 40px;
+    margin-top: 0px;
     width: 1000px;
     position: relative;
     height: 368px;

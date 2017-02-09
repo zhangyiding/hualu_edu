@@ -116,6 +116,14 @@
                                  <input type="radio" name="is_recommend" value="1">推荐课程
                              </div>
 
+                             <div class="form_list"><label class="lable_title">所属分站</label>
+                                 <select id="subsite_id" name="subsite_id" value="{$data.subsite_id}" style="width:150px; margin-left:15px;">
+                                     <option value="">请选择所属分站</option>
+                                     <volist name='sub_list' id='vo' key="k">
+                                         <option value="{$vo.subsite_id}" >{$vo.name}</option>
+                                     </volist>
+                                 </select>
+                             </div>
                              <div class="form_list"><label class="lable_title">授课老师</label>
                                  <select id="teacher_id" name="teacher_id"  style="width:150px; margin-left:15px;">
                                      <option value="">请选择老师</option>
@@ -304,18 +312,19 @@
                         $("#cse_type ul").append(data);
                     });
 
-                })
-
-                var ct_id = $('#cse_type').attr('value');
-                if(ct_id.indexOf(',') > 0){
+                    var ct_id = $('#cse_type').attr('value');
+                    if(ct_id.indexOf(',') > 0){
                         var ct_list = ct_id.split(',');
                         $.each(ct_list,function(i,n){
                             $('.cse_type input[value='+ n+']').prop('checked','true');
                         })
 
-                }else {
+                    }else {
                         $('.cse_type input[value='+ ct_id+']').prop('checked','true');
-                }
+                    }
+                })
+
+
 
             }
 
@@ -333,6 +342,7 @@
                 $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
                 $('#teacher_id option[value=' +obj.teacher_id + ']').attr('selected','true');
                 $('#cse_dir option[value='+obj.cd_id + ']').attr('selected',true);
+                $('#subsite_id option[value='+obj.subsite_id + ']').attr('selected',true);
 //                if(obj.cd_id){
 //                    selDir(obj.cd_id)
 //                }

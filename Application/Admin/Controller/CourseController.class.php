@@ -2,6 +2,7 @@
 namespace Admin\Controller;
 
 use Admin\Model\CourseModel;
+use Common\Model\BaseModel;
 use Think\Controller;
 use Common\Lib\UpVideo;
 use Common\Controller\BaseController;
@@ -322,9 +323,21 @@ class CourseController extends BaseController {
         }
 
         //只显示未导入的课件列表
-        $map['type'] = C('COURSE_VE');
+//        $map['type'] = C('COURSE_VE');
 
-        if($video = $m_course->getAllResource($map)){
+        //当分站管理员访问时只能查看所属分站的新闻
+        $m_base = new BaseModel();
+        if($this->su_type == C('SUBSITE_USER')){
+            $sub_info = $m_base->getSubsiteInfo($this->subsite_id);
+            $sub_list = array($sub_info);
+        }else{
+            $sub_list = $m_base->getSubsiteList();
+        }
+
+        $this->assign('sub_list',$sub_list);
+
+        if($video = $m_course->getAllResource()){
+
             $this->assign('video',$video);
         }
         $map['type'] =  C('COURSE_FILE');
@@ -502,7 +515,7 @@ class CourseController extends BaseController {
 
         $resource_id = $this->params['resource_id'];
 
-        $data['subsite_id'] = $this->subsite_id;
+        $data['subsite_id'] = $this->params['subsite_id'];
         $data['su_id'] = $this->creator;
 
         $m_cse = new \Admin\Model\CourseModel();

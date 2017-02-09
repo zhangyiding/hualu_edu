@@ -36,7 +36,7 @@ class CourseController extends BaseController
         $course_dir = $this->params['course_dir'];
 
         if ($is_master == 1) {
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] =  C('MASTER_ID');
         } elseif ($is_master == 2) {
             $where['subsite_id'] = $this->subsite_id;
         }
@@ -81,7 +81,7 @@ class CourseController extends BaseController
      */
     public function index()
     {
-        $where['subsite_id'] = 0;
+        $where['subsite_id'] =  C('MASTER_ID');
         $where['status'] = 0;
         $m_course = new CourseModel();
 
@@ -172,7 +172,7 @@ class CourseController extends BaseController
         if ($data_sub = $m_course->getCourseList($where, 0, 8)) {
             $data = $this->formatCourse($data_sub);
         } else {
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] = C('MASTER_ID');
             if ($data_mas = $m_course->getCourseList($where, 0, 8)) {
                 $data = $this->formatCourse($data_mas);
             } else {
@@ -219,7 +219,7 @@ class CourseController extends BaseController
             $course_info['end_time'] = formatTime($course_info['end_time']);
             $course_info['tea_img'] = getImageBaseUrl($course_info['tea_img']);
 
-            if ($course_info['subsite_id'] !== 0) {
+            if ($course_info['subsite_id'] !==  C('MASTER_ID')) {
                 $sub_info = $m_base->getSubsiteInfo($course_info['subsite_id']);
                 $course_info['subsite_name'] = $sub_info['name'];
             } else {
@@ -241,11 +241,11 @@ class CourseController extends BaseController
                         $c_res[$k]['duration'] = changeTimeType($v['duration']);
                     }
 
-                    if (!empty($v['file_path'])) {
-                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
-                    } else {
-                        continue;
-                    }
+//                    if (!empty($v['file_path'])) {
+//                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
+//                    } else {
+//                        continue;
+//                    }
 
                     $c_res[$k]['file_cover'] = getFileCoverByExt($v['ext']);
 
@@ -263,7 +263,6 @@ class CourseController extends BaseController
 
 
             $this->assign('cse_info', $course_info);
-            $this->assign('cse_pub', $cse_pub_type);
             $this->assign('cse_video', $cse_video);
             $this->assign('cse_file', $cse_file);
             $this->display();
@@ -334,9 +333,10 @@ class CourseController extends BaseController
         }
 
         $res_id = $this->params['resource_id'];
+        $cse_id = $this->params['course_id'];
 
         $m_course = new CourseModel();
-        $cse_id = $m_course->getCseId($res_id);
+
 
         //获取学员已观看课程的时间
         if(!$watch_time = $m_course->getWatchTime($user_info['student_id'],$res_id)){

@@ -9,7 +9,7 @@ class NewsController extends BaseController {
 
     public function index(){
         $m_news = new \Home\Model\NewsModel();
-        $where['subsite_id'] = 0;
+        $where['subsite_id'] = C('MASTER_ID');
         $where['status'] = 0;
         $data = array();
 
@@ -41,9 +41,9 @@ class NewsController extends BaseController {
         $type = $this->params['news_type'];
         // 根据类型判断显示主站资讯或者分站
         if(!empty($type)){
-            $where['subsite_id'] = ($type == C('MASTER_NEWS'))? 0: $this->subsite_id;
+            $where['subsite_id'] = ($type == C('MASTER_NEWS'))? C('MASTER_ID'): $this->subsite_id;
         }else{
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] =  C('MASTER_ID');
         }
         if($title = $this->params['title']){
             $where['title'] = array('like','%'.$title.'%');
@@ -59,7 +59,7 @@ class NewsController extends BaseController {
                 $result[$k]['cover'] = getImageBaseUrl($v['cover']);
                 $result[$k]['ctime'] = date('Y-m-d',strtotime($v['ctime']));
 
-                if($v['subsite_id'] == 0){
+                if($v['subsite_id'] ==  C('MASTER_ID')){
                     $master_news[] = $result[$k];
                 }
             }

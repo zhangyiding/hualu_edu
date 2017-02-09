@@ -42,101 +42,102 @@
         </li>
     </ul>
     <div class="title">
-        <img src="../Public/home/image/toutiao.png" alt=""/>
-        <a href="/news/newsInfo?news_id={$home_page.news_id}"><h1>{$home_page.title}</h1></a>
-        <ul class="inform">
-            <foreach name="little_home" item="vo">
-               <a href="/news/newsInfo?news_id={$vo.news_id}"><li>[{$vo.title}]</li></a>
-            </foreach>
-        </ul>
-    </div>
+
+        <!--<a href="/news/newsInfo?news_id={$home_page.news_id}"><h1>{$home_page.title}</h1></a>-->
+        <a href="/course/courseInfo?course_id=161118400002829"><img src="../Public/home/image/lzqh_banner.jpg"></a>
+       <ul class="inform">
+           <foreach name="little_home" item="vo">
+              <a href="/news/newsInfo?news_id={$vo.news_id}"><li>[{$vo.title}]</li></a>
+           </foreach>
+       </ul>
+   </div>
 </div>
 <div class="banner">
-    <ul class="imgList">
-        <foreach name="banner_news" item="vo">
-            <li><a href="/news/newsInfo?news_id={$vo.news_id}"><img src="{$vo.cover}" height="368" width="660" /></a></li>
-        </foreach>
+   <ul class="imgList">
+       <foreach name="banner_news" item="vo">
+           <li><a href="/news/newsInfo?news_id={$vo.news_id}"><img src="{$vo.cover}" height="368" width="660" /></a></li>
+       </foreach>
 
 
-    </ul>
-    <ol class="btnList">
-        <li class="current"></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-    </ol>
-    <div class="section">
-        <p class="train">
-            <span class="train_1">国资委培训</span>
-            <span class="train_2">公司培训</span>
-        </p>
-        <ul class="news new_1" style="display: block;">
-            <foreach name="master_news" item="vo">
-                <li>
-                    <i></i>
-                    <p>
+   </ul>
+   <ol class="btnList">
+       <li class="current"></li>
+       <li></li>
+       <li></li>
+       <li></li>
+       <li></li>
+   </ol>
+   <div class="section">
+       <p class="train">
+           <span class="train_1">国资委培训</span>
+           <span class="train_2">公司培训</span>
+       </p>
+       <ul class="news new_1" style="display: block;">
+           <foreach name="master_news" item="vo">
+               <li>
+                   <i></i>
+                   <p>
+                      <a href="/news/newsInfo?news_id={$vo.news_id}"> <span>{$vo.title}</span></a>
+                   </p>
+               </li>
+           </foreach>
+
+           <li class="down">
+               <a href="/news?type=1"> <span>更多&gt;&gt;</span></a>
+           </li>
+       </ul>
+       <ul class="news new_2">
+           <foreach name="subsite_news" item="vo">
+               <li>
+                   <i></i>
+                   <p>
                        <a href="/news/newsInfo?news_id={$vo.news_id}"> <span>{$vo.title}</span></a>
-                    </p>
-                </li>
-            </foreach>
+                   </p>
+               </li>
+           </foreach>
 
-            <li class="down">
-                <a href="/news?type=1"> <span>更多&gt;&gt;</span></a>
-            </li>
-        </ul>
-        <ul class="news new_2">
-            <foreach name="subsite_news" item="vo">
-                <li>
-                    <i></i>
-                    <p>
-                        <a href="/news/newsInfo?news_id={$vo.news_id}"> <span>{$vo.title}</span></a>
-                    </p>
-                </li>
-            </foreach>
-
-            <li class="down">
-               <a href="/news?type=2"> <span>更多&gt;&gt;</span></a>
-            </li>
-        </ul>
-    </div>
+           <li class="down">
+              <a href="/news?type=2"> <span>更多&gt;&gt;</span></a>
+           </li>
+       </ul>
+   </div>
 </div>
 <div id="hot">
-    <h1>
-        热门课程
-    </h1>
-    <ul class="learn">
-        <foreach name="hot_cse" item="vo">
-            <li>
-                <a href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
-                <div class="hour">{$vo.os_cn}</div>
-                <h4>{$vo.name}</h4>
-                <div class="btn">
-               <span class="btn_1">
-                    <img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>
-                </span>
-                <span class="btn_2">
-                   <a href="/course/register?course_id={$vo.course_id}"> <img src="../Public/home/image/baoming.png" alt=""/></a>
-                </span>
-                </div>
-            </li>
-        </foreach>
+   <h1>
+       热门课程
+   </h1>
+   <ul class="learn">
+       <foreach name="hot_cse" item="vo">
+           <li>
+               <a href="/course/courseInfo?course_id={$vo.course_id}"><img src="{$vo['cover']}"  height="147" width="224" alt=""/></a>
+               <div class="hour">{$vo.os_cn}</div>
+               <h4>{$vo.name}</h4>
+               <div class="btn">
+              <span class="btn_1">
+                   <img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>
+               </span>
+               <span class="btn_2">
+                  <a href="/course/register?course_id={$vo.course_id}"> <img src="../Public/home/image/baoming.png" alt=""/></a>
+               </span>
+               </div>
+           </li>
+       </foreach>
 
-    </ul>
+   </ul>
 </div>
 <div id="advice">
-    <h1>推荐课程</h1>
-    <ul class="toggle">
-        <foreach name="ct_data" item="vo">
-            <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain">{$vo.name}</a></li>
-        </foreach>
-    </ul>
-    <a href="/course"><span>更多&gt;&gt;</span></a>
+   <h1>推荐课程</h1>
+   <ul class="toggle">
+       <foreach name="ct_data" item="vo">
+           <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain">{$vo.name}</a></li>
+       </foreach>
+   </ul>
+   <a href="/course"><span>更多&gt;&gt;</span></a>
 
 
-    <div id="content">
-        <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"/></iframe>
-    </div>
+   <div id="content">
+       <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"/></iframe>
+   </div>
 </div>
 
 <div id="course">
@@ -148,9 +149,9 @@
 
 
 <script>
-    function create_code(){
-        document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
-    }
+   function create_code(){
+       document.getElementById('code').src = '/user/createVerify?'+Math.random()*10000;
+   }
 </script>
 <script src="../Public/home/js/index.js"></script>
 </body>

@@ -95,7 +95,6 @@ class IndexController extends BaseController {
         if($count = $m_course->getCourseCount($where)){
 
             if($hot_ces = $this->getHotCse()){
-
                 if($hot_ces = $c_course->formatCourse($hot_ces)){
                     $this->assign('hot_cse',$hot_ces);
                 }
@@ -108,8 +107,6 @@ class IndexController extends BaseController {
 
 
         }
-
-
 
 
         $this->display();
@@ -251,8 +248,10 @@ class IndexController extends BaseController {
         if($data = $m_course->getCourseList($where,0,4)){
             return $data;
         }else{
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] = C('MASTER_ID');
+
             if($data1 = $m_course->getCourseList($where,0,4)){
+
                 return $data1;
             }else{
                 return false;
@@ -269,7 +268,7 @@ class IndexController extends BaseController {
         if($data = $m_news->getNewsList($where,0,1)){
             return $data['0'];
         }else{
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] = C('MASTER_ID');
             if($data1 = $m_news->getNewsList($where,0,1)){
                 return $data1['0'];
             }else{
@@ -285,7 +284,7 @@ class IndexController extends BaseController {
         if($data = $m_news->getNewsList($where,0,2)){
             return $data;
         }else{
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] =  C('MASTER_ID');
             if($data1 = $m_news->getNewsList($where,0,2)){
                 return $data1;
             }else{
@@ -296,7 +295,7 @@ class IndexController extends BaseController {
 
     private function getMaster(){
         $m_news = new NewsModel();
-        $where['subsite_id'] = 0;
+        $where['subsite_id'] = C('MASTER_ID');
         $where['type'] = C('news_type')['master'];
         if($data = $m_news->getNewsList($where,0,5)){
             return $data;
@@ -326,7 +325,7 @@ class IndexController extends BaseController {
         if ($data = $m_news->getNewsList($where, 0, 5)) {
             return $data;
         } else {
-            $where['subsite_id'] = 0;
+            $where['subsite_id'] = C('MASTER_ID');
             if ($data1 = $m_news->getNewsList($where, 0, 5)) {
                 return $data1;
             } else {

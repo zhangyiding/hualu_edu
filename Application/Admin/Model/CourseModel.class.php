@@ -31,12 +31,13 @@ class CourseModel extends Model{
 
 
     public function getAllResource($where){
-        $where['status'] = 0;
+        $where['status'] = array('neq',-1);
         $result = $this->table('resource')
             ->field('resource_id,subsite_id,type,name,ext,file_path,file_size,
                      duration,remark,ctime,status')
             ->where($where)
             ->order('ctime desc')
+            ->limit(50)
             ->select();
         return $result;
     }

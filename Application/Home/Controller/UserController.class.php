@@ -316,6 +316,7 @@ class UserController extends BaseController {
             'learning'=>$len_count,
             'over'=>$over_count
         );
+
         $this->assign('learn_time',$learn_time.'分钟');
         $this->assign('cse_count',$cse_count);
         $this->assign('wait_cse',$wait_cse);
@@ -357,18 +358,20 @@ class UserController extends BaseController {
                         $c_res[$k]['duration'] = changeTimeType($v['duration']);
                     }
 
-                    if(!empty($v['file_path'])){
-                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
-                    }else{
-                        continue;
-                    }
+//                    if(!empty($v['file_path'])){
+//                        $c_res[$k]['file_path'] = getFileBaseUrl($v['file_path']);
+//                    }else{
+//                        continue;
+//                    }
                 }
 
                 $data['name'] = $cse_info['name'];
                 $data['end_time'] = $end_time;
                 $data['is_pub'] = $cse_info['is_pub'];
                 $data['sum_dur'] = changeTimeType(array_sum($cse_time));
+                $data['course_id'] = $course_id;
                 $data['cse_video'] = $c_res;
+
                 return $data;
             }else{
                 return false;
