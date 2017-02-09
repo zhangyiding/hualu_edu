@@ -222,10 +222,10 @@ class CourseModel extends Model{
 
     public function getStuRecord($student_id,$res_id){
         $result = $this->table('student_course_record')
-            ->field('id')
+            ->field('id,watch_time')
             ->where(array('resource_id'=>$res_id,'student_id'=>$student_id))
             ->find();
-        return $result['id'];
+        return $result;
     }
 
 

@@ -435,27 +435,27 @@ class CourseController extends BaseController
 
         $res_id = $this->params['resource_id'];
         $watch_time = $this->params['watch_time'];
-        $duration = $this->params['duration'];
         if(empty($res_id) || empty($watch_time)){
             $this->to_back('11014');
         }
 
         $m_course = new CourseModel();
 
-        if($record_id = $m_course->getStuRecord($user_info['student_id'],$res_id)){
-            $data['watch_time'] = $watch_time;
-            $where['id'] = $record_id;
-            $m_course->updataRecord($data,$where);
-            $this->to_back('10000');
+        if($result= $m_course->getStuRecord($user_info['student_id'],$res_id)){
+            if($result['watch_time'] < $watch_time){
+                $data['watch_time'] = $watch_time;
+                $where['id'] = $result['id'];
+                $m_course->updataRecord($data,$where);
+                $this->to_back('10000');
+            }
+
 
         }else{
             $course_id = $m_course->getCseId($res_id);
-
             $data['student_id'] = $user_info['student_id'];
             $data['course_id'] = $course_id;
             $data['resource_id'] = $res_id;
             $data['watch_time'] = $watch_time;
-            $data['duration'] = $duration;
             if($m_course->addRecord($data)){
                 $this->to_back('10000');
             }
