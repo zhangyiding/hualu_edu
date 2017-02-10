@@ -207,20 +207,23 @@ nav li.search span{
 /*footer����*/
 /*footer����*/
 footer{
-    height:260px;
-    margin-top: 70px;
+    padding: 10px 0;
+
     background: #58A5E4;
     text-align: center;
-    padding-top: 55px;
+
     color: #D5E1ED;
 }
 footer ul.concat li{
     display: inline-block;
 }
 footer ul.concat li a{
-    text-decoration: underline;
+    text-decoration: none;
     color: #D5E1ED;
     font-size: 16px;
+}
+footer ul.concat li a:hover{
+    text-decoration: underline;
 }
 footer div.line{
     width: 800px;

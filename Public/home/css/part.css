@@ -19,13 +19,14 @@ div#course ul.learn{
     margin-bottom: 145px
 }
 ul.learn{
+    margin: 0 auto;
     margin-top: 30px;
     overflow:hidden;
     margin-bottom: 45px;
     padding-left: 20px;
     padding-right: 20px;
     width: 1000px;
-    margin: 0 auto;
+
 
 }
 ul.learn li{

@@ -42,9 +42,9 @@
         </li>
     </ul>
     <div class="title">
-
+        <img src="../Public/home/image/toutiao.png" alt=""/>
         <!--<a href="/news/newsInfo?news_id={$home_page.news_id}"><h1>{$home_page.title}</h1></a>-->
-        <a href="/course/courseInfo?course_id=161118400002829"><img src="../Public/home/image/lzqh_banner.jpg"></a>
+        <a href="/course/courseInfo?course_id=161118400002829"><h1>关于举办党的十八届六中全会精神网络培训班</h1></a>
        <ul class="inform">
            <foreach name="little_home" item="vo">
               <a href="/news/newsInfo?news_id={$vo.news_id}"><li>[{$vo.title}]</li></a>
@@ -132,11 +132,12 @@
            <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain">{$vo.name}</a></li>
        </foreach>
    </ul>
-   <a href="/course"><span>更多&gt;&gt;</span></a>
+   <a href="/course" class="more"><span>更多&gt;&gt;</span></a>
 
 
    <div id="content">
-       <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"/></iframe>
+       <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"
+               onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/></iframe>
    </div>
 </div>
 

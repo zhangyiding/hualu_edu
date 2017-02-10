@@ -100,6 +100,7 @@ div#content .banner ul li{
 }
 div#content .banner ul li.active{
     background: #55A5E4;
+    color: #ffffff;
 }
 div#content .banner ul li.active a{
     color: #DAE9F8;

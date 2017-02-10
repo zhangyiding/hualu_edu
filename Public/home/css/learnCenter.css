@@ -28,6 +28,9 @@
     color: #ffffff;
     border: 2px solid #55A5E4;
 }
+#concent ul.co_left li.active a{
+    color: #ffffff;
+}
 /*�Ҳ���������*/
 div.co_right{
     float: left;
