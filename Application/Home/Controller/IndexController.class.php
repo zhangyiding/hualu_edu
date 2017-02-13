@@ -84,6 +84,7 @@ class IndexController extends BaseController {
             }
 
             if($banner_news = $this->getBanner()){
+
                 $this->assign('banner_news',$banner_news);
             }
         }
@@ -140,7 +141,7 @@ class IndexController extends BaseController {
      */
 
     public function footer(){
-
+        $this->assign('sub_name',$this->subsite_name);
         $this->display();
     }
 
@@ -322,11 +323,11 @@ class IndexController extends BaseController {
         $m_news = new NewsModel();
         $where['subsite_id'] = $this->subsite_id;
         $where['type'] = C('news_type')['image'];
-        if ($data = $m_news->getNewsList($where, 0, 5)) {
+        if ($data = $m_news->getNewsList($where, 0, 5,25)) {
             return $data;
         } else {
             $where['subsite_id'] = C('MASTER_ID');
-            if ($data1 = $m_news->getNewsList($where, 0, 5)) {
+            if ($data1 = $m_news->getNewsList($where, 0, 5,25)) {
                 return $data1;
             } else {
                 return false;

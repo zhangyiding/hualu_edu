@@ -55,7 +55,13 @@
 <div class="banner">
    <ul class="imgList">
        <foreach name="banner_news" item="vo">
-           <li><a href="/news/newsInfo?news_id={$vo.news_id}"><img src="{$vo.cover}" height="368" width="660" /></a></li>
+           <li>
+               <a href="/news/newsInfo?news_id={$vo.news_id}">
+                   <img src="{$vo.cover}" height="368" width="660" />
+                   <div>{$vo.title}</div>
+
+               </a>
+           </li>
        </foreach>
 
 
