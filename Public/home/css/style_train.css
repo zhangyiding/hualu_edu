@@ -73,7 +73,7 @@ ul.search li.pagesum span{
 div#content{
     margin-top: 3px;
     overflow: hidden;
-    min-height: 800px;
+    min-height: 570px;
 }
 div#content .banner{
     float: left;
@@ -225,14 +225,14 @@ div#page .code{
     border-radius: 17px;
 }
 /*footer����*/
-footer{
-    height:260px;
-    margin-top: 50px;
-    background: #58A5E4;
-    text-align: center;
-    padding-top: 55px;
-    color: #D5E1ED;
-}
+/*footer{*/
+    /*height:260px;*/
+    /*margin-top: 50px;*/
+    /*background: #58A5E4;*/
+    /*text-align: center;*/
+    /*padding-top: 55px;*/
+    /*color: #D5E1ED;*/
+/*}*/
 footer ul.concat li{
     display: inline-block;
 }

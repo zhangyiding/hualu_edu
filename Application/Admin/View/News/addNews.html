@@ -39,7 +39,7 @@
                            
                          </div>
                         <div class="well brown">
-                         <form enctype="multipart/form-data">
+                         <form>
                             <div class="form_list"><label class="lable_title">新闻标题</label><input id="title" name="title" class="form_input" type="text" value={$data.title}></div>
 
                              <div class="form_list"><label class="lable_title">新闻简述</label><input id="title_format" name="title_format" class="form_input" type="text" value={$data.title_format}></div>
@@ -119,24 +119,33 @@
 
 
           $('.submit').click(function(){
-              var params = $('form').serialize();
+
+              var params = {};
 
               if(type = $('#type').val()){
-                  params += '&type='+type;
+                  params.type = type;
               }else {
                   alert('类型不能为空');
               }
+
+              if(title = $('#title').val()){
+                  params.title = title;
+              }else {
+                  alert('标题不能为空');
+              }
+
               var contents =  UE.getEditor('myEditor').getContent();
-              params += '&contents='+contents;
+
+              params.contents=contents;
 
               //当新闻id有值时操作类型为更新
               if(news_id = $('#news_id').attr('value')){
-                  params += '&op_type=1';
-                  params += '&news_id='+news_id;
+                  params.op_type = 1;
+                  params.news_id = news_id;
               }
 
               if(cover = $('.cover img').attr('value')){
-                  params += '&cover='+cover;
+                  params.cover = cover;
               }
 
 
