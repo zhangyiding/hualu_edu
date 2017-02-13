@@ -154,6 +154,7 @@ class CourseController extends BaseController
     {
 
         $course_type = $this->params['course_type'];//课程分类
+        $course_dir = $this->params['course_dir'];//课程方向
         $is_recommend = $this->params['is_recommend'];//课程类型，2热门或者1推荐
 
         $where['status'] = 0;
@@ -162,6 +163,15 @@ class CourseController extends BaseController
         if (!empty($course_type)) {
             $where['ct_id'] = array('in',$course_type);
         }
+
+
+        if(!empty($course_dir)){
+            if($ct_list = $m_course->getCseTypeByDir($course_dir)){
+                $where['ct_id'] = array('in',$ct_list);
+            }
+
+        }
+
 
 
         if (!empty($is_recommend)) {

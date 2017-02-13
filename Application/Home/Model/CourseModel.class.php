@@ -50,6 +50,7 @@ class CourseModel extends Model{
         return ($result)? $result : false;
     }
 
+
     public function getCourseNum($course_id){
         $where['course_id'] = $course_id;
         $where['status'] = 0;

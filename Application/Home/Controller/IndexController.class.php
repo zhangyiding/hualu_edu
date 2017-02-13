@@ -102,8 +102,9 @@ class IndexController extends BaseController {
 
             }
 
-            $ct_data = $m_course->getCourseType();
-            $this->assign('ct_data',$ct_data);
+            $cd_data = $m_course->getCourseDir();
+
+            $this->assign('cd_data',$cd_data);
             $this->assign('title',$this->subsite_name);
 
 

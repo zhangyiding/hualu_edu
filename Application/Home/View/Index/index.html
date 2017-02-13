@@ -134,8 +134,8 @@
 <div id="advice">
    <h1>推荐课程</h1>
    <ul class="toggle">
-       <foreach name="ct_data" item="vo">
-           <li ><a href="/course/courseList?course_type={$vo.ct_id}" target="frmain">{$vo.name}</a></li>
+       <foreach name="cd_data" item="vo">
+           <li ><a href="/course/courseList?course_dir={$vo.cd_id}" target="frmain">{$vo.name}</a></li>
        </foreach>
    </ul>
    <a href="/course" class="more"><span>更多&gt;&gt;</span></a>
