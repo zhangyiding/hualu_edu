@@ -58,6 +58,7 @@ class SubsiteModel extends Model{
         $result = $this
             ->where($where)
             ->save($data);
+
         return $result;
 
     }
