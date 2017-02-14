@@ -80,7 +80,7 @@ class Page {
 //            $depr       =   C('URL_PATHINFO_DEPR');
             $depr       =   '?page=';
 //            $url        =   U('/'.$this->url,'',false).$depr.'__PAGE__';
-            $url        =   '//'.$_SERVER['SERVER_NAME'].$_SERVER['QUERY_STRING'].$depr.'__PAGE__';
+            $url        =   '//'.$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF'].$depr.'__PAGE__';
         }else{
             if($this->parameter && is_string($this->parameter)) {
                 parse_str($this->parameter,$parameter);
