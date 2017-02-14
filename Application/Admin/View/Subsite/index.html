@@ -38,24 +38,24 @@
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
                            <a href="/admin">首页</a><span>></span>
-                           <a href="/admin/student">学员管理</a><span>></span>
-                           <span>学员管理</span>
-                           <a  href="/admin/student/addStudent" class="label label-warning"  style="float:right; margin:8px;">添加</a>
+                           <a href="/admin/subsite">分站管理</a><span>></span>
+                           <span>分站管理</span>
+                           <a  href="/admin/subsite/addSubsite" class="label label-warning"  style="float:right; margin:8px;">添加分站</a>
                          </div>
                         <div class="well brown">
                             
                            
                             <div class="well-content" style="border:0px ; display:block;">
                                 <div id="select">
-                                    <div class="choose">
-                                        <span class="lf">所属分站</span>
-                                        <span class="rg"></span>
-                                        <ul class="kind">
-                                            <volist name="cse_dir" id="vo" key="k">
-                                                <li value="{$vo.cd_id}">{$vo.name}</li>
-                                            </volist>
-                                        </ul>
-                                    </div>
+                                    <!--<div class="choose">-->
+                                        <!--<span class="lf">所属分站</span>-->
+                                        <!--<span class="rg"></span>-->
+                                        <!--<ul class="kind">-->
+                                            <!--<volist name="cse_dir" id="vo" key="k">-->
+                                                <!--<li value="{$vo.cd_id}">{$vo.name}</li>-->
+                                            <!--</volist>-->
+                                        <!--</ul>-->
+                                    <!--</div>-->
                                     <div class="search">
                                         <input type="text" placeholder="请输入搜索的姓名"/>
                                         <i></i>
@@ -65,35 +65,34 @@
                                     <thead>
                                         <tr>
                                             <!--<th width="5%">排序</th>-->
-                                            <th width="4%">序号</th>
-                                            <th width="6%">姓名</th>
-                                            <th width="4%">性别</th>
-                                            <th width="12%">所在单位</th>
-                                            <th width="12%">邮箱</th>
-                                            <th width="7%">手机号码</th>
-                                            <th width="15%">注册时间</th>
-                                            <th width="10%">所属分站</th>
+                                            <th width="4%">分站Id</th>
+                                            <th width="16%">名称</th>
+                                            <th width="1%">分站前缀</th>
+                                            <!--<th width="12%">分站官网</th>-->
+                                            <!--<th width="12%">地址</th>-->
+                                            <!--<th width="7%">邮编</th>-->
+                                            <th width="8%">类型</th>
+                                            <th width="20%">首页图</th>
+                                            <th width="10%">创建时间</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <foreach name="stu_list" item="vo">
+                                    <foreach name="sub_list" item="vo">
                                     <tr>
-                                        <td>{$vo.student_id}</td>
+                                        <td>{$vo.subsite_id}</td>
                                         <td>{$vo.name}</td>
-
+                                        <td>{$vo.ename}</td>
+                                        <!--<td>{$vo.site_url}</td>-->
+                                        <!--<td>{$vo.address}</td>-->
+                                        <!--<td>{$vo.postcode}</td>-->
+                                        <td>{$vo.subsite_type}</td>
                                         <td>
-                                            <if condition="($vo['gender'] eq 1)">男
-                                                <else />女
-                                                </if>
-                                        </td>
-                                        <td>{$vo.apartment}</td>
-                                        <td>{$vo.email}</td>
-                                        <td>{$vo.mobile}</td>
+                                            <img src="{$vo.subsite_banner}" style="height: 82px;">
+                                          </td>
                                         <td>{$vo.ctime}</td>
-                                        <td>{$vo.subsite_name}</td>
                                         <td>
-                                            <a class="btn" href="/admin/student/addStudent?op_type=1&student_id=<?php echo $vo['student_id'];?>" title="修改"><i class="icon-inbox"></i></a>
-                                            <a class="btn" href="/admin/student/delStudent?student_id=<?php echo $vo['student_id'];?>" title="删除"><i class="icon-trash"></i></a>
+                                            <a class="btn" href="/admin/subsite/addSubsite?op_type=1&subsite_id=<?php echo $vo['subsite_id'];?>" title="修改"><i class="icon-inbox"></i></a>
+                                            <a class="btn" href="/admin/subsite/delSubsite?subsite_id={$vo.subsite_id}" title="删除"><i class="icon-trash"></i></a>
                                             <!--<a class="btn" href="#" title="查看"><i class="icon-exclamation"></i></a>-->
                                         </td>
                                     </tr>

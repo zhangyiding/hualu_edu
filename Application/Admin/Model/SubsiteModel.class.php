@@ -4,10 +4,10 @@ use Think\Model;
 use Common\Lib\Curl;
 class SubsiteModel extends Model{
 
-    protected $tableName = 'student';
+    protected $tableName = 'subsite';
 
-	public function getStudentList($where,$offset,$limit){
-	    $result = $this->field('student_id,subsite_id,department,job_position,name,avatar,gender,mobile,email,ctime,remark,apartment')
+	public function getSubsiteList($where,$offset,$limit){
+	    $result = $this->field('subsite_id,name,ename,site_url,province_id,city_id,address,postcode,subsite_type,subsite_banner,intro,remark,ctime,mtime')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')
@@ -16,7 +16,7 @@ class SubsiteModel extends Model{
 	}
 
 
-    public function getStudentCount($where){
+    public function getSubsiteCount($where){
         $result = $this->where($where)
             ->count();
         return $result;
@@ -24,7 +24,7 @@ class SubsiteModel extends Model{
 
 
 
-    public function delStudent($where){
+    public function delSubsite($where){
         $result = $this
             ->where($where)
             ->save(array('status'=>-1));
@@ -32,29 +32,29 @@ class SubsiteModel extends Model{
     }
 
 
-    public function getStudentInfo($id){
+    public function getSubsiteInfo($id){
         $result = $this
-            ->where(array('student_id'=>$id,'status'=>'0'))
+            ->where(array('subsite_id'=>$id,'status'=>'0'))
             ->select();
         return ($result)? $result['0'] : false;
     }
 
 
 
-    public function addStudent($data){
+    public function addSubsite($data){
         $result = $this
             ->add($data);
        return $result;
     }
 
 
-    public function checkEmail($data){
+    public function checkName($data){
         $result = $this
-            ->where(array('email'=>$data['email'],'status'=>0,'_logic'=>'OR'));
+            ->where(array('name'=>$data['name'],'status'=>0,'_logic'=>'OR'));
         return $result;
     }
 
-    public function updateStudent($data,$where){
+    public function updateSubsite($data,$where){
         $result = $this
             ->where($where)
             ->save($data);

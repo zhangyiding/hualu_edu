@@ -40,20 +40,20 @@
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
                              <a href="/admin">首页</a><span>></span>
-                             <a href="/admin/student">学员管理</a><span>></span>
-                           <span>管理学员</span>
+                             <a href="/admin/student">分站管理</a><span>></span>
+                           <span>添加分站</span>
                            
                          </div>
                         <div class="well brown">
-                         <form action="/admin/student/doAddStudent" method="get" enctype="multipart/form-data">
-                            <div class="form_list"><label class="lable_title">姓名</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
+                         <form action="/admin/subsite/doAddSubsite" method="get" enctype="multipart/form-data">
+                            <div class="form_list"><label class="lable_title">名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
 
-                              <div class="form_list "><label  class="lable_title">头像</label>
+                              <div class="form_list "><label  class="lable_title">首页图</label>
                                   </div>
 
                              <div class="cover">
-                                 <img src="<?php print_r($data['avatar']);?>" style="width: 360px;height: 200px;margin-top: -7px;margin-left: 61px;"/>
-                                 <input type="hidden" name="cover">
+                                 <img src="{$data['subsite_banner']}" style="width: 360px;height: 200px;margin-top: -7px;margin-left: 61px;"/>
+                                 <input type="hidden" name="subsite_banner">
                              </div>
                              <div class="upload">
 
@@ -66,59 +66,31 @@
 
                              </div>
 
-                             <div class="form_list gender" value="{$data.gender}"><label class="lable_title">
-                                 性别
+                             <div class="form_list type" value="{$data.subsite_type}"><label class="lable_title">
+                                 分站类型
                              </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                 <input type="radio" name="gender" value="1">男
-                                 <input type="radio" name="gender" value="0">女
+                                 <input type="radio" name="type" value="1">央企
+                                 <input type="radio" name="type" value="2">机关
+                                 <input type="radio" name="type" value="3">党校
                              </div>
-                             <div class="form_list"><label class="lable_title">邮箱</label>
-                                 <input id="email" name="email" class="form_input" type="text" value={$data.email}>
-                             </div>
-
-                             <div class="form_list"><label class="lable_title">密码</label>
-                                 <input id="password" name="password" class="form_input" type="password" value="">
-                             </div>
-                             <div class="form_list"><label class="lable_title">生日</label>
-                                 <input  name="birthday" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" class="form_input" type="text" value={$data.birthday}>
-                             </div>
-
-                             <div class="form_list"><label class="lable_title">手机</label>
-                                 <input id="mobile" name="mobile" class="form_input" type="text" value={$data.mobile}>
-                             </div>
-
-
-                             <div class="form_list"><label class="lable_title">民族</label>
-                            <select id="ethnic" name="ethnic" value="{$data.ethnic}" style="width:150px; margin-left:15px;">
-                              <option value="">请选择民族</option>
-                                <volist name='ethnic_list' id='vo' key="k">
-                                    <option value="<?php print($k); ?>" >{$vo}</option>
-                                </volist>
-
-                            </select>
-                                    </div>
-
-                             <div class="form_list"><label class="lable_title">地址</label>
+                             <div class="form_list"><label class="lable_title">分站地址</label>
                                  <input id="address" name="address" class="form_input" type="text" value={$data.address}>
                              </div>
 
-                             <div class="form_list"><label class="lable_title">职务</label>
-                                 <input id="duties" name="job_position" class="form_input" type="text" value={$data.job_position}>
-
+                             <div class="form_list"><label class="lable_title">网址前缀</label>
+                                 <input id="ename" name="ename" class="form_input" type="text" value={$data.ename}>
+                             </div>
+                             <div class="form_list"><label class="lable_title">分站简介</label>
+                                 <input  name="intro"  class="form_input" type="text" value={$data.intro}>
                              </div>
 
+                             <div class="form_list"><label class="lable_title">分站官网</label>
+                                 <input id="site_url" name="site_url" class="form_input" type="text" value={$data.site_url}>
+                             </div>
 
-                             </br>
-                             <div class="form_list"><label class="lable_title">单位</label>
-                                 <input id="apartment" name="apartment" class="form_input" type="text" value={$data.apartment}>
-                             </div>
-                             <div class="form_list"><label class="lable_title">备注</label>
-                                 <textarea id="intro" name="remark" class="form_input" type="text" value={$data.remark}>
-                                     </textarea>
-                             </div>
 
                              <input type="hidden" name="op_type" value="{$op_type}" />
-                             <input type="hidden" name="student_id" value="{$data.student_id}" />
+                             <input type="hidden" name="student_id" value="{$data.subsite_id}" />
                            <div class="form_list"><input type="submit" class="submit" value="&nbsp;&nbsp;提&nbsp;&nbsp;交&nbsp;&nbsp;"></div>
                          </form>
                         </div>
@@ -130,12 +102,9 @@
 
   <script type="text/javascript">
       $(function(){
-          if(ethnic = $('#ethnic').attr('value')){
-              $('#ethnic option[value='+ethnic+']').prop('selected',true);
-          }
 
-          if(gender = $('.gender').attr('value')){
-              $('.gender input[value=' + gender +']').prop('checked',true);
+          if(type = $('.type').attr('value')){
+              $('.type input[value=' + type +']').prop('checked',true);
           }
 
 

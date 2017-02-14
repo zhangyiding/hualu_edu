@@ -587,3 +587,20 @@ div.mation_1,div.mation_2,div.mation_3,div.mation_4,div.mation_5,div.mation_6,di
     margin: 0 !important;
     float: right;
 }
+
+ul.learn li img{
+    cursor: pointer;
+    transition: all 1s !important;
+    -webkit-transition: all 1s !important;
+    -moz-transition: all 1s !important;
+    -ms-transition: all 1s !important;
+    -o-transition: all 1s !important;
+}
+ul.learn li img:hover{
+    transform: scale(1.05) !important;
+    -webk-o-transform: scale(1.05) !important;
+    -m-o-transform: scale(1.05) !important;
+    --o-transform: scale(1.05) !important;
+    -o-transform: scale(1.05) !important;
+
+}

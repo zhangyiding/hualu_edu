@@ -23,6 +23,8 @@ $(function(){
         }
     });
 
+
+
     function newsList(page){
         var param={};
         param.limit = 8;
@@ -78,6 +80,10 @@ $(function(){
 
     newsList(1);
 
-
-
+    //
+    //$('.aside ul li a').hover(function(){
+    //    console.log('a');
+    //    $(this).parent().css("text-decoration","underline");
+    //
+    //})
 });

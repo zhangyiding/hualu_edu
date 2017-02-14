@@ -280,3 +280,14 @@ div.tab_2{
 #article div.return a{
     color:#AEAEAE;
 }
+
+div.aside ul li a {
+    display: block;
+    width: 100%;
+    height: 45px;
+
+}
+div.aside ul li a:hover{
+    text-decoration:underline;
+    color: #55A5E4;
+}

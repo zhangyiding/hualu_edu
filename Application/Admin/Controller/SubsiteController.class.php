@@ -7,7 +7,6 @@ class SubsiteController extends BaseController {
 
     public function index(){
         $m_sub = new \Admin\Model\SubsiteModel();
-        $m_base = new \Common\Model\BaseModel();
         //当分站管理员访问时只能查看所属分站的信息
         if($this->su_type == C('SUBSITE_USER')){
             $where['subsite_id'] = $this->subsite_id;
@@ -20,42 +19,42 @@ class SubsiteController extends BaseController {
         }
         $data = array();
 
-       if($count = $m_student->getStudentCount($where)){
+       if($count = $m_sub->getSubsiteCount($where)){
            //获取分页总数进一取整
            $page_arr = listPage($count,$this->limit);
 
-           $data = $m_student->getStudentList($where,$this->offset,$this->limit);
+           $data = $m_sub->getSubsiteList($where,$this->offset,$this->limit);
 
            foreach($data as $k=>$v){
-               //处理头像
-               $data[$k]['avatar'] = getImageBaseUrl($v['avatar']);
+               //处理banner
+               $data[$k]['subsite_banner'] = getImageBaseUrl($v['subsite_banner']);
+
+               //分站类型
+               $sub_type = C('sub_type');
+               $data[$k]['subsite_type'] = $sub_type[$v['subsite_type']];
 
 
-               //获取分站信息
-               $subsite_info = $m_base->getSubsiteInfo($this->subsite_id);
-               $data[$k]['subsite_name'] = $subsite_info['name'];
            }
            $this->assign('page_arr',$page_arr);
        }
 
-        $this->assign('stu_list',$data);
+        $this->assign('sub_list',$data);
 
         $this->display();
     }
 
 
     /*
-     * 新增/修改学员
+     * 新增/修改分站信息
      */
-    public function addStudent(){
+    public function addSubsite(){
         //当operation_type为1时执行更新操作，默认为0执行插入
-        $m_student= new \Admin\Model\StudentModel();
+        $m_sub= new \Admin\Model\SubsiteModel();
         $op_type = $this->params['op_type'];
         if($op_type == 1){
-            $id = $this->params['student_id'];
-            $data = $m_student->getStudentInfo($id);
-
-            $data['avatar'] = getImageBaseUrl($data['avatar']);
+            $id = $this->params['subsite_id'];
+            $data = $m_sub->getSubsiteInfo($id);
+            $data['subsite_banner'] = getImageBaseUrl($data['subsite_banner']);
 
             $this->assign('data',$data);
         }
@@ -70,44 +69,36 @@ class SubsiteController extends BaseController {
 
 
     /*
-     * 新增/修改学生动作
+     * 新增/修改分站动作
      */
-    public function doAddStudent(){
+    public function doAddSubsite(){
 
         $op_type = $this->params['op_type'];
 
-        $data['gender'] = $this->params['gender'];
-        if($this->params['cover']){
-            $data['avatar'] = $this->params['cover'];
+        $data['name'] = $this->params['name'];
+        if($this->params['subsite_banner']){
+            $data['subsite_banner'] = $this->params['subsite_banner'];
         }
 
-        $data['ethnic'] = $this->params['ethnic'];
-        $data['name'] = $this->params['name'];
-        $data['birthday'] = $this->params['birthday'];
-        $data['mobile'] = $this->params['mobile'];
-        $data['email'] = $this->params['email'];
+        $data['subsite_type'] = $this->params['type'];
         $data['address'] = $this->params['address'];
-        $data['apartment'] = $this->params['apartment'];
-        $data['remark'] = $this->params['remark'];
-        $data['job_position'] = $this->params['job_position'];
-        $data['password'] = encryptpass($this->params['password']);
+        $data['ename'] = $this->params['ename'];
+        $data['intro'] = $this->params['intro'];
+        $data['site_url'] = $this->params['site_url'];
 
-        $data['subsite_id'] = $this->subsite_id;
-        $data['creator'] = $this->creator;
-
-        $m_student = new \Admin\Model\StudentModel();
+        $m_subsite = new \Admin\Model\SubsiteModel();
 
         if($op_type == 1){
-            $student_id = $this->params['student_id'];
-            $where = array('student_id'=>$student_id,'status'=>0);
+            $subsite_id = $this->params['subsite_id'];
+            $where = array('subsite_id'=>$subsite_id,'status'=>0);
             $data['mtime'] = date('Y-m-d H:i:s',time());
-            $result = $m_student->updateStudent(array_filter($data),$where);
+            $result = $m_subsite->updateSubsite(array_filter($data),$where);
         }else{
-            if($m_student->checkEmail($data)){
-                $this->showMsg('该用户已存在');
+            if($m_subsite->checkName($data)){
+                $this->showMsg('该分站已存在');
             }
             $data['ctime'] = date('Y-m-d H:i:s',time());
-            $result = $m_student->addStudent($data);
+            $result = $m_subsite->addSubsite($data);
         }
 
         if($result!== false){
@@ -122,10 +113,10 @@ class SubsiteController extends BaseController {
     /*
      * 删除学员动作
      */
-    public function delStudent(){
-        $where['student_id'] = $this->params['student_id'];
-        $m_student = new \Admin\Model\StudentModel();
-        if($m_student->delStudent($where) !== false){
+    public function delSubsite(){
+        $where['subsite_id'] = $this->params['subsite_id'];
+        $m_student = new \Admin\Model\SubsiteModel();
+        if($m_student->delSubsite($where) !== false){
             $this->showMsg('删除成功','index',1);
         }else{
             $this->showMsg('删除失败，请重试');

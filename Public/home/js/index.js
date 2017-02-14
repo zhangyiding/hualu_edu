@@ -6,7 +6,7 @@ $(function() {
 
 
     //banner�����ֲ�Ч����
-    window.onload = function(){
+   setTimeout( function(){
         var num=0;
         var tim;
         var size=$(".imgList li").size()-1;
@@ -37,7 +37,7 @@ $(function() {
         }, function() {
             clearInterval(tim);
             tim=setInterval(nextFn, 3000);
-        });    }
+        });
 
     $('.btnList li').click(function(event) {
         var i=$(this).index();
@@ -49,6 +49,7 @@ $(function() {
         //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
+},3000);
 
 //����ί��ѵ�л�
     $("span.train_1").click(function(){
