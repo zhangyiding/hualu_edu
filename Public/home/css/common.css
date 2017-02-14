@@ -208,11 +208,10 @@ nav li.search span{
 /*footer����*/
 footer{
     padding: 10px 0;
-
     background: #58A5E4;
     text-align: center;
-
     color: #D5E1ED;
+    margin-top: 25px;
 }
 footer ul.concat li{
     display: inline-block;

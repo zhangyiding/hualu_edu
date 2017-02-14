@@ -167,7 +167,10 @@ class CourseController extends BaseController
 
         if(!empty($course_dir)){
             if($ct_list = $m_course->getCseTypeByDir($course_dir)){
+
                 $where['ct_id'] = array('in',$ct_list);
+            }else{
+                $this->showMsg('暂无数据');
             }
 
         }
@@ -182,6 +185,7 @@ class CourseController extends BaseController
         if ($data_sub = $m_course->getCourseList($where, 0, 8)) {
             $data = $this->formatCourse($data_sub);
         } else {
+
             $where['subsite_id'] = C('MASTER_ID');
             if ($data_mas = $m_course->getCourseList($where, 0, 8)) {
                 $data = $this->formatCourse($data_mas);
