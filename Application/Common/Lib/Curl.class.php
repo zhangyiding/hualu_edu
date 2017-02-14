@@ -49,9 +49,9 @@ class Curl {
 			} else {
 				if($i == $retry) {
 					$curl_error = curl_error($ch);
-					if (class_exists('RecordLog', false)) {
-						RecordLog::addLog('请求接口：'.$url.',错误信息：'.$curl_error.serialize(curl_getinfo($ch)));
-					}
+//					if (class_exists('RecordLog', false)) {
+//						RecordLog::addLog('请求接口：'.$url.',错误信息：'.$curl_error.serialize(curl_getinfo($ch)));
+//					}
 					curl_close($ch);
 				}
 			}
