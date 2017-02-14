@@ -1,13 +1,8 @@
 $(function() {
-    //$.get("//hualu.etago.cn",function(data){
-    //    console.log(data);
-    //    if(data.msg="�ɹ�"){
-    //        console.log("1");
-    //        $(".modal_1").fadeIn();
-    //    }
-    //
-    //})
-
+    $("div.section ul.news li p a").mouseover(function(){
+        $(this).parent().siblings("i").css("background","url(Public/home/image/circleHover.png) no-repeat");
+        $(this).parents("li").siblings().find("i").css("background","url(Public/home/image/circle.png) no-repeat");
+    });
 
 
     //banner�����ֲ�Ч����

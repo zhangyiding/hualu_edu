@@ -10,6 +10,9 @@ Application/Runtime
 Runtime/
 .idea/*
 Public/resource/video/*
+Public/resource/image/*
+Public/admin/image/news/*
+ueditor/*
 # composer
 composer.lock
 *.tmp
