@@ -107,7 +107,7 @@ div.title ul.inform li:first-child{
 div.banner{
     text-align: left;
     margin-top: 25px;
-    width: 1000px;
+    width: 1005px;
     position: relative;
     height: 368px;
     overflow: hidden;
@@ -200,13 +200,21 @@ div.section ul.news{
 }
 div.section ul.news li{
     height: 50px;
+    border-bottom: 2px dotted #BABABA;
 }
+div.section ul.news li:last-child{
+
+    border-bottom:none;
+}
+
 div.section ul.news li i{
     display: inline-block;
     width: 7px;
     height: 7px;
     background: url("../image/circle.png") no-repeat;
-    margin: 0 10px;
+    margin: -14px 10px;
+    position: relative;
+
 }
 div.section ul.news li i:hover{
     display: inline-block;
@@ -216,13 +224,13 @@ div.section ul.news li i:hover{
     margin: 0 10px;
 }
 div.section ul.news li p{
+    padding-left: 30px;
     display: inline-block;
     text-align:left;
     width: 305px;
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 2px dotted #BABABA;
     cursor: pointer;
+    position: relative;
+    top:-5px;
 }
 div.section ul.news li p span{
     font-size: 14px;

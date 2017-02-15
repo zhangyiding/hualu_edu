@@ -5,49 +5,6 @@ $(function() {
     });
 
 
-    //banner�����ֲ�Ч����
-   setTimeout( function(){
-        var num=0;
-        var tim;
-        var size=$(".imgList li").size()-1;
-        var nextFn=function(){
-            $('.imgList li').eq(num).fadeOut("slow");
-            num++;
-            if(num>size){
-                num=0;
-            }
-            $('.imgList li').eq(num).fadeIn("slow");
-            $('.btnList li').eq(num).addClass('current').siblings().removeClass('current');
-        }
-        var prevFn=function(){
-            $('.imgList li').eq(num).fadeOut("slow");
-            num--;
-            if(num<0){
-                num=size;
-            }
-            $('.imgList li').eq(num).fadeIn("slow");
-            $('.btnList li').eq(num).addClass('current').siblings().removeClass('current');
-        }
-        tim=setInterval(nextFn, 3000);
-        $('.rightBtn').click(nextFn);
-        $('.leftBtn').click(prevFn);
-
-        $('.banner').hover(function() {
-            clearInterval(tim);
-        }, function() {
-            clearInterval(tim);
-            tim=setInterval(nextFn, 3000);
-        });
-
-    $('.btnList li').click(function(event) {
-        var i=$(this).index();
-        $(this).addClass('current').siblings().removeClass('current');
-        $('.imgList li').eq(i).fadeIn().siblings().fadeOut();
-        num=i;
-    });
-
-},3000);
-
 //����ί��ѵ�л�
     $("span.train_1").click(function(){
         $("span.train_2").css("color","#4F4F4F");
@@ -81,7 +38,7 @@ $(function() {
 
     });
 
-cseList(1);
+cseList(2);
 
     function cseList(cse_dir) {
         var param = {};

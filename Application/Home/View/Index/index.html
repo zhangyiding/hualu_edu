@@ -9,13 +9,58 @@
     <link rel="stylesheet" href="../Public/home/css/common.css"/>
     <link rel="stylesheet" href="../Public/home/css/style_index.css"/>
     <script src="../Public/home/js/jquery-1.11.3.js"></script>
+    <script src="../Public/home/js/jquery.SuperSlide.2.1.1.js"></script>
 
     <script src="../Public/home/js/common.js"></script>
     <script src="../Public/home/js/html5shiv.min.js"></script>
 
 </head>
 <body>
+<style type="text/css">
+    /* css 重置 */
+    *{margin:0; padding:0; list-style:none; }
+    body{ background:#fff; font:normal 12px/22px 宋体;  }
+    img{ border:0;  }
+    a{ text-decoration:none; color:#333;  }
+    /* 本例子css */
+    .slideBox{ width:660px; height:368px; overflow:hidden; position:relative; border:1px solid #ddd;  float: left}
+    .slideBox .hd{ height:15px; overflow:hidden; position:absolute; right:50px; bottom:15px; z-index:1; }
+    .slideBox .hd ul{ overflow:hidden; zoom:1; float:left;  }
+    .slideBox .hd ul li{
+        float:left; margin-right:10px;  width:12px; height:12px; line-height:12px; text-align:center; background:#fff; cursor:pointer;
+        border-radius: 6px;
+    }
+    .slideBox .hd ul li.on{ background:#f00; color:#fff; }
+    .slideBox .bd{ position:relative; height:100%; z-index:0;   }
+    .slideBox .bd li{ zoom:1; vertical-align:middle; }
+    .slideBox .bd img{ width:660px; height:368px; display:block;  }
 
+    /* 下面是前/后按钮代码，如果不需要删除即可 */
+    .slideBox .prev,
+    .slideBox .next{ position:absolute; left:3%; top:50%; margin-top:-25px; display:block; width:32px; height:40px; background:url(images/slider-arrow.png) -110px 5px no-repeat; filter:alpha(opacity=50);opacity:0.5;   }
+    .slideBox .next{ left:auto; right:3%; background-position:8px 5px; }
+    .slideBox .prev:hover,
+    .slideBox .next:hover{ filter:alpha(opacity=100);opacity:1;  }
+    .slideBox .prevStop{ display:none;  }
+    .slideBox .nextStop{ display:none;  }
+    .slideBox .bd ul li div{
+        position: relative;
+        top:-50px;
+        z-index: 999;
+        width: 640px;
+        height: 53px;
+        line-height: 53px;
+        padding-left: 20px;
+        background: red;
+        bottom: 0;
+        left: 0;
+        font-size: 18px;
+        color:#FFFFFF ;
+        background: rgba(0,0,0,.6);
+        filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7f000000,endColorstr=#7f000000);
+    }
+
+</style>
 
 <header id="header">
 
@@ -53,26 +98,25 @@
    </div>
 </div>
 <div class="banner">
-   <ul class="imgList">
-       <foreach name="banner_news" item="vo">
-           <li>
-               <a href="/news/newsInfo?news_id={$vo.news_id}">
-                   <img src="{$vo.cover}" height="368" width="660" />
-                   <div>{$vo.title}</div>
+    <div id="slideBox" class="slideBox">
+        <div class="hd">
+            <ul><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
+        <div class="bd">
+            <ul>
+                <foreach name="banner_news" item="vo">
+                    <li>
+                        <a href="/news/newsInfo?news_id={$vo.news_id}">
+                            <img src="http://demo.tcsasac.com/Public/resource/image/170213/img/1486975716_3045.jpg" height="368" width="660" />
+                        </a>
+                        <div>{$vo.title}</div>
+                    </li>
+                </foreach>
 
-               </a>
-           </li>
-       </foreach>
+                </ul>
+        </div>
+    </div>
 
-
-   </ul>
-   <ol class="btnList">
-       <li class="current"></li>
-       <li></li>
-       <li></li>
-       <li></li>
-       <li></li>
-   </ol>
    <div class="section">
        <p class="train">
            <span class="train_1">国资委培训</span>
@@ -121,7 +165,6 @@
                <div class="btn">
               <span class="btn_1">
                  {$vo.is_pub}
-                   <!--<img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>-->
                </span>
                <span class="btn_2">
                   <img  value="{$vo.course_id}" src="../Public/home/image/baoming.png" alt=""/>
@@ -148,7 +191,9 @@
 
 </footer>
 
-
+<script type="text/javascript">
+    jQuery(".slideBox").slide({mainCell:".bd ul",autoPlay:true,mouseOverStop:false});
+</script>
 
 <script>
    function create_code(){
