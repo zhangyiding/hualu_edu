@@ -462,12 +462,12 @@
 
                 $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
                     console.log(response);
-//                    if(response.code == 10000){
-//                        alert('操作成功');
-//                        location.href = BASE_URL+'/admin/course';
-//                    }else {
-//                        alert(response.msg);
-//                    }
+                    if(response.code == 10000){
+                        alert('操作成功');
+                        location.href = BASE_URL+'/admin/course';
+                    }else {
+                        alert(response.msg);
+                    }
                 });
             })
 

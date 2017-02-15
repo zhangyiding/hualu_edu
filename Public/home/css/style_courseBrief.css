@@ -140,6 +140,8 @@ div#advice>span{
     height:805px;
     margin: 0 0;
     margin-top: -1px;
+    text-align: left;
+    overflow: auto;
     /*float: left;*/
 }
 div#teachs{
