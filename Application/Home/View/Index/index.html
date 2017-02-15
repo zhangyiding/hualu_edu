@@ -107,7 +107,7 @@
                 <foreach name="banner_news" item="vo">
                     <li>
                         <a href="/news/newsInfo?news_id={$vo.news_id}">
-                            <img src="http://demo.tcsasac.com/Public/resource/image/170213/img/1486975716_3045.jpg" height="368" width="660" />
+                            <img src="{$vo.cover}" height="368" width="660" />
                         </a>
                         <div>{$vo.title}</div>
                     </li>
