@@ -174,7 +174,7 @@ class CourseController extends BaseController
 
                 $where['ct_id'] = array('in',$ct_list);
             }else{
-                $this->showMsg('暂无数据');
+                $this->to_back('11006');
             }
 
         }
@@ -194,10 +194,11 @@ class CourseController extends BaseController
             if ($data_mas = $m_course->getCourseList($where, 0, 8)) {
                 $data = $this->formatCourse($data_mas);
             } else {
-                $this->showMsg('暂无数据');
+                $this->to_back('11006');
             }
         }
-        $this->assign('course_list', $data);
+        $this->to_back($data);
+//        $this->assign('course_list', $data);
 
         $this->display();
 

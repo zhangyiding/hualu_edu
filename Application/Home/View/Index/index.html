@@ -136,16 +136,10 @@
    <h1>推荐课程</h1>
    <ul class="toggle">
        <foreach name="cd_data" item="vo">
-           <li ><a href="/course/courseList?course_dir={$vo.cd_id}" target="frmain">{$vo.name}</a></li>
+           <li ><a href="javascript:void(0);" value="{$vo.cd_id}">{$vo.name}</a></li>
        </foreach>
    </ul>
    <a href="/course" class="more"><span>更多&gt;&gt;</span></a>
-
-
-   <div id="content">
-       <iframe id="frmain" name="frmain" src="/course/courseList"  scrolling="no" frameborder="0"
-               onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/></iframe>
-   </div>
 </div>
 
 <div id="course">
