@@ -8,8 +8,8 @@ $(function(){
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
     $("#suggest ul li a").mouseover(function(){
-        $(this).parent().css("background","url('/Public/home/image/circle.png') no-repeat 5px 3px");
-        $(this).parent().siblings().css("background","url('/Public/home/image/circle_2_03.png') no-repeat 5px 3px");
+        $(this).parent().css("background","url('/Public/home/image/circleHover.png') no-repeat 5px 3px");
+        $(this).parent().siblings().css("background","url('/Public/home/image/circle.png') no-repeat 5px 3px");
     })
 //  �γ�Ŀ¼�µ��л�����
     $(".con_2>div").click(function(){

@@ -92,7 +92,6 @@ $(function(){
                             +'<ul class="learn learn_1" style="display: block">';
 
                         $.each(data.result.data_list,function(i,n){
-                            var is_pub_src = (n.is_pub == 1)?'Public/home/image/gongkai.png':'Public/home/image/neixun.png';
 
                             temp+=
                                 '<li>'
@@ -101,7 +100,7 @@ $(function(){
                                 +'<h4>'+n.name+'</h4>'
                                 +'<div class="btn">'
                                 +'<span class="btn_1">'
-                                +'<img src="'+is_pub_src+'" alt=""/></span>'
+                                + n.is_pub+'</span>'
                                 +'<span class="btn_2">'
                                 +'<img id="register" value="'+n.course_id+'" src="Public/home/image/baoming.png" alt=""/>'
                                 +'</span>'

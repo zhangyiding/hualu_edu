@@ -202,10 +202,11 @@ div#suggest ul{
 div#suggest ul li{
     text-align: left;
     padding-left: 20px;
-    background: url("../image/circle_2_03.png") no-repeat 5px 3px;
+    background: url("../image/circle.png") no-repeat 5px 3px;
     margin-bottom: 18px;
 }
 div#suggest ul li a:hover{
+
     color: #55A5E4;
 }
 div#suggest p{
