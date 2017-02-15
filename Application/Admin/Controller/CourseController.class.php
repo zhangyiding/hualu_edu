@@ -513,10 +513,14 @@ class CourseController extends BaseController {
         $data['is_recommend'] = $this->params['is_recommend'];
         $data['enroll_time'] = strtotime($this->params['enroll_time']);
         $data['end_time'] = strtotime($this->params['end_time']);
-        $data['teacher_id'] = $this->params['teacher_id'];
         $ct_id = $this->params['ct_id'];
         if($ct_id && is_array($ct_id)){
             $data['ct_id'] = implode(',',$ct_id);
+        }
+
+        $teacher_id = $this->params['teacher_id'];
+        if($teacher_id && is_array($teacher_id)){
+            $data['teacher_id'] = implode(',',$teacher_id);
         }
 
         $resource_id = $this->params['resource_id'];

@@ -110,9 +110,6 @@
                              </div>
                              <div id="cse_type" class="cse_type" value="{$data.ct_id}" >
                                  <ul>
-                                     <!--<foreach name="ct_list" item="vo">-->
-                                         <!--<li><input name="ct_id[]" type="checkbox" value="{$vo.ct_id}" />{$vo.name} </li>-->
-                                     <!--</foreach>-->
                                  </ul>
 
                              </div>
@@ -130,13 +127,6 @@
                                  </select>
                              </div>
                              <div class="form_list"><label class="lable_title">授课老师</label>
-                                 <!--<select id="teacher_id" name="teacher_id"  style="width:150px; margin-left:15px;">-->
-                                     <!--<option value="">请选择老师</option>-->
-                                     <!--<foreach name="tea_list" item="vo">-->
-                                         <!--<option value="{$vo.teacher_id}" >{$vo.name}</option>-->
-                                     <!--</foreach>-->
-
-                                 <!--</select>-->
                              </div>
                              <div>
                                  <table border="1" cellspacing="0" align="center">
@@ -148,25 +138,9 @@
                                      <tr>
                                          <td align="center" width="150px">
                                              <select id="leftSelect" name="leftSelect" multiple="multiple" size="15" style="width:100%; height:100%;">
-                                                 <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">荸荠</option>
-                                                 <option value="4e1c083f-c988-48b9-9a48-ff7dbe07e51f">胡桃</option>
-                                                 <option value="0e685a36-ddd1-4288-b741-8624e4384b58">杨梅</option>
-                                                 <option value="0fc09295-ed4d-4e79-9c11-2f0913b421a6">沙枣</option>
-                                                 <option value="1cb5eccc-faa3-44df-ba62-bb5fcdf29036">脐橙</option>
-                                                 <option value="26e545ae-3647-45aa-8b9f-cef6a8d8c454">芒果</option>
-                                                 <option value="2788bd4d-53c2-4571-a562-b8c47e058ff4">枇杷</option>
-                                                 <option value="2ab7393a-7478-4451-bb63-e8a91dc63adb">金桔</option>
-                                                 <option value="51160f28-44ab-419d-948c-16ba1370613a">青梅</option>
-                                                 <option value="baa4df9c-e6f9-4d4d-bfb8-648394942170">毛桃</option>
-                                                 <option value="1854fd23-7da0-4d3f-bf4b-21ed97037a0f">金桔</option>
-                                                 <option value="43a0912c-ba1b-4700-8616-31f701098b0a">酸橙</option>
-                                                 <option value="37a76cf1-0b11-411a-8ce3-bb37383951c4">海棠</option>
-                                                 <option value="78a49dc8-3920-47ff-9a3e-b6e31d337d67">槟榔</option>
-                                                 <option value="26852cb9-3cde-4b50-bf52-0ad838822665">杨桃</option>
-                                                 <option value="a52b4681-2c1b-4520-ab8a-6507b52c2105">樱桃</option>
-                                                 <option value="8d3d65f7-5252-4f47-9c9a-960367b06ba7">芭乐</option>
-                                                 <option value="7b361600-7c77-44a5-8e03-c043ebddc710">鳄梨</option>
-                                                 <option value="5c2f062b-3fd2-44c1-a8e2-0546454978d9">西柚</option>
+                                                 <foreach name="tea_list" item="vo">
+                                                 <option value="{$vo.teacher_id}" >{$vo.name}</option>
+                                                 </foreach>
                                              </select>
                                          </td>
                                          <td align="center" width="150px">
@@ -186,10 +160,10 @@
                                  </table>
                              </div>
                              <div class="form_list"><label class="lable_title">报名截至时间</label>
-                                 <input  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="enroll_time" class="form_input" type="text" value={$data.enroll_time}>
+                                 <input id="enroll_time" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="enroll_time" class="form_input" type="text" value={$data.enroll_time}>
                              </div>
                              <div class="form_list"><label class="lable_title">课程结束时间</label>
-                                 <input onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="end_time" class="form_input" type="text" value={$data.end_time}>
+                                 <input id="end_time" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="end_time" class="form_input" type="text" value={$data.end_time}>
                              </div>
 
                              <div class="form_list video"><label class="lable_title">关联视频</label>
@@ -362,7 +336,7 @@
 
                 $.post(BASE_URL+"/admin/course/getCseType",request,function(response){
                     $.each(response.result,function(i,n){
-                        var data=$("<li><input name=ct_id[] type=checkbox value="+ n.ct_id +">"+n.name+"</li>");
+                        var data=$("<li><input name=ct_id type=checkbox value="+ n.ct_id +">"+n.name+"</li>");
                         $("#cse_type ul").append(data);
                     });
 
@@ -394,15 +368,10 @@
 
                 $("#is_pub input[value="+obj.is_pub+"]").attr("checked","true");
                 $("#is_recommend input[value="+obj.is_recommend+"]").attr("checked","true");
-                $('#teacher_id option[value=' +obj.teacher_id + ']').attr('selected','true');
+
                 $('#cse_dir option[value='+obj.cd_id + ']').attr('selected',true);
                 $('#subsite_id option[value='+obj.subsite_id + ']').attr('selected',true);
-//                if(obj.cd_id){
-//                    selDir(obj.cd_id)
-//                }
 
-
-//                $("#cse_type option[value="+obj.ct_id+"]").attr("selected","true");
                 if(obj.cse_video){
                     var ve_str="";
                     var ve_res_id="";
@@ -428,8 +397,17 @@
                     $("#study_file").attr("course_file",fi_res_id);
                 }
 
+                    if(obj.teacher_id.indexOf(',') > 0){
+                        var ct_list = obj.teacher_id.split(',');
+                        $.each(ct_list,function(i,n){
+                            var tea_str =  $('#leftSelect option[value= '+n+']')[0];
+                            $('#rightSelect').append(tea_str);
+                        })
 
-
+                    }else {
+                        var tea_str =  $('#leftSelect option[value= '+obj.teacher_id+']')[0];
+                        $('#rightSelect').append(tea_str);
+                    }
             }
 
             $("#cse_dir").change(function(){
@@ -437,21 +415,26 @@
                selDir(val);
             })
 
-
             $('.submit').click(function(){
 
                 var params = {};
                 params.name = $('#name').val();
                 params.intro = UE.getEditor('myEditor').getContent();
-                params.is_pub = $('#is_pub').val();
+                params.is_pub = $('#is_pub input:radio:checked').val();
                 params.price = $('#price').val();
-                params.is_recommend = $('#is_recommend').val();
+                params.is_recommend = $('#is_recommend input:radio:checked').val();
                 params.subsite_id = $('#subsite_id').val();
-                params.teacher_id = $('#teacher_id').val();
                 params.cse_dir = $('#cse_dir').val();
-                params.ct_id = $('#ct_id').val();
-                params.enroll_time = $('#enroll_time').val();
+                params.enroll_time = $('#enroll_time').attr('value');
                 params.end_time = $('#end_time').val();
+
+                params.ct_id = [];
+                $('input[name="ct_id"]:checked').each(function(){
+                    params.ct_id.push($(this).val());
+                });
+                params.teacher_id = getSelectedValues();
+
+
 
                 var course_ve = $('#video').attr('course_ve');
                 var course_file = $('#study_file').attr('course_file');
@@ -474,18 +457,18 @@
                 }
 
                 if(cover =  $('.cover img').attr('value')){
-                    params.over=cover;
+                    params.cover=cover;
                 }
 
-//                $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
-//                    console.log(response);
+                $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
+                    console.log(response);
 //                    if(response.code == 10000){
 //                        alert('操作成功');
 //                        location.href = BASE_URL+'/admin/course';
 //                    }else {
 //                        alert(response.msg);
 //                    }
-//                });
+                });
             })
 
         })
@@ -562,26 +545,28 @@
 
             var toSelectOptionsList = new Array(toObject.options.length);//存放option移动目的地select标签所有option选项
             var toSelectOptionPointer = 0;
-            for( ; toSelectOptionPointer < toObject.options.length; toSelectOptionPointer ++){//将option移动目的地原有option选项存放到toSelectOptionsList数组中
+            for(;toSelectOptionPointer < toObject.options.length; toSelectOptionPointer ++)
+            {
                 if(toObject.options[toSelectOptionPointer] != null){
                     toSelectOptionsList[toSelectOptionPointer] = new Option(toObject.options[toSelectOptionPointer].text, toObject.options[toSelectOptionPointer].value);
                 }
             }
 
             for(var i = 0; i < fromObject.options.length; i ++){
-                if(fromObject.options[i] != null && (fromObject.options[i].selected == true || moveAllOrNot)){//将新添加的option选项存放到toSelectOptionsList数组中
+                //将新添加的option选项存放到toSelectOptionsList数组中
+                if(fromObject.options[i] != null && (fromObject.options[i].selected == true || moveAllOrNot)){
                     toSelectOptionsList[toSelectOptionPointer] = new Option(fromObject.options[i].text, fromObject.options[i].value);
                     toSelectOptionPointer ++;
                 }
             }
-
-            for(var i = 0; i < toSelectOptionsList.length; i ++){//重新整合option移动目的地select标签的option选项，以使新添加的显示出来
+//重新整合option移动目的地select标签的option选项，以使新添加的显示出来
+            for(var i = 0; i < toSelectOptionsList.length; i ++){
                 if(toSelectOptionsList[ i ] != null){
                     toObject.options[ i ] = toSelectOptionsList[ i ];
                 }
             }
-
-            for(var i = fromObject.options.length - 1; i >= 0; i --){//重新整合option移动起始select标签的option选项，以便去掉删除的option选项
+//重新整合option移动起始select标签的option选项，以便去掉删除的option选项
+            for(var i = fromObject.options.length - 1; i >= 0; i --){
                 if(fromObject.options[i] != null && (fromObject.options[i].selected == true || moveAllOrNot)){
                     fromObject.options[i] = null;
                 }
@@ -595,13 +580,12 @@
                 selectedValues = rightSelectObject.options[i].value + ',' + selectedValues;
             }
             selectedValues = selectedValues.substring(0, selectedValues.lastIndexOf(','));
-            if(selectedValues == ""){
-                alert("你没有选择任何选项！！！");
+            if(selectedValues){
+               return selectedValues;
             }else{
-                alert("你选中的值为：" + selectedValues);
+               return false;
             }
         }
-
-        </script>
+    </script>
   </body>
 </html>
