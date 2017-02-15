@@ -227,6 +227,10 @@ div.section ul.news li p{
 div.section ul.news li p span{
     font-size: 14px;
 }
+
+div.section ul.news li p span:hover{
+    color: #55A5E4;
+}
 div.section ul.news li p span.up{
     font-size: 18px;
     color: #FD0704;
@@ -296,8 +300,17 @@ div#hot>h1{
     cursor: pointer;
 }
  ul.learn li div.btn span.btn_1{
-    float: left;
-    margin-left: 8px;
+     float: left;
+     margin-left: 8px;
+     background: #f8806d;
+     width: 38px;
+     height: 24px;
+     border-radius: 8px;
+     line-height: 25px;
+     text-align: center;
+     font-size: 13px;
+     color: #FEF0EF;
+     font-weight: 800;
 }
 ul.learn li div.btn span.btn_1 img{
     margin-top: 2px;

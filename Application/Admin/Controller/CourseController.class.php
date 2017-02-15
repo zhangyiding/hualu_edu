@@ -50,8 +50,11 @@ class CourseController extends BaseController {
 //        }
 
         if($cse_dir = $this->params['cse_dir']){
-           $ct_list = $m_course->getCseTypeByDir($cse_dir);
-            $where['ct_id'] = array('in',$ct_list);
+            if($ct_list = $m_course->getCseTypeByDir($cse_dir)){
+                $where['ct_id'] = array('in',$ct_list);
+            }else{
+                $this->showMsg('暂无数据');
+            }
         }
 
 
@@ -67,6 +70,9 @@ class CourseController extends BaseController {
             $data = $m_course->getCourseList($where,$this->offset,$this->limit);
             foreach($data as $k=>$v){
                 $data[$k]['cover'] = getImageBaseUrl($v['cover']);
+
+                $cse_pub = C('cse_pub');
+                $data[$k]['is_pub'] = $cse_pub[$v['is_pub']];
 
                 //获取教师信息
                 $tea_info = $m_course->getTeacherInfo($v['teacher_id']);
@@ -502,8 +508,8 @@ class CourseController extends BaseController {
             $data['cover'] = $this->params['cover'];
         }
         $data['intro'] = $this->params['intro'];
-        $data['is_pub'] = $this->params['is_pub'];
         $data['price'] = $this->params['price'];
+        $data['is_pub'] = $this->params['is_pub'];
         $data['is_recommend'] = $this->params['is_recommend'];
         $data['enroll_time'] = strtotime($this->params['enroll_time']);
         $data['end_time'] = strtotime($this->params['end_time']);

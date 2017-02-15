@@ -46,7 +46,6 @@ $(function() {
         num=i;
     });
     $("#advice ul li").click(function(e){
-        //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
 },3000);

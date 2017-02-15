@@ -103,15 +103,31 @@ $(function(){
                                 +'<span class="btn_1">'
                                 +'<img src="'+is_pub_src+'" alt=""/></span>'
                                 +'<span class="btn_2">'
-                                +'<a href="/course/register?course_id='+ n.course_id+'"> <img src="Public/home/image/baoming.png" alt=""/></a>'
+                                +'<img id="register" value="'+n.course_id+'" src="Public/home/image/baoming.png" alt=""/>'
                                 +'</span>'
                                 +'</div>'
                                 +'</li>'
 
                         });
-
+                    //<a href="/course/register?course_id='+ n.course_id+'">
                         temp+='</ul>'
                         $('#allcourse').append(temp);
+                        $('ul.learn').on("click","span.btn_2 img",function(){
+                            var course_id = $(this).attr('value');
+                            $.post(BASE_URL+'/user/userIsLogin',function(response){
+                                if(response.code == '10000'){
+                                    window.location.href = BASE_URL+'/course/register?course_id='+course_id;
+                                }else {
+                                    $(".modal_1").fadeIn();
+                                }
+                            })
+                        });
+
+
+
+
+
+
 
                         //分页管理
                         pageStatus = 0;

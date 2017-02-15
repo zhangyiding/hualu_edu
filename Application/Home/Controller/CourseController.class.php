@@ -128,6 +128,9 @@ class CourseController extends BaseController
                     $course_list[$k]['name'] = cutStr($v['name'], 17);
 
                     $course_list[$k]['cover'] = getImageBaseUrl($v['cover']);
+
+                    $course_list[$k]['is_pub'] = C('cse_pub')[$v['is_pub']];
+
                 }
             } else {
                 $open_status = ($course_list['open_status'] == 1) ? '最新上线' : '即将结课';
@@ -139,6 +142,7 @@ class CourseController extends BaseController
                 $course_list['name'] = cutStr($course_list['name'], 12);
 
                 $course_list['cover'] = getImageBaseUrl($course_list['cover']);
+                $course_list['is_pub'] = C('cse_pub')[$course_list['is_pub']];
             }
             return $course_list;
         } else {

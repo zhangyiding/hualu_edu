@@ -82,6 +82,7 @@ class SubsiteController extends BaseController {
 
         $data['subsite_type'] = $this->params['type'];
         $data['address'] = $this->params['address'];
+
         $data['ename'] = $this->params['ename'];
         $data['intro'] = $this->params['intro'];
         $data['site_url'] = $this->params['site_url'];

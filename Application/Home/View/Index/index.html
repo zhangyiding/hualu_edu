@@ -120,10 +120,11 @@
                <h4>{$vo.name}</h4>
                <div class="btn">
               <span class="btn_1">
-                   <img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>
+                 {$vo.is_pub}
+                   <!--<img src="<?php ($vo['is_pub'] == 1) ? print_r('../Public/home/image/gongkai.png') : print_r('../Public/home/image/neixun.png');?>" alt=""/>-->
                </span>
                <span class="btn_2">
-                  <a href="/course/register?course_id={$vo.course_id}"> <img src="../Public/home/image/baoming.png" alt=""/></a>
+                  <img  value="{$vo.course_id}" src="../Public/home/image/baoming.png" alt=""/>
                </span>
                </div>
            </li>
@@ -142,7 +143,7 @@
 
 
    <div id="content">
-       <iframe id="frmain" name="frmain" src="/course/courseList?number=8"  scrolling="no" frameborder="0"
+       <iframe id="frmain" name="frmain" src="/course/courseList"  scrolling="no" frameborder="0"
                onload="this.height=this.contentWindow.document.documentElement.scrollHeight"/></iframe>
    </div>
 </div>

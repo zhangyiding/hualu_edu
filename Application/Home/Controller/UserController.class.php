@@ -367,7 +367,7 @@ class UserController extends BaseController {
 
                 $data['name'] = $cse_info['name'];
                 $data['end_time'] = $end_time;
-                $data['is_pub'] = $cse_info['is_pub'];
+                $data['is_pub'] = [$cse_info['is_pub']];
                 $data['sum_dur'] = changeTimeType(array_sum($cse_time));
                 $data['course_id'] = $course_id;
                 $data['cse_video'] = $c_res;

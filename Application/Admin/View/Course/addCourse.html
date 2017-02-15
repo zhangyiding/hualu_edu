@@ -9,6 +9,8 @@
       <script src="../../Public/admin/js/jquery-1.10.2.js"></script>
       <script src="../../Public/admin/js/common.js" type="text/javascript"></script>
       <script src="../../Public/admin/js/WdatePicker.js"></script>
+      <script src="../../Public/admin/js/library/editor_baidu/ueditor.config.js"  charset="utf-8"></script>
+      <script src="../../Public/admin/js/library/editor_baidu/ueditor.all.min.js"  charset="utf-8"></script>
     <!-- Le styles -->
     <link href="../../Public/admin/css/bootstrap.css" rel="stylesheet">
     <link href="../../Public/admin/css/bootstrap-responsive.css" rel="stylesheet">
@@ -64,7 +66,9 @@
                          <form>
 
                             <div class="form_list"><label class="lable_title">课程名称</label><input id="name" name="name" class="form_input" type="text" value={$data.name}></div>
-                             <div class="form_list"><label class="lable_title">课程简介</label><input id="intro" name="intro" class="form_input" type="text" value={$data.intro}></div>
+                             <div class="form_list"><label class="lable_title">课程简介</label>
+                               </div>
+                             <div><textarea name="intro" id="myEditor">{$data.intro}</textarea></div>
 
                               <div class="form_list" ><label  class="lable_title">课程封面</label>
                               </div>
@@ -86,6 +90,7 @@
                              </label>
                                  <input type="radio" name="is_pub" value="1">公开
                                  <input type="radio" name="is_pub" value="2">内训
+                                 <input type="radio" name="is_pub" value="3">定向
                              </div>
                              <div class="form_list"><label class="lable_title">课程价格</label>
                                  <input id="price" name="price" class="form_input" type="text" value={$data.price}>
@@ -125,13 +130,60 @@
                                  </select>
                              </div>
                              <div class="form_list"><label class="lable_title">授课老师</label>
-                                 <select id="teacher_id" name="teacher_id"  style="width:150px; margin-left:15px;">
-                                     <option value="">请选择老师</option>
-                                     <foreach name="tea_list" item="vo">
-                                         <option value="{$vo.teacher_id}" >{$vo.name}</option>
-                                     </foreach>
+                                 <!--<select id="teacher_id" name="teacher_id"  style="width:150px; margin-left:15px;">-->
+                                     <!--<option value="">请选择老师</option>-->
+                                     <!--<foreach name="tea_list" item="vo">-->
+                                         <!--<option value="{$vo.teacher_id}" >{$vo.name}</option>-->
+                                     <!--</foreach>-->
 
-                                 </select>
+                                 <!--</select>-->
+                             </div>
+                             <div>
+                                 <table border="1" cellspacing="0" align="center">
+                                     <tr>
+                                         <td align="center" width="150px">未选择</td>
+                                         <td align="center" width="150px">操作</td>
+                                         <td align="center" width="150px">已选择</td>
+                                     </tr>
+                                     <tr>
+                                         <td align="center" width="150px">
+                                             <select id="leftSelect" name="leftSelect" multiple="multiple" size="15" style="width:100%; height:100%;">
+                                                 <option value="07c9907f-bfb1-4e37-98e6-02224834ef76">荸荠</option>
+                                                 <option value="4e1c083f-c988-48b9-9a48-ff7dbe07e51f">胡桃</option>
+                                                 <option value="0e685a36-ddd1-4288-b741-8624e4384b58">杨梅</option>
+                                                 <option value="0fc09295-ed4d-4e79-9c11-2f0913b421a6">沙枣</option>
+                                                 <option value="1cb5eccc-faa3-44df-ba62-bb5fcdf29036">脐橙</option>
+                                                 <option value="26e545ae-3647-45aa-8b9f-cef6a8d8c454">芒果</option>
+                                                 <option value="2788bd4d-53c2-4571-a562-b8c47e058ff4">枇杷</option>
+                                                 <option value="2ab7393a-7478-4451-bb63-e8a91dc63adb">金桔</option>
+                                                 <option value="51160f28-44ab-419d-948c-16ba1370613a">青梅</option>
+                                                 <option value="baa4df9c-e6f9-4d4d-bfb8-648394942170">毛桃</option>
+                                                 <option value="1854fd23-7da0-4d3f-bf4b-21ed97037a0f">金桔</option>
+                                                 <option value="43a0912c-ba1b-4700-8616-31f701098b0a">酸橙</option>
+                                                 <option value="37a76cf1-0b11-411a-8ce3-bb37383951c4">海棠</option>
+                                                 <option value="78a49dc8-3920-47ff-9a3e-b6e31d337d67">槟榔</option>
+                                                 <option value="26852cb9-3cde-4b50-bf52-0ad838822665">杨桃</option>
+                                                 <option value="a52b4681-2c1b-4520-ab8a-6507b52c2105">樱桃</option>
+                                                 <option value="8d3d65f7-5252-4f47-9c9a-960367b06ba7">芭乐</option>
+                                                 <option value="7b361600-7c77-44a5-8e03-c043ebddc710">鳄梨</option>
+                                                 <option value="5c2f062b-3fd2-44c1-a8e2-0546454978d9">西柚</option>
+                                             </select>
+                                         </td>
+                                         <td align="center" width="150px">
+                                             <input type="button" onclick="moveOptions('leftSelect', 'rightSelect', true, false);" value="添加 >>" style="text-align:center; margin-bottom:10px; width:90px;"/>
+                                             <br/>
+                                             <input type="button" onclick="moveOptions('rightSelect', 'leftSelect', false, false);" value="删除 <<" style="text-align:center; margin-bottom:10px; width:90px;"/>
+                                             <br/>
+                                             <input type="button" onclick="moveOptions('leftSelect', 'rightSelect', true, true);" value="全部添加 >>" style="margin-bottom:10px; width:90px;"/>
+                                             <br/>
+                                             <input type="button" onclick="moveOptions('rightSelect', 'leftSelect', false, true);" value="全部删除 <<" style="margin-bottom:10px; width:90px;"/>
+                                             <br/>
+                                         </td>
+                                         <td align="center" width="150px">
+                                             <select id="rightSelect" name="rightSelect" multiple="multiple" size="15" style="width:100%; height:100%;"></select>
+                                         </td>
+                                     </tr>
+                                 </table>
                              </div>
                              <div class="form_list"><label class="lable_title">报名截至时间</label>
                                  <input  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="enroll_time" class="form_input" type="text" value={$data.enroll_time}>
@@ -209,9 +261,11 @@
     </div>
 
     <script type="text/javascript">
+        //实例化编辑器
+        var editor = new UE.ui.Editor();
+        editor.render("myEditor");
 
         $(function(){
-
             //选择视频和资料相关js操作
             $('#video').click(function(){
                 str = $(this).val();
@@ -385,9 +439,23 @@
 
 
             $('.submit').click(function(){
+
+                var params = {};
+                params.name = $('#name').val();
+                params.intro = UE.getEditor('myEditor').getContent();
+                params.is_pub = $('#is_pub').val();
+                params.price = $('#price').val();
+                params.is_recommend = $('#is_recommend').val();
+                params.subsite_id = $('#subsite_id').val();
+                params.teacher_id = $('#teacher_id').val();
+                params.cse_dir = $('#cse_dir').val();
+                params.ct_id = $('#ct_id').val();
+                params.enroll_time = $('#enroll_time').val();
+                params.end_time = $('#end_time').val();
+
                 var course_ve = $('#video').attr('course_ve');
                 var course_file = $('#study_file').attr('course_file');
-                var params = $('form').serialize();
+
 
                 if(course_ve || course_file){
                     if(!course_ve){
@@ -396,34 +464,34 @@
                     if(!course_file){
                         course_file = '';
                     }
-                    params += '&resource_id='+course_ve+','+course_file;
+                    params.resource_id=course_ve+','+course_file;
                 }
 
                 //当课程id有值时操作类型为更新
                 if(course_id = $('#course_id').attr('value')){
-                    params += '&op_type=1';
-                    params += '&course_id='+course_id;
+                    params.op_type = 1;
+                    params.course_id = course_id;
                 }
 
                 if(cover =  $('.cover img').attr('value')){
-                    params += '&cover='+cover;
+                    params.over=cover;
                 }
 
-                $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
-                    console.log(response);
-                    if(response.code == 10000){
-                        alert('操作成功');
-                        location.href = BASE_URL+'/admin/course';
-                    }else {
-                        alert(response.msg);
-                    }
-                });
+//                $.post(BASE_URL+'/admin/course/doAddCourse',params,function(response){
+//                    console.log(response);
+//                    if(response.code == 10000){
+//                        alert('操作成功');
+//                        location.href = BASE_URL+'/admin/course';
+//                    }else {
+//                        alert(response.msg);
+//                    }
+//                });
             })
 
         })
     </script>
-    <script type="text/javascript">
 
+    <script type="text/javascript">
         $(function() {
             $('#uploadify').uploadify({
                 'formData'     : {
@@ -463,5 +531,77 @@
 
         });
     </script>
+    <script type="text/javascript">
+
+        /**
+         * @param fromSelectId option移动起始select标签id
+         * @param toSelectId option移动目的地select标签id
+         * @param addOrNot boolean类型——true表示当前进行的是添加操作，否则是删除操作
+         * @param moveAllOrNot boolean类型——true表示当前进行的是“全部”操作，否则当前进行的不是“全部”操作
+         */
+        function moveOptions(fromSelectId, toSelectId, addOrNot, moveAllOrNot){
+            var fromObject = document.getElementById(fromSelectId);
+            var toObject = document.getElementById(toSelectId);
+            if(fromObject.options.length == 0){
+                if(addOrNot){
+                    alert("没有找到可添加的选项！");
+                }else{
+                    alert("没有找到可删除的选项！");
+                }
+                return;
+            }
+
+            if(fromObject.selectedIndex == -1 && moveAllOrNot == false){
+                if(addOrNot){
+                    alert("请先选择要添加的选项！");
+                }else{
+                    alert("请先选择要删除的选项！");
+                }
+                return;
+            }
+
+            var toSelectOptionsList = new Array(toObject.options.length);//存放option移动目的地select标签所有option选项
+            var toSelectOptionPointer = 0;
+            for( ; toSelectOptionPointer < toObject.options.length; toSelectOptionPointer ++){//将option移动目的地原有option选项存放到toSelectOptionsList数组中
+                if(toObject.options[toSelectOptionPointer] != null){
+                    toSelectOptionsList[toSelectOptionPointer] = new Option(toObject.options[toSelectOptionPointer].text, toObject.options[toSelectOptionPointer].value);
+                }
+            }
+
+            for(var i = 0; i < fromObject.options.length; i ++){
+                if(fromObject.options[i] != null && (fromObject.options[i].selected == true || moveAllOrNot)){//将新添加的option选项存放到toSelectOptionsList数组中
+                    toSelectOptionsList[toSelectOptionPointer] = new Option(fromObject.options[i].text, fromObject.options[i].value);
+                    toSelectOptionPointer ++;
+                }
+            }
+
+            for(var i = 0; i < toSelectOptionsList.length; i ++){//重新整合option移动目的地select标签的option选项，以使新添加的显示出来
+                if(toSelectOptionsList[ i ] != null){
+                    toObject.options[ i ] = toSelectOptionsList[ i ];
+                }
+            }
+
+            for(var i = fromObject.options.length - 1; i >= 0; i --){//重新整合option移动起始select标签的option选项，以便去掉删除的option选项
+                if(fromObject.options[i] != null && (fromObject.options[i].selected == true || moveAllOrNot)){
+                    fromObject.options[i] = null;
+                }
+            }
+        }
+
+        function getSelectedValues(){
+            var selectedValues = "";
+            var rightSelectObject = document.getElementById("rightSelect");
+            for(var i=0; i<rightSelectObject.options.length; i++){
+                selectedValues = rightSelectObject.options[i].value + ',' + selectedValues;
+            }
+            selectedValues = selectedValues.substring(0, selectedValues.lastIndexOf(','));
+            if(selectedValues == ""){
+                alert("你没有选择任何选项！！！");
+            }else{
+                alert("你选中的值为：" + selectedValues);
+            }
+        }
+
+        </script>
   </body>
 </html>

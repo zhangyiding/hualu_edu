@@ -100,9 +100,7 @@
                                         <img src="{$vo.cover}" alt=""/>
                                     </a>
                                     <span class="lt">
-                                        <if condition="($cse_info['is_pub'] eq 1 )">公开
-
-                                        <else />内训</if></span>
+                                        {$vo.is_pub}</span>
                                     <div class="hour">{$vo.os_cn}</div>
                                     <h4>{$vo.name}</h4>
                                     <div class="btn">
