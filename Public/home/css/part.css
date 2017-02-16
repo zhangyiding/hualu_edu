@@ -33,6 +33,7 @@ ul.learn li{
     float: left;
     position: relative;
     margin-right: 15px;
+    margin-bottom: 19px;
 }
 ul.learn li img{
     cursor: pointer;
@@ -69,7 +70,7 @@ ul.learn li div.btn span.btn_1{
     background: #f8806d;
     width: 38px;
     height: 24px;
-    border-radius: 8px;
+    border-radius: 3px;
     line-height: 25px;
     text-align: center;
     font-size: 13px;
