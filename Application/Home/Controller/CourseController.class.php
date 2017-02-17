@@ -380,6 +380,7 @@ class CourseController extends BaseController
 
             $this->assign('cse_info', $cse_info);
 
+
             //根据课程id获取资源详情列表
             $where['cr.course_id'] = $cse_id;
 
