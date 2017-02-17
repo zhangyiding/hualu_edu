@@ -42,7 +42,7 @@ class Curl {
 			if($re !== false) break;
 			$re = curl_exec($ch);
             $end_time = microtime(true);
-            RecordLog::add_curl_log($ch, $url, $start_time, $end_time,'get',$re);
+//            RecordLog::add_curl_log($ch, $url, $start_time, $end_time,'get',$re);
 			if ( is_string($re) && strlen($re) ) {
 				curl_close($ch);
 				$return = 'info';
