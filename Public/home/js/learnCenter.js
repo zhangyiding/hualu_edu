@@ -3,7 +3,7 @@
  */
 $(function(){
     $("div.con_2 li p,div.co_top ul li h1").hover(function(){
-        $(this).css("color","#73B2E7");
+        $(this).css("color","#D20000");
     },function(){
         $(this).css("color","#686868")
     });

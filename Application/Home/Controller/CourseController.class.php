@@ -99,7 +99,7 @@ class CourseController extends BaseController
         } else {
             $this->showMsg('暂无相关课程');
         }
-
+        $this->assign('css_path',$this->css_path);
         $this->display();
 
     }
@@ -200,7 +200,6 @@ class CourseController extends BaseController
         $this->to_back($data);
 //        $this->assign('course_list', $data);
 
-        $this->display();
 
     }
 
@@ -284,6 +283,7 @@ class CourseController extends BaseController
             $this->assign('cse_info', $course_info);
             $this->assign('cse_video', $cse_video);
             $this->assign('cse_file', $cse_file);
+            $this->assign('css_path',$this->css_path);
             $this->display();
 
         }
@@ -314,8 +314,8 @@ class CourseController extends BaseController
         $where['course_id'] = $course_id;
         $where['student_id'] = $student_id;
         if ($reg_info = $m_course->getRegister($where)) {
-            $this->showMsg('该课程已报名过');
-            $reg_id = $reg_info['scm_id'];
+//            $this->showMsg('该课程已报名过');
+//            $reg_id = $reg_info['scm_id'];
 
         } else {
             $map['course_id'] = $course_id;
@@ -335,6 +335,7 @@ class CourseController extends BaseController
         $this->assign('cse_info', $cse_info);
 
 
+        $this->assign('css_path',$this->css_path);
         $this->display();
     }
 
@@ -416,7 +417,7 @@ class CourseController extends BaseController
 
                 $this->assign('cse_list', $cse_list);
             }
-
+            $this->assign('css_path',$this->css_path);
 
             $this->display();
         }

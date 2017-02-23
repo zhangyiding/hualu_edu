@@ -25,6 +25,7 @@ class BaseController extends Controller
     protected $subsite_host = '';//分站域名
     protected $admin_name = '';//管理员名称
     protected $su_type = '2';//管理员类型，1为主站管理员，2为分站管理员，3为培训管理员
+    protected $css_path = 'blue';
 
     protected $page = '1';//页数
     protected $offset = '0';//偏移量
@@ -54,6 +55,9 @@ class BaseController extends Controller
         if($this->subsite_info = $m_base->getSubsiteId($this->subsite_host)){
         $this->subsite_id = $this->subsite_info['subsite_id'];
         $this->subsite_name = $this->subsite_info['name'];
+            if($this->subsite_info['tmp_color']){
+                $this->css_path = $this->subsite_info['tmp_color'];
+            }
         }
 
 //        $this->subsite_id = '130301704';

@@ -75,6 +75,7 @@ class IndexController extends BaseController {
 
         }
 
+        $this->assign('css_path',$this->css_path);
 
         $this->display();
     }

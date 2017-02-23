@@ -31,6 +31,7 @@ class NewsController extends BaseController {
 
         //获取分页总数进一取整
         $this->assign('news_list',$data);
+        $this->assign('css_path',$this->css_path);
         $this->display();
         }
 
@@ -92,6 +93,7 @@ class NewsController extends BaseController {
         if($weather = $index->getWeather()){
             $this->assign('weather',$weather);
         }
+        $this->assign('css_path',$this->css_path);
         $this->display();
     }
 

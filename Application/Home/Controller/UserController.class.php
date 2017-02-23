@@ -322,6 +322,7 @@ class UserController extends BaseController {
         $this->assign('wait_cse',$wait_cse);
         $this->assign('len_cse',$len_cse);
         $this->assign('over_cse',$over_cse);
+        $this->assign('css_path',$this->css_path);
         $this->display();
     }
 
@@ -407,7 +408,7 @@ class UserController extends BaseController {
 
         $ethnic_list = C('ETHNIC_LIST');
         $this->assign('ethnic_list',$ethnic_list);
-
+        $this->assign('css_path',$this->css_path);
         $this->display();
     }
 
@@ -479,6 +480,7 @@ class UserController extends BaseController {
 
 
     public function prove(){
+        $this->assign('css_path',$this->css_path);
         $this->display();
     }
 

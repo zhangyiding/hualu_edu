@@ -7,10 +7,10 @@ $(function(){
         //e.preventDefault();
         $(this).addClass("active").siblings(".active").removeClass("active");
     })
-    $("#suggest ul li a").mouseover(function(){
-        $(this).parent().css("background","url('/Public/home/image/circleHover.png') no-repeat 5px 3px");
-        $(this).parent().siblings().css("background","url('/Public/home/image/circle.png') no-repeat 5px 3px");
-    })
+    $("div.suggest ul li a").mouseover(function(){
+        $(this).parent().siblings("i").addClass("current");
+        $(this).parents("li").siblings().find("i").removeClass("current");
+    });
 //  �γ�Ŀ¼�µ��л�����
     $(".con_2>div").click(function(){
         if($(this).children("span.arrow").hasClass("active")){

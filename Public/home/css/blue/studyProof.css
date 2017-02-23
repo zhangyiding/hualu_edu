@@ -1,0 +1,70 @@
+/*����л�����*/
+#concent{
+    width:1000px;
+    margin:0 auto;
+    margin-top: 30px;
+    overflow: hidden;
+}
+#concent ul.co_left{
+    text-align: left;
+    float: left;
+    width: 140px;
+}
+#concent ul.co_left li{
+    width: 135px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border: 2px solid #D5D5D5;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+#concent ul.co_left li.active{
+    background: #55A5E4;
+    border: 2px solid #55A5E4;
+}
+#concent ul.co_left li.active a{
+    color: #ffffff;
+
+}
+
+div.data p{
+    width: 100px;
+    height:35px;
+    line-height: 35px;
+    text-align: center;
+    margin-left:38px;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 1px solid #D5D5D5;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+div.data p.current{
+    background:#55A5E4;
+    color: #ffffff;
+}
+ul.co_left li.lf_3 i{
+    display: inline-block;
+    width: 14px;
+    height: 8px;
+    background: url("./image/arrow_06.png") no-repeat;
+}
+
+
+/*�Ҳ���������*/
+div.co_right{
+    float:left;
+    width: 860px;
+    height:1220px;
+    background: url("./image/recordProof.png") no-repeat;
+    position: relative;
+}
+div.co_right p.number{
+    font-size: 16px;
+    margin-top:165px;
+    text-align: right;
+    margin-right: 120px;
+}
