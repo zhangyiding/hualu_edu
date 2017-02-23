@@ -40,7 +40,7 @@
                          <div  class="daohanglink"style="">
                            <span class="daohang"></span>
                              <a href="/admin">首页</a><span>></span>
-                             <a href="/admin/student">分站管理</a><span>></span>
+                             <a href="/admin/subsite">分站管理</a><span>></span>
                            <span>添加分站</span>
                            
                          </div>
@@ -72,6 +72,13 @@
                                  <input type="radio" name="type" value="1">央企
                                  <input type="radio" name="type" value="2">机关
                                  <input type="radio" name="type" value="3">党校
+                             </div>
+
+                             <div id="tmp_color" class="form_list" value="{$data.tmp_color}"><label class="lable_title">
+                                 模版颜色
+                             </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" name="tmp_color" value="blue">蓝色
+                                 <input type="radio" name="tmp_color" value="red">红色
                              </div>
                              <div class="form_list"><label class="lable_title">分站地址</label>
                                  <input id="address" name="address" class="form_input" type="text" value={$data.address}>
@@ -107,6 +114,9 @@
               $('.type input[value=' + type +']').prop('checked',true);
           }
 
+          if(tmp_color = $('#tmp_color').attr('value')){
+              $('#tmp_color input[value=' + tmp_color +']').prop('checked',true);
+          }
 
 
           $('#uploadify').uploadify({

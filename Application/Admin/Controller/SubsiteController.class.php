@@ -33,6 +33,8 @@ class SubsiteController extends BaseController {
                $sub_type = C('sub_type');
                $data[$k]['subsite_type'] = $sub_type[$v['subsite_type']];
 
+               $data[$k]['tmp_color'] = ($v['tmp_color'])? $v['tmp_color']: 'blue';
+
 
            }
            $this->assign('page_arr',$page_arr);
@@ -86,6 +88,8 @@ class SubsiteController extends BaseController {
         $data['ename'] = $this->params['ename'];
         $data['intro'] = $this->params['intro'];
         $data['site_url'] = $this->params['site_url'];
+
+        $data['tmp_color'] = $this->params['tmp_color'];
 
         $m_subsite = new \Admin\Model\SubsiteModel();
 

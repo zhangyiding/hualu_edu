@@ -7,7 +7,7 @@ class SubsiteModel extends Model{
     protected $tableName = 'subsite';
 
 	public function getSubsiteList($where,$offset,$limit){
-	    $result = $this->field('subsite_id,name,ename,site_url,province_id,city_id,address,postcode,subsite_type,subsite_banner,intro,remark,ctime,mtime')
+	    $result = $this->field('subsite_id,name,ename,site_url,province_id,tmp_color,city_id,address,postcode,subsite_type,subsite_banner,intro,remark,ctime,mtime')
             ->where($where)
             ->limit($offset,$limit)
             ->order('ctime desc')

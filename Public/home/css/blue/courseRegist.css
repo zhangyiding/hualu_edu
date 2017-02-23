@@ -295,4 +295,23 @@ div.check p span{
     cursor: pointer;
 }
 
+div#step.step_1{
+    width: 720px;
+    height: 47px;
+    background: url("./image/wait_1.png");
+    margin-left: 137px;
+}
 
+div#step.step_2{
+    width: 720px;
+    height: 47px;
+    background: url("./image/wait_2.png");
+    margin-left: 137px;
+}
+
+div#step.step_3{
+    width: 720px;
+    height: 47px;
+    background: url("./image/wait_3.png");
+    margin-left: 137px;
+}
